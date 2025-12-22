@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Julen Astigarraga and Verónica Cruz-Alonso">
+
+<title>quarto-input4005f5f9</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="dia_1_intro_files/libs/clipboard/clipboard.min.js"></script>
+<script src="dia_1_intro_files/libs/quarto-html/quarto.js"></script>
+<script src="dia_1_intro_files/libs/quarto-html/popper.min.js"></script>
+<script src="dia_1_intro_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="dia_1_intro_files/libs/quarto-html/anchor.min.js"></script>
+<link href="dia_1_intro_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="dia_1_intro_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="dia_1_intro_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="dia_1_intro_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="dia_1_intro_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#quiénes-somos" id="toc-quiénes-somos" class="nav-link active" data-scroll-target="#quiénes-somos"><span class="header-section-number">1</span> Quiénes somos</a></li>
+  <li><a href="#presentación" id="toc-presentación" class="nav-link" data-scroll-target="#presentación"><span class="header-section-number">2</span> Presentación</a></li>
+  <li><a href="#estructura-del-curso" id="toc-estructura-del-curso" class="nav-link" data-scroll-target="#estructura-del-curso"><span class="header-section-number">3</span> Estructura del curso</a></li>
+  <li><a href="#dinámica-del-curso" id="toc-dinámica-del-curso" class="nav-link" data-scroll-target="#dinámica-del-curso"><span class="header-section-number">4</span> Dinámica del curso</a></li>
+  <li><a href="#objetivos-del-día-1" id="toc-objetivos-del-día-1" class="nav-link" data-scroll-target="#objetivos-del-día-1"><span class="header-section-number">5</span> Objetivos del día 1</a></li>
+  <li><a href="#conceptos-básicos" id="toc-conceptos-básicos" class="nav-link" data-scroll-target="#conceptos-básicos"><span class="header-section-number">6</span> Conceptos básicos</a></li>
+  <li><a href="#comenzando-a-trabajar-en-r" id="toc-comenzando-a-trabajar-en-r" class="nav-link" data-scroll-target="#comenzando-a-trabajar-en-r"><span class="header-section-number">7</span> Comenzando a trabajar en R</a>
+  <ul>
+  <li><a href="#el-espacio-de-trabajo" id="toc-el-espacio-de-trabajo" class="nav-link" data-scroll-target="#el-espacio-de-trabajo"><span class="header-section-number">7.1</span> El espacio de trabajo</a>
+  <ul class="collapse">
+  <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio"><span class="header-section-number">7.1.1</span> Ejercicio</a></li>
+  </ul></li>
+  <li><a href="#instalar-y-cargar-paquetes" id="toc-instalar-y-cargar-paquetes" class="nav-link" data-scroll-target="#instalar-y-cargar-paquetes"><span class="header-section-number">7.2</span> Instalar y cargar paquetes</a></li>
+  <li><a href="#operaciones-aritméticas-r-como-calculadora" id="toc-operaciones-aritméticas-r-como-calculadora" class="nav-link" data-scroll-target="#operaciones-aritméticas-r-como-calculadora"><span class="header-section-number">7.3</span> Operaciones aritméticas (R como calculadora)</a></li>
+  </ul></li>
+  <li><a href="#objetos-de-r" id="toc-objetos-de-r" class="nav-link" data-scroll-target="#objetos-de-r"><span class="header-section-number">8</span> Objetos de R</a>
+  <ul>
+  <li><a href="#nombramiento-de-objetos" id="toc-nombramiento-de-objetos" class="nav-link" data-scroll-target="#nombramiento-de-objetos"><span class="header-section-number">8.1</span> Nombramiento de objetos</a></li>
+  <li><a href="#tipos-de-objetos" id="toc-tipos-de-objetos" class="nav-link" data-scroll-target="#tipos-de-objetos"><span class="header-section-number">8.2</span> Tipos de objetos</a>
+  <ul class="collapse">
+  <li><a href="#vectores" id="toc-vectores" class="nav-link" data-scroll-target="#vectores"><span class="header-section-number">8.2.1</span> Vectores</a></li>
+  <li><a href="#ejercicio-1" id="toc-ejercicio-1" class="nav-link" data-scroll-target="#ejercicio-1"><span class="header-section-number">8.2.2</span> Ejercicio</a></li>
+  <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices"><span class="header-section-number">8.2.3</span> Matrices</a></li>
+  <li><a href="#bases-de-datos-data.frame" id="toc-bases-de-datos-data.frame" class="nav-link" data-scroll-target="#bases-de-datos-data.frame"><span class="header-section-number">8.2.4</span> Bases de datos (data.frame)</a></li>
+  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">8.2.5</span> Listas</a></li>
+  </ul></li>
+  <li><a href="#indexación" id="toc-indexación" class="nav-link" data-scroll-target="#indexación"><span class="header-section-number">8.3</span> Indexación</a>
+  <ul class="collapse">
+  <li><a href="#ejercicio-2" id="toc-ejercicio-2" class="nav-link" data-scroll-target="#ejercicio-2"><span class="header-section-number">8.3.1</span> Ejercicio</a></li>
+  </ul></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">8.4</span> Tidyverse</a></li>
+  <li><a href="#quién-responde-a-mis-dudas" id="toc-quién-responde-a-mis-dudas" class="nav-link" data-scroll-target="#quién-responde-a-mis-dudas"><span class="header-section-number">8.5</span> ¿Quién responde a mis dudas?</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="dia_1_intro.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><div class="line-block">Ciencia de datos en R <img src="images/Escuela%20de%20Doctorado_trilingue_positivo.png" class="img-fluid"></div></h1>
+<p class="subtitle lead">Introducción (Organizando datos: el día a día)</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Julen Astigarraga and Verónica Cruz-Alonso </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">22/09/2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="quiénes-somos" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="quiénes-somos"><span class="header-section-number">1</span> Quiénes somos</h2>
+<p>Verónica Cruz-Alonso (veronica.cral@gmail.com) y Julen Astigarraga (julenastigarraga@gmail.com). Coordinamos el <a href="https://ecoinfaeet.github.io/website/index.html">grupo de trabajo de Ecoinformática</a> de la Asociación Española de Ecología Terrestre. En <a href="https://github.com/DatSciR">DatSciR</a> publicamos los materiales de los cursos que impartimos.</p>
+<p>Y vosotros ¿quiénes sois?</p>
+<p><a href="https://www.menti.com/alpvk2yr4cao" class="uri">https://www.menti.com/alpvk2yr4cao</a></p>
+<p>¿Y qué es R y de dónde procede?</p>
+<p><a href="https://www.r-project.org/about.html">R es un lenguaje y un entorno para la computación estadística y gráfica</a></p>
+<p><a href="https://www.jumpingrivers.com/misc/timeline/">Un poco de historia de R contada por Jumping Rivers</a></p>
+</section>
+<section id="presentación" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="presentación"><span class="header-section-number">2</span> Presentación</h2>
+<p>En este curso exploraremos tanto los fundamentos teóricos como las aplicaciones prácticas de la ciencia de datos en R. Abordaremos desde tareas comunes con las que nos enfrentamos en nuestro día a día, como la limpieza y transformación de datos, hasta nociones más avanzadas de visualización y programación. Además, aprenderemos a utilizar herramientas para generar documentos reproducibles y colaborativos. Durante el curso, combinaremos la teoría con la práctica, adaptando las lecciones a los problemas específicos de cada asistente, los cuales irán evolucionando día a día.</p>
+<p>El objetivo principal es que tanto aquellos con conocimientos básicos en ciencia de datos como aquellos con un nivel más avanzado puedan beneficiarse y llevar consigo nuevos aprendizajes al finalizar el curso.</p>
+<div id="fig-datascience" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-datascience-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/datascience.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-datascience-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="estructura-del-curso" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="estructura-del-curso"><span class="header-section-number">3</span> Estructura del curso</h2>
+<table class="table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bloques</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Organizar datos: el día a día</td>
+<td><p>Introducción a la programación en R</p>
+<p>Tidyverse</p>
+<p>Importar, filtrar, seleccionar, transformar, unir y exportar datos</p></td>
+</tr>
+<tr class="even">
+<td>Visualización: contando historias</td>
+<td><p>Fundamentos de visualización</p>
+<p>Bases: gráficos por capas</p>
+<p>Visualización avanzada</p>
+<p>Introducción a la creación de mapas</p></td>
+</tr>
+<tr class="odd">
+<td>Programación: aprendiendo a programar con funciones</td>
+<td><p>Funciones</p>
+<p>Estilo de código</p>
+<p>Iteraciones</p>
+<p>Programación funcional</p></td>
+</tr>
+<tr class="even">
+<td>Comunicación: generando documentos reproducibles</td>
+<td><p>Introducción a R Markdown</p>
+<p>Introducción a Quarto</p>
+<p>R Markdown vs Quarto</p>
+<p>Trabajos reproducibles</p></td>
+</tr>
+<tr class="odd">
+<td>Colaboración: trabajando en equipo</td>
+<td><p>Introducción a Git</p>
+<p>Introducción a GitHub</p>
+<p>Flujo de trabajo en Git y GitHub</p>
+<p>Trabajos colaborativos</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dinámica-del-curso" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="dinámica-del-curso"><span class="header-section-number">4</span> Dinámica del curso</h2>
+<p>Cada día combinaremos teoría con ejercicios. Idealmente, el cuarto y quinto día tendremos tiempo para que cada uno trabaje con sus propios datos. Todos los apuntes y ejercicios resueltos estarán disponibles en el <a href="https://github.com/DatSciR/ciencia_datos">repositorio de GitHub del curso</a>. Si alguien tiene alguna duda o sugerencia, nos puede contactar por correo electrónico o publicarlo en las <a href="https://github.com/DatSciR/ciencia_datos/discussions/2">discusiones del repositorio de GitHub</a> ¡así aprenderemos entre todos! 😉</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/e684f0da-13b1-4d00-ab25-37814e79ee1e.png" class="img-fluid figure-img" width="362"></p>
+<figcaption>El proceso de aprendizaje en R, por Allison Horst. https://allisonhorst.com/everything-else</figcaption>
+</figure>
+</div>
+</section>
+<section id="objetivos-del-día-1" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="objetivos-del-día-1"><span class="header-section-number">5</span> Objetivos del día 1</h2>
+<ul>
+<li><p>Aprender conceptos básicos de la programación en R.</p></li>
+<li><p>Aprender funciones básicas que nos permitan importar, explorar, limpiar, transformar y manejar datos.</p></li>
+<li><p>Aprender estilos de código que facilitan su comprensión (📝)</p></li>
+</ul>
+</section>
+<section id="conceptos-básicos" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="conceptos-básicos"><span class="header-section-number">6</span> Conceptos básicos</h2>
+<ul>
+<li><p>R: lenguaje de programación dinámico (se interpreta el código en el momento que se ejecuta).</p></li>
+<li><p>RStudio: entorno de desarrollo integrado para programar en R. Tiene cuatro zonas diferenciadas: el editor de código, la consola (donde se ejecuta el código), el navegador del espacio de trabajo (con el entorno –<em>environment-</em> y el historial de comandos) y el mix de abajo a la derecha (Archivos, Gráficos, Paquetes, Ayuda).</p></li>
+<li><p>Objetos: cualquier elemento almacenado con un nombre específico. Pueden ser de muchos tipos: <code>numeric</code>, <code>integer</code>, <code>logical</code>, <code>data.frame</code>, <code>SpatVector</code>, etc.</p></li>
+<li><p>Funciones: objetos de R que toman un vector de entrada y dan como resultado otro vector haciendo una acción concreta (funcionalidad específica). Son los <em>bloques de construcción</em> fundamentales en cualquier script de R que es un lenguaje funcional.</p></li>
+</ul>
+<p><img src="images/function.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Para comprender la computación en R, resultan útiles dos lemas:</p>
+<p>- Todo lo que existe es un objeto.</p>
+<p>- Todo lo que sucede es una llamada a función.</p>
+<p>— John Chambers (<a href="https://adv-r.hadley.nz/index.html">Advanced R</a>)</p>
+</blockquote>
+<ul>
+<li><p>Paquetes o librerias: contienen funciones reutilizables, documentación sobre cómo usarlas y datos de ejemplo. Son las unidades fundamentales de código reproducible en R.</p></li>
+<li><p>CRAN: the Comprehensive R Archive Network.</p></li>
+</ul>
+</section>
+<section id="comenzando-a-trabajar-en-r" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="comenzando-a-trabajar-en-r"><span class="header-section-number">7</span> Comenzando a trabajar en R</h2>
+<section id="el-espacio-de-trabajo" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="el-espacio-de-trabajo"><span class="header-section-number">7.1</span> El espacio de trabajo</h3>
+<p>El directorio de trabajo es la carpeta de nuestro ordenador donde estamos trabajando.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># saber directorio de trabajo </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/veruk/Desktop/Disco/curso_ciencia_datos"</span>) <span class="co"># ojo con la ruta / o \\</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>No es recomendable establecer el directorio de trabajo manualmente porque el trabajo deja de ser reproducible. Es mejor crear desde el principio un proyecto en R ligado a un directorio relativo que contenga todos los datos de entrada, los scripts y los resultados del script. Al abrir el proyecto, se sincroniza con pestaña Files.</p>
+<p>💡Para crear un proyecto: Archivo &gt; Nuevo proyecto</p>
+<section id="ejercicio" class="level4" data-number="7.1.1">
+<h4 data-number="7.1.1" class="anchored" data-anchor-id="ejercicio"><span class="header-section-number">7.1.1</span> Ejercicio</h4>
+<p>Crea un proyecto para el curso de de ciencia de datos</p>
+</section>
+</section>
+<section id="instalar-y-cargar-paquetes" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="instalar-y-cargar-paquetes"><span class="header-section-number">7.2</span> Instalar y cargar paquetes</h3>
+<p>💡Para ejecutar un comando: Ctrl + Enter (Ctrl + R)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse", dep = T) # dep = T significa instalar dependencias</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyr' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.3.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'purrr' was built under R version 4.3.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.3.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'stringr' was built under R version 4.3.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'lubridate' was built under R version 4.3.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>?tidyverse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>starting httpd help server ... done</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>?select</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operaciones-aritméticas-r-como-calculadora" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="operaciones-aritméticas-r-como-calculadora"><span class="header-section-number">7.3</span> Operaciones aritméticas (R como calculadora)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dv">60</span> <span class="sc">/</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">+</span> <span class="dv">4</span>) <span class="sc">*</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 45</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>) <span class="co"># logaritmo neperiano </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.302585</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">10</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.718282</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">^</span> <span class="dv">2</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">^</span> <span class="dv">2</span> <span class="sc">/</span> <span class="dv">3</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pi </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.141593</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(pi <span class="sc">/</span> <span class="dv">2</span>) <span class="co"># en radianes </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cos</span>(pi <span class="sc">/</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.123032e-17</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tan</span>(pi <span class="sc">/</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.633124e+16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">asin</span>(<span class="dv">1</span>) <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.141593</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acos</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="objetos-de-r" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="objetos-de-r"><span class="header-section-number">8</span> Objetos de R</h2>
+<section id="nombramiento-de-objetos" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="nombramiento-de-objetos"><span class="header-section-number">8.1</span> Nombramiento de objetos</h3>
+<p>Al asignar un nombre a un objeto podemos llamarlos siempre que necesitemos a lo largo del script. No es necesario guardar (exportar) la mayoría de los objetos que tenemos en el entorno de trabajo de R a nuestro ordenador, lo importante es conservar el script con el que se generan.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fl">4.5</span> <span class="co"># shortcut para la flecha de asignación Alt + "-" </span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"objeto"</span> <span class="co"># si el objeto contiene letras, usar comillas </span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x) <span class="co"># función para ver de que clase es nuestro objeto </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>x <span class="co"># Llamar al vector para saber su valor </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "objeto"</code></pre>
+</div>
+</div>
+<p>📝Los nombre de los objetos deben ser descriptivos y no pueden contener símbolos especiales (<code>^</code>, <code>!</code>, <code>$</code>, <code>@</code>, <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>).</p>
+<p>📝R es sensible a las mayúsculas. Mejor no usarlas.</p>
+</section>
+<section id="tipos-de-objetos" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="tipos-de-objetos"><span class="header-section-number">8.2</span> Tipos de objetos</h3>
+<section id="vectores" class="level4" data-number="8.2.1">
+<h4 data-number="8.2.1" class="anchored" data-anchor-id="vectores"><span class="header-section-number">8.2.1</span> Vectores</h4>
+<p>Un vector es la estructura de datos más sencilla en R. Un vector es una colección de uno o más datos del mismo tipo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.4</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="fl">3.2</span>) <span class="co"># si quiero asignar mas de un valor uso "c" (concatenar) </span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>v1 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.4 4.0 6.0 3.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">*</span> <span class="dv">100</span> <span class="co"># puedo operar con los vectores </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 240 400 600 320</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(v1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8754687 1.3862944 1.7917595 1.1631508</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>) <span class="co"># pero también entre vectores </span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">+</span> v2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  3.4  7.0 10.0 11.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> v1 <span class="sc">-</span> v2 </span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>v3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1.4  1.0  2.0 -4.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> v2) <span class="co"># funciones ya programadas </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ?mean # ayuda de funciones</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(v2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.94392</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(v2) <span class="co"># n vector </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(v2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(v2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># funciones que facilitan la creación de vectores</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">times =</span> <span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 1 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="co"># dos puntos de a a b </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  3  5  7  9 11 13 15 17 19</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(v1, v2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.4 4.0 6.0 3.2 1.0 3.0 4.0 8.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(v1, <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>), v1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 2.4 4.0 6.0 3.2 0.0 0.0 0.0 2.4 4.0 6.0 3.2</code></pre>
+</div>
+</div>
+</section>
+<section id="ejercicio-1" class="level4" data-number="8.2.2">
+<h4 data-number="8.2.2" class="anchored" data-anchor-id="ejercicio-1"><span class="header-section-number">8.2.2</span> Ejercicio</h4>
+<ul>
+<li><p>Elije un número y multiplicalo por 3</p></li>
+<li><p>Crea un objeto que contenga 100 valores entre 1900 y 2000</p></li>
+<li><p>Suma un número a tu objeto</p></li>
+<li><p>Multiplica tu objeto por sí mismo</p></li>
+<li><p>Crea un único objeto que contenga el número 5 repetido 9 veces junto con una secuencia de 5 a 50 cada 5 elementos</p></li>
+<li><p>¿Cuál es la longitud del objeto anterior?</p></li>
+</ul>
+<p>Para crear vectores se pueden usar otras estrategias como las que tenéis recogidas a continuación.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">times =</span> <span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 1 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">times =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 1 2 3 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 2 2 3 3 4 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">times =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1 2 2 3 3 3 4 4 4 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"gato"</span>, <span class="st">"perro"</span>, <span class="st">"pez"</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "gato"  "gato"  "gato"  "gato"  "gato"  "perro" "perro" "perro" "pez"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">4</span>, <span class="at">sd =</span> <span class="fl">2.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 5.9796302 4.8531205 3.8283849 2.0831124 5.3412602 2.2370961 4.1312356
+ [8] 0.4147123 3.4507827 4.5374831</code></pre>
+</div>
+</div>
+</section>
+<section id="matrices" class="level4" data-number="8.2.3">
+<h4 data-number="8.2.3" class="anchored" data-anchor-id="matrices"><span class="header-section-number">8.2.3</span> Matrices</h4>
+<p>Las matrices pueden ser descritas como vectores multidimensionales. Al igual que un vector, únicamente pueden contener datos de un sólo tipo, pero además de largo, tienen más dimensiones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>mivector <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">replace =</span> T) <span class="co"># sample: función para crear numeros aleatorios </span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>mimatriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(mivector, <span class="at">nrow =</span> <span class="dv">100</span>, <span class="at">ncol =</span> <span class="dv">10</span>) <span class="co"># matrix: función para convertir vector en matriz. matrix va a rellenar por columnas por defecto</span></span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mivector) <span class="co"># mostrar estructura datos </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> int [1:1000] 8 5 4 8 2 9 3 6 2 1 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mimatriz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> int [1:100, 1:10] 8 5 4 8 2 9 3 6 2 1 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mivector) <span class="co"># resumen de los datos </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   3.000   6.000   5.445   8.000  10.000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mimatriz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       V1              V2              V3              V4              V5      
+ Min.   : 1.00   Min.   : 1.00   Min.   : 1.00   Min.   : 1.00   Min.   : 1.0  
+ 1st Qu.: 3.00   1st Qu.: 3.00   1st Qu.: 3.00   1st Qu.: 3.00   1st Qu.: 3.0  
+ Median : 6.00   Median : 6.00   Median : 5.50   Median : 6.00   Median : 6.0  
+ Mean   : 5.55   Mean   : 5.66   Mean   : 5.45   Mean   : 5.65   Mean   : 5.5  
+ 3rd Qu.: 8.00   3rd Qu.: 8.00   3rd Qu.: 8.00   3rd Qu.: 8.00   3rd Qu.: 8.0  
+ Max.   :10.00   Max.   :10.00   Max.   :10.00   Max.   :10.00   Max.   :10.0  
+       V6              V7              V8              V9       
+ Min.   : 1.00   Min.   : 1.00   Min.   : 1.00   Min.   : 1.00  
+ 1st Qu.: 2.00   1st Qu.: 2.75   1st Qu.: 3.00   1st Qu.: 3.00  
+ Median : 6.00   Median : 5.00   Median : 5.00   Median : 5.00  
+ Mean   : 5.31   Mean   : 5.03   Mean   : 5.42   Mean   : 5.34  
+ 3rd Qu.: 8.00   3rd Qu.: 7.00   3rd Qu.: 8.00   3rd Qu.: 8.00  
+ Max.   :10.00   Max.   :10.00   Max.   :10.00   Max.   :10.00  
+      V10       
+ Min.   : 1.00  
+ 1st Qu.: 3.00  
+ Median : 6.00  
+ Mean   : 5.54  
+ 3rd Qu.: 8.00  
+ Max.   :10.00  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) </span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) </span>
+<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"hi"</span>, <span class="st">"hola"</span>, <span class="st">"hola"</span>, <span class="st">"hi"</span>)</span>
+<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>mimatriz_num <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(a, b), <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">2</span>) </span>
+<span id="cb108-6"><a href="#cb108-6" aria-hidden="true" tabindex="-1"></a>mimatriz_num</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    1
+[2,]    2    2
+[3,]    3    3
+[4,]    4    4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>mimatriz_car <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(a, b, d), <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">3</span>) </span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>mimatriz_car</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]  
+[1,] "1"  "1"  "hi"  
+[2,] "2"  "2"  "hola"
+[3,] "3"  "3"  "hola"
+[4,] "4"  "4"  "hi"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mimatriz_num) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       V1             V2      
+ Min.   :1.00   Min.   :1.00  
+ 1st Qu.:1.75   1st Qu.:1.75  
+ Median :2.50   Median :2.50  
+ Mean   :2.50   Mean   :2.50  
+ 3rd Qu.:3.25   3rd Qu.:3.25  
+ Max.   :4.00   Max.   :4.00  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mimatriz_car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      V1                 V2                 V3           
+ Length:4           Length:4           Length:4          
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  </code></pre>
+</div>
+</div>
+</section>
+<section id="bases-de-datos-data.frame" class="level4" data-number="8.2.4">
+<h4 data-number="8.2.4" class="anchored" data-anchor-id="bases-de-datos-data.frame"><span class="header-section-number">8.2.4</span> Bases de datos (data.frame)</h4>
+<p>Los data.frames son estructuras de datos de dos dimensiones (rectangulares) que pueden contener datos de diferentes tipos, por lo tanto, son heterogéneas. Esta estructura de datos es la más usada para realizar análisis de datos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>midataframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable1 =</span> a, </span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable2 =</span> b, </span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable3 =</span> d)</span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(midataframe)</span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a><span class="co"># un tibble es un data.frame de tidyverse, con características mejoradas</span></span>
+<span id="cb116-9"><a href="#cb116-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-10"><a href="#cb116-10" aria-hidden="true" tabindex="-1"></a>mitibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb116-11"><a href="#cb116-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable1 =</span> a, </span>
+<span id="cb116-12"><a href="#cb116-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable2 =</span> b, </span>
+<span id="cb116-13"><a href="#cb116-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable3 =</span> d)</span>
+<span id="cb116-14"><a href="#cb116-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-15"><a href="#cb116-15" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mitibble) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [4 × 3] (S3: tbl_df/tbl/data.frame)
+ $ mivariable1: num [1:4] 1 2 3 4
+ $ mivariable2: num [1:4] 1 2 3 4
+ $ mivariable3: chr [1:4] "hi" "hola" "hola" "hi"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(midataframe) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   4 obs. of  3 variables:
+ $ mivariable1: num  1 2 3 4
+ $ mivariable2: num  1 2 3 4
+ $ mivariable3: chr  "hi" "hola" "hola" "hi"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mitibble) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mivariable1    mivariable2   mivariable3       
+ Min.   :1.00   Min.   :1.00   Length:4          
+ 1st Qu.:1.75   1st Qu.:1.75   Class :character  
+ Median :2.50   Median :2.50   Mode  :character  
+ Mean   :2.50   Mean   :2.50                     
+ 3rd Qu.:3.25   3rd Qu.:3.25                     
+ Max.   :4.00   Max.   :4.00                     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(midataframe) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mivariable1    mivariable2   mivariable3       
+ Min.   :1.00   Min.   :1.00   Length:4          
+ 1st Qu.:1.75   1st Qu.:1.75   Class :character  
+ Median :2.50   Median :2.50   Mode  :character  
+ Mean   :2.50   Mean   :2.50                     
+ 3rd Qu.:3.25   3rd Qu.:3.25                     
+ Max.   :4.00   Max.   :4.00                     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>mitibble</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  mivariable1 mivariable2 mivariable3
+        &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;      
+1           1           1 hi         
+2           2           2 hola       
+3           3           3 hola       
+4           4           4 hi         </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>midataframe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mivariable1 mivariable2 mivariable3
+1           1           1          hi
+2           2           2        hola
+3           3           3        hola
+4           4           4          hi</code></pre>
+</div>
+</div>
+</section>
+<section id="listas" class="level4" data-number="8.2.5">
+<h4 data-number="8.2.5" class="anchored" data-anchor-id="listas"><span class="header-section-number">8.2.5</span> Listas</h4>
+<p>Las listas, al igual que los vectores, son estructuras de datos unidimensionales, sólo tienen largo, pero a diferencia de los vectores cada uno de sus elementos puede ser de diferente tipo o incluso de diferente clase, por lo que son estructuras heterogéneas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a>milista <span class="ot">&lt;-</span> <span class="fu">list</span>(a, b, d, e)</span>
+<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a>milista </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 1 2 3 4
+
+[[2]]
+[1] 1 2 3 4
+
+[[3]]
+[1] "hi"   "hola" "hola" "hi"  
+
+[[4]]
+[1]  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(milista) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 4
+ $ : num [1:4] 1 2 3 4
+ $ : num [1:4] 1 2 3 4
+ $ : chr [1:4] "hi" "hola" "hola" "hi"
+ $ : logi [1:5] TRUE TRUE TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(milista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Length Class  Mode     
+[1,] 4      -none- numeric  
+[2,] 4      -none- numeric  
+[3,] 4      -none- character
+[4,] 5      -none- logical  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>milista2 <span class="ot">&lt;-</span> <span class="fu">list</span>(a, b, d, e, mivector, mimatriz, midataframe)</span>
+<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(milista2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 7
+ $ : num [1:4] 1 2 3 4
+ $ : num [1:4] 1 2 3 4
+ $ : chr [1:4] "hi" "hola" "hola" "hi"
+ $ : logi [1:5] TRUE TRUE TRUE FALSE FALSE
+ $ : int [1:1000] 8 5 4 8 2 9 3 6 2 1 ...
+ $ : int [1:100, 1:10] 8 5 4 8 2 9 3 6 2 1 ...
+ $ :'data.frame':   4 obs. of  3 variables:
+  ..$ mivariable1: num [1:4] 1 2 3 4
+  ..$ mivariable2: num [1:4] 1 2 3 4
+  ..$ mivariable3: chr [1:4] "hi" "hola" "hola" "hi"</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="indexación" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="indexación"><span class="header-section-number">8.3</span> Indexación</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>mivector </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   [1]  8  5  4  8  2  9  3  6  2  1  4  5  3  8  8  3  3  6  2  7  6  9  6 10
+  [25]  2  9  9  3  8 10  4  4  3  7 10  6  2  2  1 10  4  4  7 10  2 10  6  9
+  [49]  3  1  2 10  9  5  2  1  7  7  9  5  8 10  8  9  4  5  7  8  6  1  2 10
+  [73]  6  4  6 10  6  1  8  5  7  1  3  5  1  5  2  5  2  8  2  7  4  3  7  9
+  [97] 10  6  7  6  7  8  1  5  8  6 10  7  4  5  1  2 10  1  4  1  6  5  8  1
+ [121]  2  6  7  7  3  9  8  2  5  5  6  2 10 10  9  3  7  6  6  6 10  4  9  9
+ [145]  8 10 10  8  9  9  8 10  6  5  5  3  1 10  7  9  2  1  3  3  2  2  7  1
+ [169]  8  5  7  6  6  8  7  2  6  4 10  8  6  8  3  8  2  8 10  3  7  5  1  7
+ [193]  7  8  1  1  2  6  2  4  7  2  8  4  6  7  6  8  6  5  4  7  8  3  3  1
+ [217]  3  8  7  1 10  1  4  9  6  1  2 10 10  9  4  6  9  9  8  5 10  2  1  1
+ [241]  6  2  8  4  1  7  2  1  3  5  6  8  6  5  3  6  4  6  5  2  1 10  4  9
+ [265]  4  7  4  5  7  4  6  5  1 10  1  9  9  7 10  2  5  3  6  1  4  2  9  4
+ [289]  5  7 10  8  9  7 10  3  1 10  5 10  3  7  4  7  6  3  1  6  5  4  2  5
+ [313]  9  1  4  3  9  4  1  8  7  5  1  5  6  9  7  6  5  9 10  6  9  4  4  9
+ [337]  9  2  1  8  6  9  6  9  9  7  9  6  5  3  8 10  1  3  6  6  9  5  6  9
+ [361]  5  7  6  4  2  5  9  2  6  2  9  7  9  6  1  8  3  2  8  9  3  3  6  3
+ [385]  5  3  1  9  4  2  9  4  9  4  7  1  8  8 10 10  3  9  1  7  3  3  5  6
+ [409]  1  1  6  4  4  6 10  2  8  3  7  1  7  7  4  9  2 10  1  5  4 10  8  7
+ [433]  9  5 10  9  5  6  6 10  4  5  6  2 10  1  6 10 10  1  8  6  4  3  7  3
+ [457]  3  7  1  1  3  2  4  1  3  3  7  1 10  7  7  5  7  5  1 10  7  2 10  3
+ [481]  8 10  5  7 10  8  9  2  3  7  7  3  8  9  8  2  9  5  4  6  9  8  6  9
+ [505]  2  1  5  9  2  6  1  5  3  6  5  8  2  3  6  6  4  4  7  8  1  2  7 10
+ [529]  7  3  5  1  6 10  8  3  6  6  7  8  9  2  8  9  2  5  7  5  4  9  6  9
+ [553]  7  8  4  6  2  8  2  9  1  7  1  8  1  2  2  4  9  5  1  9  2 10 10  7
+ [577]  8  2  1  2  1 10  2  5  7  7  4  4  8  6  6  2  5  7  8  5  1  3  7  5
+ [601]  6  7  7  4  4  3  7  1  7  7  4  2  8  4 10  2  5  9  2  2  5  1  1  7
+ [625]  1  6  4  7  1  9  1  2  6  5  2  5  3  8  4 10  4  6  9  9  9  4  3  5
+ [649]  4  8  4  2  2  5  1  3  7  4 10  1  2  3  1  9  8  9  2 10  2  2  1  5
+ [673]  1  3  5 10  9  3  5  3  1  6 10  6  4  1  7  7  4  8 10  4  5  5 10  9
+ [697]  6  6  9  3  4 10 10  2  4  1  6  3  2  5  2  4  2  3  5  1  4  7 10  7
+ [721]  9  4  3  7 10  8  1  1  6  8  8  7  6  1  7  8  5  9  4  7  2  6  9  9
+ [745]  6  3  2  8 10 10  7  1  4  1  4  6  1  4 10  9 10  8  4  7 10  3  7  2
+ [769]  7  3  8  1  3  4  8  6  5  2  6  4  3  7  4  9  8  5  1  8  5  1  2  9
+ [793]  2  8 10  9  4  4  8  4  8  9 10  1  5  5  1 10  4  5  4  4  4  3  7  6
+ [817]  9  9  1  1  3  1  2  4  5  6  3  5 10  3  1  8  2 10  8 10  2  4  2  4
+ [841]  9  4  4  2  5  8 10  9  5  8  7  8  4 10  7  5  3  1  6  1  8  3  7  1
+ [865]  4 10  8  8  6  9  9  3  5  4 10  8  9  1  5  1 10  7  2 10  5  4  6  8
+ [889]  2  2  1  8  7  1  2  6  8  3  1  7  9  2  6  8  6  1  3  5  4  1  5  8
+ [913]  9  5  7  3  7  3  7  2  6  5  9  5  7  5  9  1  1  7  3  2  7  8  6  3
+ [937]  9  6  7  3  5  6  9  9  1  5  3  8  3  9  1  8  3  7  2 10 10  7  4 10
+ [961]  9  6  3  9  6  2  9 10  2  1  8  9  8  8  3  8  4  9 10  7  6  6  2  6
+ [985] 10  4  7  3  1  7  1  4  2  5  6  6  3 10  2  2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>mivector[<span class="dv">505</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>mimatriz </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+  [1,]    8    7    7    3    3    9    6    4    8     9
+  [2,]    5    8    2    7    9    8    7   10    9     2
+  [3,]    4    1    8    4    1    6    7   10   10     6
+  [4,]    8    5    4    7    7    9    4    2    1     8
+  [5,]    2    8    6    6    3    2    4    4    5     6
+  [6,]    9    6    7    3    3    1    3    1    5     1
+  [7,]    3   10    6    1    5    5    7    6    1     3
+  [8,]    6    7    8    6    6    9    1    3   10     5
+  [9,]    2    4    6    5    1    2    7    2    4     4
+ [10,]    1    5    5    4    1    6    7    5    5     1
+ [11,]    4    1    4    2    6    1    4    2    4     5
+ [12,]    5    2    7    5    4    5    2    4    4     8
+ [13,]    3   10    8    9    4    3    8    2    4     9
+ [14,]    8    1    3    1    6    6    4    3    3     5
+ [15,]    8    4    3    4   10    5   10    5    7     7
+ [16,]    3    1    1    3    2    8    2    1    6     3
+ [17,]    3    6    3    9    8    2    5    4    9     7
+ [18,]    6    5    8    4    3    3    9    7    9     3
+ [19,]    2    8    7    1    7    6    2   10    1     7
+ [20,]    7    1    1    8    1    6    2    7    1     2
+ [21,]    6    2   10    7    7    4    5    9    3     6
+ [22,]    9    6    1    5    7    4    1    4    1     5
+ [23,]    6    7    4    1    4    7    1    3    2     9
+ [24,]   10    7    9    5    9    8    7    7    4     5
+ [25,]    2    3    6    6    2    1    1   10    5     7
+ [26,]    9    9    1    9   10    2    6    8    6     5
+ [27,]    9    8    2    7    1    7    4    1    3     9
+ [28,]    3    2   10    6    5   10    7    1    5     1
+ [29,]    8    5   10    5    4    7    1    6   10     1
+ [30,]   10    5    9    9   10    3    9    8    3     7
+ [31,]    4    6    4   10    8    5    1    8    1     3
+ [32,]    4    2    6    6    7    1    2    7    8     2
+ [33,]    3   10    9    9    9    6    6    6    2     7
+ [34,]    7   10    9    4    5   10    5    1   10     8
+ [35,]   10    9    8    4   10    8    2    7    8     6
+ [36,]    6    3    5    9    9    3    5    8   10     3
+ [37,]    2    7   10    9    5    6    3    5    2     9
+ [38,]    2    6    2    2    6    6    8    9    4     6
+ [39,]    1    6    1    1    6    7    4    4    2     7
+ [40,]   10    6    1    8   10    8   10    7    4     3
+ [41,]    4   10    6    6    4    9    4    2    9     5
+ [42,]    4    4    2    9    5    2    6    6    4     6
+ [43,]    7    9    8    6    6    8    9    9    4     9
+ [44,]   10    9    4    9    2    9    9    9    2     9
+ [45,]    2    8    1    9   10    2    9    6    5     1
+ [46,]   10   10    7    7    1    5    4    3    8     5
+ [47,]    6   10    2    9    6    7    3    2   10     3
+ [48,]    9    8    1    6   10    5    5    8    9     8
+ [49,]    3    9    3    5   10    4    4   10    5     3
+ [50,]    1    9    5    3    1    9    8   10    8     9
+ [51,]    2    8    6    8    8    6    4    7    7     1
+ [52,]   10   10    8   10    6    9    2    1    8     8
+ [53,]    9    6    6    1    4    7    2    4    4     3
+ [54,]    5    5    5    3    3    8    5    1   10     7
+ [55,]    2    5    3    6    7    4    1    4    7     2
+ [56,]    1    3    6    6    3    6    3    6    5    10
+ [57,]    7    1    4    9    3    2    7    1    3    10
+ [58,]    7   10    6    5    7    8    4    4    1     7
+ [59,]    9    7    5    6    1    2   10   10    6     4
+ [60,]    5    9    2    9    1    9    1    9    1    10
+ [61,]    8    2    1    5    3    1    2   10    8     9
+ [62,]   10    1   10    7    2    7    3    8    3     6
+ [63,]    8    3    4    6    4    1    1    4    7     3
+ [64,]    9    3    9    4    1    8    9    7    1     9
+ [65,]    4    2    4    2    3    1    8   10    4     6
+ [66,]    5    2    7    5    3    2    9    3   10     2
+ [67,]    7    7    4    9    7    2    2    7    8     9
+ [68,]    8    1    5    2    1    4   10    2    8    10
+ [69,]    6    8    7    6   10    9    2    7    6     2
+ [70,]    1    5    4    2    7    5    2    3    9     1
+ [71,]    2    7    6    9    7    1    1    8    9     8
+ [72,]   10    6    5    7    5    9    5    1    3     9
+ [73,]    6    6    1    9    7    2    1    3    5     8
+ [74,]    4    8   10    6    5   10    3    4    4     8
+ [75,]    6    7    1    1    1   10    5    8   10     3
+ [76,]   10    2    9    8   10    7   10    6    8     8
+ [77,]    6    6    9    3    7    8    9    5    9     4
+ [78,]    1    4    7    2    2    2    3    2    1     9
+ [79,]    8   10   10    8   10    1    5    6    5    10
+ [80,]    5    8    2    9    3    2    3    4    1     7
+ [81,]    7    6    5    3    8    1    1    3   10     6
+ [82,]    1    8    3    3   10   10    6    7    7     6
+ [83,]    3    3    6    6    5    2   10    4    2     2
+ [84,]    5    8    1    3    7    5    6    9   10     6
+ [85,]    1    2    4    5   10    7    4    8    5    10
+ [86,]    5    8    2    3    8    7    1    5    4     4
+ [87,]    2   10    9    1    9    4    7    1    6     7
+ [88,]    5    3    4    9    2    4    7    8    8     3
+ [89,]    2    7    5    4    3    8    4    5    2     1
+ [90,]    8    5    7    2    7    6    8    1    2     7
+ [91,]    2    1   10    9    7    6   10    2    1     1
+ [92,]    7    7    8    4    3    2    4    9    8     4
+ [93,]    4    7    9    9    8    5    5    2    7     2
+ [94,]    3    8    7    4    9    7    5    8    1     5
+ [95,]    7    1   10    7    8    8   10   10    2     6
+ [96,]    9    1    3    1    2    5    9    9    6     6
+ [97,]   10    2    1    8    9    1    6    4    8     3
+ [98,]    6    6   10    8    5    3    6    4    3    10
+ [99,]    7    2    5   10    4    7    9    8    1     2
+[100,]    6    4   10   10    6    5    3    4    7     2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>mimatriz[<span class="dv">20</span>, <span class="dv">9</span>] <span class="co"># [filas, columnas] </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>mimatriz[<span class="dv">20</span>, ] <span class="co"># selecciono todas las columnas de la fila 20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 7 1 1 8 1 6 2 7 1 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a>mimatriz[, <span class="dv">9</span>] <span class="co"># selecciono todas las filas de la columna 9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1]  8  9 10  1  5  5  1 10  4  5  4  4  4  3  7  6  9  9  1  1  3  1  2  4  5
+ [26]  6  3  5 10  3  1  8  2 10  8 10  2  4  2  4  9  4  4  2  5  8 10  9  5  8
+ [51]  7  8  4 10  7  5  3  1  6  1  8  3  7  1  4 10  8  8  6  9  9  3  5  4 10
+ [76]  8  9  1  5  1 10  7  2 10  5  4  6  8  2  2  1  8  7  1  2  6  8  3  1  7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>midataframe </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mivariable1 mivariable2 mivariable3
+1           1           1          hi
+2           2           2        hola
+3           3           3        hola
+4           4           4          hi</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>midataframe[<span class="dv">3</span>, <span class="dv">3</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "hola"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>midataframe[<span class="dv">3</span>, <span class="st">"mivariable3"</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "hola"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a>midataframe[, <span class="st">"mivariable3"</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "hi"   "hola" "hola" "hi"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>midataframe<span class="sc">$</span>mivariable3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "hi"   "hola" "hola" "hi"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb158"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a>milista </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 1 2 3 4
+
+[[2]]
+[1] 1 2 3 4
+
+[[3]]
+[1] "hi"   "hola" "hola" "hi"  
+
+[[4]]
+[1]  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a>milista[[<span class="dv">4</span>]] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a>milista[[<span class="dv">4</span>]][<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<p>💡Puedes leer más sobre los tipos de objetos en R <a href="https://bookdown.org/jboscomendoza/r-principiantes4/estructuras-de-datos.html">aquí</a>.</p>
+<p>📝 Usar espacios antes y después de <code>=</code> y después de <code>,</code> hace mucho más fácil identificar los argumentos de la función y, en general, todos los componentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">25</span>) <span class="sc">/</span> <span class="dv">12</span>, <span class="at">trim =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.966805</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb166"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb166-2"><a href="#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean=</span><span class="dv">50</span>,<span class="at">sd=</span><span class="dv">25</span>)<span class="sc">/</span><span class="dv">12</span>,<span class="at">trim=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.966805</code></pre>
+</div>
+</div>
+<section id="ejercicio-2" class="level4" data-number="8.3.1">
+<h4 data-number="8.3.1" class="anchored" data-anchor-id="ejercicio-2"><span class="header-section-number">8.3.1</span> Ejercicio</h4>
+<ul>
+<li><p>Crea una lista que contenga dos <code>data.frame</code> con dos variables cada uno (<code>variable1</code> y <code>variable2</code>) y diez observaciones por variable.</p></li>
+<li><p>Accede a la octava observación de variable2 de cada <code>data.frame</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="tidyverse" class="level3" data-number="8.4">
+<h3 data-number="8.4" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">8.4</span> Tidyverse</h3>
+<p><a href="https://www.tidyverse.org/"><em>Tidyverse</em></a> es una colección de paquetes (meta-paquete) de R. El núcleo contiene ocho paquetes principales (<code>readr</code>, <code>tibble</code>, <code>dplyr</code>, <code>tidyr</code>, <code>stringr</code>, <code>forcats</code>, <code>ggplot2</code> y <code>purrr</code>), que comparten el diseño, la gramática y la estructura de los datos que necesitan. En el centro de la filosofía de tidyverse se encuentra la noción de “datos ordenados” (<em>tidy data</em>). Hadley Wickham (principal desarrollador de <em>tidyverse</em>) los define como “fáciles de manipular, modelar y visualizar, y que tienen una estructura específica: cada variable es una columna, cada observación es una fila y cada valor es una celda”. <em>Tidyverse</em> puede considerarse un dialecto del lenguaje de programación R que discretiza funciones amplias de R base (p.&nbsp;ej. <code>merge</code>) en diversas funciones específicas (p.&nbsp;ej. <code>left_join</code>, <code>right_join</code>).</p>
+<p>Los <a href="https://design.tidyverse.org/unifying.html">cuatro principios básicos</a> de este meta-paquete son:</p>
+<ul>
+<li><p>Centrado en humanos: tiene un diseño intuitivo que facilita su uso y accesibilidad para el usuario, ya que está diseñado específicamente para respaldar las actividades de un analista de datos humano.</p></li>
+<li><p>Consistencia: todos los paquetes están diseñados para trabajar con datos ordenados (<em>tidy data</em>), y las funciones de los paquetes tienen una nomenclatura común y congruente. Esto permite que un usuario que aprende sobre una función o paquete pueda aplicar ese conocimiento a otros, facilitando así la tarea de recordar y deducir código.</p></li>
+<li><p>Componiblidad: permite al usuario resolver problemas complejos dividiéndolos en pequeñas partes, que pueden combinarse utilizando el operador <em>pipe</em>, ya sea el del paquete <code>magrittr</code> (<code>%&gt;%</code>) o el creado recientemente en R base (<code>|&gt;</code>).</p></li>
+</ul>
+<p>💡Los dos operador <em>pipe</em> tienen pequeñas <a href="https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">diferencias</a> pero en general el comportamiento es el mismo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/nota_workflow_v2_white.png" class="img-fluid figure-img"></p>
+<figcaption>Esquema comparativo entre <em>tidyverse</em> y R base donde se muestra el flujo de trabajo y funciones de ejemplo para cada paso de análisis de datos desde su importación en R hasta la comunicación de los resultados obtenidos. Extraido de <a href="https://revistaecosistemas.net/index.php/ecosistemas/article/view/2745"><em>Tidyverse: colección de paquetes de R para la ciencia de datos</em></a></figcaption>
+</figure>
+</div>
+<p>💡Para más información sobre <em>tidyverse</em> y las diferencias con R base te recomendamos leer <a href="https://revistaecosistemas.net/index.php/ecosistemas/article/view/2745"><em>Tidyverse: colección de paquetes de R para la ciencia de datos</em></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>mivector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">4</span>)</span>
+<span id="cb168-2"><a href="#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mivector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a>mivector <span class="sc">|&gt;</span> </span>
+<span id="cb170-2"><a href="#cb170-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>() <span class="co"># Ctrl + Shift + M para poner un pipe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>En este curso realizaremos las distintas tareas que forman parte de la ciencia de datos utilizando <em>tidyverse</em>, aunque también se podrían llevar a cabo con R base. Consideramos que los cuatro pilares básicos de <em>tidyverse</em> (centrado en humanos, consistencia y componibilidad) facilitan tanto el aprendizaje como el trabajo diario, permitiendo realizar las mismas acciones de manera más sencilla, aunque reconocemos que esto puede variar según la persona.</p>
+</section>
+<section id="quién-responde-a-mis-dudas" class="level3" data-number="8.5">
+<h3 data-number="8.5" class="anchored" data-anchor-id="quién-responde-a-mis-dudas"><span class="header-section-number">8.5</span> ¿Quién responde a mis dudas?</h3>
+<ul>
+<li><p><a href="https://docs.posit.co/ide/user">RStudio User Guide</a></p></li>
+<li><p><a href="https://rstudio.github.io/cheatsheets/R-best-practice.pdf">Cheatsheet de buenas prácticas en R</a></p></li>
+<li><p><a href="https://posit.cloud/learn/recipes">Posit Recipes</a> y en general <a href="https://posit.co/resources">Posit Resources</a></p></li>
+<li><p>Ayuda &gt; Cheat Sheets</p></li>
+<li><p><a href="https://stackoverflow.com">Stack Overflow: plataforma de preguntas y respuestas para programadores profesionales y aficionados</a></p></li>
+<li><p><a href="RStudio%20community">Comunidad de RStudio/Posit</a></p></li>
+<li><p><a href="https://github.com/features/copilot">GitHub copilot</a></p></li>
+<li><p><a href="https://chatgpt.com">ChatGPT</a> y similares</p></li>
+<li><p>Slack del <a href="https://ecoinfaeet.github.io/website/index.html">Grupo de Ecoinformática de la AEET</a></p></li>
+<li><p>Para dudas relacionadas con errores de paquetes: repositorio de GitHub del paquete en cuestión (p.&nbsp;ej. <a href="https://github.com/tidyverse/dplyr/issues" class="uri">https://github.com/tidyverse/dplyr/issues</a>)</p></li>
+<li><p>Pedir ayuda utilizando ejemplos reproducibles con {<a href="#0">reprex</a>}.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rhelpers.png" class="img-fluid figure-img" width="538"></p>
+<figcaption>Por Allison Horst. https://allisonhorst.com/everything-else</figcaption>
+</figure>
+</div>
+<hr>
+<details>
+<summary>
+Session Info
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2024-09-22 21:10:30 CEST"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.1 (2023-06-16 ucrt)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 11 x64 (build 22631)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United States.utf8 
+[2] LC_CTYPE=English_United States.utf8   
+[3] LC_MONETARY=English_United States.utf8
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.utf8    
+
+time zone: Europe/Paris
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] lubridate_1.9.3 forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4    
+ [5] purrr_1.0.2     readr_2.1.5     tidyr_1.3.1     tibble_3.2.1   
+ [9] ggplot2_3.5.0   tidyverse_2.0.0
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.4      jsonlite_1.8.8    compiler_4.3.1    tidyselect_1.2.1 
+ [5] scales_1.3.0      yaml_2.3.8        fastmap_1.1.1     R6_2.5.1         
+ [9] generics_0.1.3    knitr_1.45        htmlwidgets_1.6.4 munsell_0.5.0    
+[13] pillar_1.9.0      tzdb_0.4.0        rlang_1.1.3       utf8_1.2.4       
+[17] stringi_1.8.3     xfun_0.42         timechange_0.3.0  cli_3.6.1        
+[21] withr_3.0.0       magrittr_2.0.3    digest_0.6.35     grid_4.3.1       
+[25] rstudioapi_0.15.0 hms_1.1.3         lifecycle_1.0.4   vctrs_0.6.5      
+[29] evaluate_0.23     glue_1.7.0        fansi_1.0.6       colorspace_2.1-0 
+[33] rmarkdown_2.26    tools_4.3.1       pkgconfig_2.0.3   htmltools_0.5.7  </code></pre>
+</div>
+</div>
+</details>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
