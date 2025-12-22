@@ -15,51 +15,63 @@ Paloma Ruiz Benito (paloma.ruizb\@uah), Verónica Cruz-Alonso (veronica.cruza\@u
 
 Junto con Julen Astigarraga Urcelay (colaborador y amigo), pubilcamos los materiales de los curso que impartimos en DatSciR.
 
-Y vosotros **¿quiénes sois?**
+### Y vosotros **¿quiénes sois?**
 
 LINK ENCUESTA: <https://forms.gle/zmqTKWiwM3qVtJi79>
 
-**¿Y qué es R y de dónde procede?**
+Ahora os toca presentaros a la clase, para que este curso también sirva para conocernos todos un poco mejor. Es vuestro turno, decirnos:
+
+-   Nombre y apellidos,
+
+-   el área y departamento en el que trabajáis,
+
+-   sobre qué es vuestra tesis
+
+-   cómo usáis o planeaís usar R
+
+-   qué esperáis del curso
+
+-   cualquier otra cosa relevante....
+
+### **¿Y qué es R y de dónde procede?**
 
 [Un poco de historia de R contada por Jumping Rivers](https://www.jumpingrivers.com/misc/timeline/)
+
+![](images/Rhistory.png)
 
 ## Presentación
 
 En este curso exploraremos los **fundamentos teóricos** y las **aplicaciones prácticas** de la ciencia de datos en R. Combinaremos material preparado con los problemas específicos de cada asistente, los cuales irán evolucionando día a día. El objetivo principal es que tanto aquellos con conocimientos básicos en ciencia de datos como aquellos con un nivel más avanzado puedan beneficiarse y llevar consigo nuevos aprendizajes al finalizar el curso.
 
-![Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de <https://r4ds.hadley.nz/>](images/datascience.png){#fig-datascience alt="Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram"}
+![Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram](images/datascience.png){#fig-datascience}
 
 En este curso no veremos ningún día modelizar (ya que hay un curso específico programado para ello en junio de este año), pero nos centraremos en la gestión de datos, visualización, trabajo en equipo y comunicación. ¡Esperamos que os sea de utilidad!
 
 ## Estructura del curso
 
-+------------------------------+--------------------------------------------------------------------+
-| Días de trabajo              | Contenido                                                          |
-+==============================+====================================================================+
-| Introducción                 | Introducción a la programación en R                                |
-|                              |                                                                    |
-| ¿Qué necesitamos?            | Consejos básicos de programación                                   |
-|                              |                                                                    |
-|                              | Tipos de objetivos y lo básico                                     |
-+------------------------------+--------------------------------------------------------------------+
-| Organizando datos            | Tidyverse                                                          |
-|                              |                                                                    |
-| ¿Cómo lo organizamos?        | Importar, filtrar, seleccionar, transformar, unir y exportar datos |
-+------------------------------+--------------------------------------------------------------------+
-| Visualización                | Fundamentos de visualización                                       |
-|                              |                                                                    |
-| ¿Cómo lo mostramos?          | Bases: gráficos por capas                                          |
-|                              |                                                                    |
-|                              | Visualización avanzada                                             |
-+------------------------------+--------------------------------------------------------------------+
-| Colaboración                 | Introducción a Git                                                 |
-|                              |                                                                    |
-| ¿Cómo trabajamos en equipo?  | Introducción a GitHub                                              |
-|                              |                                                                    |
-|                              | Flujo de trabajo en Git y GitHub                                   |
-|                              |                                                                    |
-|                              | Trabajos colaborativos                                             |
-+------------------------------+--------------------------------------------------------------------+
++------------------------------+-----------------------------------------------------------------------------------------------+
+| Días de trabajo              | Contenido                                                                                     |
++==============================+===============================================================================================+
+| **Día 1.** Introducción      | Introducción a la programación en R                                                           |
+|                              |                                                                                               |
+| ¿Qué necesitamos?            | Conceptos básicos, tipos de datos, consejos básicos de programación y definición de objetivos |
++------------------------------+-----------------------------------------------------------------------------------------------+
+| **Día 2.** Organizando datos | Tidyverse                                                                                     |
+|                              |                                                                                               |
+| ¿Cómo lo organizamos?        | Importar, filtrar, seleccionar, transformar, unir y exportar datos                            |
+|                              |                                                                                               |
+|                              | Estructuras de programación                                                                   |
++------------------------------+-----------------------------------------------------------------------------------------------+
+| **Día 3.** Visualización     | Introducción a ggplot2                                                                        |
+|                              |                                                                                               |
+| ¿Cómo lo mostramos?          | Bases: gráficos por capas unidimensionales y bidimensionales                                  |
+|                              |                                                                                               |
+|                              | Visualización avanzada: personalización y multipanel                                          |
++------------------------------+-----------------------------------------------------------------------------------------------+
+| **Día 4.** Colaboración      | Introducción y flujo en Git y GitHub                                                          |
+|                              |                                                                                               |
+| ¿Cómo trabajamos en equipo?  | Trabajos colaborativos                                                                        |
++------------------------------+-----------------------------------------------------------------------------------------------+
 
 ## Dinámica del curso
 
@@ -67,7 +79,9 @@ Cada día combinaremos teoría con ejercicios. Idealmente, el cuarto y quinto d�
 
 ¡así aprenderemos entre todos! 😉
 
-![El proceso de aprendizaje en R, por Allison Horst.[https://allisonhorst.com/everything-else](https://allisonhorst.com)](images/e684f0da-13b1-4d00-ab25-37814e79ee1e.png){alt="El proceso de aprendizaje en R, por Allison Horst. https://allisonhorst.com/everything-else" width="362"}
+![El proceso de aprendizaje en R, por Allison Horst. https://allisonhorst.com/everything-else](images/e684f0da-13b1-4d00-ab25-37814e79ee1e.png){width="362"}
+
+❤️💜❤️💜 En el curso intentaremos dedicar al menos una hora al día a vuestros trabajos, por lo que debéis hacer grupos de dos personas para programar. Tras el descanso os dejaremos tiempo para que discutáis ideas y hagáis los grupos de trabajo, ¿caules es vuestro objetivo? ❤️💜❤️💜
 
 ## Antes de empezar. Estamos de acuerdo con el código ético y hacemos un ejemplo de este curso
 
@@ -75,17 +89,53 @@ Lee: <https://www.contributor-covenant.org/version/2/0/code_of_conduct/> e infor
 
 ![](images/data-science-box.png)
 
+Usamos mucha bibliografía distinta para realizar este curso, pero os recomendamos los siguientes recursos:
+
+[![\[R for data Science\](https://r4ds.hadley.nz/)](images/Wickham_RDataScience.jpg){fig-align="left" width="154"}](https://r4ds.hadley.nz/)
+
+[![\[Advance R\](http://adv-r.had.co.nz/)](images/Wickham_AdvanceR.png){width="151"}](http://adv-r.had.co.nz/)
+
+[![\[Hands-On Programming with R\](https://rstudio-education.github.io/hopr/)](images/Grolemund_HandsOnRprograming.png){width="135"}](https://rstudio-education.github.io/hopr/)
+
 ## Objetivos día 1
 
 -   Conceptos básicos de R (📝)
 
 -   Consejos de programación (🧑‍🎓 )
 
-## Conceptos básicos de R (📝)
+-   Operaciones básicas en R: sintaxis, tipos de objetos, indexación y exploración básica de datos.
+
+## 1. Conceptos básicos de R (📝)
+
+## 1.1. Definiciones básicas
 
 -   🎯 **R**: lenguaje de programación dinámico (se interpreta el código en el momento que se ejecuta).
 
--   🎯 **RStudio**: entorno de desarrollo integrado para programar en R. Tiene cuatro zonas diferenciadas: el editor de código, la consola (donde se ejecuta el código), el navegador del espacio de trabajo (con el entorno –*environment-* y el historial de comandos) y el mix de abajo a la derecha (Archivos, Gráficos, Paquetes, Ayuda).
+### 🧩 Ejercicio *¿Estáis de acuerdo con las siguientes afirmaciones?*
+
+> R es un lenguaje de programación para el análisis estadístico.
+
+Cumple con los siguientes aspectos:
+
+✔︎ Código libre (gratuito)
+
+✔︎ Estado del arte
+
+✔︎ Flexible y potente
+
+✔︎ Portátil y replicable en otras plataformas
+
+✔︎ Ejemplos para “casi” cualquier análisis
+
+✔︎ Por y para la comunidad
+
+¿Podéis en parejas encontrar 2-3 aspectos por lo que estéis de acuerdo o en desacuerdo con la afirmación? ¿por qué crees que es espacialmente importante usar R (u otro lenguaje de programación) en ciencia?
+
+> RStudio es lo mismo que R
+
+-   🎯 **RStudio**: entorno de desarrollo integrado para programar en R (IDE: Integrated Development Environemnt). Tiene cuatro zonas diferenciadas: el editor de código, la consola (donde se ejecuta el código), el navegador del espacio de trabajo (con el entorno –*environment-* y el historial de comandos) y el mix de abajo a la derecha (Archivos, Gráficos, Paquetes, Ayuda).
+
+    ![](images/Rstudio_entorno.png)
 
 -   🎯 **Objetos**: cualquier elemento almacenado con un nombre específico. Pueden ser de muchos tipos: `numeric`, `integer`, `logical`, `data.frame`, `SpatVector`, etc.
 
@@ -109,7 +159,9 @@ Ahora mismo hemos generado un grupo de seis número de enteros, pero no se han g
 >
 > — John Chambers ([Advanced R](https://adv-r.hadley.nz/index.html))
 
-## El espacio de trabajo
+## 2. Consejos para la gestión de datos
+
+## 2.1. Trabaja siempre por proyectos y usa teclas rápidas
 
 El directorio de trabajo es la carpeta de nuestro ordenador donde estamos trabajando. El script es el archivo básico que almacena código de R de nuestra sesión de trabajo.
 
@@ -117,21 +169,22 @@ El directorio de trabajo es la carpeta de nuestro ordenador donde estamos trabaj
 
 ``` r
 getwd() # saber directorio de trabajo 
-setwd("C:/Users/uah/OneDrive - Universidad de Alcala/GitHub_Projects/programacion-TIG") # ojo con la ruta / o \\
+setwd("C:/Users/uah/OneDrive - Universidad de Alcala/GitHub_Projects/ciencia_datos_uah") # ojo con la ruta / o \\
 ```
 
-ℹ️ **Información importante:**\
+ℹ️ **Información importante**
+
 Cuando ejecutes un comando en RStudio, recuerda que el resultado aparece inmediatamente en la consola.
 
-No es recomendable establecer el directorio de trabajo manualmente porque el trabajo deja de ser reproducible. Es mejor crear desde el principio un proyecto en R ligado a un directorio relativo que contenga todos los datos de entrada, los scripts y los resultados del script. Al abrir el proyecto, se sincroniza con pestaña Files.
+No es recomendable establecer el directorio de trabajo manualmente porque el trabajo deja de ser reproducible. Es mejor crear desde el principio un **proyecto en R** ligado a un directorio relativo que contenga todos los datos de entrada, los scripts y los resultados del script. Al abrir el proyecto, se sincroniza con pestaña Files.
 
 💡Para crear un proyecto: Archivo \> Nuevo proyecto
 
-#### Ejercicio en clase
+### 🧩 Ejercicio en clase
 
 Crea un proyecto para el Curso: **doctorado_UAH_R**. Una vez creado genera una carpeta de "scripts" y una de "resultados". Revisa en tu panel de Rstudio a la derecha, abajo, que archivos tienes. ¿Cómo has nombrado tu archivo de trabajo actual? ¡Revisa y cambia el nombre al final de la sesión!
 
-## Instalar y cargar paquetes. Pidiendo ayuda.
+## 2.2. Aprende a pedir ayuda, conoce las funciones y argumentos
 
 💡Para ejecutar una línea de código usa el comando: *Ctrl + Enter (Ctrl + R)*
 
@@ -156,15 +209,27 @@ library(swirlify)
 ?select
 ```
 
-## Usando R como calculadora: operadores en R
+## 2.3. Mantén el código reproducible
 
-En R, el código que tecleas se llama comando. La interfaz de R studio es sencilla, cuando en el *prompt* de la consola de RStudio ejecutas una línea de comando da instrucciones al ordenador para hacer la operación escrita.
+![[The Reproducibility process](https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html#rr-overview-definitions)](images/repdroducibility%20process.png)
 
-#### Ejercicio
+### 🧩Ejercicio
 
-Usa R como una calculadora, mira como sumar, multiplicar, restar y dividir "6" y "5". ¿Podrías hacer el exponte entre ambos números? Discute con tu compañero dónde están tus objetos guardados.
+Aprende sobre reproducibilidad, ya que es clave y fundamental en ciencia
 
-## Sintaxis en R: Estilo
+-   ¿es realmente todo lo que haces reproducible? ¿haces algún aspecto del proceso de publicación reproducible?
+
+-   ¿sabes identificar por qué?
+
+-    ¿que ventajas y desventajas tiene hacerlo reproducible?
+
+Discutelo en parejas.
+
+Aquí os dejamos algunas de las ventajas de la reproducibildiad y porqué debe implementarse en los equipos de trabajo.
+
+![[Ventajas de la reproducibilidad](https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html#rr-overview-definitions)](images/ventajasReproducibilidad.png)
+
+## 2.4. Nombra objetos y archivos adecuadamente
 
 ![](images/Importance-style-guide.png)
 
@@ -172,7 +237,7 @@ Usa R como una calculadora, mira como sumar, multiplicar, restar y dividir "6" y
 
 Al asignar un nombre a un objeto podemos llamarlos siempre que necesitemos a lo largo del script. No es necesario guardar (exportar) la mayoría de los objetos que tenemos en el entorno de trabajo de R a nuestro ordenador, lo importante es conservar el script con el que se generan.
 
-#### Ejercicio
+#### 🧩 Ejercicio
 
 ¿Es lo mismo nombrar a un objeto "x" o "X"?¿Crees que te puede dar problemas en el código nombrar variables con mayúsculas y minúsculas? Para verlo, nombra dos objetos
 
@@ -212,43 +277,51 @@ class(x) # función para ver de que clase es nuestro objeto
 
 💡 Numerar los scripts e incluso las salidas (tablas, figuras, etc.) ayuda a simplificar el orden y trabajar comodamente mediante proyectos.
 
-#### Ejercicio
+#### 🧩 Ejercicio
 
 Lee la guía de estilo de tidyverse (con la que trabajaremos en el curso):
 
 Sección 2.2.: <https://r4ds.hadley.nz/workflow-style.html> Sección 4.1. y 4.2.: <https://style.tidyverse.org/syntax.html>
 
-Contesta a la actividad que está disponible en el aula virtual.
+Revisa cómo nombras a las tablas y las variables con las que trabajas ¿siguen un buen estilo a la hora de nombrarlas? ¿trabajas en proyectos y tienes todo ordenado adecuadamente?
 
-### Tipos de objetos ¿con qué datos trabajas?
+## 3. Operaciones básicas en R: Tipos de objetos ¿con qué datos trabajas?
 
-#### Vectores
+En R, el código que tecleas se llama comando. La interfaz de R studio es sencilla, cuando en el *prompt* de la consola de RStudio ejecutas una línea de comando da instrucciones al ordenador para hacer la operación escrita.
+
+#### 3.1. Vectores
 
 Un **vector** es la estructura de datos más simple en R. Es una colección de uno o más elementos del mismo tipo (números, texto o valores lógicos).
 
-```{r} # Vector con coordenadas de latitud lat <- c(41.4, 42.1, 40.9, 39.5)  lat   # Vector con valores de altitud (en metros) alt <- c(110, 450, 440, 200) alt   # Podemos operar con ellos alt + 10       # sumar 10 metros a todas las altitudes alt * 0.001    # convertir a kilómetros mean(alt)      # promedio de altitudes max(alt)       # altitud máxima}
-```
+`{r}`
 
-### Ejercicio 1 (vectores)
+`# Vector con coordenadas de latitud`
+
+`lat <- c(41.4, 42.1, 40.9, 39.5)`
+
+`lat   # Vector con valores de altitud (en metros)`
+
+`alt <- c(110, 450, 440, 200) alt   # Podemos operar con ellos alt + 10       # sumar 10 metros a todas las altitudes alt * 0.001    # convertir a kilómetros mean(alt)      # promedio de altitudes max(alt)       # altitud máxima}`
+
+### 🧩 Ejercicio vectores
 
 -   Crea un vector llamado `long` con cuatro valores de longitud de tu elección.
 -   Calcula la media y el mínimo de `long`.
 -   Suma 0.5 a todos los valores de `long`.
 -   Combina `lat` y `long` en un único vector (llámalo `coords_comb`).
 
-```{r sol_vectores, echo = FALSE} # Solución sugerida (oculta): puedes activar echo = TRUE para mostrar long <- c(-3.7, -3.6, -3.8, -3.9) mean(long) min(long) long_plus <- long + 0.5 coords_comb <- c(lat, long) coords_comb}
-```
+`{r sol_vectores, echo = FALSE} # Solución sugerida (oculta): puedes activar echo = TRUE para mostrar  long <- c(-3.7, -3.6, -3.8, -3.9)  mean(long)  min(long)  long_plus <- long + 0.5  coords_comb <- c(lat, long) coords_comb}`
 
 ------------------------------------------------------------------------
 
-## Matrices
+### 3.2. Matrices
 
 Las **matrices** son datos bidimensionales que contienen datos del mismo tipo. En TIG, pueden servir para representar un **raster** (por ejemplo, una matriz de elevaciones o pendientes).
 
 ```{r matrices} # Crear 15 valores de elevación simulados elev <- sample(100:500, size = 15, replace = TRUE)  # Transformar a matriz 3x4 (3 filas, 4 columnas) mat_elev <- matrix(elev, nrow = 3, ncol = 4) mat_elev  # Resumen de la matriz summary(mat_elev)}
 ```
 
-### Ejercicio 2 (matrices)
+### 🧩 Ejercicio matrices
 
 -   Crea una matriz de 5x5 con valores aleatorios entre 0 y 1 (piensa en ello como un raster de pendientes).
 -   Calcula el valor máximo de esa matriz.
@@ -259,14 +332,14 @@ Las **matrices** son datos bidimensionales que contienen datos del mismo tipo. E
 
 ------------------------------------------------------------------------
 
-## Data frames
+### 3.3. Data frames
 
 Un **data.frame** es una tabla (2D) donde cada columna puede ser de distinto tipo. Es la estructura más usada para análisis y la que normalmente acompaña a una capa espacial (atributos).
 
 ```{r dataframes} municipios <- data.frame(   nombre = c("A", "B", "C"),   poblacion = c(1200, 5400, 3100),   alt_media = c(350, 200, 480) )  municipios summary(municipios)}
 ```
 
-### Ejercicio 3 (data.frames)
+### 🧩 Ejercicio data.frames
 
 -   Crea un `data.frame` llamado `rios` con tres ríos: columnas `nombre`, `longitud_km` y `caudal_m3s`.
 -   Calcula la longitud media de los ríos.
@@ -276,14 +349,14 @@ Un **data.frame** es una tabla (2D) donde cada columna puede ser de distinto tip
 
 ------------------------------------------------------------------------
 
-## Listas
+### 3.4. Listas
 
 Una **lista** puede contener objetos heterogéneos: vectores, matrices, data.frames, modelos, etc. En TIG es muy útil para agrupar varias capas o resultados de un análisis en un único objeto.
 
 ```{r listas} info_tig <- list(   coords = list(lat = lat, long = c(-3.7, -3.6, -3.8, -3.9)),   municipios = municipios,   elev_matrix = mat_elev )  str(info_tig)}
 ```
 
-### Ejercicio 4 (listas)
+### 🧩 Ejercicio (listas)
 
 -   Crea una lista que contenga: tu vector `long`, la matriz 5x5 `mat5` (del ejercicio) y el `data.frame` `rios`.
 -   Accede al primer elemento de la lista y muéstralo.
@@ -293,14 +366,18 @@ Una **lista** puede contener objetos heterogéneos: vectores, matrices, data.fra
 
 ------------------------------------------------------------------------
 
-## Indexación (acceder a elementos)
+## 4. Operaciones básicas en R: usando R como calculadora e indexación
+
+### 
+
+Usa R como una calculadora, mira como sumar, multiplicar, restar y dividir "6" y "5". ¿Podrías hacer el exponte entre ambos números? Discute con tu compañero dónde están tus objetos guardados.
 
 Saber indexar es esencial: permite leer o modificar valores puntuales.
 
 ```{r indexacion} # Vectores alt alt[2]          # segunda altitud  # Matrices: [fila, columna] mat_elev mat_elev[1, 3]  # fila 1, columna 3 mat_elev[1, ]   # todas las columnas de la fila 1 mat_elev[, 2]   # todas las filas de la columna 2  # Data.frame municipios municipios[2, "poblacion"]   # población del municipio B municipios$poblacion         # vector de la columna 'poblacion'  # Listas mi_lista <- list(a = 1:4, b = letters[1:4]) mi_lista[[2]]    # segundo elemento (por posición) mi_lista$b       # elemento por nombre}
 ```
 
-### Ejercicio 5 (indexación)
+### 🧩 Ejercicio (indexación)
 
 -   Accede a la tercera coordenada de `long`.
 -   Selecciona el valor máximo de `alt`.
@@ -309,7 +386,4 @@ Saber indexar es esencial: permite leer o modificar valores puntuales.
 ```{r, echo = FALSE} # Solución sugerida (oculta) long <- c(-3.7, -3.6, -3.8, -3.9) long[3] max(alt) municipios[municipios$nombre == "C", "alt_media"]}
 ```
 
-## Session info (útil para reproducibilidad)
-
-```{r session_info} Sys.time() sessionInfo()}
-```
+## 
