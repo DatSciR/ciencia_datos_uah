@@ -50,3 +50,6 @@ rsconnect/
 
 # RProject
 .Rproj
+
+# images dir
+images/

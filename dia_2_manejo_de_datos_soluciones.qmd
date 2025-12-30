@@ -1,0 +1,417 @@
+---
+title: "Día 2 - Manejo de datos. Programa de doctorado UAH"
+author: "Marina Rodes Blanco, Paloma Ruiz Benito, Verónica Cruz Alonso y Julián Tijerin Triviño"
+date: today
+date-format: "DD/MM/YYYY"
+toc: true
+toc-depth: 4
+toc-title: "Índice"
+format:
+  html:
+    link-external-newwindow: true
+    # css: styles.css
+  gfm: default
+editor: visual
+editor_options: 
+  chunk_output_type: console
+number-sections: true
+---
+
+## Síntesis del día 1: Introducción a R y a R studio
+
+### Modelo de ciencia de datos
+
+1.- Importar: 2.- Ordenar: 3.- Transformar: 4.- Modelar: 5.- Visualizar: 6.- Comunicar:
+
+![Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram](images/datascience.png){#fig-datascience}
+
+### Buenas prácticas en la gestión de datos
+
+-   Trabajar por proyectos\
+-   Usar teclas rápidas\
+-   Consultar documentacion / pedir ayuda\
+-   Código reproducible\
+-   Seguir estilo (guia de estilo)
+
+### Tipos de objetos y operaciones básicas en R
+
+-   Vectores\
+-   Matrices\
+-   data frames\
+-   listas
+
+### 🧩 Ejercicios *Recopilación del día anterior*
+
+-   Crea un vector con los meses del año (en número) y calcula la media
+-   Crea una matriz ... ¿Cual es el elemento de la fila 3 columna 2?
+-   Crea una lista .. ¿Que hay en el tercer elemento de la lista?
+-   Crea un data frame con la siguiente información
+
+## Importar y renombrar datos
+
+### [Read_delim](https://readr.tidyverse.org/reference/read_delim.html): leer datos desde fuera de R
+
+Leer datos que tenemos almacenados, como por ejemplo, una tabla en formato csv. En el siguiente ejemplo usamos datos del Instituto Nacional de Estadística (INE) con información sobre Municipios que no son capitales de provincia con mayor población. Esta información la hemos descargado previamente de https://datos.gob.es/es/catalogo/conjuntos-datos, donde puedes encontrar un catálogo de datos abiertos de instituciones públicas.
+
+```{r read}
+#| warning: false
+
+library(tidyverse)
+
+muni_poblacion <- read_delim(file = "datos/municipios_no_capitales_mas_poblacion.csv", delim = ";")
+
+muni_poblacion <- read_delim(
+  file = "datos/municipios_no_capitales_mas_poblacion.csv",
+  delim = ";",
+  col_type = list(Provincia = "f", Total = "n"),
+  # especifico el tipo de dato (provincia como factor y la poblacion como numero)
+  locale = locale(decimal_mark = ",", grouping_mark = ".") #le especifico que en estos datos el punto es un separacion de miles y la coma un separador decimal, para que no confunda el punto con un separador de decimales
+)
+
+muni_poblacion
+
+muni_poblacion
+View(muni_poblacion)
+summary(muni_poblacion)
+glimpse(muni_poblacion)
+```
+
+### [Rename](https://dplyr.tidyverse.org/reference/rename.html): cambiar nombres de variables (columnas)
+
+```{r rename}
+#| warning: false  
+
+names(muni_poblacion)
+
+muni_poblacion <- muni_poblacion |>
+  rename(
+    municipio = Municipios,
+    provincia = Provincia,
+    # nombre nuevo = nombre viejo
+    poblacion_total = Total
+  )
+
+```
+
+📝 Ajustar sangría de código: Ctrl + i; Reformatear código: Ctrl + Shift + a
+
+## Funciones básicas de filtrado y selección
+
+### [Slice](https://dplyr.tidyverse.org/reference/slice.html): filtrar filas según el índice numérico
+
+```{r slice}
+#| warning: false
+
+muni_poblacion |> 
+  slice(1) # shortcut para el pipe: CTRL + SHIFT + M 
+
+muni_poblacion |>
+  slice(1, 5)
+
+muni_poblacion |> 
+  slice(1:6)
+
+muni_poblacion |>
+  slice(-c(1:5))
+
+```
+
+### [Arrange](https://dplyr.tidyverse.org/reference/arrange.html): ordenar filas por los valores de una o más variables (columnas)
+
+```{r arrange}
+#| warning: false
+
+muni_poblacion |>
+  arrange(poblacion_total)
+
+muni_poblacion |> 
+  arrange(desc(poblacion_total))
+
+```
+
+### [Filter](https://dplyr.tidyverse.org/reference/filter.html): filtrar filas utilizando condiciones
+
+Se necesita un vector de filtrado que contenga valores lógicos (TRUE/FALSE).
+
+```{r filter}
+#| warning: false
+
+muni_poblacion |>
+  filter(provincia == "Barcelona") # filtrar por filas que cumplen un patrón 
+#En este caso, todos los municipios más poblados de Barcelona
+
+muni_poblacion |>
+  filter(provincia == "Barcelona" & poblacion_total > 200000) # combinar criterios: AND
+#En este caso, todos los munucipios de Barcelona con una poblacion por encima de 200 000 personas
+
+muni_poblacion |>
+  filter(provincia == "Barcelona" | poblacion_total > 200000) # combinar criterios: OR
+#En este caso, todos los munucipios de Barcelona (independientemente de la poblacion que tengan) o bien aquellos municipios por encima de 200 000 personas (independientemente de la provincia a la que pertenezcan)
+
+muni_poblacion |>
+  filter(provincia %in% c("Ceuta", "Melilla")) # combinar criterios: %in% 
+#En este caso, todos los munucipios de Ceuta o Melilla. Es equivalente a:
+
+muni_poblacion |>
+  filter(provincia == "Ceuta" | provincia == "Melilla")
+
+```
+
+#### Ejercicio
+
+Para este ejercicio vamos a usar el set de datos "pixar_films.csv"
+
+💡"pixar_films" es una base de datos sobre películas de pixar del paquete {pixarfilms} de Eric Leungla y curado por Jon Harmon. La version curada de la base de datos la hemos obtenido del GitHub de TidyTuesday. Tidytuesday es un proyecto comunitario de ciencia de datos impulsado por la comunidad de R, especialmente por usuarios de tidyverse.
+
+Cada martes se publica un dataset limpio y listo para analizar, junto con una breve descripción y enlaces a la fuente original.
+
+![TidyTuesday: https://github.com/rfordatascience/tidytuesday/](images/tidyTuesday_logo.png)
+
+-   Lee el data.frame "pixar_films.csv". Pista: el delimitador entre datos es la coma (",").
+
+-   La columna film_rating indica una Clasificación donde G = general audience (aptas para todos los públicos) y PG = parental guidance suggested (se recomienda supervisión). Crea un subset que NO contenga las películas clasficadas como PG. Pista: revisa los [operadores de R](https://bookdown.org/jboscomendoza/r-principiantes4/operadores-relacionales.html). ¿Cuantas son?
+
+-   Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20 y sobre esos datos obten las películas clasificadas como aptas para todos los públicos pero de una duración menor de hora y media ¿Qué película ha quedado?
+
+### [Select](https://dplyr.tidyverse.org/reference/select.html): sirve para seleccionar columnas utilizando condiciones
+
+Para ver como funciona esta función vamos a usar un set de datos sobre el sueño de los mamíferos. Se llama "msleep" y viene en librería de tidyverse. Puedes encontrar mas información sobre este set de datos en ?msleep
+
+```{r select}
+#| warning: false
+
+msleep
+
+names(msleep)
+
+# ?select
+
+msleep |> 
+  select(name, bodywt) #solo nos interesan las columnas de nombre del peso del animal
+
+msleep |>
+  select(ends_with("wt")) # solo nos interesan las columnas relacionadas con el peso
+
+# se pueden utilizar todo tipo de patrones de texto: https://rstudio.github.io/cheatsheets/strings.pdf
+
+msleep |>
+  select(name,order, genus, everything()) # se puede usar para reordenar variables
+
+msleep |>
+  select(order, genus, common_name=name, vore) # y para renombrarlas a la vez que hacemos la seleccion
+
+```
+
+#### Ejercicio
+
+-   Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño. Pista: mira la ayuda de select para ahorrar caracteres.
+
+-   Crea un nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.
+
+-   (extra) ¿Que animal del orden Carnivora en estado vulnerable (vu en columna conservation) duerme más?
+
+## Transformar los datos y calcular nuevas variables
+
+### [Mutate](https://dplyr.tidyverse.org/reference/mutate.html): crear, modificar o eliminar columnas
+
+```{r mutate}
+#| warning: false
+
+msleep |>
+  mutate(
+    # definir una variable desde cero
+    ID = 1:nrow(msleep),
+    
+    # utilizar una variable para calcular otra
+    sleep_total_porc = (sleep_total / 24) * 100) |>
+  
+  select(ID, name:sleep_total, sleep_total_porc, everything())
+
+msleep |>
+  mutate(
+    # sobreescribir una variable.
+    # fct_recode sirve para redefinir los niveles de un factor (ojo sintaxis: new_name="old_name")
+    vore = fct_recode(
+      factor(vore),
+      carnivore = "carni" ,
+      omnivore = "omni",
+      herbivore = "herbi" ,
+      insectivore = "insecti"
+    ),
+    conservation = fct_recode(
+      factor(conservation),
+      least_concern = "lc",
+      not_evaluated = "nt",
+      vulnerable = "vu",
+      endangered = "en",
+      critically_endangered = "cd"
+    )
+  )
+
+msleep |>
+  mutate(
+    classification = case_when(
+      # utilizar varias variables para calcular otra nueva
+      vore == "carnivore" &
+        conservation %in% c("endangered", "critically_endangered") ~ "threatened carnivore",
+      
+      vore == "herbivore" &
+        conservation %in% c("endangered", "critically_endangered") ~ "threatened herbivore",
+      
+      TRUE ~ "others" #resto de casos
+    )
+  )
+
+# repetimos todo lo anterior concatenando todo el proceso:
+
+msleep |>
+  mutate(
+    # definir una variable desde cero
+    ID = 1:nrow(msleep),
+    
+    # utilizar una variable para calcular otra
+    sleep_total_porc = (sleep_total / 24) * 100,
+    
+    # sobreescribir una variable.
+    # fct_recode sirve para redefinir los niveles de un factor (ojo sintaxis: new_name="old_name")
+    vore = fct_recode(
+      factor(vore),
+      carnivore = "carni" ,
+      omnivore = "omni",
+      herbivore = "herbi" ,
+      insectivore = "insecti"
+    ),
+    conservation = fct_recode(
+      factor(conservation),
+      least_concern = "lc",
+      not_evaluated = "nt",
+      vulnerable = "vu",
+      endangered = "en",
+      critically_endangered = "cd"
+    ),
+    
+     classification = case_when(
+      # utilizar varias variables para calcular otra nueva
+      vore == "carnivore" &
+        conservation %in% c("endangered", "critically_endangered") ~ "threatened carnivore",
+      
+      vore == "herbivore" &
+        conservation %in% c("endangered", "critically_endangered") ~ "threatened herbivore",
+      
+      TRUE ~ "others" #resto de casos
+    )
+  )
+
+```
+
+#### Ejercicio
+
+-   Con el data.frame pixar_films inventate una clasificacion de películas en relación a su antigüedad y duración. Pista: para filtrar las fechas tienes que entrecomillarlas y seguir el mismo formato ej.- release_date \> "2000-01-01".
+
+### [Summarise](https://dplyr.tidyverse.org/reference/summarise.html) y [group by](https://dplyr.tidyverse.org/reference/group_by.html): generar un nuevo `data.frame` resumiendo cada grupo a una fila
+
+```{r summarise}
+#| warning: false
+
+msleep |> 
+  summarise(sleep_total_max = max(sleep_total),
+            sleep_total_min = min(sleep_total))
+
+```
+
+```{r group_by}
+#| warning: false
+
+msleep |>
+  group_by(vore) |>  
+  summarise(sleep_total_min = min(sleep_total),
+            sleep_total_mean = mean(sleep_total),
+            sleep_total_max = max(sleep_total))
+
+```
+
+#### Ejercicio
+
+-   Con el data.frame macrobenthos, cuenta el número de casos que hay en cada periodo de muestreo.
+
+-   Cuenta el número de casos distintos que hay de esfuerzo de muestreo.
+
+-   Calcula la media de la turbidez para cada taxón.
+
+### [Pivot](https://tidyr.tidyverse.org/reference/pivot_longer.html): transformar datos a formato largo o ancho
+
+![La variable año está dividida en dos columnas y cada fila representa dos observaciones no una. Extraido de [R for Data Science](https://r4ds.had.co.nz/tidy-data.html).](images/tidy_pivot_longer.png)
+
+```{r pivot}
+#| warning: false
+
+stocks <- tibble(
+  year   = c(2015, 2015, 2016, 2016),
+  half  = c(   1,    2,     1,    2),
+  return = c(1.88, 0.59, 0.92, 0.17)
+)
+
+stocks |> 
+  pivot_wider(names_from = year, values_from = return) |> 
+  pivot_longer(cols = `2015`:`2016`, names_to = "year", values_to = "return")
+```
+
+## Unir data.frames
+
+[Joins](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+
+`*_join()` añade columnas de `y` (segundo data.frame) a `x` (primer data.frame), haciendo coincidir las observaciones en función de la variable común.
+
+```{r joins}
+#| warning: false
+
+# join: left, right, full, inner
+
+set.seed(123)
+
+bloques <- tibble(ID = 1:nrow(taludes_trans), 
+  bloque = sample(x = 1:2, size = nrow(taludes_trans), replace = TRUE))
+
+taludes_trans <- taludes_trans |> 
+  left_join(bloques, by = "ID") |> 
+  select(ID, bloque, everything())
+
+```
+
+## Guardar datos
+
+[Write_delim](https://readr.tidyverse.org/reference/write_delim.html):
+
+```{r export}
+#| warning: false
+
+write_delim(taludes_trans, file = "taludes_trans.csv", delim = ";")
+# en file hay que especificar el directorio donde queremos que se guarde. Si no, se guardará en el directorio de trabajo (getwd())
+```
+
+## Enlaces de interés
+
+-   [Hands-On Programming with R](https://rstudio-education.github.io/hopr/)
+
+-   [R for data Science (Data transformation)](https://r4ds.had.co.nz/transform.html)
+
+-   [Style guide](http://adv-r.had.co.nz/Style.html)
+
+-   [Página web de *tidyverse*](https://www.tidyverse.org)
+
+-   [Cheat sheet the dplyr](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf)
+
+-   [Quince consejos para mejorar nuestro código y flujo de trabajo con R](https://www.revistaecosistemas.net/index.php/ecosistemas/article/view/2129)
+
+------------------------------------------------------------------------
+
+<details>
+
+<summary>Session Info</summary>
+
+```{r session_info}
+Sys.time()
+sessionInfo()
+```
+
+</details>

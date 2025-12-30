@@ -1,0 +1,579 @@
+---
+title: "Día 2 - Manejo de datos con Tidyverse. Programa de doctorado UAH"
+author: "Marina Rodes Blanco, Paloma Ruiz Benito, Verónica Cruz Alonso y Julián Tijerin Triviño"
+date: today
+date-format: "DD/MM/YYYY"
+toc: true
+toc-depth: 5
+toc-title: "Índice"
+format:
+  html:
+    link-external-newwindow: true
+    # css: styles.css
+  gfm: default
+editor: visual
+editor_options: 
+  chunk_output_type: console
+number-sections: true
+---
+
+## Síntesis del día 1: Introducción a R y a R studio (POR TERMINAR)
+
+### Modelo de ciencia de datos
+
+1.- Importar:
+
+2.- Ordenar:
+
+3.- Transformar:
+
+4.- Modelar:
+
+5.- Visualizar:
+
+6.- Comunicar:
+
+![Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram](images/datascience.png){#fig-datascience}
+
+### Buenas prácticas en la gestión de datos
+
+-   Trabajar por proyectos
+-   Usar teclas rápidas
+-   Consultar documentacion / pedir ayuda
+-   Código reproducible
+-   Seguir estilo (guia de estilo)
+
+### Tipos de objetos y operaciones básicas en R
+
+-   Vectores
+-   Matrices
+-   Data frames
+-   Listas
+
+#### 🧩 Ejercicio: *repaso* *del día anterior*
+
+-   Crea un vector con los meses del año (en número) y calcula la media
+-   Crea una matriz ... ¿Cual es el elemento de la fila 3 columna 2?
+-   Crea una lista .. ¿Que hay en el tercer elemento de la lista?
+-   Crea un data frame con la siguiente información
+
+## Introducción
+
+### Estructura de datos (PENDIENTE)
+
+### Tidyverse (PENDIENTE)
+
+### Presentando los set de datos con los que vamos a trabajar:
+
+Vamos a trabajar con datos de Tidytuesday, de las librerias de tidyverse y de un paquete denominado "palmerpenguins". En todos los casos son datos reales.
+
+Tidytuesday es un proyecto comunitario de ciencia de datos impulsado por la comunidad de R, especialmente por usuarios de tidyverse. Cada martes se publica un dataset limpio y listo para analizar, junto con una breve descripción y enlaces a la fuente original.
+
+![[TidyTuesday](https://github.com/rfordatascience/tidytuesday/)](images/tidyTuesday_logo.png)
+
+De este proyecto vamos a trabajar con dos set de datos diferentes:
+
++----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/recetas1_copilot.png) | El dataset de **Cuisine** de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.) |
++----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+: Fuente imagen: copilot
+
++-------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/pixar_image1_flickr.jpg) | El dataset de **Pixar** en TidyTuesday recopila información detallada sobre las películas de Pixar, incluyendo variables de producción, taquilla y crítica. |
++-------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+: Fuente imagen: <https://www.flickr.com/photos/lorenjavier/4124134356> CC BY-ND 2.0
+
+Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. Puedes consultarlo con la función data(). De los sets de datos de tidyverse vamos a trabajar con msleep
+
++----------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/mammals_sleeping_picture1_copilot.png){width="274"} | El dataset **msleep** contiene información sobre **el sueño de distintos** mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño |
++----------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+: Fuente imagen: copilot
+
+Por último vamos a trabajar, para el ejercicio final, con los datos de paquete palmerpenguins
+
++---------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/palmer_penguins.png) | Los datos fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo.  |
+|                                 |                                                                                                                                                                                          |
+|                                 | Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo.                                                            |
++---------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Importar y renombrar datos
+
+### [Read_delim](https://readr.tidyverse.org/reference/read_delim.html): leer datos desde fuera de R
+
+Leer datos que tenemos almacenados, como por ejemplo, una tabla en formato csv.
+
+```{r read}
+#| warning: false
+
+library(tidyverse)
+
+recetas <- read_delim(file = "data/cuisines.csv", delim = ",")
+
+recetas <- read_delim(
+  file = "data/cuisines.csv",
+  delim = ",",
+  col_type = list(country = "f", servings="f"),
+  # puedo especificar el tipo de dato (country como factor)
+  )
+
+recetas
+
+
+View(recetas)
+summary(recetas)
+glimpse(recetas)
+```
+
+### [Rename](https://dplyr.tidyverse.org/reference/rename.html): cambiar nombres de variables (columnas)
+
+```{r rename}
+#| warning: false  
+
+names(recetas)
+
+# Cambio el nombre y añado la unidad de medida (gramos)
+
+recetas_g <- recetas |>
+  rename(
+    fat_g = fat,
+    carbs_g = carbs,
+    # nombre nuevo = nombre viejo
+    protein_g = protein
+  )
+
+```
+
+📝 Ajustar sangría de código: Ctrl + i; Reformatear código: Ctrl + Shift + a
+
+## Funciones básicas de filtrado y selección
+
+### [Slice](https://dplyr.tidyverse.org/reference/slice.html): filtrar filas según el índice numérico
+
+Seleccionar filas concretas del set de datos
+
+```{r slice}
+#| warning: false
+
+recetas |> # shortcut para el pipe: CTRL + SHIFT + M
+  slice(1) # la primera fila
+
+recetas |>
+  slice(1, 5) # la fila 1 y la 5
+
+recetas |> 
+  slice(1:6) # de la fila 1 a la 5
+
+recetas |>
+  slice(-c(1:5)) # todas las filas excepto de la 1 a la 5
+
+```
+
+### [Arrange](https://dplyr.tidyverse.org/reference/arrange.html): ordenar filas por los valores de una o más variables (columnas)
+
+```{r arrange}
+#| warning: false
+
+recetas |>
+  arrange(prep_time)
+
+recetas |> 
+  arrange(desc(prep_time))
+
+```
+
+### [Filter](https://dplyr.tidyverse.org/reference/filter.html): filtrar filas utilizando condiciones
+
+Se necesita un vector de filtrado que contenga valores lógicos (TRUE/FALSE).
+
+```{r filter}
+#| warning: false
+
+recetas |>
+  filter(country == "Chilean") # filtrar por filas que cumplen un patrón 
+#En este caso, todass las recetas chilenas
+
+recetas |>
+  filter(country == "Chilean" & total_time  < 60) # combinar criterios: AND
+#En este caso, todas las recetas chilenas que se preparan en menos de 60 minutos
+
+recetas |>
+  filter(country == "Chilean" & total_time  < 60) # combinar criterios: OR
+#En este caso, todas las recetas chilenas (independientemente del tiempo de preparación) o bien aquellas recetas que se preparen en menos de 60mins (independientemente del país)
+
+recetas |>
+  filter(country %in% c("Chilean", "Brazilian", "Peruvian")) # combinar criterios: %in% 
+
+#En este caso, todas las recetas de países del cono sur. Es equivalente a:
+
+recetas |>
+  filter(country == "Chilean" | country == "Brazilian"| country == "Peruvian")
+
+
+```
+
+#### 🧩 *Ejercicio: slice(), filter(), arrange()*
+
++----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/mammals_sleeping_picture1_copilot.png){width="950"} | -   Lee el data.frame "msleep.csv". Pista: el delimitador entre datos es la coma (",").                                                                                                             |
+|                                                                |                                                                                                                                                                                                     |
+|                                                                | -   Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?                                                                                                      |
+|                                                                |                                                                                                                                                                                                     |
+|                                                                | -   Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas? |
++----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+### [Select](https://dplyr.tidyverse.org/reference/select.html): sirve para seleccionar columnas utilizando condiciones
+
+Para ver como funciona esta función vamos a usar un set de datos sobre el sueño de los mamíferos. Se llama "msleep" y viene en librería de tidyverse. Puedes encontrar mas información sobre este set de datos en ?msleep
+
+```{r select}
+#| warning: false
+
+names(recetas)
+
+# ?select
+
+recetas |> 
+  select(name, calories, fat, carbs, protein) #solo nos interesan las columnas con informacion nutricional de cada receta
+
+recetas |> 
+  select(name, calories, fat, carbs, protein)
+
+# Se puede usar un patron de texto pra seleccionar colmnas
+recetas |>
+  select(ends_with("time")) # solo nos interesan las columnas relacionadas con el tiempo
+
+# se pueden utilizar todo tipo de patrones de texto: https://rstudio.github.io/cheatsheets/strings.pdf
+
+recetas |>
+  select(name,author, everything()) # se puede usar para reordenar variables
+
+recetas |>
+  select(recipes_name=name, country, author, reviews) # y para renombrarlas a la vez que hacemos la seleccion
+
+```
+
+#### 🧩 *Ejercicio: select()*
+
++---------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/mammals_sleeping_picture2_copilot.png) | -   Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño.                           |
+|                                                   |                                                                                                                                         |
+|                                                   | -   Crea un nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto. |
+|                                                   |                                                                                                                                         |
+|                                                   | -   (extra) ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?                                        |
++---------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+## Transformar los datos y calcular nuevas variables
+
+### [Mutate](https://dplyr.tidyverse.org/reference/mutate.html): crear, modificar o eliminar columnas
+
+```{r mutate}
+#| warning: false
+
+# definir una variable 
+
+recetas |>
+  mutate(
+    # desde cero
+    ID = 1:nrow(recetas),
+    
+    # utilizando una variable para calcular otra (ej.- el numero de personas que       han dejado una puntuación pero no han escrito un review)
+    num_ratings_no_review = total_ratings - reviews) |>
+  
+  select(
+    ID, 
+    name:date_published, 
+    total_ratings,
+    reviews,
+    num_ratings_no_review,
+    everything()
+  )
+
+# sobreescribir una variable.
+recetas |>
+  mutate(
+    
+    # fct_recode sirve para redefinir los niveles de un factor (ojo sintaxis:          new_name="old_name")
+    servings = fct_recode(
+      servings,
+      una_persona = "1" ,
+      dos_personas = "2",
+      tres_personas = "3" 
+      ))
+
+#utilizar mas de una variable para generar otra
+recetas |>
+  mutate(
+    classification = case_when(
+      # utilizar varias variables para calcular otra nueva
+      avg_rating > 4 &
+        country %in% c(
+          "Chilean",
+          "Brazilian",
+          "Peruvian",
+          "Cuban",
+          "Puerto Rican",
+          "Colombian"
+        )  ~ "highest‑rated_Latin_cuisine",
+      
+      avg_rating < 2 &
+        country %in% c(
+          "Chilean",
+          "Brazilian",
+          "Peruvian",
+          "Cuban",
+          "Puerto Rican",
+          "Colombian"
+        )  ~ "lowest‑rated_Latin_cuisine",
+      
+      TRUE ~ "others" #resto de casos
+    )
+  )
+
+# Podemos hacer todo lo anterior concatenando todo el proceso y guardar el set de datos:
+
+recetas_modif <- recetas |>
+  mutate(
+    ID = 1:nrow(recetas),
+    
+    num_ratings_no_review = total_ratings - reviews,
+    
+    servings = fct_recode(
+      servings,
+      una_persona = "1" ,
+      dos_personas = "2",
+      tres_personas = "3"),
+    
+    classification = case_when(
+      # utilizar varias variables para calcular otra nueva
+      avg_rating > 4 &
+        country %in% c(
+          "Chilean",
+          "Brazilian",
+          "Peruvian",
+          "Cuban",
+          "Puerto Rican",
+          "Colombian")  ~ "highest‑rated_Latin_cuisine",
+      
+      avg_rating < 2 &
+        country %in% c(
+          "Chilean",
+          "Brazilian",
+          "Peruvian",
+          "Cuban",
+          "Puerto Rican",
+          "Colombian")  ~ "lowest‑rated_Latin_cuisine",
+      
+      TRUE ~ "others" #resto de casos
+    )
+  )
+
+```
+
+#### 🧩 *Ejercicio: mutate()*
+
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/mammals_sleeping_picture3_copilot.png){width="222"} | -   Con el data set de msleep, incluye una nueva columna con el porcentaje de horas que duerme cada animal al día                                                                                                                                                                                                   |
+|                                                                |                                                                                                                                                                                                                                                                                                                     |
+|                                                                | -   Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas "vore" y "conservation". Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr) |
++----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+: [Summarise](https://dplyr.tidyverse.org/reference/summarise.html) y [group by](https://dplyr.tidyverse.org/reference/group_by.html): generar un nuevo `data.frame` resumiendo cada grupo a una fila
+
+```{r summarise}
+#| warning: false
+
+# mínimo y máximo tiempo de preparación
+recetas |> 
+  summarise(prep_time_max = max(prep_time),
+            prep_time_total_min = min(prep_time))
+
+# minimo, máximo y media de proteínas de todas las recetas
+recetas |> 
+  summarise(protein_max = max(protein),
+            protein_mean = mean(protein),
+            protein_min = min(prep_time))
+
+ ## Ojo! si no queremos que tenga en cuenta los NA hay que añadir argumento na.rm=T
+recetas |> 
+  summarise(protein_max = max(protein, na.rm=T),
+            protein_mean = mean(protein, na.rm=T),
+            protein_min = min(prep_time, na.rm=T))
+```
+
+```{r group_by}
+#| warning: false
+
+#Lo mismo que antes, pero por país
+recetas |> 
+  group_by(country) |>
+  summarise(protein_max = max(protein, na.rm=T),
+            protein_mean = mean(protein, na.rm=T),
+            protein_min = min(prep_time, na.rm=T))
+
+```
+
+#### 🧩 *Ejercicio: group_by(), summrise()*
+
++--------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![]()![](images/mammals_sleeping_picture4_copilot.png) | -   Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)                                                                          |
+|                                                        |                                                                                                                                                                   |
+|                                                        | -   Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset? |
++--------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+### [Pivot](https://tidyr.tidyverse.org/reference/pivot_longer.html): transformar datos a formato largo o ancho
+
+Nos permite transformar datos de formato largo a ancho y viceversa. Nos puede convenir una forma u otra según lo que queramos hacer con lo datos: presentarlos en una tabla, hacer transformaciones o análisis, hacer un gráfico etc.
+
+En la siguiente imagen, extraída de [The Epidemiologist R Handbook](https://www.epirhandbook.com/en/) se puede ver en qué consiste esta transformación.
+
+![Pivot data transformation](images/pivot_longer_epirhandbook.png){fig-align="center" width="555"}
+
+```{r pivot}
+#| warning: false
+
+recetas_Vietnam<- recetas |>  select(name, country, fat, carbs,protein) |>  filter(country=="Vietnamese")
+
+# transformamos a formato largo, incluyendo los valores de grasas, carbohidratos y proteinas en una columna llamada "nutritional_value
+
+recetas_Vietnam_long <- recetas_Vietnam |> 
+  pivot_longer(cols=fat:protein, names_to="nutritional_value")
+
+#volvemos al set original
+
+recetas_Vietnam_wide<- recetas_Vietnam_long |> 
+  pivot_wider(names_from=nutritional_value, values_from=value)
+
+```
+
+#### 🧩 *Ejercicio: transformar datos largo ancho*
+
++--------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/pixar_image2_flickr.jpg){width="231"} | -   Lee el set de datos pixar_public_response_long. En este set de datos se encuentra la puntuación de películas pixar por la audiencia según tres webs diferentes: rotten tomatoes, metacritic y critics' choice. |
+|                                                  |                                                                                                                                                                                                                    |
+|                                                  | -   Reorganiza el set de datos para que la puntuación de cada una de las webs se encuentre en una columna diferente                                                                                                |
+|                                                  |                                                                                                                                                                                                                    |
+|                                                  | -   (extra) ¿Cual es el promedio de puntuación por película teniendo en cuenta todas las fuentes? ¿Que película es la mejor y peor puntuada de media?                                                              |
++--------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Fuente: <https://www.flickr.com/photos/harshlight/17294952412> (CC BY 2.0)
+
+## Unir data.frames
+
+[Joins](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+
+`*_join()` añade columnas de `y` (segundo data.frame) a `x` (primer data.frame), haciendo coincidir las observaciones en función de la variable común.
+
+![](images/joins_from_dataWrangling_RStudio_cheatsheet.png){width="559"}
+
+```{r joins}
+#| warning: false
+
+# join: left, right, full, inner
+
+#datos de pais - capital- continente
+paises <- tibble(
+  pais = c("España", "Francia", "Japón", "Brasil", "Sudáfrica"),
+  capital = c("Madrid", "París", "Tokio", "Brasilia", "Pretoria"),
+  continente = c("Europa", "Europa", "Asia", "América", "África")
+)
+
+#datos demográficos
+demografia <- tibble(
+  pais = c("España", "Japón", "Brasil", "Canadá", "Sudáfrica"),
+  poblacion_millones = c(47.4, 125.7, 203.1, 39.6, 60.0),
+  extension_km2 = c(505990, 377975, 8515767, 9984670, 1221037)
+)
+
+#left join: se une al set de datos de pais los datos de demografia (si los hay)
+left_join(paises, demografia, by="pais")
+
+#right join: se une al set de datos de demografa los datos de pais (si los hay)
+right_join(paises, demografia, by="pais")
+
+#inner join: une los paises presentes en los dos set de datos
+inner_join(paises, demografia, by="pais")
+
+#full join: une todos los paises presentes en uno u otro.
+paises_demo_full_join<-full_join(paises, demografia, by="pais")
+```
+
+## Guardar datos
+
+[Write_delim](https://readr.tidyverse.org/reference/write_delim.html):
+
+```{r export}
+#| warning: false
+
+write_delim(paises_demo_full_join, file = "paises_demo_full_join.csv", delim = ";")
+# en file hay que especificar el directorio donde queremos que se guarde. Si no, se guardará en el directorio de trabajo (getwd())
+```
+
+#### 🧩 *Ejercicio: \*\_join() y exportar datos*
+
++---------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| [![Fuente](images/pixar_image3_flickr.jpg){width="293"}](https://www.flickr.com/photos/harshlight/6988729286) | -   Lee el set de datos pixar_public_response y pixar_films                                                                     |
+|                                                                                                               |                                                                                                                                 |
+|                                                                                                               | -   Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()                        |
+|                                                                                                               |                                                                                                                                 |
+|                                                                                                               | -   une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión |
+|                                                                                                               |                                                                                                                                 |
+|                                                                                                               | -   Guarda el nuevo set de datos como pixar_joint                                                                               |
++---------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+
+Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
+
+## 🧩 *Ejercicio final*
+
+Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse:
+
+🐧 Instala el paquete penguins y cárgalo
+
+🐧 Crea un data frame con dos columnas, la primera denominada "islands_info" con los valores "Torgersen", "Biscoe", "Dream" y otra llamada "protected_area" con los valores "Si", "No", "Si"
+
+🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_len) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)
+
+🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length, bill_depth y body_mass
+
+🐧Añade una columna llamada bill_ratio que calcule la relación entre longitud y profundidad del pico
+
+🐧Une el resultado con el dataset islands \_info, de forma que cada pingüino quede asociado a si su isla es un área protegida.
+
+🐧Crea una columna categoria_peso con valores "ligero", "medio", "pesado"según los umbrales que quieras o, más dificil, con terciles de body_mass.
+
+🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas
+
+🐧(EXTRA) Responde a las siguientes preguntas:
+
+🐧¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas? ¿Cuanto pesa el individuo más pesado?
+
+## Enlaces de interés
+
+-   [Hands-On Programming with R](https://rstudio-education.github.io/hopr/)
+
+-   [R for data Science (Data transformation)](https://r4ds.had.co.nz/transform.html)
+
+-   [Style guide](http://adv-r.had.co.nz/Style.html)
+
+-   [Página web de *tidyverse*](https://www.tidyverse.org)
+
+-   [Cheat sheet the dplyr](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf)
+
+-   [Quince consejos para mejorar nuestro código y flujo de trabajo con R](https://www.revistaecosistemas.net/index.php/ecosistemas/article/view/2129)
+
+------------------------------------------------------------------------
+
+<details>
+
+<summary>Session Info</summary>
+
+```{r session_info}
+Sys.time()
+sessionInfo()
+```
+
+</details>
