@@ -21,18 +21,6 @@ number-sections: true
 
 ### Modelo de ciencia de datos
 
-1.- Importar:
-
-2.- Ordenar:
-
-3.- Transformar:
-
-4.- Modelar:
-
-5.- Visualizar:
-
-6.- Comunicar:
-
 ![Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram](images/datascience.png){#fig-datascience}
 
 ### Buenas prácticas en la gestión de datos
@@ -59,9 +47,51 @@ number-sections: true
 
 ## Introducción
 
-### Estructura de datos (PENDIENTE)
+### Tidyverse
 
-### Tidyverse (PENDIENTE)
+Conjunto de paquetes de R para ciencia de datos. Todos los paquetes tienen una misma estructura (filosofía, gramática y estructura de datos).
+
+![https://tidyverse.org/](images/tidyverse_packages.png)
+
+Se basa en los siguientes principios:
+
+-   Centrado en humanos: tiene un diseño intuitivo que facilita su uso y accesibilidad para el usuario
+
+-   Consistencia: todos los paquetes están diseñados para trabajar con datos ordenados (“Tidy Data”), y las funciones de los paquetes tienen una nomenclatura común y congruente. Esto permite que un usuario que aprende sobre una función o paquete pueda aplicar ese conocimiento a otros, facilitando así la tarea de recordar y deducir código de manera más sencilla.
+
+-   Componiblidad: permite al usuario resolver problemas complejos dividiéndolos en pequeñas partes, que pueden combinarse utilizando el operador “pipe” (%\>% or \|\>).
+
+-   Inclusividad: no se trata sólo de la colección de paquetes, sino también la comunidad de personas que los usan, basándose en la ayuda entre usuarios y generando un ambiente inclusivo.
+
+### Datos ordenados o tidy data
+
+![](images/clipboard-2935155425.png)
+
+Estándar para organizar conjuntos de datos donde cada variable es una columna, cada observación es una fila y cada tipo de unidad de observación es una tabla. Esto facilita el análisis, la manipulación y la visualización de datos. Esto lo explican muy bien con una serie de ilustraciones Julia Lowndes y Allison Horst en ["Tidy data for efficiency, reproducibility, and collaboration"](https://openscapes.org/blog/2020-10-12-tidy-data/)
+
+![](images/tidydata_2.png)
+
+Usando este estándar se consigue que todos los set de datos tengan la misma estructura.
+
+![](images/tidydata_3.png)
+
+Que tengan la misma estructura nos permite trabajar con ellos de la misma manera y por tanto reutilizar el código.
+
+En resumen, trabajar con tidy data es más eficiente, permite la colaboración, la reproducibildiad y la reutilización de código.
+
+### Operador "pipe"
+
+-   Permite encadenar varias funciones de tidyverse
+
+-   Dos estilos: %\>% o \|\> (más reciente).
+
+-   Acceso directo: ctrl/command + shift + M
+
+-   La estructura siempre es la misma: set de datos \|\> acción1 \|\> acción 2 etc. Estas "acciones" puede ser filtros, selección de filas o columnas, operaciones etc.
+
+Para configurar el uso de la versión \|\> en Rstudio...
+
+![![](images/pipe_config_Rstudio.png){width="672"}]()
 
 ### Presentando los set de datos con los que vamos a trabajar:
 
@@ -73,33 +103,27 @@ Tidytuesday es un proyecto comunitario de ciencia de datos impulsado por la comu
 
 De este proyecto vamos a trabajar con dos set de datos diferentes:
 
-+----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/recetas1_copilot.png) | El dataset de **Cuisine** de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.) |
-+----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
++:---------------------------------------------:+:-----------------------------------------------------------------------------------------------------------------------------------------------------:+
+| ![](images/recetas1_copilot.png){width="800"} | El dataset de **Cuisine** de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.) |
++-----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-: Fuente imagen: copilot
-
-+-------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/pixar_image1_flickr.jpg) | El dataset de **Pixar** en TidyTuesday recopila información detallada sobre las películas de Pixar, incluyendo variables de producción, taquilla y crítica. |
-+-------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-: Fuente imagen: <https://www.flickr.com/photos/lorenjavier/4124134356> CC BY-ND 2.0
++:------------------------------------------------:+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/pixar_image1_flickr.jpg){width="500"} | El dataset de **Pixar** en TidyTuesday recopila información detallada sobre las películas de Pixar, incluyendo variables de producción, taquilla y crítica. |
++--------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. Puedes consultarlo con la función data(). De los sets de datos de tidyverse vamos a trabajar con msleep
 
 +----------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/mammals_sleeping_picture1_copilot.png){width="274"} | El dataset **msleep** contiene información sobre **el sueño de distintos** mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño |
+| ![](images/mammals_sleeping_picture1_copilot.png){width="500"} | El dataset **msleep** contiene información sobre **el sueño de distintos** mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño |
 +----------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-: Fuente imagen: copilot
 
 Por último vamos a trabajar, para el ejercicio final, con los datos de paquete palmerpenguins
 
-+---------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/palmer_penguins.png) | Los datos fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo.  |
-|                                 |                                                                                                                                                                                          |
-|                                 | Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo.                                                            |
-+---------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/palmer_penguins.png){width="500"} | Los datos fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo. |
+|                                              |                                                                                                                                                                                         |
+|                                              | Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo.                                                           |
++----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ## Importar y renombrar datos
 

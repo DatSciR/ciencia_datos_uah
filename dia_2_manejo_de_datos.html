@@ -93,9 +93,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2</span> Introducción</a>
   <ul>
-  <li><a href="#estructura-de-datos-pendiente" id="toc-estructura-de-datos-pendiente" class="nav-link" data-scroll-target="#estructura-de-datos-pendiente"><span class="header-section-number">2.1</span> Estructura de datos (PENDIENTE)</a></li>
-  <li><a href="#tidyverse-pendiente" id="toc-tidyverse-pendiente" class="nav-link" data-scroll-target="#tidyverse-pendiente"><span class="header-section-number">2.2</span> Tidyverse (PENDIENTE)</a></li>
-  <li><a href="#presentando-los-set-de-datos-con-los-que-vamos-a-trabajar" id="toc-presentando-los-set-de-datos-con-los-que-vamos-a-trabajar" class="nav-link" data-scroll-target="#presentando-los-set-de-datos-con-los-que-vamos-a-trabajar"><span class="header-section-number">2.3</span> Presentando los set de datos con los que vamos a trabajar:</a></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">2.1</span> Tidyverse</a></li>
+  <li><a href="#datos-ordenados-o-tidy-data" id="toc-datos-ordenados-o-tidy-data" class="nav-link" data-scroll-target="#datos-ordenados-o-tidy-data"><span class="header-section-number">2.2</span> Datos ordenados o tidy data</a></li>
+  <li><a href="#operador-pipe" id="toc-operador-pipe" class="nav-link" data-scroll-target="#operador-pipe"><span class="header-section-number">2.3</span> Operador “pipe”</a></li>
+  <li><a href="#presentando-los-set-de-datos-con-los-que-vamos-a-trabajar" id="toc-presentando-los-set-de-datos-con-los-que-vamos-a-trabajar" class="nav-link" data-scroll-target="#presentando-los-set-de-datos-con-los-que-vamos-a-trabajar"><span class="header-section-number">2.4</span> Presentando los set de datos con los que vamos a trabajar:</a></li>
   </ul></li>
   <li><a href="#importar-y-renombrar-datos" id="toc-importar-y-renombrar-datos" class="nav-link" data-scroll-target="#importar-y-renombrar-datos"><span class="header-section-number">3</span> Importar y renombrar datos</a>
   <ul>
@@ -158,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">30/12/2025</p>
+      <p class="date">31/12/2025</p>
     </div>
   </div>
   
@@ -174,12 +175,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="1" class="anchored" data-anchor-id="síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar"><span class="header-section-number">1</span> Síntesis del día 1: Introducción a R y a R studio (POR TERMINAR)</h2>
 <section id="modelo-de-ciencia-de-datos" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="modelo-de-ciencia-de-datos"><span class="header-section-number">1.1</span> Modelo de ciencia de datos</h3>
-<p>1.- Importar:</p>
-<p>2.- Ordenar:</p>
-<p>3.- Transformar:</p>
-<p>4.- Modelar:</p>
-<p>5.- Visualizar:</p>
-<p>6.- Comunicar:</p>
 <div id="fig-datascience" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-datascience-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -222,14 +217,51 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 </section>
 <section id="introducción" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">2</span> Introducción</h2>
-<section id="estructura-de-datos-pendiente" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="estructura-de-datos-pendiente"><span class="header-section-number">2.1</span> Estructura de datos (PENDIENTE)</h3>
+<section id="tidyverse" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">2.1</span> Tidyverse</h3>
+<p>Conjunto de paquetes de R para ciencia de datos. Todos los paquetes tienen una misma estructura (filosofía, gramática y estructura de datos).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tidyverse_packages.png" class="img-fluid figure-img"></p>
+<figcaption>https://tidyverse.org/</figcaption>
+</figure>
+</div>
+<p>Se basa en los siguientes principios:</p>
+<ul>
+<li><p>Centrado en humanos: tiene un diseño intuitivo que facilita su uso y accesibilidad para el usuario</p></li>
+<li><p>Consistencia: todos los paquetes están diseñados para trabajar con datos ordenados (“Tidy Data”), y las funciones de los paquetes tienen una nomenclatura común y congruente. Esto permite que un usuario que aprende sobre una función o paquete pueda aplicar ese conocimiento a otros, facilitando así la tarea de recordar y deducir código de manera más sencilla.</p></li>
+<li><p>Componiblidad: permite al usuario resolver problemas complejos dividiéndolos en pequeñas partes, que pueden combinarse utilizando el operador “pipe” (%&gt;% or |&gt;).</p></li>
+<li><p>Inclusividad: no se trata sólo de la colección de paquetes, sino también la comunidad de personas que los usan, basándose en la ayuda entre usuarios y generando un ambiente inclusivo.</p></li>
+</ul>
 </section>
-<section id="tidyverse-pendiente" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="tidyverse-pendiente"><span class="header-section-number">2.2</span> Tidyverse (PENDIENTE)</h3>
+<section id="datos-ordenados-o-tidy-data" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="datos-ordenados-o-tidy-data"><span class="header-section-number">2.2</span> Datos ordenados o tidy data</h3>
+<p><img src="images/clipboard-2935155425.png" class="img-fluid"></p>
+<p>Estándar para organizar conjuntos de datos donde cada variable es una columna, cada observación es una fila y cada tipo de unidad de observación es una tabla. Esto facilita el análisis, la manipulación y la visualización de datos. Esto lo explican muy bien con una serie de ilustraciones Julia Lowndes y Allison Horst en <a href="https://openscapes.org/blog/2020-10-12-tidy-data/">“Tidy data for efficiency, reproducibility, and collaboration”</a></p>
+<p><img src="images/tidydata_2.png" class="img-fluid"></p>
+<p>Usando este estándar se consigue que todos los set de datos tengan la misma estructura.</p>
+<p><img src="images/tidydata_3.png" class="img-fluid"></p>
+<p>Que tengan la misma estructura nos permite trabajar con ellos de la misma manera y por tanto reutilizar el código.</p>
+<p>En resumen, trabajar con tidy data es más eficiente, permite la colaboración, la reproducibildiad y la reutilización de código.</p>
 </section>
-<section id="presentando-los-set-de-datos-con-los-que-vamos-a-trabajar" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="presentando-los-set-de-datos-con-los-que-vamos-a-trabajar"><span class="header-section-number">2.3</span> Presentando los set de datos con los que vamos a trabajar:</h3>
+<section id="operador-pipe" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="operador-pipe"><span class="header-section-number">2.3</span> Operador “pipe”</h3>
+<ul>
+<li><p>Permite encadenar varias funciones de tidyverse</p></li>
+<li><p>Dos estilos: %&gt;% o |&gt; (más reciente).</p></li>
+<li><p>Acceso directo: ctrl/command + shift + M</p></li>
+<li><p>La estructura siempre es la misma: set de datos |&gt; acción1 |&gt; acción 2 etc. Estas “acciones” puede ser filtros, selección de filas o columnas, operaciones etc.</p></li>
+</ul>
+<p>Para configurar el uso de la versión |&gt; en Rstudio…</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".png" class="img-fluid figure-img"></p>
+<figcaption><img src="images/pipe_config_Rstudio.png" class="img-fluid figure-img" width="672"></figcaption>
+</figure>
+</div>
+</section>
+<section id="presentando-los-set-de-datos-con-los-que-vamos-a-trabajar" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="presentando-los-set-de-datos-con-los-que-vamos-a-trabajar"><span class="header-section-number">2.4</span> Presentando los set de datos con los que vamos a trabajar:</h3>
 <p>Vamos a trabajar con datos de Tidytuesday, de las librerias de tidyverse y de un paquete denominado “palmerpenguins”. En todos los casos son datos reales.</p>
 <p>Tidytuesday es un proyecto comunitario de ciencia de datos impulsado por la comunidad de R, especialmente por usuarios de tidyverse. Cada martes se publica un dataset limpio y listo para analizar, junto con una breve descripción y enlaces a la fuente original.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -240,37 +272,38 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 </div>
 <p>De este proyecto vamos a trabajar con dos set de datos diferentes:</p>
 <table class="caption-top table">
-<caption>Fuente imagen: copilot</caption>
 <colgroup>
-<col style="width: 18%">
-<col style="width: 81%">
+<col style="width: 24%">
+<col style="width: 76%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><img src="images/recetas1_copilot.png" class="img-fluid"></td>
-<td>El dataset de <strong>Cuisine</strong> de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.)</td>
+<td style="text-align: center;"><img src="images/recetas1_copilot.png" class="img-fluid" width="800"></td>
+<td style="text-align: center;">El dataset de <strong>Cuisine</strong> de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.)</td>
 </tr>
 </tbody>
 </table>
 <table class="caption-top table">
-<caption>Fuente imagen: <a href="https://www.flickr.com/photos/lorenjavier/4124134356" class="uri">https://www.flickr.com/photos/lorenjavier/4124134356</a> CC BY-ND 2.0</caption>
-<tbody>
-<tr class="odd">
-<td><img src="images/pixar_image1_flickr.jpg" class="img-fluid"></td>
-<td>El dataset de <strong>Pixar</strong> en TidyTuesday recopila información detallada sobre las películas de Pixar, incluyendo variables de producción, taquilla y crítica.</td>
-</tr>
-</tbody>
-</table>
-<p>Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. Puedes consultarlo con la función data(). De los sets de datos de tidyverse vamos a trabajar con msleep</p>
-<table class="caption-top table">
-<caption>Fuente imagen: copilot</caption>
 <colgroup>
 <col style="width: 24%">
 <col style="width: 75%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><img src="images/mammals_sleeping_picture1_copilot.png" class="img-fluid" width="274"></td>
+<td style="text-align: center;"><img src="images/pixar_image1_flickr.jpg" class="img-fluid" width="500"></td>
+<td>El dataset de <strong>Pixar</strong> en TidyTuesday recopila información detallada sobre las películas de Pixar, incluyendo variables de producción, taquilla y crítica.</td>
+</tr>
+</tbody>
+</table>
+<p>Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. Puedes consultarlo con la función data(). De los sets de datos de tidyverse vamos a trabajar con msleep</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 75%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/mammals_sleeping_picture1_copilot.png" class="img-fluid" width="500"></td>
 <td>El dataset <strong>msleep</strong> contiene información sobre <strong>el sueño de distintos</strong> mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño</td>
 </tr>
 </tbody>
@@ -278,12 +311,12 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <p>Por último vamos a trabajar, para el ejercicio final, con los datos de paquete palmerpenguins</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 84%">
+<col style="width: 20%">
+<col style="width: 79%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><img src="images/palmer_penguins.png" class="img-fluid"></td>
+<td><img src="images/palmer_penguins.png" class="img-fluid" width="500"></td>
 <td><p>Los datos fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo.</p>
 <p>Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo.</p></td>
 </tr>
@@ -1213,7 +1246,7 @@ Session Info
 <div class="cell">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-12-30 19:32:36 CET"</code></pre>
+<pre><code>[1] "2025-12-31 13:16:12 CET"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
