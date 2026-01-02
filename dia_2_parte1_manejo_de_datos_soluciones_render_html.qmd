@@ -1,5 +1,5 @@
 ---
-title: "Día 2 - Manejo de datos con Tidyverse. Programa de doctorado UAH"
+title: "Día 2 - Manejo de datos con Tidyverse. Programa de doctorado UAH - SOLUCIONES"
 author: "Marina Rodes Blanco, Paloma Ruiz Benito, Verónica Cruz Alonso y Julián Tijerin Triviño"
 date: today
 date-format: "DD/MM/YYYY"
