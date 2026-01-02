@@ -104,14 +104,19 @@ subset_msleep<- msleep |>
 head(msleep) #para ver las 10 primeras lineas
 names(msleep) #para ver el nombre de las columnas
 
-vars_sleep<-msleep |>  select(starts_with("sleep"))
+vars_sleep<-msleep |>
+  select(starts_with("sleep"))
 
 ## Nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.
-msleep2<- msleep |>  select(order, genus, name, everything(), -awake)
+msleep2<- msleep |> 
+  select(order, genus, name, everything(), -awake)
 
 ## Extra: ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?
 
-msleep |>  filter(order=="Carnivora" & conservation =="vu") |>  arrange(desc(sleep_total))
+msleep |> 
+  filter(order=="Carnivora" &
+           conservation =="vu") |>
+  arrange(desc(sleep_total))
 
 ```
 
@@ -137,11 +142,29 @@ msleep |>  filter(order=="Carnivora" & conservation =="vu") |>  arrange(desc(sle
 ```{r solucion ejercicio 3}
 ## Nueva columna con el porcentaje de horas que duerme cada animal al día.
 
-## Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr).
+msleep |> mutate(sleep_prc=(sleep_total/24)*100)
+
+## Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cd).
+
+msleep |>
+  mutate(
+    classification = case_when(
+      # utilizar varias variables para calcular otra nueva
+      vore == "carni" &
+        conservation %in% c(
+          "en", "cd") ~ "threatened carnivore",
+      
+      vore == "herbivore" &
+        conservation %in% c(
+          "en", "cd") ~ "threatened herbivore",
+      
+      TRUE ~ "others" #resto de casos
+    )
+  )
 
 ```
 
-#### 🧩 *Ejercicio: group_by(), summrise()*
+#### 🧩 *Ejercicio: group_by(), summarise()*
 
 ```{=html}
 <table>
@@ -158,6 +181,18 @@ msleep |>  filter(order=="Carnivora" & conservation =="vu") |>  arrange(desc(sle
 ```
 
 ```{r solucion ejercicio 4}
+## Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)
+msleep |>
+  group_by(order) |>
+  summarise(species_per_order=n())
+
+## Otra opción, mucho más segura...
+msleep |> 
+  group_by(order) |>  
+  summarise(species_per_order=n_distinct(name))
+
+## Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset?
+
 
 ```
 
@@ -181,6 +216,27 @@ msleep |>  filter(order=="Carnivora" & conservation =="vu") |>  arrange(desc(sle
 Fuente imagen: <https://www.flickr.com/photos/harshlight/17294952412> (CC BY 2.0)
 
 ```{r solucion ejercicio 5}
+## Lee el set de datos pixar_public_response_long. En este set de datos se encuentra la puntuación de películas pixar por la audiencia según tres webs diferentes: rotten tomatoes, metacritic y critics’ choice.
+
+pixar_public_response_long<- read_delim("data/pixar_public_response_long.csv")
+
+glimpse(pixar_public_response_long)
+
+head(pixar_public_response_long)
+
+str(pixar_public_response_long)
+
+## Reorganiza el set de datos para que la puntuación de cada una de las webs se encuentre en una columna diferente
+
+pixar_public_response_wide<- pivot_wider(pixar_public_response_long,
+                                         names_from=source,
+                                         values_from=value)
+
+## (extra) ¿Cual es el promedio de puntuación por película teniendo en cuenta todas las fuentes? ¿Que película es la mejor y peor puntuada de media?
+
+pixar_public_response_wide |> 
+  mutate(mean_score=(rotten_tomatoes + metacritic + critics_choice)/3) |> 
+  filter(mean_score==max(mean_score,na.rm=T) | mean_score==min(mean_score, na.rm=T))
 
 ```
 
@@ -207,7 +263,23 @@ Fuente imagen: <https://www.flickr.com/photos/harshlight/17294952412> (CC BY 2.0
 Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
 
 ```{r solucion ejercicio 6}
+## Lee el set de datos pixar_public_response y pixar_films
+pixar_public_response <- read_delim("data/pixar_public_response.csv")
+pixar_films <- read_delim("data/pixar_films.csv")
 
+## Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()
+head(pixar_public_response)
+glimpse(pixar_public_response)
+
+head(pixar_films)
+glimpse(pixar_films)
+
+## Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión
+
+pixar_joint <- full_join(pixar_films, pixar_public_response, by = "film")
+
+## Guarda el nuevo set de datos como pixar_joint
+write_delim(pixar_joint, file = "data/pixar_joint.csv", delim = ";")
 ```
 
 ## 🧩 *Ejercicio final*
@@ -227,23 +299,93 @@ Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
 
 🐧 Instala el paquete penguins y cárgalo
 
-🐧 Crea un data frame con dos columnas, la primera denominada "islands_info" con los valores "Torgersen", "Biscoe", "Dream" y otra llamada "protected_area" con los valores "Si", "No", "Si"
+```{r ejerccio final (1)}
+# install.packages("palmerpenguins")
+library(palmerpenguins)
+```
 
-🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_len) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)
+🐧 Crea un data frame denominado islands_info con dos columnas, la primera llamada "island" con los valores "Torgersen", "Biscoe", "Dream" y otra llamada "protected_area" con los valores "Si", "No", "Si"
 
-🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length, bill_depth y body_mass
+```{r ejerccio final (2)}
+islands_info<-data.frame(island=c("Torgersen", "Biscoe", "Dream"),
+                         protected_area=c("Si", "No", "Si"))
+```
+
+🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_length_mm) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)
+
+```{r ejerccio final (3)}
+penguins_filter<- penguins |> 
+  filter(bill_length_mm>40, body_mass_g <4500)
+```
+
+🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length_mm, bill_depth_mm y body_mass_g
+
+```{r ejerccio final (4)}
+penguins_select<- penguins_filter |> 
+  select(species, island, bill_length_mm , bill_depth_mm,body_mass_g)
+```
 
 🐧Añade una columna llamada bill_ratio que calcule la relación entre longitud y profundidad del pico
 
-🐧Une el resultado con el dataset islands \_info, de forma que cada pingüino quede asociado a si su isla es un área protegida.
+```{r ejerccio final (5)}
+penguins_mutate<- penguins_select |> 
+  mutate(bill_ratio=bill_length_mm/bill_depth_mm)
+```
 
-🐧Crea una columna categoria_peso con valores "ligero", "medio", "pesado"según los umbrales que quieras o, más dificil, con terciles de body_mass.
+🐧Une el resultado con el dataset islands_info, de forma que cada pingüino quede asociado a si su isla es un área protegida.
+
+```{r ejerccio final (6)}
+penguins_join<- penguins_mutate |> 
+  left_join(islands_info, by="island")
+```
+
+🐧Crea una columna categoria_peso con valores "ligero", "medio", "pesado"según los umbrales que quieras o, más dificil, con terciles de body_mass (consulta funcion quantile).
+
+```{r ejerccio final (7)}
+penguins_class<- penguins_join |> 
+  mutate(body_mass_class=case_when(
+    body_mass_g <= quantile(body_mass_g, na.rm=T, 0.33) ~ "ligero",
+    body_mass_g > quantile(body_mass_g, na.rm=T, 0.33) &
+      body_mass_g <= quantile(body_mass_g, na.rm=T, 0.66) ~ "medio",
+    body_mass_g > quantile(body_mass_g, na.rm=T, 0.66) ~ "pesado"
+  ))
+```
+
+🐧Si no lo has hecho, organiza todos los pasos anteriores (excepto cargar el paquete y crear el data frame) en un solo flujo de trabajo
+
+```{r ejerccio final (8)}
+
+penguins2 <- penguins |>
+  
+  filter(bill_length_mm > 40, body_mass_g < 4500) |>
+  
+  select(species , island, bill_length_mm , bill_depth_mm, body_mass_g) |>
+  
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) |>
+  
+  left_join(islands_info, by = "island") |>
+  
+  mutate(
+    body_mass_class = case_when(
+      body_mass_g <= quantile(body_mass_g, na.rm = T, 0.33) ~ "ligero",
+      body_mass_g > quantile(body_mass_g, na.rm = T, 0.33) &
+        body_mass_g <= quantile(body_mass_g, na.rm = T, 0.66) ~ "medio",
+      body_mass_g > quantile(body_mass_g, na.rm = T, 0.66) ~ "pesado"
+    )
+  )
+
+```
 
 🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas
 
-🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas? ¿Cuanto pesa el individuo más pesado?
+```{r ejerccio final (9)}
+penguins_class |>  group_by(body_mass_class) |> summarise(n())
+```
+
+🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas?
 
 ```{r solucion ejercicio final}
+penguins_class |> group_by(protected_area) |>  summarise(bill_ratio=max(bill_ratio))
 
 ```
 

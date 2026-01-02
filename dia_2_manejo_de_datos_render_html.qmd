@@ -103,33 +103,65 @@ Tidytuesday es un proyecto comunitario de ciencia de datos impulsado por la comu
 
 De este proyecto vamos a trabajar con dos set de datos diferentes:
 
-+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/recetas1_copilot.png) | **CUISINE**                                                                                                                                               |
-|                                  |                                                                                                                                                           |
-|                                  | El dataset de \*\*Cuisine\*\* de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.) |
-+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/recetas1_copilot.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <p> <b>CUISINE</b> </p>
+      <p> El dataset de <b>Cuisine</b> de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.). </p>
+    </td>
+  </tr>
+</table>
+```
 
-+-------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/pixar_image1_flickr.jpg) | **PIXAR**                                                                                                                                                       |
-|                                     |                                                                                                                                                                 |
-|                                     | El dataset de \*\*Pixar\*\* en TidyTuesday recopila información detallada sobre las películas de Pixar, incluyendo variables de producción, taquilla y crítica. |
-+-------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/pixar_image1_flickr.jpg" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <p> <b>PIXAR</b> </p>
+      <p> El dataset de <b>Pixar</b> en TidyTuesday recopila información detallada sobre las películas de Pixar, incluyendo variables de producción, taquilla y crítica. </p>
+    </td>
+  </tr>
+</table>
+```
 
 Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. Puedes consultarlo con la función data(). De los sets de datos de tidyverse vamos a trabajar con msleep
 
-+---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/mammals_sleeping_picture1_copilot.png) | **MSLEEP**                                                                                                                                                                                                    |
-|                                                   |                                                                                                                                                                                                               |
-|                                                   | El dataset \*\*msleep\*\* contiene información sobre \*\*el sueño de distintos\*\* mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño |
-+---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/mammals_sleeping_picture1_copilot.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <p> <b>MSLEEP</b> </p>
+      <p>  El dataset <b>msleep</b> contiene información sobre el sueño de distintos mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño
+    </td>
+  </tr>
+</table>
+```
 
 Por último vamos a trabajar, para el ejercicio final, con los datos de paquete palmerpenguins.
 
-+---------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/palmer_penguins.png) | **PALMER PENGUINS**                                                                                                                                                                                                                                                                                                   |
-|                                 |                                                                                                                                                                                                                                                                                                                       |
-|                                 | Los datos fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo. Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo. |
-+---------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/palmer_penguins.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <p> <b>PALMER PENGUINS</b> </p>
+      <p>  Los datos de <b>palmer penguins</b> fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo. Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo.
+    </td>
+  </tr>
+</table>
+```
 
 ## Importar y renombrar datos
 
@@ -248,13 +280,20 @@ recetas |>
 
 #### 🧩 *Ejercicio: slice(), filter(), arrange()*
 
-+---------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/mammals_sleeping_picture1_copilot.png) | -   Lee el data.frame “msleep.csv”. Pista: el delimitador entre datos es la coma (“,”).                                                                                                             |
-|                                                   |                                                                                                                                                                                                     |
-|                                                   | -   Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?                                                                                                      |
-|                                                   |                                                                                                                                                                                                     |
-|                                                   | -   Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas? |
-+---------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/mammals_sleeping_picture1_copilot.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Lee el data.frame “msleep.csv”. Pista: el delimitador entre datos es la coma (“,”).</li>
+      <li> Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?</li>
+      <li> Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas?</li>
+    </td>
+  </tr>
+</table>
+```
 
 ### [Select](https://dplyr.tidyverse.org/reference/select.html): sirve para seleccionar columnas utilizando condiciones
 
@@ -289,13 +328,20 @@ recetas |>
 
 #### 🧩 *Ejercicio: select()*
 
-+---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/mammals_sleeping_picture2_copilot.png) | -   Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño.                                                |
-|                                                   |                                                                                                                                                              |
-|                                                   | -   Con el data set de msleep, crea un nuevo data.frame que contenga todas las variables excepto el estado de conservacion.                                  |
-|                                                   |                                                                                                                                                              |
-|                                                   | -   (extra) Crea un nuevo objeto (data frame) con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto. |
-+---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/mammals_sleeping_picture2_copilot.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño.</li>
+      <li> Crea un nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.</li>
+      <li>(extra) ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?</li>
+    </td>
+  </tr>
+</table>
+```
 
 ## Transformar los datos y calcular nuevas variables
 
@@ -406,11 +452,20 @@ recetas_modif <- recetas |>
 
 #### 🧩 *Ejercicio: mutate()*
 
-+---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/mammals_sleeping_picture3_copilot.png) | -   Con el data set de msleep, incluye una nueva columna con el porcentaje de horas que duerme cada animal al día.                                                                                                                                                                                                   |
-|                                                   |                                                                                                                                                                                                                                                                                                                      |
-|                                                   | -   Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr). |
-+---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/mammals_sleeping_picture3_copilot.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Con el data set de msleep, incluye una nueva columna con el porcentaje de horas que duerme cada animal al día. </li>
+      <li> Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr). </li>
+    </td>
+  </tr>
+</table>
+```
 
 ### [Summarise](https://dplyr.tidyverse.org/reference/summarise.html) y [group by](https://dplyr.tidyverse.org/reference/group_by.html): generar un nuevo `data.frame` resumiendo cada grupo a una fila
 
@@ -449,11 +504,19 @@ recetas |>
 
 #### 🧩 *Ejercicio: group_by(), summrise()*
 
-+---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/mammals_sleeping_picture4_copilot.png) | -   Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)                                                                          |
-|                                                   |                                                                                                                                                                   |
-|                                                   | -   Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset? |
-+---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/mammals_sleeping_picture4_copilot.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Con el data set de msleep, cuenta el número de especies estudiadas por orden (order) </li>
+      <li> Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset? </li>
+    </td>
+  </tr>
+</table>
+```
 
 ### [Pivot](https://tidyr.tidyverse.org/reference/pivot_longer.html): transformar datos a formato largo o ancho
 
@@ -482,15 +545,21 @@ recetas_Vietnam_wide<- recetas_Vietnam_long |>
 
 #### 🧩 *Ejercicio: transformar datos largo ancho*
 
-+-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/pixar_image3_flickr.jpg) | -   Lee el set de datos pixar_public_response y pixar_films                                                                     |
-|                                     |                                                                                                                                 |
-|                                     | -   Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()                        |
-|                                     |                                                                                                                                 |
-|                                     | -   Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión |
-|                                     |                                                                                                                                 |
-|                                     | -   Guarda el nuevo set de datos como pixar_joint                                                                               |
-+-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/pixar_image2_flickr.jpg"
+      style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Lee el set de datos pixar_public_response_long. En este set de datos se encuentra la puntuación de películas pixar por la audiencia según tres webs diferentes: rotten tomatoes, metacritic y critics’ choice. </li>
+      <li> Reorganiza el set de datos para que la puntuación de cada una de las webs se encuentre en una columna diferente </li>
+      <li> (extra) ¿Cual es el promedio de puntuación por película teniendo en cuenta todas las fuentes? ¿Que película es la mejor y peor puntuada de media? </li>
+    </td>
+  </tr>
+</table>
+```
 
 Fuente imagen: <https://www.flickr.com/photos/harshlight/17294952412> (CC BY 2.0)
 
@@ -547,23 +616,38 @@ write_delim(paises_demo_full_join, file = "paises_demo_full_join.csv", delim = "
 
 #### 🧩 *Ejercicio: \*\_join() y exportar datos*
 
-+-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/pixar_image3_flickr.jpg) | -   Lee el set de datos pixar_public_response y pixar_films                                                                     |
-|                                     |                                                                                                                                 |
-|                                     | -   Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()                        |
-|                                     |                                                                                                                                 |
-|                                     | -   Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión |
-|                                     |                                                                                                                                 |
-|                                     | -   Guarda el nuevo set de datos como pixar_joint                                                                               |
-+-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/pixar_image3_flickr.jpg" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Lee el set de datos pixar_public_response y pixar_films 
+      <li> Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View() </li>
+      <li> Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión </li>
+      <li> Guarda el nuevo set de datos como pixar_joint </li>
+    </td>
+  </tr>
+</table>
+```
 
 Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
 
 ## 🧩 *Ejercicio final*
 
-+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/palmer_penguins.png) | Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse: |
-+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```{=html}
+<table>
+  <tr>
+    <td style="width:150px; vertical-align:top;">
+      <img src="images/palmer_penguins.png" style="width:130px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+    Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse:
+    </td>
+  </tr>
+</table>
+```
 
 🐧 Instala el paquete palmerpenguins y cárgalo
 

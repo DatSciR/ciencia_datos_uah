@@ -1,73 +1,73 @@
-"","film","source","value"
-"1","Toy Story","rotten_tomatoes",100
-"2","Toy Story","metacritic",95
-"3","Toy Story","critics_choice",NA
-"4","A Bug's Life","rotten_tomatoes",92
-"5","A Bug's Life","metacritic",77
-"6","A Bug's Life","critics_choice",NA
-"7","Toy Story 2","rotten_tomatoes",100
-"8","Toy Story 2","metacritic",88
-"9","Toy Story 2","critics_choice",100
-"10","Monsters, Inc.","rotten_tomatoes",96
-"11","Monsters, Inc.","metacritic",79
-"12","Monsters, Inc.","critics_choice",92
-"13","Finding Nemo","rotten_tomatoes",99
-"14","Finding Nemo","metacritic",90
-"15","Finding Nemo","critics_choice",97
-"16","The Incredibles","rotten_tomatoes",97
-"17","The Incredibles","metacritic",90
-"18","The Incredibles","critics_choice",88
-"19","Cars","rotten_tomatoes",74
-"20","Cars","metacritic",73
-"21","Cars","critics_choice",89
-"22","Ratatouille","rotten_tomatoes",96
-"23","Ratatouille","metacritic",96
-"24","Ratatouille","critics_choice",91
-"25","WALL-E","rotten_tomatoes",95
-"26","WALL-E","metacritic",95
-"27","WALL-E","critics_choice",90
-"28","Up","rotten_tomatoes",98
-"29","Up","metacritic",88
-"30","Up","critics_choice",95
-"31","Toy Story 3","rotten_tomatoes",98
-"32","Toy Story 3","metacritic",92
-"33","Toy Story 3","critics_choice",97
-"34","Cars 2","rotten_tomatoes",40
-"35","Cars 2","metacritic",57
-"36","Cars 2","critics_choice",67
-"37","Brave","rotten_tomatoes",78
-"38","Brave","metacritic",69
-"39","Brave","critics_choice",81
-"40","Monsters University","rotten_tomatoes",80
-"41","Monsters University","metacritic",65
-"42","Monsters University","critics_choice",79
-"43","Inside Out","rotten_tomatoes",98
-"44","Inside Out","metacritic",94
-"45","Inside Out","critics_choice",93
-"46","The Good Dinosaur","rotten_tomatoes",76
-"47","The Good Dinosaur","metacritic",66
-"48","The Good Dinosaur","critics_choice",75
-"49","Finding Dory","rotten_tomatoes",94
-"50","Finding Dory","metacritic",77
-"51","Finding Dory","critics_choice",89
-"52","Cars 3","rotten_tomatoes",69
-"53","Cars 3","metacritic",59
-"54","Cars 3","critics_choice",66
-"55","Coco","rotten_tomatoes",97
-"56","Coco","metacritic",81
-"57","Coco","critics_choice",89
-"58","Incredibles 2","rotten_tomatoes",93
-"59","Incredibles 2","metacritic",80
-"60","Incredibles 2","critics_choice",86
-"61","Toy Story 4","rotten_tomatoes",97
-"62","Toy Story 4","metacritic",84
-"63","Toy Story 4","critics_choice",94
-"64","Onward","rotten_tomatoes",88
-"65","Onward","metacritic",61
-"66","Onward","critics_choice",79
-"67","Soul","rotten_tomatoes",96
-"68","Soul","metacritic",83
-"69","Soul","critics_choice",93
-"70","Luca","rotten_tomatoes",NA
-"71","Luca","metacritic",NA
-"72","Luca","critics_choice",NA
+"film","source","value"
+"Toy Story","rotten_tomatoes",100
+"Toy Story","metacritic",95
+"Toy Story","critics_choice",NA
+"A Bug's Life","rotten_tomatoes",92
+"A Bug's Life","metacritic",77
+"A Bug's Life","critics_choice",NA
+"Toy Story 2","rotten_tomatoes",100
+"Toy Story 2","metacritic",88
+"Toy Story 2","critics_choice",100
+"Monsters, Inc.","rotten_tomatoes",96
+"Monsters, Inc.","metacritic",79
+"Monsters, Inc.","critics_choice",92
+"Finding Nemo","rotten_tomatoes",99
+"Finding Nemo","metacritic",90
+"Finding Nemo","critics_choice",97
+"The Incredibles","rotten_tomatoes",97
+"The Incredibles","metacritic",90
+"The Incredibles","critics_choice",88
+"Cars","rotten_tomatoes",74
+"Cars","metacritic",73
+"Cars","critics_choice",89
+"Ratatouille","rotten_tomatoes",96
+"Ratatouille","metacritic",96
+"Ratatouille","critics_choice",91
+"WALL-E","rotten_tomatoes",95
+"WALL-E","metacritic",95
+"WALL-E","critics_choice",90
+"Up","rotten_tomatoes",98
+"Up","metacritic",88
+"Up","critics_choice",95
+"Toy Story 3","rotten_tomatoes",98
+"Toy Story 3","metacritic",92
+"Toy Story 3","critics_choice",97
+"Cars 2","rotten_tomatoes",40
+"Cars 2","metacritic",57
+"Cars 2","critics_choice",67
+"Brave","rotten_tomatoes",78
+"Brave","metacritic",69
+"Brave","critics_choice",81
+"Monsters University","rotten_tomatoes",80
+"Monsters University","metacritic",65
+"Monsters University","critics_choice",79
+"Inside Out","rotten_tomatoes",98
+"Inside Out","metacritic",94
+"Inside Out","critics_choice",93
+"The Good Dinosaur","rotten_tomatoes",76
+"The Good Dinosaur","metacritic",66
+"The Good Dinosaur","critics_choice",75
+"Finding Dory","rotten_tomatoes",94
+"Finding Dory","metacritic",77
+"Finding Dory","critics_choice",89
+"Cars 3","rotten_tomatoes",69
+"Cars 3","metacritic",59
+"Cars 3","critics_choice",66
+"Coco","rotten_tomatoes",97
+"Coco","metacritic",81
+"Coco","critics_choice",89
+"Incredibles 2","rotten_tomatoes",93
+"Incredibles 2","metacritic",80
+"Incredibles 2","critics_choice",86
+"Toy Story 4","rotten_tomatoes",97
+"Toy Story 4","metacritic",84
+"Toy Story 4","critics_choice",94
+"Onward","rotten_tomatoes",88
+"Onward","metacritic",61
+"Onward","critics_choice",79
+"Soul","rotten_tomatoes",96
+"Soul","metacritic",83
+"Soul","critics_choice",93
+"Luca","rotten_tomatoes",NA
+"Luca","metacritic",NA
+"Luca","critics_choice",NA
