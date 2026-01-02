@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marina Rodes Blanco, Paloma Ruiz Benito, Verónica Cruz Alonso y Julián Tijerin Triviño">
+<meta name="dcterms.date" content="2026-02-01">
 
 <title>Día 2 - Manejo de datos con Tidyverse. Programa de doctorado UAH</title>
 <style>
@@ -121,11 +122,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#mutate-crear-modificar-o-eliminar-columnas" id="toc-mutate-crear-modificar-o-eliminar-columnas" class="nav-link" data-scroll-target="#mutate-crear-modificar-o-eliminar-columnas"><span class="header-section-number">5.1</span> Mutate: crear, modificar o eliminar columnas</a>
   <ul>
   <li><a href="#ejercicio-mutate" id="toc-ejercicio-mutate" class="nav-link" data-scroll-target="#ejercicio-mutate"><span class="header-section-number">5.1.1</span> 🧩 <em>Ejercicio: mutate()</em></a></li>
-  <li><a href="#ejercicio-group_by-summrise" id="toc-ejercicio-group_by-summrise" class="nav-link" data-scroll-target="#ejercicio-group_by-summrise"><span class="header-section-number">5.1.2</span> 🧩 <em>Ejercicio: group_by(), summrise()</em></a></li>
   </ul></li>
-  <li><a href="#pivot-transformar-datos-a-formato-largo-o-ancho" id="toc-pivot-transformar-datos-a-formato-largo-o-ancho" class="nav-link" data-scroll-target="#pivot-transformar-datos-a-formato-largo-o-ancho"><span class="header-section-number">5.2</span> Pivot: transformar datos a formato largo o ancho</a>
+  <li><a href="#summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" id="toc-summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" class="nav-link" data-scroll-target="#summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila"><span class="header-section-number">5.2</span> Summarise y group by: generar un nuevo <code>data.frame</code> resumiendo cada grupo a una fila</a>
   <ul>
-  <li><a href="#ejercicio-transformar-datos-largo-ancho" id="toc-ejercicio-transformar-datos-largo-ancho" class="nav-link" data-scroll-target="#ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">5.2.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></a></li>
+  <li><a href="#ejercicio-group_by-summrise" id="toc-ejercicio-group_by-summrise" class="nav-link" data-scroll-target="#ejercicio-group_by-summrise"><span class="header-section-number">5.2.1</span> 🧩 <em>Ejercicio: group_by(), summrise()</em></a></li>
+  </ul></li>
+  <li><a href="#pivot-transformar-datos-a-formato-largo-o-ancho" id="toc-pivot-transformar-datos-a-formato-largo-o-ancho" class="nav-link" data-scroll-target="#pivot-transformar-datos-a-formato-largo-o-ancho"><span class="header-section-number">5.3</span> Pivot: transformar datos a formato largo o ancho</a>
+  <ul>
+  <li><a href="#ejercicio-transformar-datos-largo-ancho" id="toc-ejercicio-transformar-datos-largo-ancho" class="nav-link" data-scroll-target="#ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">5.3.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></a></li>
   </ul></li>
   </ul></li>
   <li><a href="#unir-data.frames" id="toc-unir-data.frames" class="nav-link" data-scroll-target="#unir-data.frames"><span class="header-section-number">6</span> Unir data.frames</a></li>
@@ -159,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">31/12/2025</p>
+      <p class="date">02/01/2026</p>
     </div>
   </div>
   
@@ -228,10 +232,10 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 </div>
 <p>Se basa en los siguientes principios:</p>
 <ul>
-<li><p>Centrado en humanos: tiene un diseño intuitivo que facilita su uso y accesibilidad para el usuario</p></li>
-<li><p>Consistencia: todos los paquetes están diseñados para trabajar con datos ordenados (“Tidy Data”), y las funciones de los paquetes tienen una nomenclatura común y congruente. Esto permite que un usuario que aprende sobre una función o paquete pueda aplicar ese conocimiento a otros, facilitando así la tarea de recordar y deducir código de manera más sencilla.</p></li>
-<li><p>Componiblidad: permite al usuario resolver problemas complejos dividiéndolos en pequeñas partes, que pueden combinarse utilizando el operador “pipe” (%&gt;% or |&gt;).</p></li>
-<li><p>Inclusividad: no se trata sólo de la colección de paquetes, sino también la comunidad de personas que los usan, basándose en la ayuda entre usuarios y generando un ambiente inclusivo.</p></li>
+<li><p><strong>Centrado en humanos</strong>: tiene un diseño intuitivo que facilita su uso y accesibilidad para el usuario</p></li>
+<li><p><strong>Consistencia</strong>: todos los paquetes están diseñados para trabajar con datos ordenados (“Tidy Data”), y las funciones de los paquetes tienen una nomenclatura común y congruente. Esto permite que un usuario que aprende sobre una función o paquete pueda aplicar ese conocimiento a otros, facilitando así la tarea de recordar y deducir código de manera más sencilla.</p></li>
+<li><p><strong>Componiblidad</strong>: permite al usuario resolver problemas complejos dividiéndolos en pequeñas partes, que pueden combinarse utilizando el operador “pipe” (%&gt;% or |&gt;).</p></li>
+<li><p><strong>Inclusividad</strong>: no se trata sólo de la colección de paquetes, sino también la comunidad de personas que los usan, basándose en la ayuda entre usuarios y generando un ambiente inclusivo.</p></li>
 </ul>
 </section>
 <section id="datos-ordenados-o-tidy-data" class="level3" data-number="2.2">
@@ -271,57 +275,68 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 </figure>
 </div>
 <p>De este proyecto vamos a trabajar con dos set de datos diferentes:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 24%">
-<col style="width: 76%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><img src="images/recetas1_copilot.png" class="img-fluid" width="800"></td>
-<td style="text-align: center;">El dataset de <strong>Cuisine</strong> de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.)</td>
+<table>
+<tbody><tr>
+<td style="width:330px; vertical-align:top;">
+<img src="images/recetas1_copilot.png" style="width:300px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+<p style="margin:0 0 6px 0;">
+<strong>CUISINE</strong>
+</p>
+<p style="margin:0 0 6px 0;">
+El dataset de <strong>Cuisine</strong> de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.)
+</p>
+</td>
 </tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 24%">
-<col style="width: 75%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><img src="images/pixar_image1_flickr.jpg" class="img-fluid" width="500"></td>
-<td>El dataset de <strong>Pixar</strong> en TidyTuesday recopila información detallada sobre las películas de Pixar, incluyendo variables de producción, taquilla y crítica.</td>
+</tbody></table>
+<table>
+<tbody><tr>
+<td style="width:330px; vertical-align:top;">
+<img src="images/pixar_image1_flickr.jpg" style="width:300px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+<p style="margin:0 0 6px 0;">
+<strong>PIXAR</strong>
+</p>
+<p style="margin:0 0 6px 0;">
+El dataset de <strong>Pixar</strong> en TidyTuesday recopila información detallada sobre las películas de Pixar, incluyendo variables de producción, taquilla y crítica.
+</p>
+</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. Puedes consultarlo con la función data(). De los sets de datos de tidyverse vamos a trabajar con msleep</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 24%">
-<col style="width: 75%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><img src="images/mammals_sleeping_picture1_copilot.png" class="img-fluid" width="500"></td>
-<td>El dataset <strong>msleep</strong> contiene información sobre <strong>el sueño de distintos</strong> mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño</td>
+<table>
+<tbody><tr>
+<td style="width:330px; vertical-align:top;">
+<img src="images/mammals_sleeping_picture1_copilot.png" style="width:300px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+<p style="margin:0 0 6px 0;">
+<strong>MSLEEP</strong>
+</p>
+<p style="margin:0 0 6px 0;">
+El dataset <strong>msleep</strong> contiene información sobre <strong>el sueño de distintos</strong> mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño
+</p>
+</td>
 </tr>
-</tbody>
-</table>
-<p>Por último vamos a trabajar, para el ejercicio final, con los datos de paquete palmerpenguins</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 79%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><img src="images/palmer_penguins.png" class="img-fluid" width="500"></td>
-<td><p>Los datos fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo.</p>
-<p>Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo.</p></td>
+</tbody></table>
+<p>Por último vamos a trabajar, para el ejercicio final, con los datos de paquete palmerpenguins.</p>
+<table>
+<tbody><tr>
+<td style="width:330px; vertical-align:top;">
+<img src="images/palmer_penguins.png" style="width:300px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+<p style="margin:0 0 6px 0;">
+<strong>PALMER PENGUINS</strong>
+</p>
+<p style="margin:0 0 6px 0;">
+Los datos fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo. Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo.
+</p>
+</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 </section>
 </section>
 <section id="importar-y-renombrar-datos" class="level2" data-number="3">
@@ -684,22 +699,24 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </div>
 <section id="ejercicio-slice-filter-arrange" class="level4" data-number="4.3.1">
 <h4 data-number="4.3.1" class="anchored" data-anchor-id="ejercicio-slice-filter-arrange"><span class="header-section-number">4.3.1</span> 🧩 <em>Ejercicio: slice(), filter(), arrange()</em></h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 24%">
-<col style="width: 75%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><img src="images/mammals_sleeping_picture1_copilot.png" class="img-fluid" width="950"></td>
-<td><ul>
-<li><p>Lee el data.frame “msleep.csv”. Pista: el delimitador entre datos es la coma (“,”).</p></li>
-<li><p>Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?</p></li>
-<li><p>Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas?</p></li>
-</ul></td>
+<table>
+<tbody><tr>
+<td style="width:330px; vertical-align:top;">
+<img src="images/mammals_sleeping_picture1_copilot.png" style="width:300px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+<li>
+Lee el data.frame “msleep.csv”. Pista: el delimitador entre datos es la coma (“,”).
+</li>
+<li>
+Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?
+</li>
+<li>
+Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas?
+</li>
+</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 </section>
 </section>
 <section id="select-sirve-para-seleccionar-columnas-utilizando-condiciones" class="level3" data-number="4.4">
@@ -815,22 +832,24 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </div>
 <section id="ejercicio-select" class="level4" data-number="4.4.1">
 <h4 data-number="4.4.1" class="anchored" data-anchor-id="ejercicio-select"><span class="header-section-number">4.4.1</span> 🧩 <em>Ejercicio: select()</em></h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 27%">
-<col style="width: 72%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><img src="images/mammals_sleeping_picture2_copilot.png" class="img-fluid"></td>
-<td><ul>
-<li><p>Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño.</p></li>
-<li><p>Crea un nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.</p></li>
-<li><p>(extra) ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?</p></li>
-</ul></td>
+<table>
+<tbody><tr>
+<td style="width:330px; vertical-align:top;">
+<img src="images/mammals_sleeping_picture2_copilot.png" style="width:300px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+<li>
+Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño.
+</li>
+<li>
+Crea un nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.
+</li>
+<li>
+(extra) ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?
+</li>
+</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 </section>
 </section>
 </section>
@@ -993,18 +1012,25 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </div>
 <section id="ejercicio-mutate" class="level4" data-number="5.1.1">
 <h4 data-number="5.1.1" class="anchored" data-anchor-id="ejercicio-mutate"><span class="header-section-number">5.1.1</span> 🧩 <em>Ejercicio: mutate()</em></h4>
-<table class="caption-top table">
-<caption><a href="https://dplyr.tidyverse.org/reference/summarise.html">Summarise</a> y <a href="https://dplyr.tidyverse.org/reference/group_by.html">group by</a>: generar un nuevo <code>data.frame</code> resumiendo cada grupo a una fila</caption>
-<tbody>
-<tr class="odd">
-<td><img src="images/mammals_sleeping_picture3_copilot.png" class="img-fluid" width="222"></td>
-<td><ul>
-<li><p>Con el data set de msleep, incluye una nueva columna con el porcentaje de horas que duerme cada animal al día</p></li>
-<li><p>Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr)</p></li>
-</ul></td>
+<table>
+<tbody><tr>
+<td style="width:330px; vertical-align:top;">
+<img src="images/mammals_sleeping_picture3_copilot.png" style="width:300px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+<li>
+Con el data set de msleep, incluye una nueva columna con el porcentaje de horas que duerme cada animal al día.
+</li>
+<li>
+Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr).
+</li>
+</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
+</section>
+</section>
+<section id="summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila"><span class="header-section-number">5.2</span> <a href="https://dplyr.tidyverse.org/reference/summarise.html">Summarise</a> y <a href="https://dplyr.tidyverse.org/reference/group_by.html">group by</a>: generar un nuevo <code>data.frame</code> resumiendo cada grupo a una fila</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mínimo y máximo tiempo de preparación</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span> </span>
@@ -1063,28 +1089,27 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 # ℹ 39 more rows</code></pre>
 </div>
 </div>
-</section>
-<section id="ejercicio-group_by-summrise" class="level4" data-number="5.1.2">
-<h4 data-number="5.1.2" class="anchored" data-anchor-id="ejercicio-group_by-summrise"><span class="header-section-number">5.1.2</span> 🧩 <em>Ejercicio: group_by(), summrise()</em></h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 74%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><img src=".png" class="img-fluid"><img src="images/mammals_sleeping_picture4_copilot.png" class="img-fluid"></td>
-<td><ul>
-<li><p>Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)</p></li>
-<li><p>Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset?</p></li>
-</ul></td>
+<section id="ejercicio-group_by-summrise" class="level4" data-number="5.2.1">
+<h4 data-number="5.2.1" class="anchored" data-anchor-id="ejercicio-group_by-summrise"><span class="header-section-number">5.2.1</span> 🧩 <em>Ejercicio: group_by(), summrise()</em></h4>
+<table>
+<tbody><tr>
+<td style="width:330px; vertical-align:top;">
+<img src="images/mammals_sleeping_picture4_copilot.png" style="width:300px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+<li>
+Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)
+</li>
+<li>
+Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset?
+</li>
+</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 </section>
 </section>
-<section id="pivot-transformar-datos-a-formato-largo-o-ancho" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="pivot-transformar-datos-a-formato-largo-o-ancho"><span class="header-section-number">5.2</span> <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">Pivot</a>: transformar datos a formato largo o ancho</h3>
+<section id="pivot-transformar-datos-a-formato-largo-o-ancho" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="pivot-transformar-datos-a-formato-largo-o-ancho"><span class="header-section-number">5.3</span> <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">Pivot</a>: transformar datos a formato largo o ancho</h3>
 <p>Nos permite transformar datos de formato largo a ancho y viceversa. Nos puede convenir una forma u otra según lo que queramos hacer con lo datos: presentarlos en una tabla, hacer transformaciones o análisis, hacer un gráfico etc.</p>
 <p>En la siguiente imagen, extraída de <a href="https://www.epirhandbook.com/en/">The Epidemiologist R Handbook</a> se puede ver en qué consiste esta transformación.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -1106,25 +1131,27 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 <span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>recetas_Vietnam_wide<span class="ot">&lt;-</span> recetas_Vietnam_long <span class="sc">|&gt;</span> </span>
 <span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>nutritional_value, <span class="at">values_from=</span>value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="ejercicio-transformar-datos-largo-ancho" class="level4" data-number="5.2.1">
-<h4 data-number="5.2.1" class="anchored" data-anchor-id="ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">5.2.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 80%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><img src="images/pixar_image2_flickr.jpg" class="img-fluid" width="231"></td>
-<td><ul>
-<li><p>Lee el set de datos pixar_public_response_long. En este set de datos se encuentra la puntuación de películas pixar por la audiencia según tres webs diferentes: rotten tomatoes, metacritic y critics’ choice.</p></li>
-<li><p>Reorganiza el set de datos para que la puntuación de cada una de las webs se encuentre en una columna diferente</p></li>
-<li><p>(extra) ¿Cual es el promedio de puntuación por película teniendo en cuenta todas las fuentes? ¿Que película es la mejor y peor puntuada de media?</p></li>
-</ul></td>
+<section id="ejercicio-transformar-datos-largo-ancho" class="level4" data-number="5.3.1">
+<h4 data-number="5.3.1" class="anchored" data-anchor-id="ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">5.3.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></h4>
+<table>
+<tbody><tr>
+<td style="width:330px; vertical-align:top;">
+<img src="images/pixar_image2_flickr.jpg" style="width:300px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+<li>
+Lee el set de datos pixar_public_response_long. En este set de datos se encuentra la puntuación de películas pixar por la audiencia según tres webs diferentes: rotten tomatoes, metacritic y critics’ choice.
+</li>
+<li>
+Reorganiza el set de datos para que la puntuación de cada una de las webs se encuentre en una columna diferente
+</li>
+<li>
+(extra) ¿Cual es el promedio de puntuación por película teniendo en cuenta todas las fuentes? ¿Que película es la mejor y peor puntuada de media?
+</li>
+</td>
 </tr>
-</tbody>
-</table>
-<p>Fuente: <a href="https://www.flickr.com/photos/harshlight/17294952412" class="uri">https://www.flickr.com/photos/harshlight/17294952412</a> (CC BY 2.0)</p>
+</tbody></table>
+<p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/17294952412" class="uri">https://www.flickr.com/photos/harshlight/17294952412</a> (CC BY 2.0)</p>
 </section>
 </section>
 </section>
@@ -1198,25 +1225,42 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </div>
 <section id="ejercicio-_join-y-exportar-datos" class="level4" data-number="7.0.1">
 <h4 data-number="7.0.1" class="anchored" data-anchor-id="ejercicio-_join-y-exportar-datos"><span class="header-section-number">7.0.1</span> 🧩 <em>Ejercicio: *_join() y exportar datos</em></h4>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><a href="https://www.flickr.com/photos/harshlight/6988729286"><img src="images/pixar_image3_flickr.jpg" class="img-fluid" width="293" alt="Fuente"></a></td>
-<td><ul>
-<li><p>Lee el set de datos pixar_public_response y pixar_films</p></li>
-<li><p>Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()</p></li>
-<li><p>une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión</p></li>
-<li><p>Guarda el nuevo set de datos como pixar_joint</p></li>
-</ul></td>
+<table>
+<tbody><tr>
+<td style="width:330px; vertical-align:top;">
+<img src="images/pixar_image3_flickr.jpg" style="width:300px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+<li>
+Lee el set de datos pixar_public_response y pixar_films
+</li>
+<li>
+Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()
+</li>
+<li>
+Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión
+</li>
+<li>
+Guarda el nuevo set de datos como pixar_joint
+</li>
+</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/6988729286" class="uri">https://www.flickr.com/photos/harshlight/6988729286</a> (CC BY 2.0)</p>
 </section>
 </section>
 <section id="ejercicio-final" class="level2" data-number="8">
 <h2 data-number="8" class="anchored" data-anchor-id="ejercicio-final"><span class="header-section-number">8</span> 🧩 <em>Ejercicio final</em></h2>
-<p>Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse:</p>
+<table>
+<tbody><tr>
+<td style="width:150px; vertical-align:top;">
+<img src="images/palmer_penguins.png" style="width:130px; height:auto; display:block;">
+</td>
+<td style="vertical-align:middle;">
+Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse:
+</td>
+</tr>
+</tbody></table>
 <p>🐧 Instala el paquete penguins y cárgalo</p>
 <p>🐧 Crea un data frame con dos columnas, la primera denominada “islands_info” con los valores “Torgersen”, “Biscoe”, “Dream” y otra llamada “protected_area” con los valores “Si”, “No”, “Si”</p>
 <p>🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_len) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)</p>
@@ -1225,8 +1269,7 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 <p>🐧Une el resultado con el dataset islands _info, de forma que cada pingüino quede asociado a si su isla es un área protegida.</p>
 <p>🐧Crea una columna categoria_peso con valores “ligero”, “medio”, “pesado”según los umbrales que quieras o, más dificil, con terciles de body_mass.</p>
 <p>🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas</p>
-<p>🐧(EXTRA) Responde a las siguientes preguntas:</p>
-<p>🐧¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas? ¿Cuanto pesa el individuo más pesado?</p>
+<p>🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas? ¿Cuanto pesa el individuo más pesado?</p>
 </section>
 <section id="enlaces-de-interés" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="enlaces-de-interés"><span class="header-section-number">9</span> Enlaces de interés</h2>
@@ -1246,7 +1289,7 @@ Session Info
 <div class="cell">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-12-31 13:16:12 CET"</code></pre>
+<pre><code>[1] "2026-01-02 12:01:38 CET"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
