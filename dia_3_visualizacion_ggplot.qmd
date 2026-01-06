@@ -1,5 +1,5 @@
 ---
-title: "Día 3 - Visualización de datos en R. Curso de Doctorado 2025-2026"
+title: "Día 3. Visualización de datos en R. Curso de Doctorado 2025-2026"
 author: Julián Tijerín Triviño, Marina Rodes Blanco, Verónica Cruz Alonso y Paloma
   Ruiz Benito
 date: "2025-12-29"

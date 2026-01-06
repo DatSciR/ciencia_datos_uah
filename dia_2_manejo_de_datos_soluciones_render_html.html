@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Marina Rodes Blanco, Paloma Ruiz Benito, Verónica Cruz Alonso y Julián Tijerin Triviño">
+<meta name="dcterms.date" content="2026-02-01">
+
+<title>Día 2 - Manejo de datos con Tidyverse. Programa de doctorado UAH</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="dia_2_manejo_de_datos_soluciones_render_html_files/libs/clipboard/clipboard.min.js"></script>
+<script src="dia_2_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="dia_2_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="dia_2_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/popper.min.js"></script>
+<script src="dia_2_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="dia_2_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/anchor.min.js"></script>
+<link href="dia_2_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="dia_2_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="dia_2_manejo_de_datos_soluciones_render_html_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="dia_2_manejo_de_datos_soluciones_render_html_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="dia_2_manejo_de_datos_soluciones_render_html_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar" id="toc-síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar" class="nav-link active" data-scroll-target="#síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar">Síntesis del día 1: Introducción a R y a R studio (POR TERMINAR)</a>
+  <ul>
+  <li><a href="#ejercicio-repaso-del-día-anterior" id="toc-ejercicio-repaso-del-día-anterior" class="nav-link" data-scroll-target="#ejercicio-repaso-del-día-anterior">🧩 Ejercicio: <em>repaso</em> <em>del día anterior</em></a></li>
+  </ul></li>
+  <li><a href="#importar-y-renombrar-datos" id="toc-importar-y-renombrar-datos" class="nav-link" data-scroll-target="#importar-y-renombrar-datos">Importar y renombrar datos</a>
+  <ul>
+  <li><a href="#ejercicio-slice-filter-arrange" id="toc-ejercicio-slice-filter-arrange" class="nav-link" data-scroll-target="#ejercicio-slice-filter-arrange">🧩 <em>Ejercicio: slice(), filter(), arrange()</em></a></li>
+  <li><a href="#select-sirve-para-seleccionar-columnas-utilizando-condiciones" id="toc-select-sirve-para-seleccionar-columnas-utilizando-condiciones" class="nav-link" data-scroll-target="#select-sirve-para-seleccionar-columnas-utilizando-condiciones">Select: sirve para seleccionar columnas utilizando condiciones</a>
+  <ul>
+  <li><a href="#ejercicio-select" id="toc-ejercicio-select" class="nav-link" data-scroll-target="#ejercicio-select">🧩 <em>Ejercicio: select()</em></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#transformar-los-datos-y-calcular-nuevas-variables" id="toc-transformar-los-datos-y-calcular-nuevas-variables" class="nav-link" data-scroll-target="#transformar-los-datos-y-calcular-nuevas-variables">Transformar los datos y calcular nuevas variables</a>
+  <ul>
+  <li><a href="#ejercicio-mutate" id="toc-ejercicio-mutate" class="nav-link" data-scroll-target="#ejercicio-mutate">🧩 <em>Ejercicio: mutate()</em></a></li>
+  <li><a href="#ejercicio-group_by-summarise" id="toc-ejercicio-group_by-summarise" class="nav-link" data-scroll-target="#ejercicio-group_by-summarise">🧩 <em>Ejercicio: group_by(), summarise()</em></a></li>
+  <li><a href="#ejercicio-transformar-datos-largo-ancho" id="toc-ejercicio-transformar-datos-largo-ancho" class="nav-link" data-scroll-target="#ejercicio-transformar-datos-largo-ancho">🧩 <em>Ejercicio: transformar datos largo ancho</em></a></li>
+  </ul></li>
+  <li><a href="#unir-data.frames" id="toc-unir-data.frames" class="nav-link" data-scroll-target="#unir-data.frames">Unir data.frames</a>
+  <ul>
+  <li><a href="#ejercicio-_join-y-exportar-datos" id="toc-ejercicio-_join-y-exportar-datos" class="nav-link" data-scroll-target="#ejercicio-_join-y-exportar-datos">🧩 <em>Ejercicio: *_join() y exportar datos</em></a></li>
+  </ul></li>
+  <li><a href="#ejercicio-final" id="toc-ejercicio-final" class="nav-link" data-scroll-target="#ejercicio-final">🧩 <em>Ejercicio final</em></a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="dia_2_manejo_de_datos_soluciones_render_html.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Día 2 - Manejo de datos con Tidyverse. Programa de doctorado UAH</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Marina Rodes Blanco, Paloma Ruiz Benito, Verónica Cruz Alonso y Julián Tijerin Triviño </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">02/01/2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar" class="level2">
+<h2 class="anchored" data-anchor-id="síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar">Síntesis del día 1: Introducción a R y a R studio (POR TERMINAR)</h2>
+<section id="ejercicio-repaso-del-día-anterior" class="level4">
+<h4 class="anchored" data-anchor-id="ejercicio-repaso-del-día-anterior">🧩 Ejercicio: <em>repaso</em> <em>del día anterior</em></h4>
+<ul>
+<li>Crea un vector con los meses del año (en número) y calcula la media</li>
+<li>Crea una matriz … ¿Cual es el elemento de la fila 3 columna 2?</li>
+<li>Crea una lista .. ¿Que hay en el tercer elemento de la lista?</li>
+<li>Crea un data frame con la siguiente información</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pendiente</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="importar-y-renombrar-datos" class="level2">
+<h2 class="anchored" data-anchor-id="importar-y-renombrar-datos">Importar y renombrar datos</h2>
+<section id="ejercicio-slice-filter-arrange" class="level4">
+<h4 class="anchored" data-anchor-id="ejercicio-slice-filter-arrange">🧩 <em>Ejercicio: slice(), filter(), arrange()</em></h4>
+<table class="caption-top table" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="width: 330px; vertical-align: top"><img src="images/mammals_sleeping_picture1_copilot.png" class="img-fluid" style="width:300px; height:auto; display:block;"></td>
+<td style="vertical-align: middle"><li>
+Lee el data.frame “msleep.csv”. Pista: el delimitador entre datos es la coma (“,”).
+</li>
+<li>
+Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?
+</li>
+<li>
+Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas?
+</li></td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Solución ejercicio 1: slice(), filter(), arrange()</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.1     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.2.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Leer el data frame</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>msleep<span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="at">file =</span> <span class="st">"data/msleep.csv"</span>, <span class="at">delim =</span> <span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 83 Columns: 12
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(5): name, genus, vore, order, conservation dbl (7): ...1, sleep_total,
+sleep_rem, sleep_cycle, awake, brainwt, bodywt
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...1`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(msleep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 12
+   ...1 name    genus vore  order conservation sleep_total sleep_rem sleep_cycle
+  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1     1 Cheetah Acin… carni Carn… lc                  12.1      NA        NA    
+2     2 Owl mo… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA    
+3     3 Mounta… Aplo… herbi Rode… nt                  14.4       2.4      NA    
+4     4 Greate… Blar… omni  Sori… lc                  14.9       2.3       0.133
+5     5 Cow     Bos   herbi Arti… domesticated         4         0.7       0.667
+6     6 Three-… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767
+# ℹ 3 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span>  <span class="fu">filter</span>(conservation <span class="sc">!=</span> <span class="st">"domesticated"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 12
+    ...1 name   genus vore  order conservation sleep_total sleep_rem sleep_cycle
+   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+ 1     1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA    
+ 2     3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA    
+ 3     4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133
+ 4     7 North… Call… carni Carn… vu                   8.7       1.4       0.383
+ 5    10 Roe d… Capr… herbi Arti… lc                   3        NA        NA    
+ 6    11 Goat   Capri herbi Arti… lc                   5.3       0.6      NA    
+ 7    13 Grivet Cerc… omni  Prim… lc                  10         0.7      NA    
+ 8    15 Star-… Cond… omni  Sori… lc                  10.3       2.2      NA    
+ 9    17 Lesse… Cryp… omni  Sori… lc                   9.1       1.4       0.15 
+10    18 Long-… Dasy… carni Cing… lc                  17.4       3.1       0.383
+# ℹ 34 more rows
+# ℹ 3 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Otras posibles soluciones...</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span>  <span class="fu">filter</span>(conservation <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"lc"</span>, <span class="st">"nt"</span>, <span class="st">"vu"</span>, <span class="st">"en"</span>, <span class="st">"cd"</span>,<span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 73 × 12
+    ...1 name   genus vore  order conservation sleep_total sleep_rem sleep_cycle
+   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+ 1     1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA    
+ 2     2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA    
+ 3     3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA    
+ 4     4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133
+ 5     6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767
+ 6     7 North… Call… carni Carn… vu                   8.7       1.4       0.383
+ 7     8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA    
+ 8    10 Roe d… Capr… herbi Arti… lc                   3        NA        NA    
+ 9    11 Goat   Capri herbi Arti… lc                   5.3       0.6      NA    
+10    13 Grivet Cerc… omni  Prim… lc                  10         0.7      NA    
+# ℹ 63 more rows
+# ℹ 3 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span>  <span class="fu">filter</span>(conservation <span class="sc">==</span> <span class="st">"lc"</span> <span class="sc">|</span> conservation <span class="sc">==</span><span class="st">"nt"</span> <span class="sc">|</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                    conservation <span class="sc">==</span> <span class="st">"vu"</span><span class="sc">|</span>conservation <span class="sc">==</span> <span class="st">"en"</span><span class="sc">|</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                    conservation <span class="sc">==</span> <span class="st">"cd"</span><span class="sc">|</span> <span class="fu">is.na</span>(conservation))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 73 × 12
+    ...1 name   genus vore  order conservation sleep_total sleep_rem sleep_cycle
+   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+ 1     1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA    
+ 2     2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA    
+ 3     3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA    
+ 4     4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133
+ 5     6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767
+ 6     7 North… Call… carni Carn… vu                   8.7       1.4       0.383
+ 7     8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA    
+ 8    10 Roe d… Capr… herbi Arti… lc                   3        NA        NA    
+ 9    11 Goat   Capri herbi Arti… lc                   5.3       0.6      NA    
+10    13 Grivet Cerc… omni  Prim… lc                  10         0.7      NA    
+# ℹ 63 more rows
+# ℹ 3 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas?</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>subset_msleep<span class="ot">&lt;-</span> msleep <span class="sc">|&gt;</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">18</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(vore<span class="sc">==</span><span class="st">"carni"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(sleep_total))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="do">#### solucion: Cheetah (guepardo)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="select-sirve-para-seleccionar-columnas-utilizando-condiciones" class="level3">
+<h3 class="anchored" data-anchor-id="select-sirve-para-seleccionar-columnas-utilizando-condiciones"><a href="https://dplyr.tidyverse.org/reference/select.html">Select</a>: sirve para seleccionar columnas utilizando condiciones</h3>
+<section id="ejercicio-select" class="level4">
+<h4 class="anchored" data-anchor-id="ejercicio-select">🧩 <em>Ejercicio: select()</em></h4>
+<table class="caption-top table" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="width: 330px; vertical-align: top"><img src="images/mammals_sleeping_picture2_copilot.png" class="img-fluid" style="width:300px; height:auto; display:block;"></td>
+<td style="vertical-align: middle"><li>
+Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño.
+</li>
+<li>
+Crea un nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.
+</li>
+<li>
+(extra) ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?
+</li></td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Nuevo data.frame que contenga las variables relacionadas con el sueño</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(msleep) <span class="co">#para ver las 10 primeras lineas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 12
+   ...1 name    genus vore  order conservation sleep_total sleep_rem sleep_cycle
+  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1     1 Cheetah Acin… carni Carn… lc                  12.1      NA        NA    
+2     2 Owl mo… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA    
+3     3 Mounta… Aplo… herbi Rode… nt                  14.4       2.4      NA    
+4     4 Greate… Blar… omni  Sori… lc                  14.9       2.3       0.133
+5     5 Cow     Bos   herbi Arti… domesticated         4         0.7       0.667
+6     6 Three-… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767
+# ℹ 3 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(msleep) <span class="co">#para ver el nombre de las columnas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "...1"         "name"         "genus"        "vore"         "order"       
+ [6] "conservation" "sleep_total"  "sleep_rem"    "sleep_cycle"  "awake"       
+[11] "brainwt"      "bodywt"      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>vars_sleep<span class="ot">&lt;-</span>msleep <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"sleep"</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>msleep2<span class="ot">&lt;-</span> msleep <span class="sc">|&gt;</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(order, genus, name, <span class="fu">everything</span>(), <span class="sc">-</span>awake)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Extra: ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span> </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(order<span class="sc">==</span><span class="st">"Carnivora"</span> <span class="sc">&amp;</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>           conservation <span class="sc">==</span><span class="st">"vu"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(sleep_total))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 12
+   ...1 name    genus vore  order conservation sleep_total sleep_rem sleep_cycle
+  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1    53 Lion    Pant… carni Carn… vu                  13.5      NA        NA    
+2     7 Northe… Call… carni Carn… vu                   8.7       1.4       0.383
+3    59 Caspia… Phoca carni Carn… vu                   3.5       0.4      NA    
+# ℹ 3 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="transformar-los-datos-y-calcular-nuevas-variables" class="level2">
+<h2 class="anchored" data-anchor-id="transformar-los-datos-y-calcular-nuevas-variables">Transformar los datos y calcular nuevas variables</h2>
+<section id="ejercicio-mutate" class="level4">
+<h4 class="anchored" data-anchor-id="ejercicio-mutate">🧩 <em>Ejercicio: mutate()</em></h4>
+<table class="caption-top table" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="width: 330px; vertical-align: top"><img src="images/mammals_sleeping_picture3_copilot.png" class="img-fluid" style="width:300px; height:auto; display:block;"></td>
+<td style="vertical-align: middle"><li>
+Con el data set de msleep, incluye una nueva columna con el porcentaje de horas que duerme cada animal al día.
+</li>
+<li>
+Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr).
+</li></td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Nueva columna con el porcentaje de horas que duerme cada animal al día.</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">sleep_prc=</span>(sleep_total<span class="sc">/</span><span class="dv">24</span>)<span class="sc">*</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 13
+    ...1 name   genus vore  order conservation sleep_total sleep_rem sleep_cycle
+   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+ 1     1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA    
+ 2     2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA    
+ 3     3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA    
+ 4     4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133
+ 5     5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667
+ 6     6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767
+ 7     7 North… Call… carni Carn… vu                   8.7       1.4       0.383
+ 8     8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA    
+ 9     9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333
+10    10 Roe d… Capr… herbi Arti… lc                   3        NA        NA    
+# ℹ 73 more rows
+# ℹ 4 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;, sleep_prc &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cd).</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">classification =</span> <span class="fu">case_when</span>(</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>      <span class="co"># utilizar varias variables para calcular otra nueva</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>      vore <span class="sc">==</span> <span class="st">"carni"</span> <span class="sc">&amp;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        conservation <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">"en"</span>, <span class="st">"cd"</span>) <span class="sc">~</span> <span class="st">"threatened carnivore"</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>      vore <span class="sc">==</span> <span class="st">"herbivore"</span> <span class="sc">&amp;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        conservation <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">"en"</span>, <span class="st">"cd"</span>) <span class="sc">~</span> <span class="st">"threatened herbivore"</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"others"</span> <span class="co">#resto de casos</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 13
+    ...1 name   genus vore  order conservation sleep_total sleep_rem sleep_cycle
+   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+ 1     1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA    
+ 2     2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA    
+ 3     3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA    
+ 4     4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133
+ 5     5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667
+ 6     6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767
+ 7     7 North… Call… carni Carn… vu                   8.7       1.4       0.383
+ 8     8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA    
+ 9     9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333
+10    10 Roe d… Capr… herbi Arti… lc                   3        NA        NA    
+# ℹ 73 more rows
+# ℹ 4 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;,
+#   classification &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="ejercicio-group_by-summarise" class="level4">
+<h4 class="anchored" data-anchor-id="ejercicio-group_by-summarise">🧩 <em>Ejercicio: group_by(), summarise()</em></h4>
+<table class="caption-top table" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="width: 330px; vertical-align: top"><img src="images/mammals_sleeping_picture4_copilot.png" class="img-fluid" style="width:300px; height:auto; display:block;"></td>
+<td style="vertical-align: middle"><li>
+Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)
+</li>
+<li>
+Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset?
+</li></td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(order) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">species_per_order=</span><span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 2
+   order           species_per_order
+   &lt;chr&gt;                       &lt;int&gt;
+ 1 Afrosoricida                    1
+ 2 Artiodactyla                    6
+ 3 Carnivora                      12
+ 4 Cetacea                         3
+ 5 Chiroptera                      2
+ 6 Cingulata                       2
+ 7 Didelphimorphia                 2
+ 8 Diprotodontia                   2
+ 9 Erinaceomorpha                  2
+10 Hyracoidea                      3
+11 Lagomorpha                      1
+12 Monotremata                     1
+13 Perissodactyla                  3
+14 Pilosa                          1
+15 Primates                       12
+16 Proboscidea                     2
+17 Rodentia                       22
+18 Scandentia                      1
+19 Soricomorpha                    5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Otra opción, mucho más segura...</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(order) <span class="sc">|&gt;</span>  </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">species_per_order=</span><span class="fu">n_distinct</span>(name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 2
+   order           species_per_order
+   &lt;chr&gt;                       &lt;int&gt;
+ 1 Afrosoricida                    1
+ 2 Artiodactyla                    6
+ 3 Carnivora                      12
+ 4 Cetacea                         3
+ 5 Chiroptera                      2
+ 6 Cingulata                       2
+ 7 Didelphimorphia                 2
+ 8 Diprotodontia                   2
+ 9 Erinaceomorpha                  2
+10 Hyracoidea                      3
+11 Lagomorpha                      1
+12 Monotremata                     1
+13 Perissodactyla                  3
+14 Pilosa                          1
+15 Primates                       12
+16 Proboscidea                     2
+17 Rodentia                       22
+18 Scandentia                      1
+19 Soricomorpha                    5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ejercicio-transformar-datos-largo-ancho" class="level4">
+<h4 class="anchored" data-anchor-id="ejercicio-transformar-datos-largo-ancho">🧩 <em>Ejercicio: transformar datos largo ancho</em></h4>
+<table class="caption-top table" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="width: 330px; vertical-align: top"><img src="images/pixar_image2_flickr.jpg" class="img-fluid" style="width:300px; height:auto; display:block;"></td>
+<td style="vertical-align: middle"><li>
+Lee el set de datos pixar_public_response_long. En este set de datos se encuentra la puntuación de películas pixar por la audiencia según tres webs diferentes: rotten tomatoes, metacritic y critics’ choice.
+</li>
+<li>
+Reorganiza el set de datos para que la puntuación de cada una de las webs se encuentre en una columna diferente
+</li>
+<li>
+(extra) ¿Cual es el promedio de puntuación por película teniendo en cuenta todas las fuentes? ¿Que película es la mejor y peor puntuada de media?
+</li></td>
+</tr>
+</tbody>
+</table>
+<p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/17294952412" class="uri">https://www.flickr.com/photos/harshlight/17294952412</a> (CC BY 2.0)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Lee el set de datos pixar_public_response_long. En este set de datos se encuentra la puntuación de películas pixar por la audiencia según tres webs diferentes: rotten tomatoes, metacritic y critics’ choice.</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>pixar_public_response_long<span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/pixar_public_response_long.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 72 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (2): film, source
+dbl (1): value
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pixar_public_response_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 72
+Columns: 3
+$ film   &lt;chr&gt; "Toy Story", "Toy Story", "Toy Story", "A Bug's Life", "A Bug's…
+$ source &lt;chr&gt; "rotten_tomatoes", "metacritic", "critics_choice", "rotten_toma…
+$ value  &lt;dbl&gt; 100, 95, NA, 92, 77, NA, 100, 88, 100, 96, 79, 92, 99, 90, 97, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pixar_public_response_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  film         source          value
+  &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;
+1 Toy Story    rotten_tomatoes   100
+2 Toy Story    metacritic         95
+3 Toy Story    critics_choice     NA
+4 A Bug's Life rotten_tomatoes    92
+5 A Bug's Life metacritic         77
+6 A Bug's Life critics_choice     NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pixar_public_response_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [72 × 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ film  : chr [1:72] "Toy Story" "Toy Story" "Toy Story" "A Bug's Life" ...
+ $ source: chr [1:72] "rotten_tomatoes" "metacritic" "critics_choice" "rotten_tomatoes" ...
+ $ value : num [1:72] 100 95 NA 92 77 NA 100 88 100 96 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   film = col_character(),
+  ..   source = col_character(),
+  ..   value = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Reorganiza el set de datos para que la puntuación de cada una de las webs se encuentre en una columna diferente</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>pixar_public_response_wide<span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(pixar_public_response_long,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">names_from=</span>source,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">values_from=</span>value)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="do">## (extra) ¿Cual es el promedio de puntuación por película teniendo en cuenta todas las fuentes? ¿Que película es la mejor y peor puntuada de media?</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>pixar_public_response_wide <span class="sc">|&gt;</span> </span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_score=</span>(rotten_tomatoes <span class="sc">+</span> metacritic <span class="sc">+</span> critics_choice)<span class="sc">/</span><span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mean_score<span class="sc">==</span><span class="fu">max</span>(mean_score,<span class="at">na.rm=</span>T) <span class="sc">|</span> mean_score<span class="sc">==</span><span class="fu">min</span>(mean_score, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  film        rotten_tomatoes metacritic critics_choice mean_score
+  &lt;chr&gt;                 &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;
+1 Toy Story 2             100         88            100       96  
+2 Cars 2                   40         57             67       54.7</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="unir-data.frames" class="level2">
+<h2 class="anchored" data-anchor-id="unir-data.frames">Unir data.frames</h2>
+<section id="ejercicio-_join-y-exportar-datos" class="level4">
+<h4 class="anchored" data-anchor-id="ejercicio-_join-y-exportar-datos">🧩 <em>Ejercicio: *_join() y exportar datos</em></h4>
+<table class="caption-top table" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="width: 330px; vertical-align: top"><img src="images/pixar_image3_flickr.jpg" class="img-fluid" style="width:300px; height:auto; display:block;"></td>
+<td style="vertical-align: middle"><li>
+Lee el set de datos pixar_public_response y pixar_films
+</li>
+<li>
+Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()
+</li>
+<li>
+Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión
+</li>
+<li>
+Guarda el nuevo set de datos como pixar_joint
+</li></td>
+</tr>
+</tbody>
+</table>
+<p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/6988729286" class="uri">https://www.flickr.com/photos/harshlight/6988729286</a> (CC BY 2.0)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Lee el set de datos pixar_public_response y pixar_films</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>pixar_public_response <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/pixar_public_response.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 24 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): film
+dbl (3): rotten_tomatoes, metacritic, critics_choice
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pixar_films <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/pixar_films.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 27 Columns: 5
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (2): film, film_rating
+dbl  (2): number, run_time
+date (1): release_date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pixar_public_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  film            rotten_tomatoes metacritic critics_choice
+  &lt;chr&gt;                     &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+1 Toy Story                   100         95             NA
+2 A Bug's Life                 92         77             NA
+3 Toy Story 2                 100         88            100
+4 Monsters, Inc.               96         79             92
+5 Finding Nemo                 99         90             97
+6 The Incredibles              97         90             88</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pixar_public_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 24
+Columns: 4
+$ film            &lt;chr&gt; "Toy Story", "A Bug's Life", "Toy Story 2", "Monsters,…
+$ rotten_tomatoes &lt;dbl&gt; 100, 92, 100, 96, 99, 97, 74, 96, 95, 98, 98, 40, 78, …
+$ metacritic      &lt;dbl&gt; 95, 77, 88, 79, 90, 90, 73, 96, 95, 88, 92, 57, 69, 65…
+$ critics_choice  &lt;dbl&gt; NA, NA, 100, 92, 97, 88, 89, 91, 90, 95, 97, 67, 81, 7…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pixar_films)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  number film            release_date run_time film_rating
+   &lt;dbl&gt; &lt;chr&gt;           &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;      
+1      1 Toy Story       1995-11-22         81 G          
+2      2 A Bug's Life    1998-11-25         95 G          
+3      3 Toy Story 2     1999-11-24         92 G          
+4      4 Monsters, Inc.  2001-11-02         92 G          
+5      5 Finding Nemo    2003-05-30        100 G          
+6      6 The Incredibles 2004-11-05        115 PG         </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pixar_films)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 27
+Columns: 5
+$ number       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17…
+$ film         &lt;chr&gt; "Toy Story", "A Bug's Life", "Toy Story 2", "Monsters, In…
+$ release_date &lt;date&gt; 1995-11-22, 1998-11-25, 1999-11-24, 2001-11-02, 2003-05-…
+$ run_time     &lt;dbl&gt; 81, 95, 92, 92, 100, 115, 117, 111, 98, 96, 103, 106, 93,…
+$ film_rating  &lt;chr&gt; "G", "G", "G", "G", "G", "PG", "G", "G", "G", "PG", "G", …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>pixar_joint <span class="ot">&lt;-</span> <span class="fu">full_join</span>(pixar_films, pixar_public_response, <span class="at">by =</span> <span class="st">"film"</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Guarda el nuevo set de datos como pixar_joint</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_delim</span>(pixar_joint, <span class="at">file =</span> <span class="st">"data/pixar_joint.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="ejercicio-final" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-final">🧩 <em>Ejercicio final</em></h2>
+<table class="caption-top table" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td style="width: 150px; vertical-align: top"><img src="images/palmer_penguins.png" class="img-fluid" style="width:130px; height:auto; display:block;"></td>
+<td style="vertical-align: middle">Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse:</td>
+</tr>
+</tbody>
+</table>
+<p>🐧 Instala el paquete penguins y cárgalo</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("palmerpenguins")</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'palmerpenguins'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:datasets':
+
+    penguins, penguins_raw</code></pre>
+</div>
+</div>
+<p>🐧 Crea un data frame denominado islands_info con dos columnas, la primera llamada “island” con los valores “Torgersen”, “Biscoe”, “Dream” y otra llamada “protected_area” con los valores “Si”, “No”, “Si”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>islands_info<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">island=</span><span class="fu">c</span>(<span class="st">"Torgersen"</span>, <span class="st">"Biscoe"</span>, <span class="st">"Dream"</span>),</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">protected_area=</span><span class="fu">c</span>(<span class="st">"Si"</span>, <span class="st">"No"</span>, <span class="st">"Si"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_length_mm) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>penguins_filter<span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(bill_length_mm<span class="sc">&gt;</span><span class="dv">40</span>, body_mass_g <span class="sc">&lt;</span><span class="dv">4500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length_mm, bill_depth_mm y body_mass_g</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>penguins_select<span class="ot">&lt;-</span> penguins_filter <span class="sc">|&gt;</span> </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, bill_length_mm , bill_depth_mm,body_mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧Añade una columna llamada bill_ratio que calcule la relación entre longitud y profundidad del pico</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>penguins_mutate<span class="ot">&lt;-</span> penguins_select <span class="sc">|&gt;</span> </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_ratio=</span>bill_length_mm<span class="sc">/</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧Une el resultado con el dataset islands_info, de forma que cada pingüino quede asociado a si su isla es un área protegida.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>penguins_join<span class="ot">&lt;-</span> penguins_mutate <span class="sc">|&gt;</span> </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(islands_info, <span class="at">by=</span><span class="st">"island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧Crea una columna categoria_peso con valores “ligero”, “medio”, “pesado”según los umbrales que quieras o, más dificil, con terciles de body_mass (consulta funcion quantile).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>penguins_class<span class="ot">&lt;-</span> penguins_join <span class="sc">|&gt;</span> </span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_mass_class=</span><span class="fu">case_when</span>(</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm=</span>T, <span class="fl">0.33</span>) <span class="sc">~</span> <span class="st">"ligero"</span>,</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm=</span>T, <span class="fl">0.33</span>) <span class="sc">&amp;</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>      body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm=</span>T, <span class="fl">0.66</span>) <span class="sc">~</span> <span class="st">"medio"</span>,</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm=</span>T, <span class="fl">0.66</span>) <span class="sc">~</span> <span class="st">"pesado"</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧Si no lo has hecho, organiza todos los pasos anteriores (excepto cargar el paquete y crear el data frame) en un solo flujo de trabajo</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>penguins2 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(bill_length_mm <span class="sc">&gt;</span> <span class="dv">40</span>, body_mass_g <span class="sc">&lt;</span> <span class="dv">4500</span>) <span class="sc">|&gt;</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species , island, bill_length_mm , bill_depth_mm, body_mass_g) <span class="sc">|&gt;</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm) <span class="sc">|&gt;</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(islands_info, <span class="at">by =</span> <span class="st">"island"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">body_mass_class =</span> <span class="fu">case_when</span>(</span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>      body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm =</span> T, <span class="fl">0.33</span>) <span class="sc">~</span> <span class="st">"ligero"</span>,</span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>      body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm =</span> T, <span class="fl">0.33</span>) <span class="sc">&amp;</span></span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>        body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm =</span> T, <span class="fl">0.66</span>) <span class="sc">~</span> <span class="st">"medio"</span>,</span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>      body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm =</span> T, <span class="fl">0.66</span>) <span class="sc">~</span> <span class="st">"pesado"</span></span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>penguins_class <span class="sc">|&gt;</span>  <span class="fu">group_by</span>(body_mass_class) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  body_mass_class `n()`
+  &lt;chr&gt;           &lt;int&gt;
+1 ligero             42
+2 medio              45
+3 pesado             40</code></pre>
+</div>
+</div>
+<p>🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>penguins_class <span class="sc">|&gt;</span> <span class="fu">group_by</span>(protected_area) <span class="sc">|&gt;</span>  <span class="fu">summarise</span>(<span class="at">bill_ratio=</span><span class="fu">max</span>(bill_ratio))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  protected_area bill_ratio
+  &lt;chr&gt;               &lt;dbl&gt;
+1 No                   3.45
+2 Si                   3.26</code></pre>
+</div>
+</div>
+<hr>
+<details>
+<summary>
+Session Info
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2026-01-02 14:31:55 CET"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.5.2 (2025-10-31 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
+
+Matrix products: default
+  LAPACK version 3.12.1
+
+locale:
+[1] LC_COLLATE=Spanish_Spain.utf8  LC_CTYPE=Spanish_Spain.utf8   
+[3] LC_MONETARY=Spanish_Spain.utf8 LC_NUMERIC=C                  
+[5] LC_TIME=Spanish_Spain.utf8    
+
+time zone: Europe/Madrid
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] palmerpenguins_0.1.1 lubridate_1.9.4      forcats_1.0.1       
+ [4] stringr_1.6.0        dplyr_1.1.4          purrr_1.2.0         
+ [7] readr_2.1.6          tidyr_1.3.1          tibble_3.3.0        
+[10] ggplot2_4.0.1        tidyverse_2.0.0     
+
+loaded via a namespace (and not attached):
+ [1] bit_4.6.0          gtable_0.3.6       jsonlite_2.0.0     crayon_1.5.3      
+ [5] compiler_4.5.2     tidyselect_1.2.1   parallel_4.5.2     scales_1.4.0      
+ [9] yaml_2.3.11        fastmap_1.2.0      R6_2.6.1           generics_0.1.4    
+[13] knitr_1.50         htmlwidgets_1.6.4  pillar_1.11.1      RColorBrewer_1.1-3
+[17] tzdb_0.5.0         rlang_1.1.6        utf8_1.2.6         stringi_1.8.7     
+[21] xfun_0.54          S7_0.2.1           bit64_4.6.0-1      timechange_0.3.0  
+[25] cli_3.6.5          withr_3.0.2        magrittr_2.0.4     digest_0.6.39     
+[29] grid_4.5.2         vroom_1.6.7        rstudioapi_0.17.1  hms_1.1.4         
+[33] lifecycle_1.0.4    vctrs_0.6.5        evaluate_1.0.5     glue_1.8.0        
+[37] farver_2.1.2       rmarkdown_2.30     tools_4.5.2        pkgconfig_2.0.3   
+[41] htmltools_0.5.9   </code></pre>
+</div>
+</div>
+</details>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
