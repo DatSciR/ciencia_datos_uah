@@ -58,7 +58,6 @@ images/
 data/pixar_joint.csv
 
 #.qmd files to html
-dia_2_manejo_de_datos_render_html.qmd
-dia_2_manejo_de_datos_soluciones_render_html.qmd
-dia_2_parte1_manejo_de_datos_render_html.qmd
-dia_2_parte1_manejo_de_datos_soluciones_render_html
+dia_2_1_manejo_de_datos_render_html.qmd
+dia_2_1_manejo_de_datos_soluciones_render_html.qmd
+dia_2_2_funciones_render_html.qmd
