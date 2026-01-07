@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marina Rodes Blanco, Paloma Ruiz Benito, Verónica Cruz Alonso y Julián Tijerin Triviño">
-<meta name="dcterms.date" content="2026-02-01">
+<meta name="dcterms.date" content="2026-07-01">
 
 <title>Día 2 - Manejo de datos con Tidyverse. Programa de doctorado UAH</title>
 <style>
@@ -138,7 +138,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ejercicio-_join-y-exportar-datos" id="toc-ejercicio-_join-y-exportar-datos" class="nav-link" data-scroll-target="#ejercicio-_join-y-exportar-datos"><span class="header-section-number">7.0.1</span> 🧩 <em>Ejercicio: *_join() y exportar datos</em></a></li>
   </ul></li>
   <li><a href="#ejercicio-final" id="toc-ejercicio-final" class="nav-link" data-scroll-target="#ejercicio-final"><span class="header-section-number">8</span> 🧩 <em>Ejercicio final</em></a></li>
-  <li><a href="#enlaces-de-interés" id="toc-enlaces-de-interés" class="nav-link" data-scroll-target="#enlaces-de-interés"><span class="header-section-number">9</span> Enlaces de interés</a></li>
+  <li><a href="#para-seguir-practicando" id="toc-para-seguir-practicando" class="nav-link" data-scroll-target="#para-seguir-practicando"><span class="header-section-number">9</span> 🧩 <em>Para seguir practicando…</em></a></li>
+  <li><a href="#enlaces-de-interés" id="toc-enlaces-de-interés" class="nav-link" data-scroll-target="#enlaces-de-interés"><span class="header-section-number">10</span> Enlaces de interés</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="dia_2_manejo_de_datos.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
 </div>
@@ -163,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">02/01/2026</p>
+      <p class="date">07/01/2026</p>
     </div>
   </div>
   
@@ -283,7 +284,7 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <tbody>
 <tr class="odd">
 <td><img src="images/recetas1_copilot.png" class="img-fluid"></td>
-<td><p>**CUISINE**</p>
+<td><p><strong>CUISINE</strong></p>
 <p>El dataset de **Cuisine** de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.)</p></td>
 </tr>
 </tbody>
@@ -296,7 +297,7 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <tbody>
 <tr class="odd">
 <td><img src="images/pixar_image1_flickr.jpg" class="img-fluid"></td>
-<td><p>**PIXAR**</p>
+<td><p><strong>PIXAR</strong></p>
 <p>El dataset de **Pixar** en TidyTuesday recopila información detallada sobre las películas de Pixar, incluyendo variables de producción, taquilla y crítica.</p></td>
 </tr>
 </tbody>
@@ -310,7 +311,7 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <tbody>
 <tr class="odd">
 <td><img src="images/mammals_sleeping_picture1_copilot.png" class="img-fluid"></td>
-<td><p>**MSLEEP**</p>
+<td><p><strong>MSLEEP</strong></p>
 <p>El dataset **msleep** contiene información sobre **el sueño de distintos** mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño</p></td>
 </tr>
 </tbody>
@@ -324,7 +325,7 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <tbody>
 <tr class="odd">
 <td><img src="images/palmer_penguins.png" class="img-fluid"></td>
-<td><p>**PALMER PENGUINS**</p>
+<td><p><strong>PALMER PENGUINS</strong></p>
 <p>Los datos fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo. Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo.</p></td>
 </tr>
 </tbody>
@@ -1121,7 +1122,24 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </div>
 <section id="ejercicio-transformar-datos-largo-ancho" class="level4" data-number="5.3.1">
 <h4 data-number="5.3.1" class="anchored" data-anchor-id="ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">5.3.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></h4>
-<p>31b8e172-b470-440e-83d8-e6b185028602:dAB5AHAAZQA6AE8AQQBCAGwAQQBHAFkAQQBOAFEAQgBoAEEARABjAEEATgB3AEEAeQBBAEMAMABBAFoAQQBCAGsAQQBEAFkAQQBNAHcAQQB0AEEARABRAEEATgBnAEEAeQBBAEQASQBBAEwAUQBBADQAQQBEAFEAQQBZAGcAQgBtAEEAQwAwAEEAWQBRAEIAbQBBAEQARQBBAE8AUQBBADUAQQBEAFUAQQBZAFEAQQB4AEEARwBJAEEATQBnAEIAaQBBAEQAawBBAAoAcABvAHMAaQB0AGkAbwBuADoATQBRAEEANABBAEQASQBBAE0AUQBBAHoAQQBBAD0APQAKAHAAcgBlAGYAaQB4ADoACgBzAG8AdQByAGMAZQA6AFAAQQBCADAAQQBHAEUAQQBZAGcAQgBzAEEARwBVAEEAUABnAEEASwBBAEMAQQBBAEkAQQBBADgAQQBIAFEAQQBjAGcAQQArAEEAQQBvAEEASQBBAEEAZwBBAEMAQQBBAEkAQQBBADgAQQBIAFEAQQBaAEEAQQBnAEEASABNAEEAZABBAEIANQBBAEcAdwBBAFoAUQBBADkAQQBDAEkAQQBkAHcAQgBwAEEARwBRAEEAZABBAEIAbwBBAEQAbwBBAE0AdwBBAHoAQQBEAEEAQQBjAEEAQgA0AEEARABzAEEASQBBAEIAMgBBAEcAVQBBAGMAZwBCADAAQQBHAGsAQQBZAHcAQgBoAEEARwB3AEEATABRAEIAaABBAEcAdwBBAGEAUQBCAG4AQQBHADQAQQBPAGcAQgAwAEEARwA4AEEAYwBBAEEANwBBAEMASQBBAFAAZwBBAEsAQQBDAEEAQQBJAEEAQQBnAEEAQwBBAEEASQBBAEEAZwBBAEQAdwBBAGEAUQBCAHQAQQBHAGMAQQBJAEEAQgB6AEEASABJAEEAWQB3AEEAOQBBAEMASQBBAGEAUQBCAHQAQQBHAEUAQQBaAHcAQgBsAEEASABNAEEATAB3AEIAdwBBAEcAawBBAGUAQQBCAGgAQQBIAEkAQQBYAHcAQgBwAEEARwAwAEEAWQBRAEIAbgBBAEcAVQBBAE0AZwBCAGYAQQBHAFkAQQBiAEEAQgBwAEEARwBNAEEAYQB3AEIAeQBBAEMANABBAGEAZwBCAHcAQQBHAGMAQQBJAGcAQQBnAEEASABNAEEAZABBAEIANQBBAEcAdwBBAFoAUQBBADkAQQBDAEkAQQBkAHcAQgBwAEEARwBRAEEAZABBAEIAbwBBAEQAbwBBAE0AdwBBAHcAQQBEAEEAQQBjAEEAQgA0AEEARABzAEEASQBBAEIAbwBBAEcAVQBBAGEAUQBCAG4AQQBHAGcAQQBkAEEAQQA2AEEARwBFAEEAZABRAEIAMABBAEcAOABBAE8AdwBBAGcAQQBHAFEAQQBhAFEAQgB6AEEASABBAEEAYgBBAEIAaABBAEgAawBBAE8AZwBCAGkAQQBHAHcAQQBiAHcAQgBqAEEARwBzAEEATwB3AEEAaQBBAEQANABBAEMAZwBBAGcAQQBDAEEAQQBJAEEAQQBnAEEARAB3AEEATAB3AEIAMABBAEcAUQBBAFAAZwBBAEsAQQBDAEEAQQBJAEEAQQBnAEEAQwBBAEEAUABBAEIAMABBAEcAUQBBAEkAQQBCAHoAQQBIAFEAQQBlAFEAQgBzAEEARwBVAEEAUABRAEEAaQBBAEgAWQBBAFoAUQBCAHkAQQBIAFEAQQBhAFEAQgBqAEEARwBFAEEAYgBBAEEAdABBAEcARQBBAGIAQQBCAHAAQQBHAGMAQQBiAGcAQQA2AEEARwAwAEEAYQBRAEIAawBBAEcAUQBBAGIAQQBCAGwAQQBEAHMAQQBJAGcAQQArAEEAQQBvAEEASQBBAEEAZwBBAEMAQQBBAEkAQQBBAGcAQQBDAEEAQQBQAEEAQgBzAEEARwBrAEEAUABnAEEAZwBBAEUAdwBBAFoAUQBCAGwAQQBDAEEAQQBaAFEAQgBzAEEAQwBBAEEAYwB3AEIAbABBAEgAUQBBAEkAQQBCAGsAQQBHAFUAQQBJAEEAQgBrAEEARwBFAEEAZABBAEIAdgBBAEgATQBBAEkAQQBCAHcAQQBHAGsAQQBlAEEAQgBoAEEASABJAEEAWAB3AEIAdwBBAEgAVQBBAFkAZwBCAHMAQQBHAGsAQQBZAHcAQgBmAEEASABJAEEAWgBRAEIAegBBAEgAQQBBAGIAdwBCAHUAQQBIAE0AQQBaAFEAQgBmAEEARwB3AEEAYgB3AEIAdQBBAEcAYwBBAEwAZwBBAGcAQQBFAFUAQQBiAGcAQQBnAEEARwBVAEEAYwB3AEIAMABBAEcAVQBBAEkAQQBCAHoAQQBHAFUAQQBkAEEAQQBnAEEARwBRAEEAWgBRAEEAZwBBAEcAUQBBAFkAUQBCADAAQQBHADgAQQBjAHcAQQBnAEEASABNAEEAWgBRAEEAZwBBAEcAVQBBAGIAZwBCAGoAQQBIAFUAQQBaAFEAQgB1AEEASABRAEEAYwBnAEIAaABBAEMAQQBBAGIAQQBCAGgAQQBDAEEAQQBjAEEAQgAxAEEARwA0AEEAZABBAEIAMQBBAEcARQBBAFkAdwBCAHAAQQBQAE0AQQBiAGcAQQBnAEEARwBRAEEAWgBRAEEAZwBBAEgAQQBBAFoAUQBCAHMAQQBPADAAQQBZAHcAQgAxAEEARwB3AEEAWQBRAEIAegBBAEMAQQBBAGMAQQBCAHAAQQBIAGcAQQBZAFEAQgB5AEEAQwBBAEEAYwBBAEIAdgBBAEgASQBBAEkAQQBCAHMAQQBHAEUAQQBJAEEAQgBoAEEASABVAEEAWgBBAEIAcABBAEcAVQBBAGIAZwBCAGoAQQBHAGsAQQBZAFEAQQBnAEEASABNAEEAWgBRAEIAbgBBAFAAbwBBAGIAZwBBAGcAQQBIAFEAQQBjAGcAQgBsAEEASABNAEEASQBBAEIAMwBBAEcAVQBBAFkAZwBCAHoAQQBDAEEAQQBaAEEAQgBwAEEARwBZAEEAWgBRAEIAeQBBAEcAVQBBAGIAZwBCADAAQQBHAFUAQQBjAHcAQQA2AEEAQwBBAEEAYwBnAEIAdgBBAEgAUQBBAGQAQQBCAGwAQQBHADQAQQBJAEEAQgAwAEEARwA4AEEAYgBRAEIAaABBAEgAUQBBAGIAdwBCAGwAQQBIAE0AQQBMAEEAQQBnAEEARwAwAEEAWgBRAEIAMABBAEcARQBBAFkAdwBCAHkAQQBHAGsAQQBkAEEAQgBwAEEARwBNAEEASQBBAEIANQBBAEMAQQBBAFkAdwBCAHkAQQBHAGsAQQBkAEEAQgBwAEEARwBNAEEAYwB3AEEAWgBJAEMAQQBBAFkAdwBCAG8AQQBHADgAQQBhAFEAQgBqAEEARwBVAEEATABnAEEAZwBBAEQAdwBBAEwAdwBCAHMAQQBHAGsAQQBQAGcAQQBLAEEAQwBBAEEASQBBAEEAZwBBAEMAQQBBAEkAQQBBAGcAQQBEAHcAQQBiAEEAQgBwAEEARAA0AEEASQBBAEIAUwBBAEcAVQBBAGIAdwBCAHkAQQBHAGMAQQBZAFEAQgB1AEEARwBrAEEAZQBnAEIAaABBAEMAQQBBAFoAUQBCAHMAQQBDAEEAQQBjAHcAQgBsAEEASABRAEEASQBBAEIAawBBAEcAVQBBAEkAQQBCAGsAQQBHAEUAQQBkAEEAQgB2AEEASABNAEEASQBBAEIAdwBBAEcARQBBAGMAZwBCAGgAQQBDAEEAQQBjAFEAQgAxAEEARwBVAEEASQBBAEIAcwBBAEcARQBBAEkAQQBCAHcAQQBIAFUAQQBiAGcAQgAwAEEASABVAEEAWQBRAEIAagBBAEcAawBBADgAdwBCAHUAQQBDAEEAQQBaAEEAQgBsAEEAQwBBAEEAWQB3AEIAaABBAEcAUQBBAFkAUQBBAGcAQQBIAFUAQQBiAGcAQgBoAEEAQwBBAEEAWgBBAEIAbABBAEMAQQBBAGIAQQBCAGgAQQBIAE0AQQBJAEEAQgAzAEEARwBVAEEAWQBnAEIAegBBAEMAQQBBAGMAdwBCAGwAQQBDAEEAQQBaAFEAQgB1AEEARwBNAEEAZABRAEIAbABBAEcANABBAGQAQQBCAHkAQQBHAFUAQQBJAEEAQgBsAEEARwA0AEEASQBBAEIAMQBBAEcANABBAFkAUQBBAGcAQQBHAE0AQQBiAHcAQgBzAEEASABVAEEAYgBRAEIAdQBBAEcARQBBAEkAQQBCAGsAQQBHAGsAQQBaAGcAQgBsAEEASABJAEEAWgBRAEIAdQBBAEgAUQBBAFoAUQBBAGcAQQBEAHcAQQBMAHcAQgBzAEEARwBrAEEAUABnAEEASwBBAEMAQQBBAEkAQQBBAGcAQQBDAEEAQQBJAEEAQQBnAEEARAB3AEEAYgBBAEIAcABBAEQANABBAEkAQQBBAG8AQQBHAFUAQQBlAEEAQgAwAEEASABJAEEAWQBRAEEAcABBAEMAQQBBAHYAdwBCAEQAQQBIAFUAQQBZAFEAQgBzAEEAQwBBAEEAWgBRAEIAegBBAEMAQQBBAFoAUQBCAHMAQQBDAEEAQQBjAEEAQgB5AEEARwA4AEEAYgBRAEIAbABBAEcAUQBBAGEAUQBCAHYAQQBDAEEAQQBaAEEAQgBsAEEAQwBBAEEAYwBBAEIAMQBBAEcANABBAGQAQQBCADEAQQBHAEUAQQBZAHcAQgBwAEEAUABNAEEAYgBnAEEAZwBBAEgAQQBBAGIAdwBCAHkAQQBDAEEAQQBjAEEAQgBsAEEARwB3AEEANwBRAEIAagBBAEgAVQBBAGIAQQBCAGgAQQBDAEEAQQBkAEEAQgBsAEEARwA0AEEAYQBRAEIAbABBAEcANABBAFoAQQBCAHYAQQBDAEEAQQBaAFEAQgB1AEEAQwBBAEEAWQB3AEIAMQBBAEcAVQBBAGIAZwBCADAAQQBHAEUAQQBJAEEAQgAwAEEARwA4AEEAWgBBAEIAaABBAEgATQBBAEkAQQBCAHMAQQBHAEUAQQBjAHcAQQBnAEEARwBZAEEAZABRAEIAbABBAEcANABBAGQAQQBCAGwAQQBIAE0AQQBQAHcAQQBnAEEATAA4AEEAVQBRAEIAMQBBAEcAVQBBAEkAQQBCAHcAQQBHAFUAQQBiAEEARAB0AEEARwBNAEEAZABRAEIAcwBBAEcARQBBAEkAQQBCAGwAQQBIAE0AQQBJAEEAQgBzAEEARwBFAEEASQBBAEIAdABBAEcAVQBBAGEAZwBCAHYAQQBIAEkAQQBJAEEAQgA1AEEAQwBBAEEAYwBBAEIAbABBAEcAOABBAGMAZwBBAGcAQQBIAEEAQQBkAFEAQgB1AEEASABRAEEAZABRAEIAaABBAEcAUQBBAFkAUQBBAGcAQQBHAFEAQQBaAFEAQQBnAEEARwAwAEEAWgBRAEIAawBBAEcAawBBAFkAUQBBAC8AQQBDAEEAQQBQAEEAQQB2AEEARwB3AEEAYQBRAEEAKwBBAEEAbwBBAEkAQQBBAGcAQQBDAEEAQQBJAEEAQQA4AEEAQwA4AEEAZABBAEIAawBBAEQANABBAEMAZwBBAGcAQQBDAEEAQQBQAEEAQQB2AEEASABRAEEAYwBnAEEAKwBBAEEAbwBBAFAAQQBBAHYAQQBIAFEAQQBZAFEAQgBpAEEARwB3AEEAWgBRAEEAKwBBAEEAPQA9AAoAcwB1AGYAZgBpAHgAOgA=:31b8e172-b470-440e-83d8-e6b185028602 Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/17294952412" class="uri">https://www.flickr.com/photos/harshlight/17294952412</a> (CC BY 2.0)</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/pixar_image3_flickr.jpg" class="img-fluid"></td>
+<td><ul>
+<li><p>Lee el set de datos pixar_public_response y pixar_films</p></li>
+<li><p>Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()</p></li>
+<li><p>Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión</p></li>
+<li><p>Guarda el nuevo set de datos como pixar_joint</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/17294952412" class="uri">https://www.flickr.com/photos/harshlight/17294952412</a> (CC BY 2.0)</p>
 </section>
 </section>
 </section>
@@ -1229,18 +1247,32 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </tr>
 </tbody>
 </table>
-<p>🐧 Instala el paquete penguins y cárgalo</p>
+<p>🐧 Instala el paquete palmerpenguins y cárgalo</p>
 <p>🐧 Crea un data frame con dos columnas, la primera denominada “islands_info” con los valores “Torgersen”, “Biscoe”, “Dream” y otra llamada “protected_area” con los valores “Si”, “No”, “Si”</p>
-<p>🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_len) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)</p>
-<p>🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length, bill_depth y body_mass</p>
+<p>🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_length_mm) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)</p>
+<p>🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length_mm, bill_depth_mm y body_mass_g</p>
 <p>🐧Añade una columna llamada bill_ratio que calcule la relación entre longitud y profundidad del pico</p>
-<p>🐧Une el resultado con el dataset islands _info, de forma que cada pingüino quede asociado a si su isla es un área protegida.</p>
+<p>🐧Une el resultado con el dataset islands_info, de forma que cada pingüino quede asociado a si su isla es un área protegida.</p>
 <p>🐧Crea una columna categoria_peso con valores “ligero”, “medio”, “pesado”según los umbrales que quieras o, más dificil, con terciles de body_mass.</p>
+<p>🐧Si no lo has hecho, organiza todos los pasos anteriores (excepto cargar el paquete y crear el data frame) en un solo flujo de trabajo</p>
 <p>🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas</p>
-<p>🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas? ¿Cuanto pesa el individuo más pesado?</p>
+<p>🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas?</p>
 </section>
-<section id="enlaces-de-interés" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="enlaces-de-interés"><span class="header-section-number">9</span> Enlaces de interés</h2>
+<section id="para-seguir-practicando" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="para-seguir-practicando"><span class="header-section-number">9</span> 🧩 <em>Para seguir practicando…</em></h2>
+<p>El paquete swirl es un paquete de R que transforma la consola de R en un tutor interactivo que presenta lecciones, plantea preguntas (texto, numéricas, opciones) y evalúa tus respuestas en tiempo real. A parte de los módulos de aprendizaje que vienenen el propio paquete permite crear módulos nuevos.</p>
+<p><img src="images/swirl_R.png" class="img-fluid"></p>
+<p>Paquete <a href="https://swirlstats.com/">swirl</a>: aprendiendo R en R</p>
+<p>Si quieres seguir practicando con el paquete tidyverse puedes seguir el siguiente curso obtenido de <a href="https://github.com/sysilviakim/swirl-tidy" class="uri">https://github.com/sysilviakim/swirl-tidy</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"swirl"</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(swirl)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install_course_github</span>(<span class="st">"sysilviakim"</span>, <span class="st">"swirl-tidy"</span>)</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="fu">swirl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="enlaces-de-interés" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="enlaces-de-interés"><span class="header-section-number">10</span> Enlaces de interés</h2>
 <ul>
 <li><p><a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a></p></li>
 <li><p><a href="https://r4ds.had.co.nz/transform.html">R for data Science (Data transformation)</a></p></li>
@@ -1255,11 +1287,11 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 Session Info
 </summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2026-01-02 12:28:18 CET"</code></pre>
+<pre><code>[1] "2026-01-07 08:58:31 CET"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.2 (2025-10-31 ucrt)
 Platform: x86_64-w64-mingw32/x64

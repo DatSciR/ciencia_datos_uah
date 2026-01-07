@@ -1,0 +1,119 @@
+---
+title: "Día 2 - Manejo de datos con Tidyverse. Programa de doctorado UAH"
+author: "Marina Rodes Blanco, Paloma Ruiz Benito, Verónica Cruz Alonso y Julián Tijerin Triviño"
+date: today
+date-format: "DD/MM/YYYY"
+toc: true
+toc-depth: 5
+toc-title: "Índice"
+format:
+  html:
+    link-external-newwindow: true
+    # css: styles.css
+  gfm: default
+editor: visual
+editor_options: 
+  chunk_output_type: console
+number-sections: true
+---
+
+## Introducción a la programación con funciones
+
+### ¿Qué es una funcion?
+
+Una característica clave de R son las funciones. Las funciones son una serie de intruccciones agrupadas para lograr un resultado específico. Más concretamente, son módulos de código ‘autocontenidos’ que realizan una tarea específica. Normalmente reciben algún tipo de estructura de datos (valor, vector, data frame, etc.), la procesan y devuelven un resultado.
+
+El uso general de una función consiste en escribir el nombre de la función seguido de paréntesis.
+
+```{r ejemplo funcion}
+library(tidyverse)
+
+```
+
+**Los valores de entrada se llaman argumentos, y pueden incluir:**
+
+-   **El objeto físico** (cualquier estructura de datos) sobre el cual la función realiza una tarea.
+
+-    **Especificaciones** que modifican el modo en que la función opera (por ejemplo, opciones o parámetros).
+
+```{r}
+recetas<-read_delim(file="data/cuisines.csv", # argumento "file" 
+                    sep=",")                  # argumento "delim"
+
+```
+
+Cuando consultamos la ayuda de R lo que consultamos es cuales son los argumentos de la funcion.
+
+#### 🧩 Ejercicio: 
+
+Consulta la ayuda de la función matrix. ¿Cuantos argumentos tiene?. Genera una matriz con esta funcion usando todos los argumentos.
+
+Además de las funciones que nos ofrece R en los diferentes paquetes, también podeos realizar nuestras propias funciones:
+
+```{r ejemplo funcion}
+
+# Estandarizar (media 0 y desv tipica 1) las calorias, grasas carbohidratos y proteínas
+
+recetas_Z <- recetas |> 
+  mutate(calories_Z = (calories - mean(calories, na.rm=T))/sd(calories, na.rm=T),
+         fat_Z = (fat - mean(fat, na.rm=T))/sd(fat, na.rm=T),
+         carbs_Z = (carbs - mean(carbs, na.rm=T))/sd(carbs, na.rm=T),
+         protein_z = (protein - mean(protein, na.rm=T))/sd(protein, na.rm=T))
+
+# función que estandariza
+estandarizar_variable <- function(x) {
+  (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
+}
+
+recetas_Z <- recetas |> 
+  mutate(calories_Z = estandarizar_variable(calories),
+         fat_Z = estandarizar_variable(fat),
+         carbs_Z = estandarizar_variable(carbs),
+         protein_z = estandarizar_variable(protein))
+
+```
+
+### ¿Por que usar funciones?
+
+-   **Reutilización de código:** Las funciones permiten encapsular pasos repetidos en una única unidad que puedes llamar muchas veces, reduciendo duplicación y errores.
+
+-   **Abstracción y claridad:** Al ocultar detalles de implementación dentro de una función, el flujo principal del script queda más limpio y fácil de entender.
+
+-   **Modularidad y mantenimiento:** Dividir el trabajo en funciones pequeñas facilita probar, depurar y actualizar partes concretas sin afectar el resto del código.
+
+-   **Parámetros y flexibilidad:** Los **argumentos** permiten adaptar el comportamiento de una función sin cambiar su código interno, lo que favorece la generalización y la experimentación.
+
+-   **Composición y reutilización avanzada:** Las funciones pueden combinarse (una función llama a otra), lo que facilita construir pipelines y procesos complejos a partir de bloques simples.
+
+-   **Compatibilidad con ecosistema R:** Muchas librerías y herramientas en R esperan o devuelven funciones; escribir funciones propias facilita integrarlas con `apply`, `purrr`, `dplyr`, `knitr` y otras herramientas del ecosistema.
+
+### ¿Cuando hay que usar funciones?
+
+Se recomienda seguir el principio "do not repeat yourself" ([DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself#:~:text=%22Don't%20repeat%20yourself%22,redundancy%20in%20the%20first%20place.)): cada unidad de conocimiento o información debe tener una representación única, inequívoca y autoritativa en un sistema.
+
+Escribir una función ya merece la pena cuando has copiado y pegado más de dos veces lo mismo (don't be WET! - Write Everything Twice). Cuantas más veces esté repetido un código, en más sitios necesitarás actualizarlo si hay algun cambio y más aumenta la probabilidad de error.
+
+### Tipos de funciones
+
+## Cómo escribir una función
+
+### Componentes de una funcion
+
+## Iteraciones (for, while)
+
+## Purr
+
+### 
+
+------------------------------------------------------------------------
+
+<details>
+
+<summary>Session Info</summary>
+
+```{r session_info}
+Sys.time()
+sessionInfo()
+```
+
+</details>

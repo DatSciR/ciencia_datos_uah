@@ -585,6 +585,23 @@ Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
 
 🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas?
 
+## 🧩 *Para seguir practicando...*
+
+El paquete swirl es un paquete de R que transforma la consola de R en un tutor interactivo que presenta lecciones, plantea preguntas (texto, numéricas, opciones) y evalúa tus respuestas en tiempo real. A parte de los módulos de aprendizaje que vienenen el propio paquete permite crear módulos nuevos.
+
+![](images/swirl_R.png)
+
+Paquete [swirl](https://swirlstats.com/): aprendiendo R en R
+
+Si quieres seguir practicando con el paquete tidyverse puedes seguir el siguiente curso obtenido de <https://github.com/sysilviakim/swirl-tidy>.
+
+```{r tidyswirl, eval=FALSE}
+install.packages("swirl")
+library(swirl)
+install_course_github("sysilviakim", "swirl-tidy")
+swirl()
+```
+
 ## Enlaces de interés
 
 -   [Hands-On Programming with R](https://rstudio-education.github.io/hopr/)

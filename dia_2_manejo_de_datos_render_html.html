@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marina Rodes Blanco, Paloma Ruiz Benito, Verónica Cruz Alonso y Julián Tijerin Triviño">
-<meta name="dcterms.date" content="2026-02-01">
+<meta name="dcterms.date" content="2026-07-01">
 
 <title>Día 2 - Manejo de datos con Tidyverse. Programa de doctorado UAH</title>
 <style>
@@ -138,7 +138,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ejercicio-_join-y-exportar-datos" id="toc-ejercicio-_join-y-exportar-datos" class="nav-link" data-scroll-target="#ejercicio-_join-y-exportar-datos"><span class="header-section-number">7.0.1</span> 🧩 <em>Ejercicio: *_join() y exportar datos</em></a></li>
   </ul></li>
   <li><a href="#ejercicio-final" id="toc-ejercicio-final" class="nav-link" data-scroll-target="#ejercicio-final"><span class="header-section-number">8</span> 🧩 <em>Ejercicio final</em></a></li>
-  <li><a href="#enlaces-de-interés" id="toc-enlaces-de-interés" class="nav-link" data-scroll-target="#enlaces-de-interés"><span class="header-section-number">9</span> Enlaces de interés</a></li>
+  <li><a href="#para-seguir-practicando" id="toc-para-seguir-practicando" class="nav-link" data-scroll-target="#para-seguir-practicando"><span class="header-section-number">9</span> 🧩 <em>Para seguir practicando…</em></a></li>
+  <li><a href="#enlaces-de-interés" id="toc-enlaces-de-interés" class="nav-link" data-scroll-target="#enlaces-de-interés"><span class="header-section-number">10</span> Enlaces de interés</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="dia_2_manejo_de_datos_render_html.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
 </div>
@@ -163,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">02/01/2026</p>
+      <p class="date">07/01/2026</p>
     </div>
   </div>
   
@@ -1275,8 +1276,21 @@ Guarda el nuevo set de datos como pixar_joint
 <p>🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas</p>
 <p>🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas?</p>
 </section>
-<section id="enlaces-de-interés" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="enlaces-de-interés"><span class="header-section-number">9</span> Enlaces de interés</h2>
+<section id="para-seguir-practicando" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="para-seguir-practicando"><span class="header-section-number">9</span> 🧩 <em>Para seguir practicando…</em></h2>
+<p>El paquete swirl es un paquete de R que transforma la consola de R en un tutor interactivo que presenta lecciones, plantea preguntas (texto, numéricas, opciones) y evalúa tus respuestas en tiempo real. A parte de los módulos de aprendizaje que vienenen el propio paquete permite crear módulos nuevos.</p>
+<p><img src="images/swirl_R.png" class="img-fluid"></p>
+<p>Paquete <a href="https://swirlstats.com/">swirl</a>: aprendiendo R en R</p>
+<p>Si quieres seguir practicando con el paquete tidyverse puedes seguir el siguiente curso obtenido de <a href="https://github.com/sysilviakim/swirl-tidy" class="uri">https://github.com/sysilviakim/swirl-tidy</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"swirl"</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(swirl)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install_course_github</span>(<span class="st">"sysilviakim"</span>, <span class="st">"swirl-tidy"</span>)</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="fu">swirl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="enlaces-de-interés" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="enlaces-de-interés"><span class="header-section-number">10</span> Enlaces de interés</h2>
 <ul>
 <li><p><a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a></p></li>
 <li><p><a href="https://r4ds.had.co.nz/transform.html">R for data Science (Data transformation)</a></p></li>
@@ -1291,11 +1305,11 @@ Guarda el nuevo set de datos como pixar_joint
 Session Info
 </summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2026-01-02 14:27:59 CET"</code></pre>
+<pre><code>[1] "2026-01-07 08:59:06 CET"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.2 (2025-10-31 ucrt)
 Platform: x86_64-w64-mingw32/x64
