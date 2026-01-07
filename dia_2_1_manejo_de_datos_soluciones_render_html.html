@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marina Rodes Blanco, Paloma Ruiz Benito, Verónica Cruz Alonso y Julián Tijerin Triviño">
-<meta name="dcterms.date" content="2026-02-01">
+<meta name="dcterms.date" content="2026-07-01">
 
 <title>Día 2 - Manejo de datos con Tidyverse. Programa de doctorado UAH</title>
 <style>
@@ -60,17 +60,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="dia_2_manejo_de_datos_soluciones_files/libs/clipboard/clipboard.min.js"></script>
-<script src="dia_2_manejo_de_datos_soluciones_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="dia_2_manejo_de_datos_soluciones_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="dia_2_manejo_de_datos_soluciones_files/libs/quarto-html/popper.min.js"></script>
-<script src="dia_2_manejo_de_datos_soluciones_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="dia_2_manejo_de_datos_soluciones_files/libs/quarto-html/anchor.min.js"></script>
-<link href="dia_2_manejo_de_datos_soluciones_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="dia_2_manejo_de_datos_soluciones_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="dia_2_manejo_de_datos_soluciones_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="dia_2_manejo_de_datos_soluciones_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="dia_2_manejo_de_datos_soluciones_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/clipboard/clipboard.min.js"></script>
+<script src="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/popper.min.js"></script>
+<script src="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/anchor.min.js"></script>
+<link href="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="dia_2_1_manejo_de_datos_soluciones_render_html_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#transformar-los-datos-y-calcular-nuevas-variables" id="toc-transformar-los-datos-y-calcular-nuevas-variables" class="nav-link" data-scroll-target="#transformar-los-datos-y-calcular-nuevas-variables">Transformar los datos y calcular nuevas variables</a>
   <ul>
   <li><a href="#ejercicio-mutate" id="toc-ejercicio-mutate" class="nav-link" data-scroll-target="#ejercicio-mutate">🧩 <em>Ejercicio: mutate()</em></a></li>
-  <li><a href="#ejercicio-group_by-summrise" id="toc-ejercicio-group_by-summrise" class="nav-link" data-scroll-target="#ejercicio-group_by-summrise">🧩 <em>Ejercicio: group_by(), summrise()</em></a></li>
+  <li><a href="#ejercicio-group_by-summarise" id="toc-ejercicio-group_by-summarise" class="nav-link" data-scroll-target="#ejercicio-group_by-summarise">🧩 <em>Ejercicio: group_by(), summarise()</em></a></li>
   <li><a href="#ejercicio-transformar-datos-largo-ancho" id="toc-ejercicio-transformar-datos-largo-ancho" class="nav-link" data-scroll-target="#ejercicio-transformar-datos-largo-ancho">🧩 <em>Ejercicio: transformar datos largo ancho</em></a></li>
   </ul></li>
   <li><a href="#unir-data.frames" id="toc-unir-data.frames" class="nav-link" data-scroll-target="#unir-data.frames">Unir data.frames</a>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#ejercicio-final" id="toc-ejercicio-final" class="nav-link" data-scroll-target="#ejercicio-final">🧩 <em>Ejercicio final</em></a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="dia_2_manejo_de_datos_soluciones.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="dia_2_1_manejo_de_datos_soluciones_render_html.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">02/01/2026</p>
+      <p class="date">07/01/2026</p>
     </div>
   </div>
   
@@ -336,14 +336,19 @@ Crea un nuevo objeto con el orden, género y nombre al principio y que incluya t
  [6] "conservation" "sleep_total"  "sleep_rem"    "sleep_cycle"  "awake"       
 [11] "brainwt"      "bodywt"      </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>vars_sleep<span class="ot">&lt;-</span>msleep <span class="sc">|&gt;</span>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"sleep"</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>msleep2<span class="ot">&lt;-</span> msleep <span class="sc">|&gt;</span>  <span class="fu">select</span>(order, genus, name, <span class="fu">everything</span>(), <span class="sc">-</span>awake)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Extra: ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?</span></span>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>vars_sleep<span class="ot">&lt;-</span>msleep <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"sleep"</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>msleep2<span class="ot">&lt;-</span> msleep <span class="sc">|&gt;</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(order, genus, name, <span class="fu">everything</span>(), <span class="sc">-</span>awake)</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span>  <span class="fu">filter</span>(order<span class="sc">==</span><span class="st">"Carnivora"</span> <span class="sc">&amp;</span> conservation <span class="sc">==</span><span class="st">"vu"</span>) <span class="sc">|&gt;</span>  <span class="fu">arrange</span>(<span class="fu">desc</span>(sleep_total))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Extra: ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span> </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(order<span class="sc">==</span><span class="st">"Carnivora"</span> <span class="sc">&amp;</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>           conservation <span class="sc">==</span><span class="st">"vu"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(sleep_total))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 12
    ...1 name    genus vore  order conservation sleep_total sleep_rem sleep_cycle
@@ -379,13 +384,65 @@ Haz una clasificación que incluya tres categorías: carnivoros amenazados, herv
 </tbody>
 </table>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Nuevo data.frame que contenga las variables relacionadas con el sueño</span></span>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Nueva columna con el porcentaje de horas que duerme cada animal al día.</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">sleep_prc=</span>(sleep_total<span class="sc">/</span><span class="dv">24</span>)<span class="sc">*</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 13
+    ...1 name   genus vore  order conservation sleep_total sleep_rem sleep_cycle
+   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+ 1     1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA    
+ 2     2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA    
+ 3     3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA    
+ 4     4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133
+ 5     5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667
+ 6     6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767
+ 7     7 North… Call… carni Carn… vu                   8.7       1.4       0.383
+ 8     8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA    
+ 9     9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333
+10    10 Roe d… Capr… herbi Arti… lc                   3        NA        NA    
+# ℹ 73 more rows
+# ℹ 4 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;, sleep_prc &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cd).</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">classification =</span> <span class="fu">case_when</span>(</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>      <span class="co"># utilizar varias variables para calcular otra nueva</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>      vore <span class="sc">==</span> <span class="st">"carni"</span> <span class="sc">&amp;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        conservation <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">"en"</span>, <span class="st">"cd"</span>) <span class="sc">~</span> <span class="st">"threatened carnivore"</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>      vore <span class="sc">==</span> <span class="st">"herbivore"</span> <span class="sc">&amp;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        conservation <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">"en"</span>, <span class="st">"cd"</span>) <span class="sc">~</span> <span class="st">"threatened herbivore"</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"others"</span> <span class="co">#resto de casos</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 83 × 13
+    ...1 name   genus vore  order conservation sleep_total sleep_rem sleep_cycle
+   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+ 1     1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA    
+ 2     2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA    
+ 3     3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA    
+ 4     4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133
+ 5     5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667
+ 6     6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767
+ 7     7 North… Call… carni Carn… vu                   8.7       1.4       0.383
+ 8     8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA    
+ 9     9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333
+10    10 Roe d… Capr… herbi Arti… lc                   3        NA        NA    
+# ℹ 73 more rows
+# ℹ 4 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;,
+#   classification &lt;chr&gt;</code></pre>
+</div>
 </div>
 </section>
-<section id="ejercicio-group_by-summrise" class="level4">
-<h4 class="anchored" data-anchor-id="ejercicio-group_by-summrise">🧩 <em>Ejercicio: group_by(), summrise()</em></h4>
+<section id="ejercicio-group_by-summarise" class="level4">
+<h4 class="anchored" data-anchor-id="ejercicio-group_by-summarise">🧩 <em>Ejercicio: group_by(), summarise()</em></h4>
 <table class="caption-top table" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -403,6 +460,65 @@ Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen 
 </tr>
 </tbody>
 </table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(order) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">species_per_order=</span><span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 2
+   order           species_per_order
+   &lt;chr&gt;                       &lt;int&gt;
+ 1 Afrosoricida                    1
+ 2 Artiodactyla                    6
+ 3 Carnivora                      12
+ 4 Cetacea                         3
+ 5 Chiroptera                      2
+ 6 Cingulata                       2
+ 7 Didelphimorphia                 2
+ 8 Diprotodontia                   2
+ 9 Erinaceomorpha                  2
+10 Hyracoidea                      3
+11 Lagomorpha                      1
+12 Monotremata                     1
+13 Perissodactyla                  3
+14 Pilosa                          1
+15 Primates                       12
+16 Proboscidea                     2
+17 Rodentia                       22
+18 Scandentia                      1
+19 Soricomorpha                    5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Otra opción, mucho más segura...</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(order) <span class="sc">|&gt;</span>  </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">species_per_order=</span><span class="fu">n_distinct</span>(name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 2
+   order           species_per_order
+   &lt;chr&gt;                       &lt;int&gt;
+ 1 Afrosoricida                    1
+ 2 Artiodactyla                    6
+ 3 Carnivora                      12
+ 4 Cetacea                         3
+ 5 Chiroptera                      2
+ 6 Cingulata                       2
+ 7 Didelphimorphia                 2
+ 8 Diprotodontia                   2
+ 9 Erinaceomorpha                  2
+10 Hyracoidea                      3
+11 Lagomorpha                      1
+12 Monotremata                     1
+13 Perissodactyla                  3
+14 Pilosa                          1
+15 Primates                       12
+16 Proboscidea                     2
+17 Rodentia                       22
+18 Scandentia                      1
+19 Soricomorpha                    5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="ejercicio-transformar-datos-largo-ancho" class="level4">
 <h4 class="anchored" data-anchor-id="ejercicio-transformar-datos-largo-ancho">🧩 <em>Ejercicio: transformar datos largo ancho</em></h4>
@@ -427,6 +543,73 @@ Reorganiza el set de datos para que la puntuación de cada una de las webs se en
 </tbody>
 </table>
 <p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/17294952412" class="uri">https://www.flickr.com/photos/harshlight/17294952412</a> (CC BY 2.0)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Lee el set de datos pixar_public_response_long. En este set de datos se encuentra la puntuación de películas pixar por la audiencia según tres webs diferentes: rotten tomatoes, metacritic y critics’ choice.</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>pixar_public_response_long<span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/pixar_public_response_long.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 72 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (2): film, source
+dbl (1): value
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pixar_public_response_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 72
+Columns: 3
+$ film   &lt;chr&gt; "Toy Story", "Toy Story", "Toy Story", "A Bug's Life", "A Bug's…
+$ source &lt;chr&gt; "rotten_tomatoes", "metacritic", "critics_choice", "rotten_toma…
+$ value  &lt;dbl&gt; 100, 95, NA, 92, 77, NA, 100, 88, 100, 96, 79, 92, 99, 90, 97, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pixar_public_response_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  film         source          value
+  &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;
+1 Toy Story    rotten_tomatoes   100
+2 Toy Story    metacritic         95
+3 Toy Story    critics_choice     NA
+4 A Bug's Life rotten_tomatoes    92
+5 A Bug's Life metacritic         77
+6 A Bug's Life critics_choice     NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pixar_public_response_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [72 × 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ film  : chr [1:72] "Toy Story" "Toy Story" "Toy Story" "A Bug's Life" ...
+ $ source: chr [1:72] "rotten_tomatoes" "metacritic" "critics_choice" "rotten_tomatoes" ...
+ $ value : num [1:72] 100 95 NA 92 77 NA 100 88 100 96 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   film = col_character(),
+  ..   source = col_character(),
+  ..   value = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Reorganiza el set de datos para que la puntuación de cada una de las webs se encuentre en una columna diferente</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>pixar_public_response_wide<span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(pixar_public_response_long,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">names_from=</span>source,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">values_from=</span>value)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="do">## (extra) ¿Cual es el promedio de puntuación por película teniendo en cuenta todas las fuentes? ¿Que película es la mejor y peor puntuada de media?</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>pixar_public_response_wide <span class="sc">|&gt;</span> </span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_score=</span>(rotten_tomatoes <span class="sc">+</span> metacritic <span class="sc">+</span> critics_choice)<span class="sc">/</span><span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mean_score<span class="sc">==</span><span class="fu">max</span>(mean_score,<span class="at">na.rm=</span>T) <span class="sc">|</span> mean_score<span class="sc">==</span><span class="fu">min</span>(mean_score, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  film        rotten_tomatoes metacritic critics_choice mean_score
+  &lt;chr&gt;                 &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;
+1 Toy Story 2             100         88            100       96  
+2 Cars 2                   40         57             67       54.7</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="unir-data.frames" class="level2">
@@ -457,6 +640,82 @@ Guarda el nuevo set de datos como pixar_joint
 </tbody>
 </table>
 <p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/6988729286" class="uri">https://www.flickr.com/photos/harshlight/6988729286</a> (CC BY 2.0)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Lee el set de datos pixar_public_response y pixar_films</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>pixar_public_response <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/pixar_public_response.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 24 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): film
+dbl (3): rotten_tomatoes, metacritic, critics_choice
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pixar_films <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/pixar_films.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 27 Columns: 5
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (2): film, film_rating
+dbl  (2): number, run_time
+date (1): release_date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pixar_public_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  film            rotten_tomatoes metacritic critics_choice
+  &lt;chr&gt;                     &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+1 Toy Story                   100         95             NA
+2 A Bug's Life                 92         77             NA
+3 Toy Story 2                 100         88            100
+4 Monsters, Inc.               96         79             92
+5 Finding Nemo                 99         90             97
+6 The Incredibles              97         90             88</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pixar_public_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 24
+Columns: 4
+$ film            &lt;chr&gt; "Toy Story", "A Bug's Life", "Toy Story 2", "Monsters,…
+$ rotten_tomatoes &lt;dbl&gt; 100, 92, 100, 96, 99, 97, 74, 96, 95, 98, 98, 40, 78, …
+$ metacritic      &lt;dbl&gt; 95, 77, 88, 79, 90, 90, 73, 96, 95, 88, 92, 57, 69, 65…
+$ critics_choice  &lt;dbl&gt; NA, NA, 100, 92, 97, 88, 89, 91, 90, 95, 97, 67, 81, 7…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pixar_films)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  number film            release_date run_time film_rating
+   &lt;dbl&gt; &lt;chr&gt;           &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;      
+1      1 Toy Story       1995-11-22         81 G          
+2      2 A Bug's Life    1998-11-25         95 G          
+3      3 Toy Story 2     1999-11-24         92 G          
+4      4 Monsters, Inc.  2001-11-02         92 G          
+5      5 Finding Nemo    2003-05-30        100 G          
+6      6 The Incredibles 2004-11-05        115 PG         </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pixar_films)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 27
+Columns: 5
+$ number       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17…
+$ film         &lt;chr&gt; "Toy Story", "A Bug's Life", "Toy Story 2", "Monsters, In…
+$ release_date &lt;date&gt; 1995-11-22, 1998-11-25, 1999-11-24, 2001-11-02, 2003-05-…
+$ run_time     &lt;dbl&gt; 81, 95, 92, 92, 100, 115, 117, 111, 98, 96, 103, 106, 93,…
+$ film_rating  &lt;chr&gt; "G", "G", "G", "G", "G", "PG", "G", "G", "G", "PG", "G", …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>pixar_joint <span class="ot">&lt;-</span> <span class="fu">full_join</span>(pixar_films, pixar_public_response, <span class="at">by =</span> <span class="st">"film"</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Guarda el nuevo set de datos como pixar_joint</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_delim</span>(pixar_joint, <span class="at">file =</span> <span class="st">"data/pixar_joint.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="ejercicio-final" class="level2">
@@ -470,25 +729,109 @@ Guarda el nuevo set de datos como pixar_joint
 </tbody>
 </table>
 <p>🐧 Instala el paquete penguins y cárgalo</p>
-<p>🐧 Crea un data frame con dos columnas, la primera denominada “islands_info” con los valores “Torgersen”, “Biscoe”, “Dream” y otra llamada “protected_area” con los valores “Si”, “No”, “Si”</p>
-<p>🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_len) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)</p>
-<p>🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length, bill_depth y body_mass</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("palmerpenguins")</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'palmerpenguins'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:datasets':
+
+    penguins, penguins_raw</code></pre>
+</div>
+</div>
+<p>🐧 Crea un data frame denominado islands_info con dos columnas, la primera llamada “island” con los valores “Torgersen”, “Biscoe”, “Dream” y otra llamada “protected_area” con los valores “Si”, “No”, “Si”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>islands_info<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">island=</span><span class="fu">c</span>(<span class="st">"Torgersen"</span>, <span class="st">"Biscoe"</span>, <span class="st">"Dream"</span>),</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">protected_area=</span><span class="fu">c</span>(<span class="st">"Si"</span>, <span class="st">"No"</span>, <span class="st">"Si"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_length_mm) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>penguins_filter<span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(bill_length_mm<span class="sc">&gt;</span><span class="dv">40</span>, body_mass_g <span class="sc">&lt;</span><span class="dv">4500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length_mm, bill_depth_mm y body_mass_g</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>penguins_select<span class="ot">&lt;-</span> penguins_filter <span class="sc">|&gt;</span> </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, bill_length_mm , bill_depth_mm,body_mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>🐧Añade una columna llamada bill_ratio que calcule la relación entre longitud y profundidad del pico</p>
-<p>🐧Une el resultado con el dataset islands _info, de forma que cada pingüino quede asociado a si su isla es un área protegida.</p>
-<p>🐧Crea una columna categoria_peso con valores “ligero”, “medio”, “pesado”según los umbrales que quieras o, más dificil, con terciles de body_mass.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>penguins_mutate<span class="ot">&lt;-</span> penguins_select <span class="sc">|&gt;</span> </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_ratio=</span>bill_length_mm<span class="sc">/</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧Une el resultado con el dataset islands_info, de forma que cada pingüino quede asociado a si su isla es un área protegida.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>penguins_join<span class="ot">&lt;-</span> penguins_mutate <span class="sc">|&gt;</span> </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(islands_info, <span class="at">by=</span><span class="st">"island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧Crea una columna categoria_peso con valores “ligero”, “medio”, “pesado”según los umbrales que quieras o, más dificil, con terciles de body_mass (consulta funcion quantile).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>penguins_class<span class="ot">&lt;-</span> penguins_join <span class="sc">|&gt;</span> </span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_mass_class=</span><span class="fu">case_when</span>(</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm=</span>T, <span class="fl">0.33</span>) <span class="sc">~</span> <span class="st">"ligero"</span>,</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm=</span>T, <span class="fl">0.33</span>) <span class="sc">&amp;</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>      body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm=</span>T, <span class="fl">0.66</span>) <span class="sc">~</span> <span class="st">"medio"</span>,</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm=</span>T, <span class="fl">0.66</span>) <span class="sc">~</span> <span class="st">"pesado"</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>🐧Si no lo has hecho, organiza todos los pasos anteriores (excepto cargar el paquete y crear el data frame) en un solo flujo de trabajo</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>penguins2 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(bill_length_mm <span class="sc">&gt;</span> <span class="dv">40</span>, body_mass_g <span class="sc">&lt;</span> <span class="dv">4500</span>) <span class="sc">|&gt;</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species , island, bill_length_mm , bill_depth_mm, body_mass_g) <span class="sc">|&gt;</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm) <span class="sc">|&gt;</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(islands_info, <span class="at">by =</span> <span class="st">"island"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">body_mass_class =</span> <span class="fu">case_when</span>(</span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>      body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm =</span> T, <span class="fl">0.33</span>) <span class="sc">~</span> <span class="st">"ligero"</span>,</span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>      body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm =</span> T, <span class="fl">0.33</span>) <span class="sc">&amp;</span></span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>        body_mass_g <span class="sc">&lt;=</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm =</span> T, <span class="fl">0.66</span>) <span class="sc">~</span> <span class="st">"medio"</span>,</span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>      body_mass_g <span class="sc">&gt;</span> <span class="fu">quantile</span>(body_mass_g, <span class="at">na.rm =</span> T, <span class="fl">0.66</span>) <span class="sc">~</span> <span class="st">"pesado"</span></span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas</p>
-<p>🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas? ¿Cuanto pesa el individuo más pesado?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>penguins_class <span class="sc">|&gt;</span>  <span class="fu">group_by</span>(body_mass_class) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  body_mass_class `n()`
+  &lt;chr&gt;           &lt;int&gt;
+1 ligero             42
+2 medio              45
+3 pesado             40</code></pre>
+</div>
+</div>
+<p>🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>penguins_class <span class="sc">|&gt;</span> <span class="fu">group_by</span>(protected_area) <span class="sc">|&gt;</span>  <span class="fu">summarise</span>(<span class="at">bill_ratio=</span><span class="fu">max</span>(bill_ratio))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  protected_area bill_ratio
+  &lt;chr&gt;               &lt;dbl&gt;
+1 No                   3.45
+2 Si                   3.26</code></pre>
+</div>
+</div>
 <hr>
 <details>
 <summary>
 Session Info
 </summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2026-01-02 12:41:33 CET"</code></pre>
+<pre><code>[1] "2026-01-07 09:03:57 CET"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.2 (2025-10-31 ucrt)
 Platform: x86_64-w64-mingw32/x64
@@ -509,9 +852,10 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] lubridate_1.9.4 forcats_1.0.1   stringr_1.6.0   dplyr_1.1.4    
- [5] purrr_1.2.0     readr_2.1.6     tidyr_1.3.1     tibble_3.3.0   
- [9] ggplot2_4.0.1   tidyverse_2.0.0
+ [1] palmerpenguins_0.1.1 lubridate_1.9.4      forcats_1.0.1       
+ [4] stringr_1.6.0        dplyr_1.1.4          purrr_1.2.0         
+ [7] readr_2.1.6          tidyr_1.3.1          tibble_3.3.0        
+[10] ggplot2_4.0.1        tidyverse_2.0.0     
 
 loaded via a namespace (and not attached):
  [1] bit_4.6.0          gtable_0.3.6       jsonlite_2.0.0     crayon_1.5.3      
