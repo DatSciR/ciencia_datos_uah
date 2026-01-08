@@ -1,4 +1,5 @@
 ---
+ita---
 title: "Día 1 - Introduccion a R y Rstudio. Programa de dcotorado UAH"
 author: "Paloma Ruiz Benito, Verónica Cruz Alonso, Marina Rodes Blanco y Julián Tijerin Triviño"
 date: "2025-12-22"
@@ -37,7 +38,7 @@ Ahora os toca presentaros a la clase, para que este curso también sirva para co
 
 [Un poco de historia de R contada por Jumping Rivers](https://www.jumpingrivers.com/misc/timeline/)
 
-![](images/Rhistory.png)
+![](images/Rhistory.png){width="594"}
 
 ## Presentación
 
@@ -72,6 +73,14 @@ En este curso no veremos ningún día modelizar (ya que hay un curso específico
 |                              |                                                                                               |
 | ¿Cómo trabajamos en equipo?  | Trabajos colaborativos                                                                        |
 +------------------------------+-----------------------------------------------------------------------------------------------+
+
+**Día 5**
+
+Informe en quarto donde presentéis un objetivo a conseguir y desgraneis la descripción de datos, manejo necesario y visualización objetivo a través de un repositorio de github compartido. Grupos de 2-3 personas.
+
+9:00 a 11:00. Trabajo en grupo, resolver dudas.
+
+11:30 a 14:00. Presentación en html generado a través de quarto de 5-7 minutos.
 
 ## Dinámica del curso
 
@@ -221,7 +230,7 @@ Aprende sobre reproducibilidad, ya que es clave y fundamental en ciencia
 
 -   ¿sabes identificar por qué?
 
--    ¿que ventajas y desventajas tiene hacerlo reproducible?
+-   ¿que ventajas y desventajas tiene hacerlo reproducible?
 
 Discutelo en parejas.
 
