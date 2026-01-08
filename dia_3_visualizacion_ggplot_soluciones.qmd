@@ -109,10 +109,41 @@ miplot +
   coord_cartesian(ylim = c(3000, 5000))
 ```
 
-```{r ejercicio h} # Ejercicio h1 - facet_grid  ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = species)) + geom_point(na.rm = TRUE) + facet_grid(rows = vars(sex), cols = vars(species), scales = "free")  # Ejercicio h2 - facet_wrap  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) + geom_point(na.rm = TRUE) + facet_wrap(facets = vars(island), ncol = 2, scales = "free")}
+```{r ejercicio h}
+# Ejercicio h1 - facet_grid  
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = species)) + geom_point(na.rm = TRUE) + 
+  facet_grid(rows = vars(sex), cols = vars(species), scales = "free")  
+
+# Ejercicio h2 - facet_wrap  
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) + geom_point(na.rm = TRUE) + 
+  facet_wrap(facets = vars(island), ncol = 2, scales = "free")
 ```
 
-```{r ejercicio i} # Gráfico base avanzado reto_plot <- ggplot(penguins,                      aes(x = body_mass_g, y = flipper_length_mm,                         color = species,                         shape = sex,                         size = bill_length_mm)) +   geom_point(alpha = 0.6, na.rm = TRUE) +   coord_cartesian(ylim = c(2500, 5000)) +  # Zoom sin perder datos   labs(     title = "Condición física de los pingüinos afectados por enfermedad",     subtitle = "Relación entre masa corporal, longitud de aleta y tamaño del pico",     x = "Masa corporal (g)",     y = "Longitud de aleta (mm)",     color = "Especie",     shape = "Sexo",     size = "Longitud del pico (mm)",     caption = "Fuente: Palmerpenguins"   ) +   theme_bw() +   theme(     legend.position = "bottom",     legend.box = "horizontal",     plot.title = element_text(size = 16, face = "bold"),     plot.subtitle = element_text(size = 12)   )  # Facet grid por sexo y isla reto_plot + facet_grid(rows = vars(sex), cols = vars(island))}
+```{r ejercicio i}
+
+# Gráfico base avanzado 
+
+reto_plot <- ggplot(penguins,aes(x = body_mass_g, y = flipper_length_mm,                         color = species, shape = sex, size = bill_length_mm)) +   
+  geom_point(alpha = 0.6, na.rm = TRUE) +   
+  coord_cartesian(ylim = c(2500, 5000)) +  # Zoom sin perder datos   
+  labs(     
+    title = "Condición física de los pingüinos afectados por enfermedad",         
+    subtitle = "Relación entre masa corporal, longitud de aleta y tamaño del pico",     x = "Masa corporal (g)",     
+    y = "Longitud de aleta (mm)",     
+    color = "Especie",     
+    shape = "Sexo",     
+    size = "Longitud del pico (mm)",     
+    caption = "Fuente: Palmerpenguins"   
+    ) +   
+  theme_bw() +   
+  theme(     
+    legend.position = "bottom",     
+    legend.box = "horizontal",     
+    plot.title = element_text(size = 16, face = "bold"),     
+    plot.subtitle = element_text(size = 12)   
+    )  # Facet grid por sexo y isla 
+
+reto_plot + facet_grid(rows = vars(sex), cols = vars(island))
 ```
 
 # 
