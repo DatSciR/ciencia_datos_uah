@@ -51,6 +51,9 @@ rsconnect/
 # RProject
 .Rproj
 
+# images dir
+images/
+
 # exercices outputs
 data/pixar_joint.csv
 
