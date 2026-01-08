@@ -6,7 +6,7 @@ date: "2025-12-29"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setupa, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
@@ -28,31 +28,27 @@ knitr::include_graphics("figures/datascience.png")
 
 **ggplot2** es uno de los paquetes más utilizados en R para la visualización de datos científicos y forma parte del ecosistema tidyverse, un conjunto de paquetes diseñados para trabajar con datos de forma coherente, eficiente y reproducible. En tidyverse se proporcionan herramientas para importar, ordenar, transformar, analizar y visualizar datos siguiendo una misma filosofía, lo que facilita un flujo de trabajo claro y estructurado, especialmente útil en investigación científica.
 
-A diferencia de otros enfoques más inmediatos, ggplot2 se basa en la Grammar of Graphics, una filosofía que entiende los gráficos como la combinación de componentes bien definidos: los datos, las variables que se representan (estéticas), las formas geométricas que las visualizan, las escalas y el contexto visual. Esta lógica resulta especialmente útil en ecología, donde trabajamos con datasets multidimensionales, heterogéneos y, a menudo, espaciales o temporales.
+A diferencia de otros enfoques más inmediatos, **ggplot2** se basa en la *Grammar of Graphics*, una filosofía que entiende los gráficos como la combinación de componentes bien definidos: los datos, las variables que se representan (*aesthetics*), las formas geométricas que las visualizan, las escalas y el contexto visual. Esta lógica resulta especialmente útil en áreas donde se manejen una gran cantidad de información, donde usualmente se trabaja con datasets multidimensionales, heterogéneos y, a menudo, espaciales o temporales.
 
-En lugar de “dibujar” un gráfico de una sola vez, ggplot2 nos invita a construirlo por capas, añadiendo información de manera progresiva. Este enfoque favorece la exploración de los datos, permite modificar y reutilizar gráficos con facilidad, y encaja muy bien con los principios de ciencia reproducible. Un mismo conjunto de datos puede representarse de múltiples maneras simplemente cambiando una capa o una estética, lo que resulta ideal para comparar escenarios, especies, periodos temporales o gradientes ambientales.
+En lugar de “dibujar” un gráfico de una sola vez, **ggplot2** nos invita a construirlo por capas, añadiendo información de manera progresiva. Este enfoque favorece la exploración de los datos, permite modificar y reutilizar gráficos con facilidad, y encaja muy bien con los principios de ciencia reproducible. Un mismo conjunto de datos puede representarse de múltiples maneras simplemente cambiando una capa o una estética, lo que resulta ideal para comparar escenarios, periodos temporales o gradientes ambientales.
 
-En el contexto de la ecología y la gestión ambiental, **ggplot2** es una herramienta clave para crear figuras como mapas de distribución de especies, relaciones entre variables ambientales, comparaciones entre tratamientos de manejo o análisis de respuestas ecológicas frente a perturbaciones. A lo largo de esta sesión, aprenderemos a utilizar ggplot2 desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.
+IMAGEN DE PINTURA POR CAPAS!
+
+En este contexto, **ggplot2** es una herramienta clave para crear figuras como mapas, relaciones entre variables ambientales, comparaciones entre tratamientos de manejo o análisis de respuestas ecológicas frente a perturbaciones. A lo largo de esta sesión, aprenderemos a utilizar ggplot2 desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.
 
 ## 2.1. Visualización eficaz y ggplot2
 
 Antes de empezar a crear gráficos, es importante reflexionar sobre qué hace que una visualización sea realmente buena. Un buen gráfico no depende solo de que sea visualmente atractivo, sino de dos dimensiones fundamentales:
 
--   La ejecución, es decir, cómo de bien construido está el gráfico desde el punto de vista técnico y visual (claridad, legibilidad, coherencia), y
+-   La EJECUCIÓN, es decir, cómo de bien construido está el gráfico desde el punto de vista técnico y visual (claridad, legibilidad, coherencia), y
 
--   La adecuación, que responde a preguntas clave como qué queremos comunicar, a quién va dirigido, con qué objetivo y en qué contexto se va a utilizar.
+-   La ADECUACIÓN, que responde a preguntas clave como qué queremos comunicar, a quién va dirigido, con qué objetivo y en qué contexto se va a utilizar.
 
 ```{r fig-data-science-example, echo=FALSE, fig.cap = "Figure 2: Conceptual framework of a “good graphic,” considering both execution (how well it is constructed) and appropriateness (what is being communicated, to whom, where, and why). Adapted from Good Charts by Scott Berinato."}
 knitr::include_graphics("figures/buen-grafico.png")
 ```
 
-Este enfoque conceptual, adaptado de Good Charts de Scott Berinato, es especialmente relevante, mostrándose que los gráficos suelen servir para apoyar decisiones de gestión, comunicar resultados a distintos actores o sintetizar sistemas complejos.
-
-En este bloque aprenderemos a representar datos de forma efectiva utilizando el paquete **ggplot2**, parte del ecosistema tidyverse (meta-paquete). ggplot2 permite generar gráficos claros, informativos y estéticamente atractivos con relativamente poco esfuerzo, lo que lo convierte en una herramienta muy eficiente para el análisis exploratorio y la comunicación científica. Al mismo tiempo, es un paquete extremadamente flexible y potente, capaz de adaptarse a una gran variedad de tipos de datos, lo que explica su amplia adopción en la comunidad científica.
-
-**ggplot2** está construido siguiendo la gramática de los gráficos (Grammar of Graphics). Esto implica que, al utilizarlo, el usuario no “dibuja” un gráfico de una sola vez, sino que lo construye progresivamente por capas, de forma similar a una pintura. El flujo de trabajo habitual consiste en crear un lienzo inicial, añadir los datos, definir cómo se mapean las variables a elementos visuales, incorporar geometrías, y finalmente ajustar etiquetas, escalas o temas. Este enfoque facilita tanto la exploración de los datos como la modificación y reutilización de gráficos.
-
-Otra característica fundamental de **ggplot2** es que funciona de manera óptima con datos ordenados (tidy data), donde cada variable es una columna y cada observación una fila. Esta estructura resulta especialmente adecuada para los análisis modernos, en los que se combinan múltiples variables temporales y espaciales, y favorece un flujo de trabajo reproducible y transparente.
+Este enfoque conceptual, adaptado de *Good Charts* de Scott Berinato, es especialmente relevante, mostrándose que los gráficos suelen servir para apoyar decisiones de gestión, comunicar resultados a distintos actores o sintetizar sistemas complejos.
 
 ------------------------------------------------------------------------
 
@@ -79,7 +75,7 @@ Ahora que ya tenemos los paquetes instalados y las librerías que vamos a utiliz
 
 Por ejemplo, que tipo de variables tenemos (e.g., tipo numéricas, tipo caracter, tipo integer).
 
-Miramos las primeras filas del dataset `penguins`:
+Miramos las primeras filas del dataset `penguins`, que es el dataset que vamos a utilizar hoy:
 
 ```{r head}
 head(penguins)
@@ -87,6 +83,14 @@ summary(penguins)
 ```
 
 Con `head()` vamos a ver las primeras líneas de nuestro dataframe. Con `summary()` vamos a ver un resumen de las variables que tiene nuestro dataframe.
+
+## Ejercicio a):
+
+-   ¿Cuántas filas y columnas tiene el dataset penguins?
+
+-   ¿Qué tipo de variable es species?
+
+-   ¿Hay valores NA en alguna variable? ¿En cuál/es?
 
 ------------------------------------------------------------------------
 
@@ -96,7 +100,7 @@ Con `head()` vamos a ver las primeras líneas de nuestro dataframe. Con `summary
 
 ## Breve introducción
 
-La visualización exploratoria de datos es una etapa fundamental en cualquier análisis estadístico. Nos permite detectar patrones, identificar valores atípicos, entender relaciones entre variables y comunicar resultados de manera efectiva. Una visualización bien construida debe ser clara, tener ejes etiquetados apropiadamente, incluir un título descriptivo, una leyenda legible cuando sea necesario, y siempre indicar las unidades de medida.
+La visualización exploratoria de datos es una etapa fundamental en cualquier análisis estadístico científico. Nos permite detectar patrones, identificar valores atípicos, entender relaciones entre variables y comunicar resultados de manera efectiva. Una visualización bien construida debe ser clara, tener ejes etiquetados apropiadamente, incluir un título descriptivo, una leyenda legible cuando sea necesario, y siempre indicar las unidades de medida.
 
 El paquete ggplot2 implementa la *Grammar of Graphics* (Gramática de los Gráficos), un sistema coherente y estructurado para construir visualizaciones. Esta gramática se compone de varios elementos fundamentales: **datos** + **aesthetics** + **geometrías** + **facets** + **escalas** + **temas**., que se combinan de forma modular para crear gráficos complejos.
 
@@ -104,10 +108,12 @@ El paquete ggplot2 implementa la *Grammar of Graphics* (Gramática de los Gráfi
 
 ## 3.2. Antes de empezar: Sintaxis básica y elementos fundamentales
 
-Antes de construir gráficos con ggplot2, es esencial entender los tres componentes fundamentales que definen cualquier visualización creada con este paquete. Estos componentes siguen una lógica específica y se combinan de manera sistemática:
+Antes de construir gráficos con **ggplot2**, es esencial entender los tres componentes fundamentales que definen cualquier visualización creada con este paquete. Estos componentes siguen una lógica específica y se combinan de manera sistemática:
 
-1.  **Datos (data)**: indicamos qué datos queremos mostrar.\
-2.  **Aesthetics (aes)**: definimos cómo se relacionan las variables con las características visuales del gráfico (posición, color, tamaño, forma…).\
+1.  **Datos (data)**: indicamos qué datos queremos mostrar.
+
+2.  **Aesthetics (aes)**: definimos cómo se relacionan las variables con las características visuales del gráfico (posición, color, tamaño, forma…).
+
 3.  **Geometrías (geom)**: definimos el tipo de gráfico que queremos dibujar (puntos, líneas, barras, cajas, etc.).
 
 Esta estructura constituye la **Gramática de los Gráficos**, que proporciona un marco consistente y flexible para crear visualizaciones de nuestros datos.
@@ -122,25 +128,24 @@ Todas las capas se conectan entre sí con el símbolo `+`. Es importante colocar
 
 La sintaxis general para crear un gráfico en **ggplot2** sigue este patrón:
 
-> ggplot(data = DATOS, aes(x = VARIABLE1, y = VARIABLE2)) + GEOMETRÍA() + OPCIONES_ADICIONALES
+> ggplot(**datos** (data = data), **aes**(x = var_1, y = var_2)) + **geometría** (geom\_) + **opciones_adicionales**
 
 A continuación, veremos un ejemplo concreto que ilustra esta estructura. Creamos un histograma para visualizar la distribución de la longitud del pico de los pingüinos.
 
 ```{r}
 ggplot(data = penguins, aes(x = bill_length_mm)) +
-  geom_histogram(binwidth = 1, fill = "steelblue", color = "white") +
+  geom_histogram(binwidth = 1, fill = "steelblue", color = "black") +
   labs(title = "Ejemplo de gráfico usando ggplot", 
        x = "Longitud del pico (mm)")
 ```
 
-## 3.4 Creación de un gráfico paso a paso: ggplot(), el lienzo inicial.
+## 3.4 Creación de un gráfico paso a paso: `ggplot()`, el lienzo inicial.
 
-La función ggplot() inicializa el sistema de gráficos y establece el marco de trabajo. Por sí sola, no produce ninguna visualización, sino que crea un "lienzo vacío" sobre el cual construiremos el gráfico. Es necesario especificar al menos un conjunto de datos para que funcione correctamente.
+La función `ggplot()` inicializa el sistema de gráficos y establece el marco de trabajo. Por sí sola, no produce ninguna visualización, sino que crea un "lienzo vacío" sobre el cual construiremos el gráfico. Es necesario especificar al menos un conjunto de datos para que funcione correctamente.
 
 Al ejecutar solo ggplot(penguins), obtenemos un panel vacío porque no hemos definido qué variables representar ni cómo visualizarlas.
 
 ```{r, echo=TRUE}
-library(palmerpenguins)
 ggplot(data = penguins)
 ```
 
@@ -162,7 +167,7 @@ La función *aes()* (abreviatura de "aesthetics") define las asignaciones estét
 
 **alpha**: Variable que determina la transparencia
 
-En el siguiente código, asignamos la especie de pingüino al eje X, pero aún no especificamos ninguna geometría para representar visualmente estos datos.
+En el siguiente código, asignamos la especie de pingüino al eje X, pero aún **no especificamos ninguna geometría** para representar visualmente estos datos.
 
 ```{r grafico aes, echo=TRUE}
 
@@ -170,7 +175,7 @@ ggplot(data = penguins, aes(x = species))
 
 ```
 
-### Aquí estamos diciendo:
+## Aquí estamos diciendo:
 
 eje X → Especie de pingüino (*species*)
 
@@ -195,11 +200,15 @@ Ahora añadimos una geometría (geom_bar) de barras al gráfico anterior para cr
 ```{r ejemplo de gráfico de barras, echo=TRUE}
 
 ggplot(penguins, aes(x = species)) +
-  geom_bar()
+  geom_bar(stat = "count")
 
 ```
 
 ------------------------------------------------------------------------
+
+## Ejercicio b):
+
+Crea dos gráficos: uno que muestre el número de individuos por especie y otro el número de individuos por isla. Prueba diferentes geometrías.
 
 ## 3.7 Gráficos bidimensionales
 
@@ -219,17 +228,41 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 
 Este gráfico de dispersión muestra la relación entre la longitud de la aleta (eje X) y la masa corporal (eje Y) de los pingüinos. Podemos observar una tendencia positiva: en general, los pingüinos con aletas más largas tienden a tener mayor masa corporal.
 
-IMPORTANTE: Los datos se pueden colocar dentro de la funcion ggplot si se van a usar los mismos en todas las geometrias. Por ejemplo, si queremos representar una linea de tendencia lineal para estas variables
+Dentro de la función `aes()` podemos especificar cómo las variables del conjunto de datos se traducen en propiedades visuales del gráfico. Estas propiedades visuales se denominan *aesthetics* y permiten incorporar información adicional sin necesidad de crear gráficos separados.
+
+En un **scatterplot**, además de definir las variables que se representan en los ejes X e Y, es posible mapear otras variables del dataset a distintos atributos visuales, entre ellos:
+
+\-**color**: permite diferenciar grupos o categorías mediante colores distintos. Es especialmente útil para variables categóricas. Aunque también puede usarse con variables continuas.
+
+\-**shape**: asigna distintas formas a los puntos según una variable categórica.
+
+\-**size**: controla el tamaño de los puntos. Puede utilizarse para representar variables continuas o, con precaución, variables categóricas.
+
+\-**alpha (transparencia)**: permite ajustar la opacidad de los puntos. Aunque suele fijarse como un valor constante, también puede mapearse a una variable para resaltar gradientes o reducir problemas de solapamiento.
+
+IMPORTANTE: Los datos se pueden colocar dentro de la funcion `ggplot()` si se van a usar los mismos en todas las geometrias. Por ejemplo, si queremos representar una linea de tendencia lineal para estas variables
 
 ```{r scatter-basic-2}
-# Gráfico de dispersión bidimensional básico
+# Gráfico de dispersión bidimensional básico con recta de regresión
 # Aquí necesitamos especificar tanto el eje X como el eje Y
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = year)) +
   geom_point() + geom_smooth(method = "lm")
 
 ```
 
 Hasta aquí habríamos creado un gráfico básico utilizando **ggplot2**. A partir de aquí trabajaremos para mejorar la visualización de nuestros gráficos, añadir elementos y/o representar nuestros datos de la manera más adecuada a nuestros requerimientos.
+
+## Ejercicio c)
+
+Crea un gráfico de dispersión que muestre la relación entre: Longitud de la aleta (*flipper_length_mm*) vs Masa corporal (*body_mass_g*)
+
+Añade la siguiente información visual:
+
+-   Colorea los puntos según la especie (species).
+
+-   Usa formas distintas para el sexo (sex).
+
+-   Ajusta la transparencia de los puntos para mejorar la visualización.
 
 ### Como guardar plots satisfactorios
 
@@ -242,7 +275,7 @@ Primero debejos asignar nuestro gráfico a un objeto:
 plot_pinguinos <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + geom_point()
 ```
 
-Ahora, utilizando la funcion ggsave(), y especificando las características con las que queremos guardar nuetro gráfico (formato, tamaño, unidades, dpi, etc), procedemos a guardar el resultado para poderlo utilizar fuera del entorno de R.
+Ahora, utilizando la funcion `ggsave()`, y especificando las características con las que queremos guardar nuetro gráfico (formato, tamaño, unidades, dpi, etc), procedemos a guardar el resultado para poderlo utilizar fuera del entorno de R.
 
 ```{r scatter-basic-4}
 # Guardar en formato JPG con alta resolución (300 dpi)
@@ -256,76 +289,31 @@ ggsave(filename = "penguins_scatter.pdf", plot = plot_pinguinos,
 
 💡 Consejo sobre dimensiones: Algunas revistas científicas tienen especificaciones detalladas sobre el formato de los gráficos. Cuando no hay directrices específicas, es recomendable diseñar los gráficos pensando en un formato A4 (21 × 29.7 cm), asegurándose de que todos los elementos sean legibles cuando se reduzcan o amplíen a este tamaño.
 
-# Scatterplot con colores por categoría
-
-Podemos enriquecer los gráficos bidimensionales añadiendo una tercera variable mediante colores, formas o tamaños. Esto nos permite visualizar patrones dentro de subgrupos de datos.
-
-```{r scatter-basic + colors}
-# Gráfico de dispersión bidimensional con colores por especie
-ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
-  geom_point(size = 2, alpha = 0.8) 
-```
-
-## 3.8 Ejercicio práctico
+## Ejercicio d):
 
 Crea dos gráficos:
 
-1.1. -Un gráfico unidimensional que muestre el número de individuos por isla (island).
+-Un gráfico unidimensional que muestre el número de individuos por isla (island).
 
-1.2. -Un gráfico bidimensional que muestre la relación entre la masa corporal y la longitud del pico, diferenciando por sexo mediante colores.
+-Un gráfico bidimensional que muestre la relación entre la masa corporal y la longitud del pico, diferenciando por sexo mediante colores. Añade transparecia y un tamaño determinado a los puntos. Prueba diferentes transparecias y tamaños.
 
-1.3. -Guarda ambos gráficos en formato JPG con dimensiones apropiadas.
+-Guarda ambos gráficos en formato JPG con dimensiones apropiadas.
 
-```{r ejercicio práctico 1.1}
-# 1.1. Gráfico unidimensional: número de individuos por isla
-plot_unidimensional <- ggplot(penguins, aes(x = island)) +
-  geom_bar(fill = "steelblue", alpha = 0.8) +
-  labs(title = "Número de individuos por isla",
-       x = "Isla",
-       y = "Conteo") +
-  theme_minimal()
+## 3.8 *Aesthetics* vs. argumentos estéticos
 
-# Mostrar los gráficos 1.1
-plot_unidimensional
-```
+Es crucial entender la diferencia entre definir propiedades estéticas dentro de `aes()`, que están vinculadas a variables, y fuera de `aes()`, que son valores fijos que afectarán a la totalidad de los componentes del gráfico:
 
-```{r ejercicio práctico 1.2}
-# 1.2. Gráfico bidimensional: relación masa corporal vs longitud del pico por sexo
-plot_bidimensional <- ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, color = sex)) +
-  geom_point(size = 2, alpha = 0.7) +
-  labs(title = "Relación entre masa corporal y longitud del pico",
-       x = "Longitud del pico (mm)",
-       y = "Masa corporal (g)",
-       color = "Sexo") +
-  theme_minimal()
+-   Dentro de `aes()`: El valor visual varía según los datos de una variable.
+-   Fuera de `aes()`: El valor visual es constante para todos los elementos.
 
-# Mostrar los gráficos 1.2.
-plot_bidimensional
-```
-
-```{r ejercicio práctico 1.3}
-# Guardar los gráficos
-ggsave("individuos_por_isla.jpg", plot_unidimensional, 
-       width = 15, height = 10, units = "cm", dpi = 300)
-ggsave("relacion_masa_pico.jpg", plot_bidimensional, 
-       width = 15, height = 10, units = "cm", dpi = 300)
-```
-
-## 3.9 Aesthetics vs. argumentos estéticos
-
-Es crucial entender la diferencia entre definir propiedades estéticas dentro de aes(), que están vinculadas a variables, y fuera de aes(), que son valores fijos que afectarán a la totalidad de los componentes del gráfico:
-
--   Dentro de aes(): El valor visual varía según los datos de una variable.
--   Fuera de aes(): El valor visual es constante para todos los elementos.
-
-En el primer ejemplo, el color está mapeado a la variable sex, por lo que ggplot asignará automáticamente colores diferentes a cada categoría de sexo.
+En el primer ejemplo, el color está mapeado a la variable *sex*, por lo que ggplot asignará automáticamente colores diferentes a cada categoría de sexo.
 
 ```{r scatter-smooth-1}
 ggplot(data = penguins) + 
   geom_point(aes(x = body_mass_g, y = bill_depth_mm, color = sex))
 ```
 
-En el segundo ejemplo, el color se especifica fuera de aes(), por lo que todos los puntos tendrán el mismo color (azul oscuro), independientemente de los datos.
+En el segundo ejemplo, el color se especifica fuera de `aes()`, por lo que todos los puntos tendrán el mismo color (azul oscuro), independientemente de los datos.
 
 ```{r scatter-smooth-2}
 ###Hay que tener mucho cuidado de dónde se insertan los diferentes argumentos
@@ -334,15 +322,41 @@ ggplot(data = penguins) +
   geom_point(aes(x = body_mass_g, y = bill_depth_mm), color = "darkblue")
 ```
 
-Esta distinción es fundamental: cuando queremos que un atributo visual (color, tamaño, forma) represente información de una variable, debe ir dentro de aes(). Cuando queremos que todos los elementos tengan el mismo valor para ese atributo, debe ir fuera.
+Esta distinción es fundamental: cuando queremos que un atributo visual (color, tamaño, forma) represente información de una variable, debe ir dentro de `aes()`. Cuando queremos que todos los elementos tengan el mismo valor para ese atributo, debe ir fuera.
 
-En la ayuda de las funciones de {ggplot2} aparece una lista de los aesthetics y los argumentos estéticos que acepta esa función. Se pueden incluir tantos aesthetics como se deseen.
+En la ayuda de las funciones de **ggplot2** aparece una lista de los *aesthetics* y los argumentos estéticos que acepta esa función. Se pueden incluir tantos aesthetics como se deseen.
 
-Ejercicio:
+## Ejercicio e):
 
-ggplot(data = penguins)
+Crea un gráfico de dispersión que muestre la relación entre: Masa corporal (body_mass_g) vs. Profundidad del pico (bill_depth_mm).
 
-## 3.10 Tipos de gráfico (geoms)
+En un primer gráfico:
+
+-   Colorea los puntos según la especie (species).
+
+-   Fija el tamaño de los puntos a un valor constante.
+
+En un segundo gráfico:
+
+-   Usa un único color para todos los puntos.
+
+-   Mapea el tamaño de los puntos a la masa corporal.
+
+Observa ambos gráficos y responde:
+
+-   ¿En cuál aparece una leyenda?
+
+-   ¿Qué aesthetics dependen de los datos y cuáles no?
+
+RESPONDE:
+
+-   ¿Qué gráfico comunica mejor la información?
+
+-   ¿Es buena idea mapear una variable al tamaño en este caso?
+
+-   ¿Qué ocurriría si ponemos color = "species" fuera de aes()?
+
+## 3.9 Tipos de gráfico (geom\_)
 
 La elección del tipo de gráfico apropiado depende fundamentalmente de:
 
@@ -356,7 +370,7 @@ knitr::include_graphics("figures/tipos_variables.png")
 
 💡Para elegir qué tipo de gráfico nos conviene según el propósito una herrramienta muy útil es [chuleta sobre los principios de los gráficos](https://graphicsprinciples.github.io/cheatsheet.html).
 
-### 3.10.1 Exploración de variables cualitativas (unidimensional)
+### 3.9.1 Exploración de variables cualitativas (unidimensional)
 
 Las variables cualitativas (también llamadas categóricas) representan atributos o categorías sin un orden numérico inherente. En el conjunto de datos penguins, ejemplos claros son:
 
@@ -370,7 +384,7 @@ Cuando queremos saber cuántas observaciones hay en cada categoría. El conteo r
 
 ¿Cuántas observaciones hay en cada categoría?
 
-El gráfico de barras (geom_bar()) es la opción más directa y efectiva..
+El gráfico de barras `geom_bar()` es la opción más directa y efectiva..
 
 ```{r conteo ind/spp}
 ggplot(penguins, aes(x = species)) +
@@ -379,7 +393,7 @@ geom_bar()
 
 Interpretación: Este gráfico nos muestra claramente que la especie Adelie es la más numerosa en nuestro conjunto de datos, seguida por Gentoo y finalmente Chinstrap. Los conteos absolutos nos permiten entender la representatividad de cada categoría en nuestra muestra.
 
-### 3.10.2 Proporciones dentro de categorías
+### 3.9.2 Proporciones dentro de categorías
 
 Cuando queremos entender la composición interna de cada categoría (por ejemplo, "¿Cómo se distribuyen los sexos dentro de cada especie?"), usamos gráficos de barras con el argumento `fill` y diferentes posiciones.
 
@@ -392,7 +406,7 @@ ggplot(penguins, aes(x = species, fill = sex)) +
 #Para comparación directa entre subgrupos, usamos position = "dodge"
 ```
 
-### 3.10.3 Exploración de variables cuantitativas (numéricas)
+### 3.9.3 Exploración de variables cuantitativas (numéricas)
 
 Las variables cuantitativas describen medidas numéricas. Estas variables pueden ser continuas o discretas. En penguins, ejemplos incluyen:
 
@@ -406,11 +420,11 @@ Las variables cuantitativas describen medidas numéricas. Estas variables pueden
 
 Estas variables pueden tomar cualquier valor dentro de un rango continuo (incluyendo decimales). En penguins: body_mass_g (Peso corporal (gr)),flipper_length_mm (Longitud de la aleta (mm)), bill_length_mm (Longitud del pico (mm)).
 
-Distribución de una variable continua
+### Distribución de una variable continua
 
 Para explorar cómo se distribuyen los valores de una variable continua, usamos principalmente dos tipos de gráficos:
 
-Histograma (geom_histogram()) -\> Divide el rango de valores en intervalos (bins) y muestra la frecuencia en cada intervalo:
+Histograma (`geom_histogram()`) -\> Divide el rango de valores en intervalos (bins) y muestra la frecuencia en cada intervalo:
 
 ```{r cuantitativas continuas-1}
 # Histograma básico - muestra la distribución en intervalos
@@ -418,7 +432,7 @@ ggplot(penguins, aes(x = body_mass_g)) +
   geom_histogram(binwidth = 100)  # binwidth controla el ancho de cada intervalo
 ```
 
-Gráfico de densidad (geom_density()) -\> Muestra una estimación suavizada de la distribución continua:
+Gráfico de densidad (`geom_density()`) -\> Muestra una estimación suavizada de la distribución continua:
 
 ```{r cuantitativas continuas-2}
 # Gráfico de densidad - curva suavizada
@@ -426,9 +440,9 @@ ggplot(penguins, aes(x = body_mass_g)) +
   geom_density()
 ```
 
-Comparación entre grupos Cuando queremos comparar la distribución de una variable continua entre diferentes categorías podemos utilizar:
+Comparación entre grupos: Cuando queremos comparar la distribución de una variable continua entre diferentes categorías podemos utilizar:
 
-Diagrama de cajas (geom_boxplot()) - Muestra estadísticos de resumen (mediana, cuartiles, valores atípicos):
+Diagrama de cajas (`geom_boxplot()`) - Muestra estadísticos de resumen (mediana, cuartiles, valores atípicos):
 
 ```{r boxplot}
 # Boxplot comparando masa corporal entre especies
@@ -458,7 +472,7 @@ datos_crias <- data.frame(
 )
 ```
 
-Para variables discretas, podemos usar geom_bar() con stat = "count" o geom_histogram() con bins centrados en los valores enteros
+Para variables discretas, podemos usar `geom_bar()` con *stat = "count"* o `geom_histogram()` con *bins* centrados en los valores enteros
 
 ```{r discreta-bar}
 # Opción 1: geom_bar() para conteos de valores discretos
@@ -476,45 +490,32 @@ ggplot(datos_crias, aes(x = crias)) +
 
 ## Característica Variables continuas Variables discretas
 
-Valores posibles Cualquier valor en un rango (incluye decimales) Solo valores específicos (generalmente enteros) Geometría típica `geom_histogram()`, `geom_density()` `geom_bar()`, `geom_histogram()` con bins específicos Ajuste de bins binwidth o bins para agrupar valores continuos binwidth = 1 para separar cada valor entero Posiciones en eje X Escala continua con cualquier valor posible Escala discreta con saltos entre valores
-
 | Característica | Variables continuas | Variables discretas |
-|-----------------|--------------------------|------------------------------|
+|------------------|-------------------------|-----------------------------|
 | Valores posibles | Cualquier valor en un rango (incluye decimales) | Solo valores específicos (generalmente enteros) |
-| Geometría típica | `geom_histogram()`, `geom_density()` | `geom_bar()`, `geom_histogram()` con bins específicos |
+| Geometría típica | `geom_histogram()`, `geom_density()` | `geom_bar()`, `geom_histogram()` |
 | Ajuste de bins | binwidth o bins para agrupar valores continuos | binwidth = 1 para separar cada valor entero |
 | Posiciones en eje X | Escala continua con cualquier valor posible | Escala discreta con saltos entre valores |
 
-### Variables discretas en penguins
-
-Aunque todas las variables numéricas en penguins son técnicamente continuas, algunas pueden tratarse como discretas en ciertos contextos:
-
-```{r discreta-3}
-# Tratando year como variable discreta (aunque sea temporal)
-ggplot(penguins, aes(x = factor(year))) +  # Convertimos a factor para tratarlo como discreto
-  geom_bar() +
-  labs(x = "Año", title = "Número de observaciones por año")
-```
-
-Resumen práctico: ¿Cómo elegir?
+## Resumen práctico: ¿Cómo elegir?
 
 ## Para variables continuas:
 
-Histograma (geom_histogram): Cuando queremos ver la distribución en intervalos específicos
+Histograma (`geom_histogram`): Cuando queremos ver la distribución en intervalos específicos
 
-Densidad (geom_density): Cuando queremos una visión suavizada de la distribución
+Densidad (`geom_density`): Cuando queremos una visión suavizada de la distribución
 
-Boxplot (geom_boxplot): Para comparar estadísticos entre grupos
+Boxplot (`geom_boxplot`): Para comparar estadísticos entre grupos
 
-Violín (geom_violin): Para comparar distribuciones completas entre grupos
+Violín (`geom_violin`): Para comparar distribuciones completas entre grupos
 
 ## Para variables discretas:
 
-Gráfico de barras (geom_bar): Cuando tenemos pocos valores posibles y queremos mostrar conteos
+Gráfico de barras (`geom_bar`): Cuando tenemos pocos valores posibles y queremos mostrar conteos
 
-Histograma con binwidth = 1: Cuando queremos mantener la apariencia de histograma pero con valores discretos
+Histograma con binwidth = 1 (`geom_histogram`): Cuando queremos mantener la apariencia de histograma pero con valores discretos
 
-Ejercicio práctico: Para cada una de estas variables de penguins, identifica si es continua o discreta (o podría tratarse como discreta) y crea el gráfico apropiado:
+Ejercicio: Para cada una de estas variables de penguins, identifica si es continua o discreta (o podría tratarse como discreta) y crea el gráfico apropiado:
 
 flipper_length_mm (longitud de aleta)
 
@@ -526,16 +527,6 @@ year (año de observación)
 
 sex (sexo)
 
-{r \# 1. flipper_length_mm - Variable continua ggplot(penguins, aes(x = flipper_length_mm)) + geom_histogram(binwidth = 2) + labs(title = "Distribución de longitud de aleta (continua)")
-
-# 2. bill_depth_mm - Variable continua
-
-ggplot(penguins, aes(x = bill_depth_mm)) + geom_density(fill = "lightblue", alpha = 0.5) + labs(title = "Distribución de profundidad del pico (continua)")
-
-# 3. year - Variable discreta (aunque sea temporal)
-
-ggplot(penguins, aes(x = factor(year))) + geom_bar(fill = "steelblue") + labs(x = "Año", y = "Conteo", title = "Observaciones por año (discreta)")
-
 Consejo clave: La elección entre tratar una variable como continua o discreta depende del contexto analítico. En general:
 
 -   Variables de medición (peso, longitud, tiempo) suelen ser continuas
@@ -546,9 +537,41 @@ Consejo clave: La elección entre tratar una variable como continua o discreta d
 
 Esta distinción es importante porque afecta cómo interpretamos los gráficos y qué tipo de análisis estadístico realizamos posteriormente.
 
-# 5 {ggplot2}: Funciones avanzadas
+## Ejercicio f):
 
-## 5.1 Etiquetas (labs())
+Crea dos gráficos:
+
+1.  Exploración de variables cualitativas
+
+Variables: species, island, sex
+
+Tareas: a) Identifica qué variable(s) se pueden graficar con un `geom_bar()`. b) Crea un gráfico de barras para la variable más interesante y colorea las barras según sex. c) Ajusta la posición para mostrar proporciones (position = "fill") y otra vez para mostrar conteos (position = "dodge").
+
+Preguntas:
+
+¿Cuál es la especie/isla más frecuente?
+
+¿Cómo cambia la interpretación al usar *fill* y *dodge*?
+
+¿Se observa algún patrón interesante entre sexos y especies?
+
+2.  Exploración de variables continuas y relación entre ellas
+
+Variables: bill_length_mm, bill_depth_mm, body_mass_g
+
+Tareas: a) Crea un scatterplot de bill_length_mm vs bill_depth_mm. b) Colorea los puntos según species y usa tamaño de punto (size) según body_mass_g. c) Agrega transparencia (alpha) para manejar solapamiento.
+
+Preguntas:
+
+¿Se forman grupos claros según especie?
+
+¿Qué especie tiene picos más largos o profundos?
+
+¿Cómo ayuda el tamaño y la transparencia a visualizar la relación entre variables?
+
+# 5 **ggplot2**: Funciones avanzadas
+
+## 5.1 Etiquetas (`labs()`)
 
 Las etiquetas son elementos fundamentales para mejorar la claridad y comprensión de los gráficos. La función labs() nos permite personalizar todos los textos descriptivos de un gráfico, haciéndolo autónomo y comprensible sin necesidad de referencias externas. Es crucial para crear visualizaciones profesionales que puedan ser interpretadas correctamente fuera de su contexto original, por ejemplo en una presentación de ppt.
 
@@ -557,16 +580,16 @@ Comenzamos creando un gráfico base de diagramas de caja que relaciona la especi
 ```{r grafico}
 
 # Gráfico base
-pnumcat <- ggplot(data = penguins) + 
+miplot1 <- ggplot(data = penguins) + 
   geom_boxplot(aes(x = species, y = body_mass_g))
-pnumcat
+miplot1
 ```
 
 Ahora aplicamos la función labs() para añadir todos los elementos textuales necesarios: título principal, subtítulo contextual, etiquetas descriptivas para ambos ejes y un pie de figura que indica la fuente de los datos.
 
 ```{r grafico-2}
 # Añadir etiquetas descriptivas
-pnumcat + 
+miplot1 + 
   labs(
     title = "Masa corporal de los pingüinos por especie",
     subtitle = "Datos de las tres islas",
@@ -586,7 +609,7 @@ La función coord_cartesian() permite enfocar en una región específica del gr�
 
 ```{r coordenadas}
 # Zoom en el eje Y
-pnumcat +
+miplot1 +
   coord_cartesian(ylim = c(2000, 4500))
 ```
 
@@ -594,11 +617,11 @@ En contraste, cuando se usan límites directamente en la escala (scale\_\*\_cont
 
 ```{r coordenadas_1.1}
 # Límite en escala que SÍ descarta datos (observaciones fuera de 2000-6000 se eliminan)
-pnumcat +
+miplot1 +
   scale_y_continuous(limits = c(2000, 4500))
 
 # Equivalente usando ylim() - también descarta datos
-pnumcat +
+miplot1 +
   ylim(2000, 4500)
 ```
 
@@ -612,9 +635,59 @@ scale_y_continuous(limits = c(2000, 4500)): **Filtra y elimina datos fuera del r
 
 Esta diferencia es crucial cuando se usan estadísticos como regresiones o suavizados, ya que al descartar datos se afectan los cálculos de tendencias y modelos.
 
+## Ejercicio g):
+
+1.  Diagrama de cajas con etiquetas completas
+
+<!-- -->
+
+a)  Crea un gráfico de boxplot de body_mass_g por species.
+b)  Añade etiquetas usando labs() para:
+
+Título principal: “Distribución de masa corporal por especie”
+
+Subtítulo: “Datos del estudio Palmer Penguins”
+
+Eje X: “Especie de pingüino”
+
+Eje Y: “Masa corporal (g)”
+
+Pie de figura: “Fuente: palmerpenguins”
+
+Preguntas:
+
+¿Por qué es importante incluir todas estas etiquetas en un gráfico que será mostrado fuera de contexto?
+
+¿Qué aporta el subtítulo respecto al título?
+
+2.  Ajuste de coordenadas / zoom
+
+<!-- -->
+
+a)  Aplica coord_cartesian() para enfocar la vista entre 3000 y 5000 g en el eje Y.
+b)  Crea otro gráfico usando ylim(3000, 5000) y observa la diferencia.
+
+Preguntas:
+
+¿Qué sucede con los puntos fuera del rango cuando usamos coord_cartesian() vs ylim()?
+
+¿Por qué podría ser problemático usar ylim() si más adelante añadimos suavizados o regresiones?
+
+3.  Bonus opcional – combinación de aesthetics
+
+Agrega color a los boxplots según sex.
+
+Mantén las etiquetas y el zoom aplicados.
+
+Observa si el patrón de masas cambia entre sexos dentro de cada especie.
+
+Pregunta:
+
+¿Qué insights adicionales proporciona el color dentro de cada grupo?
+
 ## 5.3 Faceting
 
-El faceting (o creación de múltiples paneles) es una técnica poderosa para visualizar subconjuntos de datos en gráficos separados pero comparables. Es especialmente útil para analizar patrones entre diferentes grupos categóricos. Comenzamos creando un gráfico de dispersión base que relaciona masa corporal con longitud de aleta, coloreado por especie.
+El faceting (o creación de múltiples paneles) es una técnica muy potente para visualizar subconjuntos de datos en gráficos separados pero comparables. Es especialmente útil para analizar patrones entre diferentes grupos categóricos. Comenzamos creando un gráfico de dispersión base que relaciona masa corporal con longitud de aleta, coloreado por especie.
 
 ```{r facets}
 miplot2 <- ggplot(data = penguins, 
@@ -650,6 +723,38 @@ miplot2 +
 ```
 
 Explicación: facet_grid() organiza por filas/columnas, facet_wrap() empaqueta múltiples paneles.
+
+## Ejercicio h)
+
+h1) Visualizar la relación entre masa corporal (body_mass_g) y longitud de aleta (flipper_length_mm) diferenciando por sexo y especie.
+
+-   Crea un scatterplot de *body_mass_g* vs *flipper_length_mm*, coloreando los puntos por species.
+
+Filas: sex
+
+Columnas: species
+
+Observa cómo se distribuyen los datos según estas dos variables categóricas.
+
+Preguntas:
+
+-   ¿Qué patrones diferenciales se observan entre machos y hembras para cada especie?
+
+-   ¿Qué ventaja tiene facet_grid() para comparar categorías cruzadas en filas y columnas?
+
+h2) Visualizar la relación entre longitud del pico (bill_length_mm) y profundidad del pico (bill_depth_mm) por isla.
+
+-   Crea un scatterplot de bill_length_mm vs bill_depth_mm, coloreando los puntos por species.
+
+Aplica la faceta más adecuada para crear un panel por isla, con 2 columnas (ncol = 2).
+
+-   Analiza cómo varían las medidas del pico según la isla.
+
+Preguntas:
+
+-   ¿Qué faceta es más adecuada cuando solo queremos facetear por una variable con varias categorías?
+
+-   ¿Qué información adicional se obtiene al comparar paneles lado a lado?
 
 ## 5.4 Posición
 
@@ -842,7 +947,7 @@ theme_dark() - Tema oscuro Similar al tema gris por defecto, pero con colores in
 base_plot + theme_dark()
 ```
 
-##5.7.2 Temas de paquetes externos Existen paquetes adicionales que proporcionan temas especializados. Uno de los más populares es *ggthemes*, que incluye temas que imitan estilos de publicaciones como *The Economist*, *Wall Street Journal*, *Excel*, entre otros.
+## 5.7.2 Temas de paquetes externos Existen paquetes adicionales que proporcionan temas especializados. Uno de los más populares es *ggthemes*, que incluye temas que imitan estilos de publicaciones como *The Economist*, *Wall Street Journal*, *Excel*, entre otros.
 
 Primero, si no está instalado, debemos instalar el paquete ggthemes:
 
@@ -1059,6 +1164,1699 @@ base_plot +
     )
   )
 ```
+
+## Ejercicio i):
+
+En los últimos meses, los biólogos han observado que una enfermedad está afectando a los pingüinos de las islas Palmer. Para monitorear la condición física de las aves, se han registrado varias características de cada individuo:
+
+**species** (Adelie, Chinstrap, Gentoo)
+
+**island** (Biscoe, Dream, Torgersen)
+
+**sex** (female, male)
+
+**body_mass_g** (masa corporal en gramos)
+
+**flipper_length_mm** (longitud de la aleta)
+
+**bill_length_mm** y **bill_depth_mm** (medidas del pico)
+
+**year** (año de observación)
+
+El equipo de investigación quiere explorar cómo las características físicas se relacionan entre sí y con la isla y el sexo de los pingüinos, para identificar posibles grupos más vulnerables. Tu misión es crear una visualización completa que permita analizar la situación y comunicarla profesionalmente.
+
+Tareas del reto:
+
+**Gráfico base y aesthetics**
+
+-   Crea un scatterplot de body_mass_g vs flipper_length_mm.
+
+-   Mapea species a color, sex a forma y bill_length_mm al tamaño de los puntos.
+
+-   Ajusta la transparencia (alpha) para evitar sobreposición de puntos.
+
+**Faceting avanzado**
+
+-   Usa las facetas para crear paneles por sexo (filas) e isla (columnas).
+
+-   Observa si la relación masa-longitud de aleta difiere entre islas o sexos.
+
+-   Compara con facetas (`facet_grid()` vs `facet_wrap()`): ¿Qué ventajas y limitaciones tiene cada enfoque?
+
+**Zoom y filtrado visual**
+
+-   Aplica `coord_cartesian()` para centrarte en masa corporal entre 2500 y 5000 g, sin eliminar datos.
+
+-   Experimenta con `ylim()` y observa qué pasa con los datos fuera del rango.
+
+**Etiquetas y tema profesional** bb
+
+-   Añade título, subtítulo, ejes y pie de figura con labs().
+
+-   Aplica un tema adecuado: theme_dark() para presentación en pantalla o theme_bw() para informe académico.
+
+-   Ajusta posición, tamaño y disposición de la leyenda usando theme().
+
+**Análisis e interpretación**
+
+-   Según tu gráfico, ¿qué especie parece más afectada por la enfermedad (ej.: menor masa corporal promedio)?
+
+-   ¿Algún sexo o isla muestra mayor vulnerabilidad?
+
+-   ¿La longitud de aleta y la masa corporal se comportan de manera consistente entre islas?
+
+-   ¿Hay subgrupos que podrían requerir vigilancia especial?
+
+# 7. Mapas con ggplot2: Introducción a la visualización de datos espaciales.
+
+La representación de mapas es una parte fundamental de muchas disciplinas científicas, desde la ecología y geografía hasta la salud pública y la sociología. En R, podemos crear mapas de alta calidad utilizando ggplot2, siempre que transformemos los datos espaciales en un formato estructurado que ggplot pueda entender.
+
+Existen dos tipos principales de datos espaciales: raster y vectorial. Los datos raster están compuestos por una matriz de píxeles (cada uno con un valor), mientras que los datos vectoriales están compuestos por puntos, líneas y polígonos.
+
+## 7.1 Mapas ráster
+
+Los mapas ráster son útiles para representar datos continuos sobre una superficie, como temperatura, elevación, o densidad de población. Cada celda en el raster tiene un valor numérico que representa la variable de interés.
+
+Preparación del entorno: Cargar y visualizar datos raster básicos.
+
+Vamos a utilizar paquetes que son estándar y ampliamente disponibles. Si no los tienes instalados, puedes instalarlos con install.packages().
+
+```{r raster}
+# Cargar las librerías necesarias
+library(terra)    # Para datos raster
+library(viridis)  # Para paletas de colores
+```
+
+Comenzaremos con un ejemplo simple usando datos de elevación incluidos en el paquete terra. Estos datos representan la topografía de una región específica.
+
+```{r raster-2}
+# Cargar datos de ejemplo de elevación
+# system.file() busca el archivo dentro del paquete instalado
+r <- rast(system.file("ex/elev.tif", package = "terra"))
+
+# Examinar la estructura del objeto raster
+print(r)
+```
+
+```{r raster-3}
+# Información básica sobre el raster
+cat("Resolución (tamaño de celda):", res(r), "\n")
+cat("Extensión (límites):\n")
+print(ext(r))
+```
+
+##Transformar datos raster para ggplot2 Para usar datos raster en ggplot2, necesitamos convertirlos a un formato tabular (data.frame) que contenga las coordenadas (x, y) y los valores de cada celda.
+
+```{r raster-4}
+# Convertir raster a data.frame para ggplot
+# xy = TRUE incluye las coordenadas, na.rm = TRUE elimina celdas sin valor
+r_df <- as.data.frame(r, xy = TRUE, na.rm = TRUE)
+```
+
+```{r raster-5}
+# Examinar la estructura de los datos transformados
+head(r_df)
+str(r_df)
+```
+
+```{r raster-6}
+# Cambiar el nombre de la columna para mayor claridad
+names(r_df)[3] <- "elevacion"
+head(r_df)
+```
+
+##Crear un mapa raster con ggplot2 Ahora que tenemos los datos en formato tabular, podemos crear un mapa usando `geom_raster()`.
+
+```{r raster-7}
+# Mapa básico con ggplot
+ggplot() +
+  geom_raster(data = r_df, aes(x = x, y = y, fill = elevacion)) +
+  labs(title = "Mapa de elevación usando ggplot2",
+       x = "Longitud", 
+       y = "Latitud",
+       fill = "Elevación (m)") +
+  theme_minimal()
+```
+
+## Mejorar la visualización del mapa raster
+
+Podemos mejorar nuestro mapa ajustando la paleta de colores, añadiendo contornos y mejorando la leyenda.
+
+```{r raster-8}
+# Mapa mejorado con paleta de colores secuencial
+ggplot() +
+  geom_raster(data = r_df, aes(x = x, y = y, fill = elevacion)) +
+  # Añadir curvas de nivel para mejorar la lectura
+  geom_contour(data = r_df, aes(x = x, y = y, z = elevacion), 
+               color = "gray30", alpha = 0.5, linewidth = 0.3) +
+  # Usar una paleta de colores secuencial (viridis)
+  scale_fill_viridis_c(option = "plasma", direction = -1) +
+  # Ajustar coordenadas para mantener proporciones
+  coord_equal() +
+  labs(title = "Mapa topográfico mejorado",
+       subtitle = "Datos de elevación con curvas de nivel",
+       x = "Longitud", 
+       y = "Latitud",
+       fill = "Altitud (m)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    legend.position = "right",
+    legend.key.height = unit(2, "cm")
+  )
+```
+
+## 7.2 Mapas vectoriales
+
+Los mapas vectoriales son ideales para representar límites administrativos, ríos, carreteras y otros elementos lineales o poligonales. En ggplot2, la función principal para trabajar con datos vectoriales es `geom_sf()`.
+
+## Trabajar con datos vectoriales simples
+
+Comenzaremos con datos vectoriales básicos usando el paquete terra, que incluye conjuntos de datos espaciales de ejemplo.
+
+### Cargar datos vectoriales de ejemplo
+
+Vamos a cargar datos de límites administrativos de un país de ejemplo que viene incluido con el paquete *terra*.
+
+```{r vectorial-1}
+# Cargar librería para datos vectoriales
+# sf es el estándar para datos vectoriales en R
+library(sf)
+```
+
+```{r vectorial-2}
+# Cargar datos vectoriales de ejemplo (Luxemburgo)
+# system.file() busca el archivo shapefile dentro del paquete
+lux_vector <- vect(system.file("ex/lux.shp", package = "terra"))
+```
+
+```{r vectorial-3}
+# Convertir a formato sf (simple features) para usar con ggplot2
+lux_sf <- st_as_sf(lux_vector)
+```
+
+```{r vectorial-4}
+# Examinar la estructura de los datos
+print(lux_sf)
+head(lux_sf)
+```
+
+```{r vectorial-5}
+# Información sobre las columnas disponibles
+cat("Columnas disponibles:\n")
+print(names(lux_sf))
+```
+
+## Crear un mapa vectorial con `geom_sf()`
+
+La función `geom_sf()` simplifica enormemente la creación de mapas vectoriales, ya que automáticamente maneja la geometría y el sistema de coordenadas.
+
+```{r vectorial-6}
+# Mapa básico de Luxemburgo
+ggplot(data = lux_sf) +
+  geom_sf() +
+  labs(title = "Mapa básico de Luxemburgo",
+       subtitle = "Distritos administrativos") +
+  theme_minimal()
+```
+
+##Añadir información temática al mapa Podemos usar variables de los datos para colorear los polígonos y crear mapas temáticos.
+
+```{r vectorial-7}
+# Mapa temático: Área de cada distrito
+ggplot(data = lux_sf) +
+  geom_sf(aes(fill = AREA)) +
+  # Usar una paleta de colores secuencial
+  scale_fill_viridis_c(
+    option = "viridis",
+    na.value = "gray90",
+    name = "Área (km²)"
+  ) +
+  labs(title = "Área de los distritos de Luxemburgo",
+       subtitle = "Mapa temático por tamaño geográfico",
+       caption = "Fuente: Datos de ejemplo de terra") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    legend.position = "right"
+  )
+```
+
+## Personalizar colores para variables categóricas
+
+Cuando trabajamos con variables categóricas (como nombres de regiones), podemos usar paletas de colores cualitativas.
+
+```{r vectorial-8}
+# Mapa con colores por nombre de distrito (variable categórica)
+ggplot(data = lux_sf) +
+  geom_sf(aes(fill = NAME_2), color = "white", linewidth = 0.3) +
+  # Usar una paleta de colores cualitativa
+  scale_fill_brewer(palette = "Set3", name = "Distrito") +
+  labs(title = "Distritos de Luxemburgo",
+       subtitle = "Coloreados por nombre de distrito",
+       x = "Longitud",
+       y = "Latitud") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    legend.position = "right"
+  )
+```
+
+## 7.3 Combinar datos raster y vectoriales
+
+Una de las ventajas de **ggplot2** es la capacidad de combinar múltiples capas de datos. Podemos superponer datos vectoriales sobre un mapa raster.
+
+### Para este ejemplo, vamos a crear un raster simple y superponer los datos vectoriales
+
+### Primero, crear un raster de ejemplo con la misma extensión que Luxemburgo
+
+```{r vectorial-9}
+# Obtener la extensión de Luxemburgo
+lux_bbox <- st_bbox(lux_sf)
+```
+
+```{r vectorial-10}
+# Crear un raster simple con valores aleatorios para la región
+raster_lux <- rast(
+  extent = c(lux_bbox["xmin"], lux_bbox["xmax"], 
+             lux_bbox["ymin"], lux_bbox["ymax"]),
+  resolution = 0.01,  # Resolución de 0.01 grados
+  vals = runif(100 * 100)  # 100x100 celdas con valores aleatorios
+)
+```
+
+```{r vectorial-11}
+# Convertir a data.frame para ggplot
+raster_lux_df <- as.data.frame(raster_lux, xy = TRUE, na.rm = TRUE)
+names(raster_lux_df)[3] <- "valor"
+```
+
+```{r vectorial-12}
+# Crear mapa combinado
+ggplot() +
+  # Capa base: raster
+  geom_raster(data = raster_lux_df, aes(x = x, y = y, fill = valor), alpha = 0.2) +
+  scale_fill_viridis_c(option = "magma", name = "Valor raster") +
+  # Capa superior: límites vectoriales
+  geom_sf(data = lux_sf, fill = NA, color = "darkred", linewidth = 0.8) +
+  # Añadir etiquetas de distritos
+  geom_sf_text(data = lux_sf, aes(label = NAME_2), size = 3, color = "darkblue") +
+  labs(title = "Mapa combinado raster-vectorial",
+       subtitle = "Raster aleatorio con límites administrativos de Luxemburgo",
+       x = "Longitud",
+       y = "Latitud") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    legend.position = "right"
+  )
+```
+
+## 7.4 Proyecciones y sistemas de coordenadas
+
+Los mapas utilizan diferentes proyecciones para representar la superficie curva de la Tierra en un plano. Es importante entender y especificar la proyección correcta para cada mapa.
+
+Trabajar con diferentes proyecciones
+
+```{r proyecciones-1}
+# Mapa de Luxemburgo con diferentes proyecciones
+
+# 1. Proyección original (WGS84 - coordenadas geográficas)
+p1 <- ggplot(data = lux_sf) + #Por defecto tendremos el crs = WGS84
+  geom_sf() +
+  coord_sf(crs = 4326) +  # WGS84 (código EPSG)
+  labs(title = "WGS84 (coordenadas geográficas)") +
+  theme_minimal()
+p1
+```
+
+```{r proyecciones-2}
+# 2. Proyección UTM para la zona de Luxemburgo
+lux_utm <- st_transform(lux_sf, crs = 32631)
+
+p2 <- ggplot(data = lux_utm) +
+  geom_sf() +
+  coord_sf(datum = NA) +
+  labs(title = "UTM Zona 31N",
+       subtitle = "Unidades: metros\nEje X: Este (Easting), Eje Y: Norte (Northing)") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+p2
+```
+
+```{r proyecciones-3}
+# Mostrar las dos proyecciones
+library(patchwork)
+p1 + p2 + plot_layout(ncol = 2) +
+  plot_annotation(
+    title = "Comparación de proyecciones cartográficas",
+    subtitle = "La misma región con diferentes sistemas de coordenadas",
+    caption = "La proyección UTM minimiza la distorsión para esta zona"
+  )
+```
+
+## 7.5 Ejercicios prácticos
+
+### Ejercicio 1: Mapa temático de población
+
+Utilizando los datos de Luxemburgo (lux_sf), crea un mapa que muestre la población (POP) de cada distrito. Personaliza los colores, añade una leyenda clara y etiquetas con los nombres de los distritos.
+
+```{r proyecciones-4}
+# Tu código aquí para el ejercicio 1:
+# 1. Crea un mapa con geom_sf() usando fill = POP
+# 2. Personaliza la paleta de colores con scale_fill_viridis_c()
+# 3. Añade etiquetas con geom_sf_text() o geom_sf_label()
+# 4. Ajusta el tema y los títulos
+```
+
+```{r proyecciones-5}
+# Solución del ejercicio 1:
+ggplot(data = lux_sf) +
+  geom_sf(aes(fill = POP), color = "white", linewidth = 0.5) +
+  geom_sf_text(aes(label = NAME_2), size = 3, color = "black") +
+  scale_fill_viridis_c(
+    option = "inferno",
+    name = "Población",
+    labels = scales::label_comma()
+  ) +
+  labs(title = "Población por distrito en Luxemburgo",
+       subtitle = "Datos censales",
+       x = "Longitud",
+       y = "Latitud") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    legend.position = "right"
+  )
+```
+
+###Ejercicio 2: Mapa raster personalizado Crea un raster simple (sin límites ni otros elementos de mapas) que represente un gradiente de este a oeste (valores que aumentan de izquierda a derecha) y de norte a sur (valores que aumentan de arriba a abajo). Combínalos para crear un patrón de sombreado y visualízalo con ggplot2.
+
+```{r proyecciones-6}
+# Tu código aquí para el ejercicio 2:
+# 1. Crea una secuencia de coordenadas x e y
+# 2. Calcula valores basados en las coordenadas (p.ej., x * y)
+# 3. Crea un data.frame con x, y y valor
+# 4. Visualiza con geom_raster()
+```
+
+```{r proyecciones-7}
+# Solución del ejercicio 2:
+# Crear coordenadas
+x_coords <- seq(0, 10, length.out = 100)
+y_coords <- seq(0, 10, length.out = 100)
+
+# Crear matriz de valores (producto de coordenadas)
+valores <- outer(x_coords, y_coords, function(x, y) x * y)
+
+# Crear data.frame
+raster_df <- expand.grid(x = x_coords, y = y_coords)
+raster_df$valor <- as.vector(valores)
+
+# Visualizar
+ggplot(raster_df, aes(x = x, y = y, fill = valor)) +
+  geom_raster() +
+  scale_fill_viridis_c(option = "turbo", name = "Valor") +
+  labs(title = "Raster artificial: gradiente X*Y",
+       x = "Coordenada X",
+       y = "Coordenada Y") +
+  theme_minimal() +
+  coord_equal()
+```
+
+Ejercicio 3: Mapa de localizaciones puntuales Crea un mapa que muestre puntos de interés en Luxemburgo. Puedes generar coordenadas aleatorias dentro de la extensión del país y visualizarlas sobre el mapa vectorial.
+
+## 7.6 Consejos y mejores prácticas
+
+## Elección de colores:
+
+-   Para datos secuenciales (como elevación o temperatura), usa paletas secuenciales (viridis, magma, plasma).
+
+-   Para datos categóricos (como tipos de suelo o regiones), usa paletas cualitativas (Set3, Accent, Dark2).
+
+## Sistemas de coordenadas:
+
+-   Siempre verifica el CRS (Sistema de Referencia de Coordenadas) de tus datos.
+
+-   Para datos vectoriales: st_crs(objeto_sf)
+
+-   Para datos raster: crs(objeto_raster)
+
+## Rendimiento:
+
+-   Para mapas muy detallados con muchos polígonos, considera simplificar la geometría.
+
+-   Para rásteres muy grandes, considera reducir la resolución o usar submuestreo.
+
+## Leyendas:
+
+-   Asegúrate de que las leyendas sean claras e informativas.
+
+-   Incluye unidades cuando sea apropiado.
+
+-   Considera la posición de la leyenda (derecha, izquierda, abajo) según el espacio disponible.
+
+## Reproducibilidad:
+
+-   Siempre establece una semilla (set.seed()) cuando generes datos aleatorios.
+
+-   Documenta las fuentes de tus datos espaciales.
+
+-   Especifica las versiones de los paquetes utilizados.
+
+### Fin — Día 3: Visualización
+
+---
+title: "Día 3. Visualización de datos en R. Curso de Doctorado 2025-2026"
+author: Julián Tijerín Triviño, Marina Rodes Blanco, Verónica Cruz Alonso y Paloma
+  Ruiz Benito
+date: "2025-12-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+REPASO DE LOS DÍAS ANTERIORES:
+
+Bienvenidos al **Día 3: Visualización de datos en R con ggplot2**. Este documento está pensado como material de clase. Seguiremos paso a paso las explicaciones y los bloques de código en RStudio, ejecutando los ejemplos y realizando los ejercicios propuestos. Usaremos la base de datos **`palmerpenguins`** y complementaremos con ejemplos breves y mapas.
+
+# 1. Objetivos
+
+-   Familiarizarse con la filosofía y las funciones fundamentales del paquete de visualización de datos **`ggplot2`**.
+
+-   Comprender y utilizar herramientas avanzadas de **`ggplot2`** para una visualización más elaborada.
+
+-   Adquirir la capacidad de generar figuras de calidad publicable para artículos científicos.
+
+```{r fig-data-science, echo=FALSE, fig.cap="Figure 1: Data science model by Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund. Translated from https://r4ds.hadley.nz/intro#fig-ds-diagram"}
+knitr::include_graphics("figures/datascience.png")
+```
+
+# 2.Introducción
+
+**ggplot2** es uno de los paquetes más utilizados en R para la visualización de datos científicos y forma parte del ecosistema tidyverse, un conjunto de paquetes diseñados para trabajar con datos de forma coherente, eficiente y reproducible. En tidyverse se proporcionan herramientas para importar, ordenar, transformar, analizar y visualizar datos siguiendo una misma filosofía, lo que facilita un flujo de trabajo claro y estructurado, especialmente útil en investigación científica.
+
+A diferencia de otros enfoques más inmediatos, **ggplot2** se basa en la *Grammar of Graphics*, una filosofía que entiende los gráficos como la combinación de componentes bien definidos: los datos, las variables que se representan (*aesthetics*), las formas geométricas que las visualizan, las escalas y el contexto visual. Esta lógica resulta especialmente útil en áreas donde se manejen una gran cantidad de información, donde usualmente se trabaja con datasets multidimensionales, heterogéneos y, a menudo, espaciales o temporales.
+
+En lugar de “dibujar” un gráfico de una sola vez, **ggplot2** nos invita a construirlo por capas, añadiendo información de manera progresiva. Este enfoque favorece la exploración de los datos, permite modificar y reutilizar gráficos con facilidad, y encaja muy bien con los principios de ciencia reproducible. Un mismo conjunto de datos puede representarse de múltiples maneras simplemente cambiando una capa o una estética, lo que resulta ideal para comparar escenarios, periodos temporales o gradientes ambientales.
+
+IMAGEN DE PINTURA POR CAPAS!
+
+En este contexto, **ggplot2** es una herramienta clave para crear figuras como mapas, relaciones entre variables ambientales, comparaciones entre tratamientos de manejo o análisis de respuestas ecológicas frente a perturbaciones. A lo largo de esta sesión, aprenderemos a utilizar ggplot2 desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.
+
+## 2.1. Visualización eficaz y ggplot2
+
+Antes de empezar a crear gráficos, es importante reflexionar sobre qué hace que una visualización sea realmente buena. Un buen gráfico no depende solo de que sea visualmente atractivo, sino de dos dimensiones fundamentales:
+
+-   La EJECUCIÓN, es decir, cómo de bien construido está el gráfico desde el punto de vista técnico y visual (claridad, legibilidad, coherencia), y
+
+-   La ADECUACIÓN, que responde a preguntas clave como qué queremos comunicar, a quién va dirigido, con qué objetivo y en qué contexto se va a utilizar.
+
+```{r fig-data-science-example, echo=FALSE, fig.cap = "Figure 2: Conceptual framework of a “good graphic,” considering both execution (how well it is constructed) and appropriateness (what is being communicated, to whom, where, and why). Adapted from Good Charts by Scott Berinato."}
+knitr::include_graphics("figures/buen-grafico.png")
+```
+
+Este enfoque conceptual, adaptado de *Good Charts* de Scott Berinato, es especialmente relevante, mostrándose que los gráficos suelen servir para apoyar decisiones de gestión, comunicar resultados a distintos actores o sintetizar sistemas complejos.
+
+------------------------------------------------------------------------
+
+## Paquetes y datos
+
+Primero de todo, tenemos que realizar la **instalación y carga los paquetes necesarios** si aún no los tenemos:
+
+```{r libs}
+#Se usa esta línea porque comprueba primero si el paquete está instalado y solo lo instala si falta, evitando errores y descargas innecesarias. Además, requireNamespace() no carga el paquete, solo verifica su existencia.
+if (!requireNamespace("palmerpenguins", quietly = TRUE)) install.packages("palmerpenguins")
+if (!requireNamespace("tidyverse", quietly = TRUE)) install.packages("tidyverse")##Instalando y llamando a la librería de tidiverse, directamente instalamos y llamamos a ggplot. Esto es debido a que ggplot forma parte de tidyverse.
+if (!requireNamespace("sf", quietly = TRUE)) install.packages("sf")
+if (!requireNamespace("spData", quietly = TRUE)) install.packages("spData")
+if (!requireNamespace("patchwork", quietly = TRUE)) install.packages("patchwork")
+
+library(tidyverse)
+library(palmerpenguins)
+library(sf)
+library(spData)
+library(patchwork)
+```
+
+Ahora que ya tenemos los paquetes instalados y las librerías que vamos a utilizar, cabe destacar que siempre es conveniente hacer una comprobación sobre qué tipo de datos tenemos y cómo es su estructura.
+
+Por ejemplo, que tipo de variables tenemos (e.g., tipo numéricas, tipo caracter, tipo integer).
+
+Miramos las primeras filas del dataset `penguins`, que es el dataset que vamos a utilizar hoy:
+
+```{r head}
+head(penguins)
+summary(penguins)
+```
+
+Con `head()` vamos a ver las primeras líneas de nuestro dataframe. Con `summary()` vamos a ver un resumen de las variables que tiene nuestro dataframe.
+
+## Ejercicio a):
+
+-   ¿Cuántas filas y columnas tiene el dataset penguins?
+
+-   ¿Qué tipo de variable es species?
+
+-   ¿Hay valores NA en alguna variable? ¿En cuál/es?
+
+------------------------------------------------------------------------
+
+# 3. Elementos básicos de un gráfico en ggplot
+
+## 3.1. ggplot2 paso a paso
+
+## Breve introducción
+
+La visualización exploratoria de datos es una etapa fundamental en cualquier análisis estadístico científico. Nos permite detectar patrones, identificar valores atípicos, entender relaciones entre variables y comunicar resultados de manera efectiva. Una visualización bien construida debe ser clara, tener ejes etiquetados apropiadamente, incluir un título descriptivo, una leyenda legible cuando sea necesario, y siempre indicar las unidades de medida.
+
+El paquete ggplot2 implementa la *Grammar of Graphics* (Gramática de los Gráficos), un sistema coherente y estructurado para construir visualizaciones. Esta gramática se compone de varios elementos fundamentales: **datos** + **aesthetics** + **geometrías** + **facets** + **escalas** + **temas**., que se combinan de forma modular para crear gráficos complejos.
+
+------------------------------------------------------------------------
+
+## 3.2. Antes de empezar: Sintaxis básica y elementos fundamentales
+
+Antes de construir gráficos con **ggplot2**, es esencial entender los tres componentes fundamentales que definen cualquier visualización creada con este paquete. Estos componentes siguen una lógica específica y se combinan de manera sistemática:
+
+1.  **Datos (data)**: indicamos qué datos queremos mostrar.
+
+2.  **Aesthetics (aes)**: definimos cómo se relacionan las variables con las características visuales del gráfico (posición, color, tamaño, forma…).
+
+3.  **Geometrías (geom)**: definimos el tipo de gráfico que queremos dibujar (puntos, líneas, barras, cajas, etc.).
+
+Esta estructura constituye la **Gramática de los Gráficos**, que proporciona un marco consistente y flexible para crear visualizaciones de nuestros datos.
+
+Todas las capas se conectan entre sí con el símbolo `+`. Es importante colocarlo **al final de la línea** si queremos seguir añadiendo capas al gráfico.
+
+💡 Nota: se utiliza `+` en lugar del pipe (`|>` ó `%>%`) porque `ggplot2` fue desarrollado antes de su popularización y cambiarlo requeriría ajustar muchos paquetes.
+
+------------------------------------------------------------------------
+
+## 3.3. Estructura general de un gráfico
+
+La sintaxis general para crear un gráfico en **ggplot2** sigue este patrón:
+
+> ggplot(**datos** (data = data), **aes**(x = var_1, y = var_2)) + **geometría** (geom\_) + **opciones_adicionales**
+
+A continuación, veremos un ejemplo concreto que ilustra esta estructura. Creamos un histograma para visualizar la distribución de la longitud del pico de los pingüinos.
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm)) +
+  geom_histogram(binwidth = 1, fill = "steelblue", color = "black") +
+  labs(title = "Ejemplo de gráfico usando ggplot", 
+       x = "Longitud del pico (mm)")
+```
+
+## 3.4 Creación de un gráfico paso a paso: `ggplot()`, el lienzo inicial.
+
+La función `ggplot()` inicializa el sistema de gráficos y establece el marco de trabajo. Por sí sola, no produce ninguna visualización, sino que crea un "lienzo vacío" sobre el cual construiremos el gráfico. Es necesario especificar al menos un conjunto de datos para que funcione correctamente.
+
+Al ejecutar solo ggplot(penguins), obtenemos un panel vacío porque no hemos definido qué variables representar ni cómo visualizarlas.
+
+```{r, echo=TRUE}
+ggplot(data = penguins)
+```
+
+## 3.5 Creación de un gráfico paso a paso: aes(), aesthetics.
+
+La función *aes()* (abreviatura de "aesthetics") define las asignaciones estéticas, es decir, cómo se relacionan las variables del conjunto de datos con las propiedades visuales del gráfico. Dentro de *aes()* podemos especificar:
+
+**x**: Variable para el eje horizontal
+
+**y**: Variable para el eje vertical
+
+**color**: Variable que determina el color de los elementos
+
+**fill**: Variable que determina el color de relleno
+
+**size**: Variable que determina el tamaño de los elementos
+
+**shape**: Variable que determina la forma de los elementos
+
+**alpha**: Variable que determina la transparencia
+
+En el siguiente código, asignamos la especie de pingüino al eje X, pero aún **no especificamos ninguna geometría** para representar visualmente estos datos.
+
+```{r grafico aes, echo=TRUE}
+
+ggplot(data = penguins, aes(x = species))
+
+```
+
+## Aquí estamos diciendo:
+
+eje X → Especie de pingüino (*species*)
+
+Por ahora seguimos sin dibujar nada, pero **el gráfico ya sabe qué representar**.
+
+## 3.6 Creación de un gráfico paso a paso: las geometrías que vamos dar a nuestro gráfico
+
+Las **geometrías** (funciones que comienzan con geom\_) son las capas que realmente dibujan elementos en el gráfico. Cada tipo de gráfico corresponde a una geometría específica. La elección de la geometría depende del tipo de datos y del mensaje que queremos comunicar.
+
+Algunos ejemplos de gráficos:
+
+| Geometría          | Tipo de gráfico       |
+|--------------------|-----------------------|
+| `geom_point()`     | Gráfico de Dispersión |
+| `geom_line()`      | Gráfico de Tendencia  |
+| `geom_bar()`       | Gráfico de Barras     |
+| `geom_histogram()` | Histogramas           |
+| `geom_boxplot()`   | Boxplots              |
+
+Ahora añadimos una geometría (geom_bar) de barras al gráfico anterior para crear un gráfico que nos muestre el número de ejemplares que tenemos de cada especie de pingüino en nuestra base de datos.
+
+```{r ejemplo de gráfico de barras, echo=TRUE}
+
+ggplot(penguins, aes(x = species)) +
+  geom_bar(stat = "count")
+
+```
+
+------------------------------------------------------------------------
+
+## Ejercicio b):
+
+Crea dos gráficos: uno que muestre el número de individuos por especie y otro el número de individuos por isla. Prueba diferentes geometrías.
+
+## 3.7 Gráficos bidimensionales
+
+Mientras que los gráficos unidimensionales nos permiten explorar una sola variable a la vez, los gráficos bidimensionales nos permiten examinar relaciones entre dos variables. Este tipo de visualizaciones es fundamental para identificar correlaciones, patrones y tendencias en nuestros datos.
+
+### Scatterplot básico (Gráfico de dispersión)
+
+Existen diferentes formas de especificar los datos en **ggplot2**. Podemos incluirlos en la función ggplot() principal (recomendado cuando todas las geometrías usan el mismo conjunto de datos) o directamente en cada geometría (útil cuando combinamos datos de diferentes fuentes).
+
+```{r scatter-basic-1}
+# Gráfico de dispersión bidimensional básico
+# Aquí necesitamos especificar tanto el eje X como el eje Y
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point()
+
+```
+
+Este gráfico de dispersión muestra la relación entre la longitud de la aleta (eje X) y la masa corporal (eje Y) de los pingüinos. Podemos observar una tendencia positiva: en general, los pingüinos con aletas más largas tienden a tener mayor masa corporal.
+
+Dentro de la función `aes()` podemos especificar cómo las variables del conjunto de datos se traducen en propiedades visuales del gráfico. Estas propiedades visuales se denominan *aesthetics* y permiten incorporar información adicional sin necesidad de crear gráficos separados.
+
+En un **scatterplot**, además de definir las variables que se representan en los ejes X e Y, es posible mapear otras variables del dataset a distintos atributos visuales, entre ellos:
+
+\-**color**: permite diferenciar grupos o categorías mediante colores distintos. Es especialmente útil para variables categóricas. Aunque también puede usarse con variables continuas.
+
+\-**shape**: asigna distintas formas a los puntos según una variable categórica.
+
+\-**size**: controla el tamaño de los puntos. Puede utilizarse para representar variables continuas o, con precaución, variables categóricas.
+
+\-**alpha (transparencia)**: permite ajustar la opacidad de los puntos. Aunque suele fijarse como un valor constante, también puede mapearse a una variable para resaltar gradientes o reducir problemas de solapamiento.
+
+IMPORTANTE: Los datos se pueden colocar dentro de la funcion `ggplot()` si se van a usar los mismos en todas las geometrias. Por ejemplo, si queremos representar una linea de tendencia lineal para estas variables
+
+```{r scatter-basic-2}
+# Gráfico de dispersión bidimensional básico con recta de regresión
+# Aquí necesitamos especificar tanto el eje X como el eje Y
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = year)) +
+  geom_point() + geom_smooth(method = "lm")
+
+```
+
+Hasta aquí habríamos creado un gráfico básico utilizando **ggplot2**. A partir de aquí trabajaremos para mejorar la visualización de nuestros gráficos, añadir elementos y/o representar nuestros datos de la manera más adecuada a nuestros requerimientos.
+
+## Ejercicio c)
+
+Crea un gráfico de dispersión que muestre la relación entre: Longitud de la aleta (*flipper_length_mm*) vs Masa corporal (*body_mass_g*)
+
+Añade la siguiente información visual:
+
+-   Colorea los puntos según la especie (species).
+
+-   Usa formas distintas para el sexo (sex).
+
+-   Ajusta la transparencia de los puntos para mejorar la visualización.
+
+### Como guardar plots satisfactorios
+
+Una vez que hemos creado un gráfico que cumple con nuestros objetivos, es importante guardarlo en un formato y calidad adecuados para su uso en informes, presentaciones o publicaciones. La función ggsave() permite exportar gráficos en diversos formatos (JPG, PNG, PDF, SVG, etc.) con control preciso sobre dimensiones y resolución.
+
+Primero debejos asignar nuestro gráfico a un objeto:
+
+```{r scatter-basic-3}
+# Primero, asignamos el gráfico a un objeto
+plot_pinguinos <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + geom_point()
+```
+
+Ahora, utilizando la funcion `ggsave()`, y especificando las características con las que queremos guardar nuetro gráfico (formato, tamaño, unidades, dpi, etc), procedemos a guardar el resultado para poderlo utilizar fuera del entorno de R.
+
+```{r scatter-basic-4}
+# Guardar en formato JPG con alta resolución (300 dpi)
+ggsave(filename = "penguins_scatter.jpg", plot = plot_pinguinos, 
+       width = 12, height = 9, units = "cm", dpi = 300)
+
+# Guardar en formato PDF (vectorial, ideal para publicaciones)
+ggsave(filename = "penguins_scatter.pdf", plot = plot_pinguinos, 
+       width = 12, height = 9, units = "cm")
+```
+
+💡 Consejo sobre dimensiones: Algunas revistas científicas tienen especificaciones detalladas sobre el formato de los gráficos. Cuando no hay directrices específicas, es recomendable diseñar los gráficos pensando en un formato A4 (21 × 29.7 cm), asegurándose de que todos los elementos sean legibles cuando se reduzcan o amplíen a este tamaño.
+
+## Ejercicio d):
+
+Crea dos gráficos:
+
+-Un gráfico unidimensional que muestre el número de individuos por isla (island).
+
+-Un gráfico bidimensional que muestre la relación entre la masa corporal y la longitud del pico, diferenciando por sexo mediante colores. Añade transparecia y un tamaño determinado a los puntos. Prueba diferentes transparecias y tamaños.
+
+-Guarda ambos gráficos en formato JPG con dimensiones apropiadas.
+
+## 3.8 *Aesthetics* vs. argumentos estéticos
+
+Es crucial entender la diferencia entre definir propiedades estéticas dentro de `aes()`, que están vinculadas a variables, y fuera de `aes()`, que son valores fijos que afectarán a la totalidad de los componentes del gráfico:
+
+-   Dentro de `aes()`: El valor visual varía según los datos de una variable.
+-   Fuera de `aes()`: El valor visual es constante para todos los elementos.
+
+En el primer ejemplo, el color está mapeado a la variable *sex*, por lo que ggplot asignará automáticamente colores diferentes a cada categoría de sexo.
+
+```{r scatter-smooth-1}
+ggplot(data = penguins) + 
+  geom_point(aes(x = body_mass_g, y = bill_depth_mm, color = sex))
+```
+
+En el segundo ejemplo, el color se especifica fuera de `aes()`, por lo que todos los puntos tendrán el mismo color (azul oscuro), independientemente de los datos.
+
+```{r scatter-smooth-2}
+###Hay que tener mucho cuidado de dónde se insertan los diferentes argumentos
+
+ggplot(data = penguins) + 
+  geom_point(aes(x = body_mass_g, y = bill_depth_mm), color = "darkblue")
+```
+
+Esta distinción es fundamental: cuando queremos que un atributo visual (color, tamaño, forma) represente información de una variable, debe ir dentro de `aes()`. Cuando queremos que todos los elementos tengan el mismo valor para ese atributo, debe ir fuera.
+
+En la ayuda de las funciones de **ggplot2** aparece una lista de los *aesthetics* y los argumentos estéticos que acepta esa función. Se pueden incluir tantos aesthetics como se deseen.
+
+## Ejercicio e):
+
+Crea un gráfico de dispersión que muestre la relación entre: Masa corporal (body_mass_g) vs. Profundidad del pico (bill_depth_mm).
+
+En un primer gráfico:
+
+-   Colorea los puntos según la especie (species).
+
+-   Fija el tamaño de los puntos a un valor constante.
+
+En un segundo gráfico:
+
+-   Usa un único color para todos los puntos.
+
+-   Mapea el tamaño de los puntos a la masa corporal.
+
+Observa ambos gráficos y responde:
+
+-   ¿En cuál aparece una leyenda?
+
+-   ¿Qué aesthetics dependen de los datos y cuáles no?
+
+RESPONDE:
+
+-   ¿Qué gráfico comunica mejor la información?
+
+-   ¿Es buena idea mapear una variable al tamaño en este caso?
+
+-   ¿Qué ocurriría si ponemos color = "species" fuera de aes()?
+
+## 3.9 Tipos de gráfico (geom\_)
+
+La elección del tipo de gráfico apropiado depende fundamentalmente de:
+
+El tipo de variables que estamos analizando (cualitativas, cuantitativas discretas, cuantitativas continuas)
+
+El propósito de la visualización (explorar distribuciones, comparar grupos, mostrar relaciones, etc.)
+
+```{r fig-data-science-10, echo=FALSE, fig.cap="Figure 3: Variable types and thier clasification"}
+knitr::include_graphics("figures/tipos_variables.png")
+```
+
+💡Para elegir qué tipo de gráfico nos conviene según el propósito una herrramienta muy útil es [chuleta sobre los principios de los gráficos](https://graphicsprinciples.github.io/cheatsheet.html).
+
+### 3.9.1 Exploración de variables cualitativas (unidimensional)
+
+Las variables cualitativas (también llamadas categóricas) representan atributos o categorías sin un orden numérico inherente. En el conjunto de datos penguins, ejemplos claros son:
+
+-   species (Adelie, Chinstrap, Gentoo)
+-   island (Biscoe, Dream, Torgersen)
+-   sex (female, male + NA)
+
+### Conteo por categoría
+
+Cuando queremos saber cuántas observaciones hay en cada categoría. El conteo responde a preguntas como:
+
+¿Cuántas observaciones hay en cada categoría?
+
+El gráfico de barras `geom_bar()` es la opción más directa y efectiva..
+
+```{r conteo ind/spp}
+ggplot(penguins, aes(x = species)) +
+geom_bar() 
+```
+
+Interpretación: Este gráfico nos muestra claramente que la especie Adelie es la más numerosa en nuestro conjunto de datos, seguida por Gentoo y finalmente Chinstrap. Los conteos absolutos nos permiten entender la representatividad de cada categoría en nuestra muestra.
+
+### 3.9.2 Proporciones dentro de categorías
+
+Cuando queremos entender la composición interna de cada categoría (por ejemplo, "¿Cómo se distribuyen los sexos dentro de cada especie?"), usamos gráficos de barras con el argumento `fill` y diferentes posiciones.
+
+Añadimos una segunda variable con `fill` y usamos position = "fill" para normalizar al 100%.
+
+```{r proporciones}
+# Proporciones de sexo dentro de cada especie
+ggplot(penguins, aes(x = species, fill = sex)) +
+  geom_bar(position = "fill")
+#Para comparación directa entre subgrupos, usamos position = "dodge"
+```
+
+### 3.9.3 Exploración de variables cuantitativas (numéricas)
+
+Las variables cuantitativas describen medidas numéricas. Estas variables pueden ser continuas o discretas. En penguins, ejemplos incluyen:
+
+-   body_mass_g (Peso corporal (gr))
+
+-   flipper_length_mm (Longitud de la aleta (mm))
+
+-   bill_length_mm (Longitud del pico (mm))
+
+### Variables cuantitativas continuas
+
+Estas variables pueden tomar cualquier valor dentro de un rango continuo (incluyendo decimales). En penguins: body_mass_g (Peso corporal (gr)),flipper_length_mm (Longitud de la aleta (mm)), bill_length_mm (Longitud del pico (mm)).
+
+### Distribución de una variable continua
+
+Para explorar cómo se distribuyen los valores de una variable continua, usamos principalmente dos tipos de gráficos:
+
+Histograma (`geom_histogram()`) -\> Divide el rango de valores en intervalos (bins) y muestra la frecuencia en cada intervalo:
+
+```{r cuantitativas continuas-1}
+# Histograma básico - muestra la distribución en intervalos
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(binwidth = 100)  # binwidth controla el ancho de cada intervalo
+```
+
+Gráfico de densidad (`geom_density()`) -\> Muestra una estimación suavizada de la distribución continua:
+
+```{r cuantitativas continuas-2}
+# Gráfico de densidad - curva suavizada
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_density()
+```
+
+Comparación entre grupos: Cuando queremos comparar la distribución de una variable continua entre diferentes categorías podemos utilizar:
+
+Diagrama de cajas (`geom_boxplot()`) - Muestra estadísticos de resumen (mediana, cuartiles, valores atípicos):
+
+```{r boxplot}
+# Boxplot comparando masa corporal entre especies
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot()
+```
+
+Gráfico de violín (geom_violin()) - Combina las ventajas del boxplot con la visualización de la densidad:
+
+```{r violin}
+# Gráfico de violín mostrando la forma completa de la distribución
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_violin()
+```
+
+### Variables cuantitativas discretas
+
+Estas variables solo pueden tomar valores enteros o contables específicos (no hay valores intermedios entre ellos). Aunque en penguins no hay ejemplos claros de variables discretas, podemos crear uno para ilustrar el concepto.
+
+Ejemplo con datos discretos: Supongamos que tenemos datos sobre el número de crías por nido (variable discreta):
+
+```{r discreta}
+# Creamos datos de ejemplo para variable discreta
+datos_crias <- data.frame(
+  nido = 1:50,
+  crias = sample(1:5, 50, replace = TRUE, prob = c(0.1, 0.2, 0.4, 0.2, 0.1))
+)
+```
+
+Para variables discretas, podemos usar `geom_bar()` con *stat = "count"* o `geom_histogram()` con *bins* centrados en los valores enteros
+
+```{r discreta-bar}
+# Opción 1: geom_bar() para conteos de valores discretos
+ggplot(datos_crias, aes(x = crias)) +
+  geom_bar(stat = "count")
+```
+
+```{r discreta-histogram}
+# Opción 2: geom_histogram() con binwidth = 1 y límites alineados
+ggplot(datos_crias, aes(x = crias)) +
+  geom_histogram(binwidth = 1, center = 0.5, color = "white")
+```
+
+# Diferencias clave en el tratamiento gráfico:
+
+## Característica Variables continuas Variables discretas
+
+| Característica | Variables continuas | Variables discretas |
+|------------------|-------------------------|-----------------------------|
+| Valores posibles | Cualquier valor en un rango (incluye decimales) | Solo valores específicos (generalmente enteros) |
+| Geometría típica | `geom_histogram()`, `geom_density()` | `geom_bar()`, `geom_histogram()` |
+| Ajuste de bins | binwidth o bins para agrupar valores continuos | binwidth = 1 para separar cada valor entero |
+| Posiciones en eje X | Escala continua con cualquier valor posible | Escala discreta con saltos entre valores |
+
+## Resumen práctico: ¿Cómo elegir?
+
+## Para variables continuas:
+
+Histograma (`geom_histogram`): Cuando queremos ver la distribución en intervalos específicos
+
+Densidad (`geom_density`): Cuando queremos una visión suavizada de la distribución
+
+Boxplot (`geom_boxplot`): Para comparar estadísticos entre grupos
+
+Violín (`geom_violin`): Para comparar distribuciones completas entre grupos
+
+## Para variables discretas:
+
+Gráfico de barras (`geom_bar`): Cuando tenemos pocos valores posibles y queremos mostrar conteos
+
+Histograma con binwidth = 1 (`geom_histogram`): Cuando queremos mantener la apariencia de histograma pero con valores discretos
+
+Ejercicio: Para cada una de estas variables de penguins, identifica si es continua o discreta (o podría tratarse como discreta) y crea el gráfico apropiado:
+
+flipper_length_mm (longitud de aleta)
+
+island (isla)
+
+bill_depth_mm (profundidad del pico)
+
+year (año de observación)
+
+sex (sexo)
+
+Consejo clave: La elección entre tratar una variable como continua o discreta depende del contexto analítico. En general:
+
+-   Variables de medición (peso, longitud, tiempo) suelen ser continuas
+
+-   Variables de conteo (número de hijos, número de errores) suelen ser discretas
+
+-   Variables como year pueden tratarse como discretas cuando nos interesan los valores específicos
+
+Esta distinción es importante porque afecta cómo interpretamos los gráficos y qué tipo de análisis estadístico realizamos posteriormente.
+
+## Ejercicio f):
+
+Crea dos gráficos:
+
+1.  Exploración de variables cualitativas
+
+Variables: species, island, sex
+
+Tareas: a) Identifica qué variable(s) se pueden graficar con un `geom_bar()`. b) Crea un gráfico de barras para la variable más interesante y colorea las barras según sex. c) Ajusta la posición para mostrar proporciones (position = "fill") y otra vez para mostrar conteos (position = "dodge").
+
+Preguntas:
+
+¿Cuál es la especie/isla más frecuente?
+
+¿Cómo cambia la interpretación al usar *fill* y *dodge*?
+
+¿Se observa algún patrón interesante entre sexos y especies?
+
+2.  Exploración de variables continuas y relación entre ellas
+
+Variables: bill_length_mm, bill_depth_mm, body_mass_g
+
+Tareas: a) Crea un scatterplot de bill_length_mm vs bill_depth_mm. b) Colorea los puntos según species y usa tamaño de punto (size) según body_mass_g. c) Agrega transparencia (alpha) para manejar solapamiento.
+
+Preguntas:
+
+¿Se forman grupos claros según especie?
+
+¿Qué especie tiene picos más largos o profundos?
+
+¿Cómo ayuda el tamaño y la transparencia a visualizar la relación entre variables?
+
+# 5 **ggplot2**: Funciones avanzadas
+
+## 5.1 Etiquetas (`labs()`)
+
+Las etiquetas son elementos fundamentales para mejorar la claridad y comprensión de los gráficos. La función labs() nos permite personalizar todos los textos descriptivos de un gráfico, haciéndolo autónomo y comprensible sin necesidad de referencias externas. Es crucial para crear visualizaciones profesionales que puedan ser interpretadas correctamente fuera de su contexto original, por ejemplo en una presentación de ppt.
+
+Comenzamos creando un gráfico base de diagramas de caja que relaciona la especie de pingüinos con su masa corporal. Este gráfico servirá como punto de partida para demostrar cómo las etiquetas mejoran la comunicación de la información.
+
+```{r grafico}
+
+# Gráfico base
+miplot1 <- ggplot(data = penguins) + 
+  geom_boxplot(aes(x = species, y = body_mass_g))
+miplot1
+```
+
+Ahora aplicamos la función labs() para añadir todos los elementos textuales necesarios: título principal, subtítulo contextual, etiquetas descriptivas para ambos ejes y un pie de figura que indica la fuente de los datos.
+
+```{r grafico-2}
+# Añadir etiquetas descriptivas
+miplot1 + 
+  labs(
+    title = "Masa corporal de los pingüinos por especie",
+    subtitle = "Datos de las tres islas",
+    x = "Especie",
+    y = "Masa corporal (g)",
+    caption = "Fuente: palmerpenguins"
+  )
+```
+
+La función {labs()} permite personalizar los textos del gráfico. Es crucial para hacer los gráficos autónomos y comprensibles.
+
+## 5.2 Sistema de coordenadas
+
+Por defecto, ggplot2 usa coordenadas cartesianas, pero ofrece flexibilidad para ajustar la vista de los datos. **Es importante distinguir entre hacer zoom (manteniendo todos los datos) y limitar el rango (eliminando datos fuera del rango).**
+
+La función coord_cartesian() permite enfocar en una región específica del gráfico **sin descartar observaciones**.
+
+```{r coordenadas}
+# Zoom en el eje Y
+miplot1 +
+  coord_cartesian(ylim = c(2000, 4500))
+```
+
+En contraste, cuando se usan límites directamente en la escala (scale\_\*\_continuous() o xlim()/ylim()) se descartan los datos que quedan fuera del rango especificado:
+
+```{r coordenadas_1.1}
+# Límite en escala que SÍ descarta datos (observaciones fuera de 2000-6000 se eliminan)
+miplot1 +
+  scale_y_continuous(limits = c(2000, 4500))
+
+# Equivalente usando ylim() - también descarta datos
+miplot1 +
+  ylim(2000, 4500)
+```
+
+⚠️ Advertencia: Cuando se usan límites en escalas, ggplot2 mostrará una advertencia indicando que se han eliminado observaciones.
+
+Comparación práctica:
+
+coord_cartesian(ylim = c(2000, 4500)): **Mantiene todos los datos, solo ajusta la vista**
+
+scale_y_continuous(limits = c(2000, 4500)): **Filtra y elimina datos fuera del rango**
+
+Esta diferencia es crucial cuando se usan estadísticos como regresiones o suavizados, ya que al descartar datos se afectan los cálculos de tendencias y modelos.
+
+## Ejercicio g):
+
+1.  Diagrama de cajas con etiquetas completas
+
+<!-- -->
+
+a)  Crea un gráfico de boxplot de body_mass_g por species.
+b)  Añade etiquetas usando labs() para:
+
+Título principal: “Distribución de masa corporal por especie”
+
+Subtítulo: “Datos del estudio Palmer Penguins”
+
+Eje X: “Especie de pingüino”
+
+Eje Y: “Masa corporal (g)”
+
+Pie de figura: “Fuente: palmerpenguins”
+
+Preguntas:
+
+¿Por qué es importante incluir todas estas etiquetas en un gráfico que será mostrado fuera de contexto?
+
+¿Qué aporta el subtítulo respecto al título?
+
+2.  Ajuste de coordenadas / zoom
+
+<!-- -->
+
+a)  Aplica coord_cartesian() para enfocar la vista entre 3000 y 5000 g en el eje Y.
+b)  Crea otro gráfico usando ylim(3000, 5000) y observa la diferencia.
+
+Preguntas:
+
+¿Qué sucede con los puntos fuera del rango cuando usamos coord_cartesian() vs ylim()?
+
+¿Por qué podría ser problemático usar ylim() si más adelante añadimos suavizados o regresiones?
+
+3.  Bonus opcional – combinación de aesthetics
+
+Agrega color a los boxplots según sex.
+
+Mantén las etiquetas y el zoom aplicados.
+
+Observa si el patrón de masas cambia entre sexos dentro de cada especie.
+
+Pregunta:
+
+¿Qué insights adicionales proporciona el color dentro de cada grupo?
+
+## 5.3 Faceting
+
+El faceting (o creación de múltiples paneles) es una técnica muy potente para visualizar subconjuntos de datos en gráficos separados pero comparables. Es especialmente útil para analizar patrones entre diferentes grupos categóricos. Comenzamos creando un gráfico de dispersión base que relaciona masa corporal con longitud de aleta, coloreado por especie.
+
+```{r facets}
+miplot2 <- ggplot(data = penguins, 
+                  aes(x = body_mass_g, y = flipper_length_mm, 
+                      color = species)) + 
+  geom_point(na.rm = TRUE)
+
+miplot2
+```
+
+La función facet_grid() organiza los paneles en una rejilla según variables categóricas. En este primer ejemplo, creamos filas separadas por el sexo de los pingüinos, permitiendo comparar la relación entre variables para machos y hembras por separado.
+
+```{r facets-2}
+# Facet en filas
+miplot2 + 
+  facet_grid(rows = vars(sex), scales = "free")
+```
+
+Podemos extender el faceting a dos dimensiones, creando una matriz de gráficos que cruza dos variables categóricas. Esto permite analizar interacciones complejas entre diferentes factores.
+
+```{r facets-3}
+# Facet en filas y columnas
+miplot2 + 
+  facet_grid(rows = vars(sex), cols = vars(island))
+```
+
+Cuando tenemos muchas categorías, facet_wrap() es más flexible que facet_grid(), ya que empaqueta los paneles en una rejilla que se adapta al número de categorías y al espacio disponible.
+
+```{r facets-4}
+# Facet wrap (organiza en rejilla)
+miplot2 + 
+  facet_wrap(facets = vars(island), ncol = 3)
+```
+
+Explicación: facet_grid() organiza por filas/columnas, facet_wrap() empaqueta múltiples paneles.
+
+## Ejercicio h)
+
+h1) Visualizar la relación entre masa corporal (body_mass_g) y longitud de aleta (flipper_length_mm) diferenciando por sexo y especie.
+
+-   Crea un scatterplot de *body_mass_g* vs *flipper_length_mm*, coloreando los puntos por species.
+
+Filas: sex
+
+Columnas: species
+
+Observa cómo se distribuyen los datos según estas dos variables categóricas.
+
+Preguntas:
+
+-   ¿Qué patrones diferenciales se observan entre machos y hembras para cada especie?
+
+-   ¿Qué ventaja tiene facet_grid() para comparar categorías cruzadas en filas y columnas?
+
+h2) Visualizar la relación entre longitud del pico (bill_length_mm) y profundidad del pico (bill_depth_mm) por isla.
+
+-   Crea un scatterplot de bill_length_mm vs bill_depth_mm, coloreando los puntos por species.
+
+Aplica la faceta más adecuada para crear un panel por isla, con 2 columnas (ncol = 2).
+
+-   Analiza cómo varían las medidas del pico según la isla.
+
+Preguntas:
+
+-   ¿Qué faceta es más adecuada cuando solo queremos facetear por una variable con varias categorías?
+
+-   ¿Qué información adicional se obtiene al comparar paneles lado a lado?
+
+## 5.4 Posición
+
+El parámetro *position* controla cómo se disponen elementos geométricos cuando hay superposiciones, especialmente en gráficos de barras con agrupaciones. Por defecto, ggplot2 usa posición "stack" (apilado), donde las barras se apilan unas sobre otras mostrando el total por categoría.
+
+```{r position}
+# Por defecto: apilado (stack)
+ggplot(data = penguins) + 
+  geom_bar(aes(x = species, fill = sex))
+```
+
+La posición "dodge" coloca las barras lado a lado, lo que facilita la comparación directa de los subgrupos dentro de cada categoría principal.
+
+```{r position-2}
+# Barras lado a lado (dodge)
+ggplot(data = penguins) + 
+  geom_bar(aes(x = species, fill = sex), position = "dodge")
+```
+
+La posición "fill" también apila las barras, pero normaliza la altura al 100%, mostrando proporciones en lugar de conteos absolutos. Esto es útil para comparar la composición relativa de cada categoría.
+
+```{r position-3}
+# Proporciones (fill)
+ggplot(data = penguins) + 
+  geom_bar(aes(x = species, fill = sex), position = "fill") +
+  labs(y = "Proporción")
+```
+
+## 5.5 Escalas de color
+
+Las funciones **scale\_\*** permiten personalizar cómo se mapean los datos a atributos visuales. La estructura general es \*scale\_"aesthetic"\_"tipo"()\*, donde "aesthetic" puede ser color, fill, x, y, etc., y "tipo" puede ser continuous, discrete, manual, etc. En este ejemplo, personalizamos manualmente los colores y etiquetas de una variable categórica, y también modificamos las marcas y etiquetas del eje Y.
+
+```{r escalas de color}
+# Escala de color manual
+miplot2 +
+  scale_color_manual(
+    values = c("darkorange", "purple", "cyan4"),
+    labels = c("Adelie", "Chinstrap", "Gentoo")
+  ) + 
+  scale_y_continuous(
+    breaks = c(180, 200, 220),
+    labels = c("Bajo", "Medio", "Alto")
+  )
+```
+
+Es importante comprender la diferencia entre scale_y_continuous (limits) y coord_cartesian (ylim). La primera función elimina permanentemente los datos fuera de los límites especificados, lo que puede afectar cálculos estadísticos como los cuartiles en diagramas de caja.
+
+```{r escalas de color-2}
+# ¡Cuidado! scale_y_continuous(limits) ELIMINA datos fuera de los límites
+ggplot(data = penguins) + 
+  geom_boxplot(aes(x = species, y = body_mass_g)) +
+  scale_y_continuous(limits = c(3000, 5000))
+```
+
+En contraste, coord_cartesian(ylim) simplemente aplica un zoom visual a la región especificada, manteniendo todos los datos para los cálculos estadísticos. Esta es generalmente la opción preferida cuando queremos enfocar en un rango específico.
+
+```{r escalas de color-3}
+# coord_cartesian(ylim) hace zoom sin eliminar datos
+ggplot(data = penguins) + 
+  geom_boxplot(aes(x = species, y = body_mass_g)) +
+  coord_cartesian(ylim = c(3000, 5000))
+```
+
+5.5.1 Ejercicio Modifica el siguiente gráfico para usar una escala de color gradiente de azul a amarillo. Pista: Usa scale_color_gradient()
+
+```{r escalas de color-4}
+# Modificar para usar una escala de color gradiente de azul a amarillo
+ggplot(data = penguins, 
+       aes(x = body_mass_g, y = flipper_length_mm, 
+           color = body_mass_g)) +
+  geom_point(na.rm = TRUE, size = 3) +
+  scale_color_gradient(low = "blue", high = "yellow")
+
+```
+
+5.6 Los colores en R R ofrece múltiples sistemas para trabajar con paletas de colores, cada uno con sus ventajas y casos de uso específicos. Las paletas *ColorBrewer* son ampliamente utilizadas y están organizadas en tres tipos: cualitativas (para datos categóricos sin orden), secuenciales (para datos numéricos ordenados) y divergentes (para datos con un punto medio significativo).
+
+```{r paletas de color}
+# Paletas Brewer (cualitativas, secuenciales, divergentes)
+RColorBrewer::display.brewer.all()
+```
+
+Podemos extraer colores específicos de una paleta *Brewer* usando la función **brewer.pal()**, especificando el nombre de la paleta y el número de colores deseado.
+
+```{r paletas de color-2}
+# Crear una paleta Brewer
+RColorBrewer::brewer.pal(name = "Set2", n = 3)
+```
+
+Las paletas HCL (Hue-Chroma-Luminance) están diseñadas para ser perceptualmente uniformes y accesibles para personas con daltonismo. A continuación vemos algunas de las paletas disponibles en este sistema.
+
+```{r paletas de color-3}
+# Paletas HCL (más accesibles)
+grDevices::hcl.pals()[1:10]
+```
+
+La función **hcl.colors()** nos permite generar secuencias de colores de cualquier paleta HCL, especificando el número de colores y la paleta deseada.
+
+```{r paletas de color-4}
+# Crear una paleta HCL
+grDevices::hcl.colors(n = 6, palette = "Blues 3")
+```
+
+Aplicamos una paleta de colores en un gráfico real. Usamos scale_color_gradientn() con la paleta "Viridis", que es perceptualmente uniforme, de alto contraste y apta para personas con daltonismo.
+
+```{r paletas de color-5}
+# Uso en gráficos: gradiente con Viridis
+ggplot(data = penguins, 
+       aes(x = body_mass_g, y = flipper_length_mm, 
+           color = body_mass_g)) + 
+  geom_point(na.rm = TRUE) + 
+  scale_color_gradientn(colours = hcl.colors(12, "Viridis"))
+```
+
+Para mayor comodidad, **ggplot2** ofrece funciones directas para paletas populares como Viridis. scale_color_viridis_c() aplica automáticamente la paleta Viridis a variables continuas.
+
+```{r paletas de color-6}
+# Versión directa con scale_color_viridis_c()
+ggplot(data = penguins, 
+       aes(x = body_mass_g, y = flipper_length_mm, 
+           color = body_mass_g)) + 
+  geom_point(na.rm = TRUE) + 
+  scale_color_viridis_c()
+```
+
+## 5.7 Temas
+
+Los temas *(theme\_)* en **ggplot2** controlan los elementos no relacionados con los datos de un gráfico, es decir, los componentes estéticos que no dependen de la información que estamos visualizando. Esto incluye fuentes, colores de fondo, líneas de la cuadrícula, marcas de los ejes, leyendas y otros elementos decorativos. Los temas permiten dar un estilo coherente y profesional a nuestras visualizaciones, adaptándolas al contexto de presentación (informes académicos, presentaciones, publicaciones web, etc.).
+
+### 5.7.1 Temas predefinidos
+
+**ggplot2** incluye varios temas predefinidos que podemos aplicar inmediatamente a cualquier gráfico. Cada uno tiene un propósito y estilo diferente.
+
+Comenzamos creando un gráfico base que usaremos para demostrar los diferentes temas. Utilizaremos un gráfico de dispersión que relaciona la masa corporal con la longitud de la aleta, coloreado por especie.
+
+```{r themes}
+# Gráfico base para demostrar temas
+base_plot <- ggplot(penguins, 
+                    aes(x = body_mass_g, y = flipper_length_mm, 
+                        color = species)) +
+  geom_point(alpha = 0.7, na.rm = TRUE) +
+  labs(title = "Relación entre masa corporal y longitud de aleta",
+       subtitle = "Datos de pingüinos Palmer",
+       x = "Masa corporal (g)",
+       y = "Longitud de aleta (mm)",
+       color = "Especie")
+
+base_plot
+```
+
+theme_gray() - Tema por defecto Este es el tema predeterminado de ggplot2. Tiene un fondo gris claro con líneas de cuadrícula blancas. Es un buen punto de partida, pero puede no ser ideal para publicaciones formales.
+
+```{r themes-2}
+# Tema por defecto (se aplica automáticamente, pero lo mostramos explícitamente)
+base_plot + theme_gray()
+```
+
+theme_bw() - Tema blanco y negro Un tema clásico con fondo blanco y líneas de cuadrícula grises. Es muy útil para publicaciones académicas donde se requiere alta legibilidad y compatibilidad con impresión en blanco y negro.
+
+```{r themes-3}
+# Tema en blanco y negro, ideal para publicaciones
+base_plot + theme_bw()
+```
+
+theme_minimal() - Tema minimalista Elimina muchos elementos decorativos, manteniendo solo lo esencial. No tiene líneas de cuadrícula ni marco alrededor del gráfico. Es moderno y se enfoca completamente en los datos.
+
+```{r themes-4}
+# Tema minimalista, sin elementos superfluos
+base_plot + theme_minimal()
+```
+
+theme_classic() - Tema clásico Inspirado en gráficos tradicionales de estadística. Tiene ejes simples con líneas en los bordes, sin líneas de cuadrícula. Es limpio y apropiado para publicaciones científicas.
+
+```{r themes-5}
+# Tema clásico, similar a gráficos de software estadístico tradicional
+base_plot + theme_classic()
+```
+
+theme_void() - Tema vacío Elimina prácticamente todos los elementos excepto los datos. Es útil cuando queremos crear visualizaciones muy limpias o cuando vamos a añadir anotaciones personalizadas.
+
+```{r themes-6}
+# Tema vacío, solo muestra los datos
+base_plot + theme_void()
+```
+
+theme_dark() - Tema oscuro Similar al tema gris por defecto, pero con colores invertidos (fondo oscuro). Puede ser útil para presentaciones con fondos oscuros o para resaltar colores brillantes.
+
+```{r themes-7}
+# Tema oscuro, útil para presentaciones con fondo negro
+base_plot + theme_dark()
+```
+
+## 5.7.2 Temas de paquetes externos Existen paquetes adicionales que proporcionan temas especializados. Uno de los más populares es *ggthemes*, que incluye temas que imitan estilos de publicaciones como *The Economist*, *Wall Street Journal*, *Excel*, entre otros.
+
+Primero, si no está instalado, debemos instalar el paquete ggthemes:
+
+```{r ggthemes}
+# Instalar ggthemes si no está disponible
+# install.packages("ggthemes")
+library(ggthemes)
+```
+
+theme_economist() - Estilo The Economist Imita el estilo característico de las gráficas de la revista The Economist. Usa colores distintivos y tipografía específica.
+
+```{r themes-8}
+# Tema estilo The Economist
+base_plot + theme_economist() +
+  scale_color_economist()
+```
+
+theme_wsj() - Estilo Wall Street Journal Basado en las gráficas del Wall Street Journal, con un estilo más periodístico y accesible.
+
+```{r themes-9}
+# Tema estilo Wall Street Journal
+base_plot + theme_wsj() +
+  scale_color_wsj("colors6")
+```
+
+theme_excel() - Estilo Excel Recrea la estética por defecto de Microsoft Excel. Puede ser útil para transicionar usuarios de Excel a R, o para mantener consistencia con gráficos existentes.
+
+```{r themes-10}
+# Tema estilo Excel (versión antigua)
+base_plot + theme_excel() +
+  scale_color_excel()
+```
+
+theme_fivethirtyeight() - Estilo FiveThirtyEight Inspirado en el sitio web de análisis estadístico FiveThirtyEight, conocido por sus visualizaciones atractivas y claras.
+
+```{r themes-11}
+# Tema estilo FiveThirtyEight
+base_plot + theme_fivethirtyeight() +
+  scale_color_fivethirtyeight()
+```
+
+5.7.3 Personalización avanzada con theme() La función theme() permite ajustar individualmente casi cualquier aspecto del tema. Podemos modificar elementos específicos como textos, leyendas, ejes, fondos y márgenes.
+
+Si accedéis a la ayuda para los temas (?theme), podréis modificar toooooodas estas opciones:
+
+```{r themes-help}
+?theme
+```
+
+Modificar elementos de texto Podemos cambiar la fuente, tamaño, color y estilo de todos los textos del gráfico: título, subtítulo, etiquetas de ejes, texto de los ejes, leyenda, etc.
+
+```{r themes-12}
+# Personalización completa de elementos de texto
+base_plot +
+  theme_bw() +
+  theme(
+    # Título principal
+    plot.title = element_text(
+      family = "serif",        # Fuente con serifas
+      size = 16,               # Tamaño 16
+      face = "bold",           # Negrita
+      hjust = 0.5,             # Centrado horizontal
+      color = "darkblue"       # Color azul oscuro
+    ),
+    
+    # Subtítulo
+    plot.subtitle = element_text(
+      family = "serif",
+      size = 12,
+      hjust = 0.5,
+      color = "gray40"
+    ),
+    
+    # Etiquetas de ejes
+    axis.title = element_text(
+      family = "sans",         # Fuente sin serifas
+      size = 12,
+      face = "bold"
+    ),
+    
+    # Texto de los ejes (números)
+    axis.text = element_text(
+      family = "sans",
+      size = 10,
+      color = "black"
+    ),
+    
+    # Texto de la leyenda
+    legend.text = element_text(
+      family = "sans",
+      size = 10,
+      face = "italic"          # Cursiva
+    ),
+    
+    # Título de la leyenda
+    legend.title = element_text(
+      family = "sans",
+      size = 11,
+      face = "bold"
+    )
+  )
+```
+
+Modificar elementos de la leyenda La leyenda puede reposicionarse, ajustarse su fondo, borde, espaciado y más.
+
+```{r themes-13}
+# Personalización de la leyenda
+base_plot +
+  theme_bw() +
+  theme(
+    # Posición de la leyenda (opciones: "none", "left", "right", "bottom", "top")
+    legend.position = "bottom",
+    
+    # Dirección de la leyenda ("horizontal" o "vertical")
+    legend.direction = "horizontal",
+    
+    # Justificación de la leyenda dentro de su área
+    legend.justification = "center",
+    
+    # Fondo de la leyenda
+    legend.background = element_rect(
+      fill = "gray95",        # Color de fondo
+      color = "gray50",       # Color del borde
+      linewidth = 0.5         # Grosor del borde
+    ),
+    
+    # Espaciado alrededor de la leyenda
+    legend.margin = margin(10, 10, 10, 10),  # márgenes: arriba, derecha, abajo, izquierda
+    
+    # Espaciado entre elementos de la leyenda
+    legend.spacing = unit(0.5, "cm"),
+    
+    # Tamaño de los símbolos en la leyenda
+    legend.key.size = unit(1, "cm"),
+    
+    # Fondo de los símbolos en la leyenda
+    legend.key = element_rect(fill = "white", color = "gray50")
+  ) +
+  guides(color = guide_legend(
+    title.position = "top",    # Posición del título
+    title.hjust = 0.5,         # Centrado horizontal del título
+    nrow = 1                   # Una sola fila para los elementos
+  ))
+```
+
+Modificar elementos de los ejes Podemos personalizar las líneas de los ejes, marcas de graduación (ticks) y líneas de cuadrícula.
+
+```{r themes-14}
+# Personalización de ejes
+base_plot +
+  theme_bw() +
+  theme(
+    # Líneas de los ejes
+    axis.line = element_line(
+      color = "darkred",      # Color de las líneas de los ejes
+      linewidth = 1           # Grosor
+    ),
+    
+    # Marcas de graduación (ticks) en los ejes
+    axis.ticks = element_line(
+      color = "darkred",      # Color
+      linewidth = 1           # Grosor
+    ),
+    
+    # Longitud de las marcas de graduación
+    axis.ticks.length = unit(0.2, "cm"),
+    
+    # Líneas de cuadrícula mayores (grid.major)
+    panel.grid.major = element_line(
+      color = "gray90",       # Color más claro
+      linewidth = 0.5,        # Grosor
+      linetype = "dashed"     # Línea discontinua
+    ),
+    
+    # Líneas de cuadrícula menores (grid.minor)
+    panel.grid.minor = element_line(
+      color = "gray95",       # Color muy claro
+      linewidth = 0.25        # Muy fino
+    ),
+    
+    # Eliminar líneas de cuadrícula verticales
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+```
+
+Modificar el fondo y márgenes El área del gráfico completa puede personalizarse, incluyendo fondos y márgenes.
+
+```{r themes-15}
+# Personalización de fondos y márgenes
+base_plot +
+  theme(
+    # Fondo del área del gráfico (donde están los datos)
+    panel.background = element_rect(
+      fill = "lightblue",     # Color de fondo
+      color = "darkblue",     # Color del borde
+      linewidth = 1.5         # Grosor del borde
+    ),
+    
+    # Fondo de toda la figura (incluye títulos, leyenda, etc.)
+    plot.background = element_rect(
+      fill = "gray98",        # Color de fondo claro
+      color = "gray50",       # Borde gris
+      linewidth = 1
+    ),
+    
+    # Márgenes del gráfico (arriba, derecha, abajo, izquierda)
+    plot.margin = margin(30, 30, 30, 30, unit = "pt"),
+    
+    # Fondo de la leyenda
+    legend.background = element_rect(
+      fill = "white",
+      color = "gray50"
+    )
+  )
+```
+
+## Ejercicio i):
+
+En los últimos meses, los biólogos han observado que una enfermedad está afectando a los pingüinos de las islas Palmer. Para monitorear la condición física de las aves, se han registrado varias características de cada individuo:
+
+**species** (Adelie, Chinstrap, Gentoo)
+
+**island** (Biscoe, Dream, Torgersen)
+
+**sex** (female, male)
+
+**body_mass_g** (masa corporal en gramos)
+
+**flipper_length_mm** (longitud de la aleta)
+
+**bill_length_mm** y **bill_depth_mm** (medidas del pico)
+
+**year** (año de observación)
+
+El equipo de investigación quiere explorar cómo las características físicas se relacionan entre sí y con la isla y el sexo de los pingüinos, para identificar posibles grupos más vulnerables. Tu misión es crear una visualización completa que permita analizar la situación y comunicarla profesionalmente.
+
+Tareas del reto:
+
+**Gráfico base y aesthetics**
+
+-   Crea un scatterplot de body_mass_g vs flipper_length_mm.
+
+-   Mapea species a color, sex a forma y bill_length_mm al tamaño de los puntos.
+
+-   Ajusta la transparencia (alpha) para evitar sobreposición de puntos.
+
+**Faceting avanzado**
+
+-   Usa las facetas para crear paneles por sexo (filas) e isla (columnas).
+
+-   Observa si la relación masa-longitud de aleta difiere entre islas o sexos.
+
+-   Compara con facetas (`facet_grid()` vs `facet_wrap()`): ¿Qué ventajas y limitaciones tiene cada enfoque?
+
+**Zoom y filtrado visual**
+
+-   Aplica `coord_cartesian()` para centrarte en masa corporal entre 2500 y 5000 g, sin eliminar datos.
+
+-   Experimenta con `ylim()` y observa qué pasa con los datos fuera del rango.
+
+**Etiquetas y tema profesional** bb
+
+-   Añade título, subtítulo, ejes y pie de figura con labs().
+
+-   Aplica un tema adecuado: theme_dark() para presentación en pantalla o theme_bw() para informe académico.
+
+-   Ajusta posición, tamaño y disposición de la leyenda usando theme().
+
+**Análisis e interpretación**
+
+-   Según tu gráfico, ¿qué especie parece más afectada por la enfermedad (ej.: menor masa corporal promedio)?
+
+-   ¿Algún sexo o isla muestra mayor vulnerabilidad?
+
+-   ¿La longitud de aleta y la masa corporal se comportan de manera consistente entre islas?
+
+-   ¿Hay subgrupos que podrían requerir vigilancia especial?
 
 # 7. Mapas con ggplot2: Introducción a la visualización de datos espaciales.
 

@@ -1,0 +1,149 @@
+---
+title: "dia_3_visualizacion_ggplot_soluciones"
+format: html
+editor: visual
+---
+
+## 
+
+## Soluciones a los ejercicios:
+
+```{r ejecicio a}
+
+# Dimensiones del dataset 
+dim(penguins)  
+
+# Estructura de las variables 
+str(penguins)  
+
+# Número de valores NA por variable 
+colSums(is.na(penguins))
+```
+
+```{r ejecicio b}
+
+# Número de individuos por especie 
+ggplot(penguins, aes(x = species)) +   
+  geom_bar()   
+
+# Número de individuos por isla 
+ggplot(penguins, aes(x = island)) +   
+  geom_bar() 
+```
+
+```{r ejercico c}
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species,            size = body_mass_g)) +   
+  geom_point(alpha = 0.6, na.rm = TRUE)  
+```
+
+```{r ejercicio d}
+# Gráfico unidimensional: número de individuos por isla 
+
+plot_unidimensional <- ggplot(penguins, aes(x = island)) +   
+  geom_bar(fill = "steelblue", alpha = 0.8)   
+
+# Gráfico bidimensional: relación masa corporal vs longitud del pico por sexo
+plot_bidimensional <- ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, color = sex)) +   
+  geom_point(size = 2, alpha = 0.7)   
+
+# Guardar los gráficos 
+ggsave("individuos_por_isla.jpg", plot_unidimensional, width = 15, height = 10, units = "cm", dpi = 300) 
+
+ggsave("relacion_masa_pico.jpg", plot_bidimensional,         width = 15, height = 10, units = "cm", dpi = 300)
+```
+
+```{r ejercicio e}
+
+# Gráfico 1 – Color mapeado a una variable, tamaño fijo  
+a1 <- ggplot(penguins) +   
+  geom_point(aes(x = body_mass_g, y = bill_depth_mm, color = species), size = 2,     alpha = 0.7   )  
+#✔ color está dentro de aes() → representa información #✔ size y alpha están fuera → valores constantes 
+#✔ ggplot crea una leyenda de color  
+
+# Gráfico 2 – Color fijo, tamaño mapeado a una variable  
+a2 <- ggplot(penguins) +   
+  geom_point(aes(x = body_mass_g, y = bill_depth_mm, size = body_mass_g), color = "darkblue", alpha = 0.7)  
+#✔ size está dentro de aes() → varía según los datos 
+#✔ color está fuera → mismo color para todos los puntos 
+#✔ ggplot crea una leyenda de tamaño  
+```
+
+```{r ejercicio f}
+
+# 1a y 1b: Bar plot con proporciones y conteos 
+a1 <- ggplot(penguins, aes(x = species, fill = sex)) +   
+  geom_bar(position = "fill")  
+
+# proporciones  
+a2 <- ggplot(penguins, aes(x = species, fill = sex)) +   
+  geom_bar(position = "dodge")  
+
+# conteos por sexo  
+# 2a-c: Scatterplot con color, tamaño y transparencia 
+a3 <- ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,                       color = species, size = body_mass_g)) +   
+  geom_point(alpha = 0.6)
+```
+
+```{r ejercicio g}
+# 1. Boxplot con etiquetas 
+miplot <- ggplot(penguins, aes(x = species, y = body_mass_g)) +   
+  geom_boxplot() +   
+  labs(     
+    title = "Distribución de masa corporal por especie",     
+    subtitle = "Datos del estudio Palmer Penguins",     
+    x = "Especie de pingüino",     
+    y = "Masa corporal (g)",     
+    caption = "Fuente: palmerpenguins"   
+    ) miplot  
+
+# 2a. Zoom sin eliminar datos 
+miplot + coord_cartesian(ylim = c(3000, 5000))  
+
+# 2b. Limitar eje Y eliminando observaciones 
+miplot + ylim(3000, 5000)  
+
+# 3. Bonus – color por sexo 
+miplot +    
+  aes(fill = sex) +    
+  coord_cartesian(ylim = c(3000, 5000))
+```
+
+```{r ejercicio h}
+# Ejercicio h1 - facet_grid  
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = species)) + geom_point(na.rm = TRUE) + 
+  facet_grid(rows = vars(sex), cols = vars(species), scales = "free")  
+
+# Ejercicio h2 - facet_wrap  
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) + geom_point(na.rm = TRUE) + 
+  facet_wrap(facets = vars(island), ncol = 2, scales = "free")
+```
+
+```{r ejercicio i}
+
+# Gráfico base avanzado 
+
+reto_plot <- ggplot(penguins,aes(x = body_mass_g, y = flipper_length_mm,                         color = species, shape = sex, size = bill_length_mm)) +   
+  geom_point(alpha = 0.6, na.rm = TRUE) +   
+  coord_cartesian(ylim = c(2500, 5000)) +  # Zoom sin perder datos   
+  labs(     
+    title = "Condición física de los pingüinos afectados por enfermedad",         
+    subtitle = "Relación entre masa corporal, longitud de aleta y tamaño del pico",     x = "Masa corporal (g)",     
+    y = "Longitud de aleta (mm)",     
+    color = "Especie",     
+    shape = "Sexo",     
+    size = "Longitud del pico (mm)",     
+    caption = "Fuente: Palmerpenguins"   
+    ) +   
+  theme_bw() +   
+  theme(     
+    legend.position = "bottom",     
+    legend.box = "horizontal",     
+    plot.title = element_text(size = 16, face = "bold"),     
+    plot.subtitle = element_text(size = 12)   
+    )  # Facet grid por sexo y isla 
+
+reto_plot + facet_grid(rows = vars(sex), cols = vars(island))
+```
+
+# 
