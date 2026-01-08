@@ -10,8 +10,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
-REPASO DE LOS DÍAS ANTERIORES:
-
 Bienvenidos al **Día 3: Visualización de datos en R con ggplot2**. Este documento está pensado como material de clase. Seguiremos paso a paso las explicaciones y los bloques de código en RStudio, ejecutando los ejemplos y realizando los ejercicios propuestos. Usaremos la base de datos **`palmerpenguins`** y complementaremos con ejemplos breves y mapas.
 
 # 1. Objetivos
