@@ -1,4 +1,5 @@
 ---
+ita---
 title: "Día 1 - Introduccion a R y Rstudio. Programa de dcotorado UAH"
 author: "Paloma Ruiz Benito, Verónica Cruz Alonso, Marina Rodes Blanco y Julián Tijerin Triviño"
 date: "2025-12-22"
@@ -221,7 +222,7 @@ Aprende sobre reproducibilidad, ya que es clave y fundamental en ciencia
 
 -   ¿sabes identificar por qué?
 
--    ¿que ventajas y desventajas tiene hacerlo reproducible?
+-   ¿que ventajas y desventajas tiene hacerlo reproducible?
 
 Discutelo en parejas.
 
