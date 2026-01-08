@@ -71,7 +71,7 @@ sort(v1, decreasing=TRUE, na.last=TRUE)
 #el valor de retorno de la funcion es el vector ordenado con las espeificaciones que le he dado en los argumentos
 ```
 
-### 🧩 Ejercicio 3: primera función 
+### 🧩 Ejercicio 3: primera función
 
 1.  Crea una función que sirva para calcular el área de habitaciones cuadradas o rectangulares. Para ello crea una función de dos argumentos (el ancho de la habitación y el largo) y que devuelva el área.
 
@@ -96,7 +96,7 @@ sort(v1, decreasing=TRUE, na.last=TRUE)
     mi_funcion(32,4,16)
     ```
 
-### 🧩 Ejercicio 4: funcion de media aritmética 
+### 🧩 Ejercicio 4: funcion de media aritmética
 
 Crea una función que calcule la media aritmética de los valores de un vector (sin usar la función mean()). De tal manera que si introducimos, por ejemplo, el vector c(1, 8, 18) nos devuelva el valor 9
 
