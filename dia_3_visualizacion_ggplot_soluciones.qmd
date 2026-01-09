@@ -120,30 +120,111 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) + 
 ```
 
 ```{r ejercicio i}
+penguins_clean <- penguins %>%
+  filter(
+    !is.na(body_mass_g),
+    !is.na(flipper_length_mm),
+    !is.na(sex),
+    !is.na(bill_length_mm)
+  )
 
-# Gráfico base avanzado 
+base_plot <- ggplot(
+  penguins_clean,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm,
+    color = species,
+    shape = sex,
+    size = bill_length_mm
+  )
+) +
+  geom_point(alpha = 0.6, na.rm = TRUE)
 
-reto_plot <- ggplot(penguins,aes(x = body_mass_g, y = flipper_length_mm,                         color = species, shape = sex, size = bill_length_mm)) +   
-  geom_point(alpha = 0.6, na.rm = TRUE) +   
-  coord_cartesian(ylim = c(2500, 5000)) +  # Zoom sin perder datos   
-  labs(     
-    title = "Condición física de los pingüinos afectados por enfermedad",         
-    subtitle = "Relación entre masa corporal, longitud de aleta y tamaño del pico",     x = "Masa corporal (g)",     
-    y = "Longitud de aleta (mm)",     
-    color = "Especie",     
-    shape = "Sexo",     
-    size = "Longitud del pico (mm)",     
-    caption = "Fuente: Palmerpenguins"   
-    ) +   
-  theme_bw() +   
-  theme(     
-    legend.position = "bottom",     
-    legend.box = "horizontal",     
-    plot.title = element_text(size = 16, face = "bold"),     
-    plot.subtitle = element_text(size = 12)   
-    )  # Facet grid por sexo y isla 
+base_plot
 
-reto_plot + facet_grid(rows = vars(sex), cols = vars(island))
+
+#Qué se consigue aquí:
+  
+# -Relación directa masa corporal–longitud de aleta
+# -Diferenciación simultánea por especie, sexo y tamaño corporal
+# -Transparencia para reducir solapamiento
+# 
+# 1.2 Faceting avanzado: sexo × isla
+
+facet_grid_plot <- base_plot +
+  facet_grid(
+    rows = vars(sex),
+    cols = vars(island)
+  )
+
+facet_grid_plot
+
+
+# Este gráfico permite comparar el mismo patrón biológico entre:
+# 
+# Machos vs hembras (filas)
+# Islas (columnas)
+# 
+# 1.3 Comparación con facet_wrap()
+facet_wrap_plot <- base_plot +
+  facet_wrap(vars(island), ncol = 3)
+
+facet_wrap_plot
+
+
+# Comparación conceptual:
+#   
+# facet_grid()
+# Ventaja: comparación estructurada (sexo × isla)
+# Ideal cuando hay dos variables categóricas con significado jerárquico
+# 
+# facet_wrap()
+# 
+# Ventaja: más flexible y compacto
+# Limitación: no separa sexos claramente
+# 
+# 1.4 Zoom visual vs filtrado de datos
+#Zoom correcto (sin eliminar datos)
+zoom_plot <- facet_grid_plot +
+  coord_cartesian(xlim = c(2500, 5000))
+
+zoom_plot
+
+#Filtrado incorrecto (elimina observaciones)
+filtered_plot <- facet_grid_plot +
+  xlim(2500, 5000)
+
+filtered_plot
+
+
+# Resultado esperado:
+#   
+# coord_cartesian() mantiene todos los datos (solo cambia la vista)
+# xlim() elimina observaciones y puede distorsionar patrones
+# 
+# 1.5 Versión final comunicable (etiquetas + tema)
+final_plot <- base_plot +
+  coord_cartesian(xlim = c(2500, 5000)) +
+  facet_grid(rows = vars(sex), cols = vars(island)) +
+  labs(
+    title = "Indicadores de vulnerabilidad metabólica en pingüinos",
+    subtitle = "Individuos con menor masa corporal relativa para su longitud de aleta",
+    x = "Masa corporal (g)",
+    y = "Longitud de la aleta (mm)",
+    color = "Especie",
+    shape = "Sexo",
+    size = "Longitud del pico (mm)",
+    caption = "Fuente: Palmer Penguins Dataset"
+  ) +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    legend.box = "horizontal",
+    plot.title = element_text(face = "bold", size = 14),
+    plot.subtitle = element_text(size = 11)
+  )
+
+final_plot
 ```
 
 # 
