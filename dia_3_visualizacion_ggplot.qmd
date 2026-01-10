@@ -65,9 +65,15 @@ A diferencia de otros enfoques más inmediatos, **ggplot2** se basa en la *Gramm
 
 En lugar de “dibujar” un gráfico de una sola vez, **ggplot2** nos invita a construirlo por capas, añadiendo información de manera progresiva. Este enfoque favorece la exploración de los datos, permite modificar y reutilizar gráficos con facilidad, y encaja muy bien con los principios de ciencia reproducible. Un mismo conjunto de datos puede representarse de múltiples maneras simplemente cambiando una capa o una estética, lo que resulta ideal para comparar escenarios, periodos temporales o gradientes ambientales.
 
-IMAGEN DE PINTURA POR CAPAS!
+```{r}
+#| label: gif figura capas
+#| echo: false
+#| fig-cap: "Creación de una pintura por capas"
 
-En este contexto, **ggplot2** es una herramienta clave para crear figuras como mapas, relaciones entre variables ambientales, comparaciones entre tratamientos de manejo o análisis de respuestas ecológicas frente a perturbaciones. A lo largo de esta sesión, aprenderemos a utilizar ggplot2 desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.
+knitr::include_graphics("images/imagen_capas.gif")
+```
+
+En este contexto, **ggplot2** es una herramienta clave para crear figuras como mapas, relaciones entre variables ambientales, comparaciones entre tratamientos de manejo o análisis de respuestas de multitud de disciplinas. A lo largo de esta sesión, aprenderemos a utilizar **ggplot2** desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.
 
 ## 2.1. Visualización eficaz y ggplot2
 
@@ -118,10 +124,11 @@ Miramos las primeras filas del dataset `penguins`, que es el dataset que vamos a
 
 ```{r head-1}
 head(penguins)
+str(penguins)
 summary(penguins)
 ```
 
-Con `head()` vamos a ver las primeras líneas de nuestro dataframe. Con `summary()` vamos a ver un resumen de las variables que tiene nuestro dataframe.
+Con `head()` vamos a ver las primeras líneas de nuestro dataframe. Con `srt()` vamos a comprobar qué tipo de variable contiene nuestro dataframe. Con `summary()` vamos a ver un resumen de las variables que tiene nuestro dataframe.
 
 ## 🧩Ejercicio a):
 
@@ -137,11 +144,11 @@ Con `head()` vamos a ver las primeras líneas de nuestro dataframe. Con `summary
 
 ## 3.1. ggplot2 paso a paso
 
-## Breve introducción
+## 3.1.1. Breve introducción
 
 La visualización exploratoria de datos es una etapa fundamental en cualquier análisis estadístico científico. Nos permite detectar patrones, identificar valores atípicos, entender relaciones entre variables y comunicar resultados de manera efectiva. Una visualización bien construida debe ser clara, tener ejes etiquetados apropiadamente, incluir un título descriptivo, una leyenda legible cuando sea necesario, y siempre indicar las unidades de medida.
 
-El paquete ggplot2 implementa la *Grammar of Graphics* (Gramática de los Gráficos), un sistema coherente y estructurado para construir visualizaciones. Esta gramática se compone de varios elementos fundamentales: **datos** + **aesthetics** + **geometrías** + **facets** + **escalas** + **temas**., que se combinan de forma modular para crear gráficos complejos.
+El paquete ggplot2 implementa la *Grammar of Graphics* (Gramática de los Gráficos), un sistema coherente y estructurado para construir visualizaciones. Esta gramática se compone de varios elementos fundamentales: **datos** + **aesthetics** + **geometrías** + **opciones adicionales**, que se combinan de forma modular para crear gráficos complejos.
 
 ------------------------------------------------------------------------
 
@@ -167,7 +174,11 @@ Todas las capas se conectan entre sí con el símbolo `+`. Es importante colocar
 
 La sintaxis general para crear un gráfico en **ggplot2** sigue este patrón:
 
-> ggplot(**datos** (data = data), **aes**(x = var_1, y = var_2)) + **geometría** (geom\_) + **opciones_adicionales**
+> ggplot(**datos** (data = data), **aes**(x = var_1, y = var_2)) +
+>
+> **geometría** (geom\_) +
+>
+> **opciones_adicionales**
 
 A continuación, veremos un ejemplo concreto que ilustra esta estructura. Creamos un histograma para visualizar la distribución de la longitud del pico de los pingüinos.
 
@@ -186,16 +197,16 @@ ggplot(data = penguins, aes(x = bill_length_mm)) +
 
 La función `ggplot()` inicializa el sistema de gráficos y establece el marco de trabajo. Por sí sola, no produce ninguna visualización, sino que crea un "lienzo vacío" sobre el cual construiremos el gráfico. Es necesario especificar al menos un conjunto de datos para que funcione correctamente.
 
-Al ejecutar solo ggplot(penguins), obtenemos un panel vacío porque no hemos definido qué variables representar ni cómo visualizarlas.
+Al ejecutar solo ggplot(data = penguins), obtenemos un panel vacío porque no hemos definido qué variables representar ni cómo visualizarlas.
 
 ```{r, echo=TRUE}
 #| fig-cap: "Lienzo en blanco. Aún no hemos comenzado a representar nada. Únicamente le hemos dicho a RStudio que queremos visualizar algo"
 ggplot(data = penguins)
 ```
 
-## 3.5 Creación de un gráfico paso a paso: aes(), aesthetics.
+## 3.5 Creación de un gráfico paso a paso: *aes()*, aesthetics.
 
-La función *aes()* (abreviatura de "aesthetics") define las asignaciones estéticas, es decir, cómo se relacionan las variables del conjunto de datos con las propiedades visuales del gráfico. Dentro de *aes()* podemos especificar:
+La función *aes(),* abreviatura de "aesthetics", define las asignaciones estéticas, es decir, cómo se relacionan las variables del conjunto de datos con las propiedades visuales del gráfico. Dentro de *aes()* podemos especificar:
 
 **x**: Variable para el eje horizontal
 
@@ -220,7 +231,7 @@ ggplot(data = penguins, aes(x = species))
 
 ```
 
-## Aquí estamos diciendo:
+## 3.5.1. Aquí estamos diciendo:
 
 eje X → Especie de pingüino (*species*)
 
@@ -240,7 +251,7 @@ Algunos ejemplos de gráficos:
 | `geom_histogram()` | Histogramas           |
 | `geom_boxplot()`   | Boxplots              |
 
-Ahora añadimos una geometría (geom_bar) de barras al gráfico anterior para crear un gráfico que nos muestre el número de ejemplares que tenemos de cada especie de pingüino en nuestra base de datos.
+Ahora añadimos una geometría (`geom_bar`) de barras al gráfico anterior para crear un gráfico que nos muestre el número de ejemplares que tenemos de cada especie de pingüino en nuestra base de datos.
 
 ```{r ejemplo de gráfico de barras, echo=TRUE}
 #| fig-cap: "Representación del conteo de individuos por especie en nuestra base de datos"
@@ -253,20 +264,26 @@ ggplot(penguins, aes(x = species)) +
 
 ## 🧩Ejercicio b):
 
-Crea dos gráficos: uno que muestre el número de individuos por especie y otro el número de individuos por isla. Prueba diferentes geometrías.
+Crea dos gráficos: uno que muestre el número de individuos por especie y otro el número de individuos por isla.
+
+Crea un gráfico con la variable *body_mass_g* que muestre la distribución de la variable.
+
+-   ¿Qué diferencias observas entre representar una variable categórica y una variable continua?
+
+-   ¿Qué aspectos del gráfico mejorarías para hacerlo más claro para un público no especializado?
 
 ## 3.7 Gráficos bidimensionales
 
 Mientras que los gráficos unidimensionales nos permiten explorar una sola variable a la vez, los gráficos bidimensionales nos permiten examinar relaciones entre dos variables. Este tipo de visualizaciones es fundamental para identificar correlaciones, patrones y tendencias en nuestros datos.
 
-### Scatterplot básico (Gráfico de dispersión)
+### 3.7.1. Scatterplot básico (Gráfico de dispersión)
 
-Existen diferentes formas de especificar los datos en **ggplot2**. Podemos incluirlos en la función ggplot() principal (recomendado cuando todas las geometrías usan el mismo conjunto de datos) o directamente en cada geometría (útil cuando combinamos datos de diferentes fuentes).
+Existen diferentes formas de especificar los datos en **ggplot2**. Podemos incluirlos en la función `ggplot()` principal (recomendado cuando todas las geometrías usan el mismo conjunto de datos) o directamente en cada geometría (útil cuando combinamos datos de diferentes fuentes).
 
 ```{r scatter-basic-1}
 # Gráfico de dispersión bidimensional básico
 # Aquí necesitamos especificar tanto el eje X como el eje Y
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+ggplot(penguins,aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point()
 
 ```
@@ -299,19 +316,35 @@ Hasta aquí habríamos creado un gráfico básico utilizando **ggplot2**. A part
 
 ## 🧩Ejercicio c)
 
-Crea un gráfico de dispersión que muestre la relación entre: Longitud de la aleta (*flipper_length_mm*) vs Masa corporal (*body_mass_g*)
+Partiendo de la base de datos `penguins`, crea **un gráfico de dispersión (scatterplot)** que muestre la relación entre:
 
-Añade la siguiente información visual:
+-    **Longitud de la aleta** (`flipper_length_mm`) en el eje X
 
--   Colorea los puntos según la especie (species).
+-    **Masa corporal** (`body_mass_g`) en el eje Y
 
--   Usa formas distintas para el sexo (sex).
+    -   En el gráfico, **deben incorporarse los siguientes aesthetics dentro de `aes()`**:
 
--   Ajusta la transparencia de los puntos para mejorar la visualización.
+-   **Color (`color`)**
 
-### Como guardar plots satisfactorios
+    -   Mapea la variable **`species`** para diferenciar las especies de pingüinos.
 
-Una vez que hemos creado un gráfico que cumple con nuestros objetivos, es importante guardarlo en un formato y calidad adecuados para su uso en informes, presentaciones o publicaciones. La función ggsave() permite exportar gráficos en diversos formatos (JPG, PNG, PDF, SVG, etc.) con control preciso sobre dimensiones y resolución.
+-   **Forma (`shape`)**
+
+    -    Usa la variable **`sex`** para asignar distintas formas a los puntos.
+
+-   **Tamaño (`size`)**
+
+    -   Representa el **año de observación (`year`)** mediante el tamaño de los puntos.
+
+-   **Transparencia (`alpha`)**
+
+    -   Ajusta la transparencia de los puntos para mejorar la visualización en zonas con solapamiento.
+
+-   ¿Crees que es necesario añadir todos los `aesthetics` para una buena visualización o que por el contrario puede complicar la interpretación de ciertos gráficos?
+
+### 3.7.2. Como guardar plots satisfactorios
+
+Una vez que hemos creado un gráfico que cumple con nuestros objetivos, es importante guardarlo en un formato y calidad adecuados para su uso en informes, presentaciones o publicaciones. La función `ggsave()` permite exportar gráficos en diversos formatos (JPG, PNG, PDF, SVG, etc.) con control preciso sobre dimensiones y resolución.
 
 Primero debejos asignar nuestro gráfico a un objeto:
 
@@ -336,17 +369,29 @@ ggsave(filename = "penguins_scatter.pdf", plot = plot_pinguinos,
 
 ## 🧩Ejercicio d):
 
-Crea dos gráficos:
+Partiendo del **gráfico creado en el ejercicio anterior**, realiza las siguientes tareas:
 
--Un gráfico unidimensional que muestre el número de individuos por isla (island).
+-   Guardar el gráfico en un archivo externo asegurando que la **calidad visual**, las **dimensiones** y la **resolución** sean adecuadas para su uso en un **informe académico o una presentación.**
 
--Un gráfico bidimensional que muestre la relación entre la masa corporal y la longitud del pico, diferenciando por sexo mediante colores. Añade transparecia y un tamaño determinado a los puntos. Prueba diferentes transparecias y tamaños.
+### Instrucciones:
 
--Guarda ambos gráficos en formato JPG con dimensiones apropiadas.
+1.   Utiliza la función **`ggsave()`** para exportar el gráfico.
+
+2.   Prueba **distintas combinaciones** de los siguientes argumentos:
+
+    -   `width` y `height`
+
+    -   `units` (`"in"`, `"cm"`)
+
+    -   `dpi`
+
+    -   `device` (por ejemplo `"jpg"`, `"png"`)
+
+3.   Guarda **al menos dos versiones** del mismo gráfico.
 
 ## 3.8 *Aesthetics* vs. argumentos estéticos
 
-Es crucial entender la diferencia entre definir propiedades estéticas dentro de `aes()`, que están vinculadas a variables, y fuera de `aes()`, que son valores fijos que afectarán a la totalidad de los componentes del gráfico:
+Es crucial entender la diferencia entre definir propiedades estéticas dentro de `aes()`, que **están vinculadas a variables**, y fuera de `aes()`, que son valores fijos que **afectarán a la totalidad de los componentes del gráfico**:
 
 -   Dentro de `aes()`: El valor visual varía según los datos de una variable.
 -   Fuera de `aes()`: El valor visual es constante para todos los elementos.
@@ -364,7 +409,7 @@ En el segundo ejemplo, el color se especifica fuera de `aes()`, por lo que todos
 ###Hay que tener mucho cuidado de dónde se insertan los diferentes argumentos
 
 ggplot(data = penguins) + 
-  geom_point(aes(x = body_mass_g, y = bill_depth_mm), color = "darkblue")
+  geom_point(aes(x = body_mass_g, y = bill_depth_mm, shape = species), color = "darkblue")
 ```
 
 Esta distinción es fundamental: cuando queremos que un atributo visual (color, tamaño, forma) represente información de una variable, debe ir dentro de `aes()`. Cuando queremos que todos los elementos tengan el mismo valor para ese atributo, debe ir fuera.
@@ -377,7 +422,7 @@ Crea un gráfico de dispersión que muestre la relación entre: Masa corporal (b
 
 En un primer gráfico:
 
--   Colorea los puntos según la especie (species).
+-   Colorea los puntos según la especie (`species`).
 
 -   Fija el tamaño de los puntos a un valor constante.
 
@@ -393,13 +438,11 @@ Observa ambos gráficos y responde:
 
 -   ¿Qué aesthetics dependen de los datos y cuáles no?
 
-RESPONDE:
-
 -   ¿Qué gráfico comunica mejor la información?
 
 -   ¿Es buena idea mapear una variable al tamaño en este caso?
 
--   ¿Qué ocurriría si ponemos color = "species" fuera de aes()?
+-   ¿Qué ocurriría si ponemos color = "species" fuera de `aes()`?
 
 ## 3.9 Tipos de gráfico (geom\_)
 
@@ -412,7 +455,7 @@ El propósito de la visualización (explorar distribuciones, comparar grupos, mo
 ```{r}
 #| label: fig-data-science-3
 #| echo: false
-#| fig-cap: "Figure 3: Variable types and their classification"
+#| fig-cap: "Variable types and their classification"
 
 knitr::include_graphics("images/tipos_variables.png")
 ```
@@ -467,7 +510,7 @@ Las variables cuantitativas describen medidas numéricas. Estas variables pueden
 
 ### Variables cuantitativas continuas
 
-Estas variables pueden tomar cualquier valor dentro de un rango continuo (incluyendo decimales). En penguins: body_mass_g (Peso corporal (gr)),flipper_length_mm (Longitud de la aleta (mm)), bill_length_mm (Longitud del pico (mm)).
+Estas variables pueden tomar cualquier valor dentro de un rango continuo (incluyendo decimales). En penguins: *body_mass_g* (Peso corporal (gr)), *flipper_length_mm* (Longitud de la aleta (mm)), *bill_length_mm* (Longitud del pico (mm)).
 
 ### Distribución de una variable continua
 
@@ -477,7 +520,7 @@ Histograma (`geom_histogram()`) -\> Divide el rango de valores en intervalos (bi
 
 ```{r cuantitativas continuas-1}
 # Histograma básico - muestra la distribución en intervalos
-ggplot(penguins, aes(x = body_mass_g)) +
+ggplot(penguins, aes(x = body_mass_g, fill = species)) +
   geom_histogram(binwidth = 100)  # binwidth controla el ancho de cada intervalo
 ```
 

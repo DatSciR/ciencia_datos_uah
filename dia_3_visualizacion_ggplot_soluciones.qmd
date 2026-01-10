@@ -29,28 +29,47 @@ ggplot(penguins, aes(x = species)) +
 # Número de individuos por isla 
 ggplot(penguins, aes(x = island)) +   
   geom_bar() 
+
+# Distribución del peso
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram()
 ```
 
 ```{r ejercico c}
 
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species,            size = body_mass_g)) +   
-  geom_point(alpha = 0.6, na.rm = TRUE)  
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm,
+    y = body_mass_g,
+    color = species,
+    shape = sex,
+    size = year,
+    alpha = year
+  )
+) +
+  geom_point()  
 ```
 
 ```{r ejercicio d}
-# Gráfico unidimensional: número de individuos por isla 
+ggsave(
+  filename = "grafico_publicacion.jpg",
+  plot = p,
+  width = 7,
+  height = 5,
+  units = "in",
+  dpi = 300
+)
 
-plot_unidimensional <- ggplot(penguins, aes(x = island)) +   
-  geom_bar(fill = "steelblue", alpha = 0.8)   
-
-# Gráfico bidimensional: relación masa corporal vs longitud del pico por sexo
-plot_bidimensional <- ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, color = sex)) +   
-  geom_point(size = 2, alpha = 0.7)   
-
-# Guardar los gráficos 
-ggsave("individuos_por_isla.jpg", plot_unidimensional, width = 15, height = 10, units = "cm", dpi = 300) 
-
-ggsave("relacion_masa_pico.jpg", plot_bidimensional,         width = 15, height = 10, units = "cm", dpi = 300)
+ggsave(
+  filename = "grafico_presentacion.jpg",
+  plot = p,
+  width = 10,
+  height = 6,
+  units = "cm",
+  dpi = 150
+)
+#(Nota: p corresponde al gráfico creado previamente.)
 ```
 
 ```{r ejercicio e}
