@@ -26,7 +26,7 @@ bibliography: references.bib
 
 Paloma Ruiz Benito (paloma.ruizb\@uah), Verónica Cruz-Alonso (veronica.cruza\@uah), Marina Rodes Blanco (marina.rodesb\@uah.es) y Julián Tijerin Triviño (julian.tijerint\@uah.es) somos investigadores de la Universidad de Alcalá, en el grupo de Ecología y Restauración Forestal (<https://portalcientifico.uah.es/grupos/9603/detalle>) y en el Grupo de Investigación en Teledetección Ambiental (<https://geogra.uah.es/gita/>).
 
-Junto con Julen Astigarraga Urcelay (colaborador y amigo), pubilcamos los materiales de los curso que impartimos en DatSciR.
+Junto con Julen Astigarraga Urcelay (colaborador y amigo), publicamos los materiales de los curso que impartimos en DatSciR.
 
 Y vosotros **¿quiénes sois?**
 
@@ -42,7 +42,7 @@ Es vuestro turno, decirnos:
 
 -   sobre qué es vuestra tesis
 
--   cómo usáis o planeaís usar R
+-   cómo usáis o planeás usar R
 
 -   qué esperáis del curso
 
@@ -179,9 +179,9 @@ Un tipo de objeto con el que vamos a trabajar es un data.frame que es una tabla 
 
 ![](images/palmer_penguins.png)
 
-|  |
-|----|
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Los datos de **palmer penguins** fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo. Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo. |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ```{r}
 library(palmerpenguins)
