@@ -179,9 +179,9 @@ Un tipo de objeto con el que vamos a trabajar es un data.frame que es una tabla 
 
 ![](images/palmer_penguins.png)
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  |
+|----|
 | Los datos de **palmer penguins** fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo. Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo. |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ```{r}
 library(palmerpenguins)
@@ -513,7 +513,7 @@ no hace más que lo siguiente, pero ayuda a mucho a comprender y sintetizar cód
 
 ![](images/funcionamiento_pipa.png)
 
-#### 🧩 Ejercicio 
+#### 🧩 Ejercicio
 
 *Diferencias entre Rbase y tidyverse.* ¿Qué es más sencillo de entender? ¿y más reproducible de las tres opciones que hemos visto?
 
@@ -597,7 +597,7 @@ ggplot(penguins_male_body_kg, aes(x = species, y = body_mass_kg)) +
 Ahora es vuestro turno 💡, practica la seleccion y filtrado con la pipa.
 
 1.  **Ejercicio 1:** Selecciona solo las columnas `bill_length_mm` y `bill_depth_mm` de `penguins` usando tanto base R como tidyverse.\
-2.  **Ejercicio 2:** Filtra los individuos que tengan un body_mass_kg mayor de 3,5 . Calcula la media de la longitud y profundidadd del pico. \
+2.  **Ejercicio 2:** Filtra los individuos que tengan un body_mass_kg mayor de 3,5 . Calcula la media de la longitud y profundidadd del pico.\
 3.  **Ejercicio 3 (reto):** Usando tidyverse, selecciona todas las columnas numéricas, y quédate solo con los individuos de la especie Adelie de sexo femenino. Calcula la media, y rangos (mínimo, máximo).
 
 ![](images/R_heart.gif)
@@ -606,7 +606,7 @@ Ahora es vuestro turno 💡, practica la seleccion y filtrado con la pipa.
 
 Piensa en el modelo de ciencia de datos que hemos visto al principio del día:
 
-![Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. ](images/datascience.png){alt="Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram"}
+![Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram](images/datascience.png)
 
 **Plantea el objetivo de vuestro trabajo**
 
