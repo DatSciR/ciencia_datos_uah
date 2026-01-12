@@ -1,0 +1,851 @@
+---
+author: "Marina Rodes Blanco, Julián Tijerin Triviño, Paloma Ruiz Benito y Verónica Cruz Alonso, "
+date: today
+date-format: "DD/MM/YYYY"
+toc: true
+toc-depth: 5
+toc-title: "Índice"
+format:
+  html:
+    link-external-newwindow: true
+    title: Día 2 - Manejo y visualización de datos en R
+    subtitle: Gestión de datos y funciones en R
+  gfm: 
+    title: "Día 2 - Manejo y visualización de datos en R"
+editor: visual
+editor_options: 
+  chunk_output_type: console
+number-sections: true
+bibliography: references.bib
+---
+
+![](images/01_logo-vA_pant293.jpg){fig-align="left" width="40%"}
+
+## Síntesis del día 1: Introducción a R y a R studio
+
+### Modelo de ciencia de datos
+
+![Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram](images/datascience.png){#fig-datascience}
+
+### Buenas prácticas en la gestión de datos
+
+-   Trabajar por proyectos
+-   Usar teclas rápidas
+-   Consultar documentacion / pedir ayuda
+-   Código reproducible
+-   Seguir estilo (guia de estilo)
+
+### Tipos de objetos y operaciones básicas en R
+
+-   Vectores
+-   Matrices
+-   Data frames
+-   Listas
+
+### ¿Qué son los datos ordenados?
+
+![](images/tidydata_1.png)
+
+![](images/tidydata_3.png)
+
+### ¿Qué es tidyverse?
+
+![](images/tidyverse_packages.png)
+
+#### 🧩 Ejercicio: *repaso* *del día anterior*
+
+-   Crea un vector (mes) con los meses del año (en número)
+-   Crea otro vector con el número de días de cada mes y calcula la media y la desviación típica
+-   Junta los dos vectores en un data frame
+-   Con el set de datos de penguins:
+    -   selecciona solo las columnas `species`y `body_mass_g`de `penguins` usando tanto base R como tidyverse.
+    -   filtra los individuos que tengan un body_mass menor de 4,5 kg. ¿Cual es la media de peso de estos individuos?
+
+## Introducción
+
+### Objetivos de la sesión
+
+-   Entender la sintaxis y las principales funciones de los paquetes dplyr y tidyr de tidyverse.
+
+-   Utilizar estas librerías para manipular, reordenar y operar con un set de datos.
+
+-   Comprender la estructura de las funciones y aprender a escribir funciones en R.
+
+-   Aplicar funciones en programación iterativa por medio de bucles y la función map() del paquete purr.
+
+### Set de datos con los que vamos a trabajar
+
+Vamos a trabajar con datos de Tidytuesday y de las librerias de tidyverse principalmente. En todos los casos son datos reales.
+
+Tidytuesday es un proyecto comunitario de ciencia de datos impulsado por la comunidad de R, especialmente por usuarios de tidyverse. Cada martes se publica un dataset limpio y listo para analizar, junto con una breve descripción y enlaces a la fuente original.
+
+![TidyTuesday](images/tidyTuesday_logo.png)
+
+De este proyecto vamos a trabajar principalmente con el set de datos cuisine:
+
++----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/recetas1_copilot.png) | **CUISINE**                                                                                                                                               |
+|                                  |                                                                                                                                                           |
+|                                  | El dataset de \*\*Cuisine\*\* de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.) |
++----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. Puedes consultarlo con la función data(). De los sets de datos de tidyverse vamos a trabajar con msleep
+
++---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/mammals_sleeping_picture1_copilot.png) | **MSLEEP**                                                                                                                                                                                                    |
+|                                                   |                                                                                                                                                                                                               |
+|                                                   | El dataset \*\*msleep\*\* contiene información sobre \*\*el sueño de distintos\*\* mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño |
++---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Manejo y gestión de datos
+
+### Resumen de funciones
+
+![](images/resumen_funciones.png)
+
+### Importar y renombrar datos
+
+#### [Read_delim](https://readr.tidyverse.org/reference/read_delim.html): leer datos desde fuera de R
+
+Leer datos que tenemos almacenados, como por ejemplo, una tabla en formato csv.
+
+```{r read}
+#| warning: false
+
+library(tidyverse)
+
+recetas <- read_delim(file = "data/cuisines.csv", delim = ",")
+
+recetas <- read_delim(
+  file = "data/cuisines.csv",
+  delim = ",",
+  col_type = list(country = "f", servings="f"),
+  # puedo especificar el tipo de dato (country como factor)
+  )
+
+recetas
+
+
+View(recetas)
+summary(recetas)
+glimpse(recetas)
+```
+
+#### [Rename](https://dplyr.tidyverse.org/reference/rename.html): cambiar nombres de variables (columnas)
+
+```{r rename}
+#| warning: false  
+
+names(recetas)
+
+# Cambio el nombre y añado la unidad de medida (gramos)
+
+recetas_g <- recetas |>
+  rename(
+    fat_g = fat,
+    carbs_g = carbs,
+    # nombre nuevo = nombre viejo
+    protein_g = protein
+  )
+
+```
+
+📝 Ajustar sangría de código: Ctrl + i; Reformatear código: Ctrl + Shift + a
+
+### Funciones básicas de filtrado y selección
+
+#### [Slice](https://dplyr.tidyverse.org/reference/slice.html): filtrar filas según el índice numérico
+
+Seleccionar filas concretas del set de datos
+
+```{r slice}
+# warning: false
+
+recetas |> # shortcut para el pipe: CTRL + SHIFT + M
+  slice(1) # la primera fila
+
+recetas |>
+  slice(1, 5) # la fila 1 y la 5
+
+recetas |> 
+  slice(1:6) # de la fila 1 a la 5
+
+recetas |>
+  slice(-c(1:5)) # todas las filas excepto de la 1 a la 5
+
+```
+
+#### [Filter](https://dplyr.tidyverse.org/reference/filter.html): filtrar filas utilizando condiciones
+
+Se necesita un vector de filtrado que contenga valores lógicos (TRUE/FALSE).
+
+```{r filter}
+#| warning: false
+
+recetas |>
+  filter(country == "Chilean") # filtrar por filas que cumplen un patrón 
+#En este caso, todass las recetas chilenas
+
+recetas |>
+  filter(country == "Chilean" & total_time  < 60) # combinar criterios: AND
+#En este caso, todas las recetas chilenas que se preparan en menos de 60 minutos
+
+recetas |>
+  filter(country == "Chilean" & total_time  < 60) # combinar criterios: OR
+#En este caso, todas las recetas chilenas (independientemente del tiempo de preparación) o bien aquellas recetas que se preparen en menos de 60mins (independientemente del país)
+
+recetas |>
+  filter(country %in% c("Chilean", "Brazilian", "Peruvian")) # combinar criterios: %in% 
+
+#En este caso, todas las recetas de países del cono sur. Es equivalente a:
+
+recetas |>
+  filter(country == "Chilean" | country == "Brazilian"| country == "Peruvian")
+
+
+```
+
+##### 🧩 *Ejercicio: slice(), filter(), arrange()*
+
++---------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/mammals_sleeping_picture1_copilot.png) | -   Lee el data.frame “msleep.csv”. Pista: el delimitador entre datos es la coma (“,”).                                                                                                             |
+|                                                   |                                                                                                                                                                                                     |
+|                                                   | -   Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?                                                                                                      |
+|                                                   |                                                                                                                                                                                                     |
+|                                                   | -   Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas? |
++---------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#### [Select](https://dplyr.tidyverse.org/reference/select.html): sirve para seleccionar columnas utilizando condiciones
+
+Para ver como funciona esta función vamos a usar un set de datos sobre el sueño de los mamíferos. Se llama "msleep" y viene en librería de tidyverse. Puedes encontrar mas información sobre este set de datos en ?msleep
+
+```{r select}
+#| warning: false
+
+names(recetas)
+
+# ?select
+
+recetas |> 
+  select(name, calories, fat, carbs, protein) #solo nos interesan las columnas con informacion nutricional de cada receta
+
+recetas |> 
+  select(name, calories, fat, carbs, protein)
+
+# Se puede usar un patron de texto pra seleccionar colmnas
+recetas |>
+  select(ends_with("time")) # solo nos interesan las columnas relacionadas con el tiempo
+
+# se pueden utilizar todo tipo de patrones de texto: https://rstudio.github.io/cheatsheets/strings.pdf
+
+recetas |>
+  select(name,author, everything()) # se puede usar para reordenar variables
+
+recetas |>
+  select(recipes_name=name, country, author, reviews) # y para renombrarlas a la vez que hacemos la seleccion
+
+```
+
+##### 🧩 *Ejercicio: select()*
+
++---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/mammals_sleeping_picture2_copilot.png) | -   Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño.                                                |
+|                                                   |                                                                                                                                                              |
+|                                                   | -   Con el data set de msleep, crea un nuevo data.frame que contenga todas las variables excepto el estado de conservacion.                                  |
+|                                                   |                                                                                                                                                              |
+|                                                   | -   (extra) Crea un nuevo objeto (data frame) con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto. |
++---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+### Transformar los datos y calcular nuevas variables
+
+#### [Mutate](https://dplyr.tidyverse.org/reference/mutate.html): crear, modificar o eliminar columnas
+
+```{r mutate}
+#| warning: false
+
+# definir una variable 
+
+recetas |>
+  mutate(
+    # desde cero
+    ID = 1:nrow(recetas),
+    
+    # utilizando una variable para calcular otra (ej.- el numero de personas que       han dejado una puntuación pero no han escrito un review)
+    num_ratings_no_review = total_ratings - reviews) |>
+  
+  select(
+    ID, 
+    name:date_published, 
+    total_ratings,
+    reviews,
+    num_ratings_no_review,
+    everything()
+  )
+
+# sobreescribir una variable.
+recetas |>
+  mutate(
+    
+    # fct_recode sirve para redefinir los niveles de un factor (ojo sintaxis:          new_name="old_name")
+    servings = fct_recode(
+      servings,
+      una_persona = "1" ,
+      dos_personas = "2",
+      tres_personas = "3" 
+      ))
+
+#utilizar mas de una variable para generar otra
+recetas |>
+  mutate(
+    classification = case_when(
+      # utilizar varias variables para calcular otra nueva
+      avg_rating > 4 &
+        country %in% c(
+          "Chilean",
+          "Brazilian",
+          "Peruvian",
+          "Cuban",
+          "Puerto Rican",
+          "Colombian"
+        )  ~ "highest‑rated_Latin_cuisine",
+      
+      avg_rating < 2 &
+        country %in% c(
+          "Chilean",
+          "Brazilian",
+          "Peruvian",
+          "Cuban",
+          "Puerto Rican",
+          "Colombian"
+        )  ~ "lowest‑rated_Latin_cuisine",
+      
+      TRUE ~ "others" #resto de casos
+    )
+  )
+
+# Podemos hacer todo lo anterior concatenando todo el proceso y guardar el set de datos:
+
+recetas_modif <- recetas |>
+  mutate(
+    ID = 1:nrow(recetas),
+    
+    num_ratings_no_review = total_ratings - reviews,
+    
+    servings = fct_recode(
+      servings,
+      una_persona = "1" ,
+      dos_personas = "2",
+      tres_personas = "3"),
+    
+    classification = case_when(
+      # utilizar varias variables para calcular otra nueva
+      avg_rating > 4 &
+        country %in% c(
+          "Chilean",
+          "Brazilian",
+          "Peruvian",
+          "Cuban",
+          "Puerto Rican",
+          "Colombian")  ~ "highest‑rated_Latin_cuisine",
+      
+      avg_rating < 2 &
+        country %in% c(
+          "Chilean",
+          "Brazilian",
+          "Peruvian",
+          "Cuban",
+          "Puerto Rican",
+          "Colombian")  ~ "lowest‑rated_Latin_cuisine",
+      
+      TRUE ~ "others" #resto de casos
+    )
+  )
+
+```
+
+##### 🧩 *Ejercicio: mutate()*
+
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/mammals_sleeping_picture3_copilot.png) | -   Con el data set de msleep, incluye una nueva columna con el porcentaje de horas que duerme cada animal al día.                                                                                                                                                                                                   |
+|                                                   |                                                                                                                                                                                                                                                                                                                      |
+|                                                   | -   Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr). |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#### [Summarise](https://dplyr.tidyverse.org/reference/summarise.html) y [group by](https://dplyr.tidyverse.org/reference/group_by.html): generar un nuevo `data.frame` resumiendo cada grupo a una fila
+
+```{r summarise}
+#| warning: false
+
+# mínimo y máximo tiempo de preparación
+recetas |> 
+  summarise(prep_time_max = max(prep_time),
+            prep_time_total_min = min(prep_time))
+
+# minimo, máximo y media de proteínas de todas las recetas
+recetas |> 
+  summarise(protein_max = max(protein),
+            protein_mean = mean(protein),
+            protein_min = min(prep_time))
+
+ ## Ojo! si no queremos que tenga en cuenta los NA hay que añadir argumento na.rm=T
+recetas |> 
+  summarise(protein_max = max(protein, na.rm=T),
+            protein_mean = mean(protein, na.rm=T),
+            protein_min = min(prep_time, na.rm=T))
+```
+
+```{r group_by}
+#| warning: false
+
+#Lo mismo que antes, pero por país
+recetas |> 
+  group_by(country) |>
+  summarise(protein_max = max(protein, na.rm=T),
+            protein_mean = mean(protein, na.rm=T),
+            protein_min = min(prep_time, na.rm=T))
+
+```
+
+#### 🧩 *Ejercicio: group_by(), summrise()*
+
++---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/mammals_sleeping_picture4_copilot.png) | -   Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)                                                                          |
+|                                                   |                                                                                                                                                                   |
+|                                                   | -   Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset? |
++---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+### [Pivot](https://tidyr.tidyverse.org/reference/pivot_longer.html): transformar datos a formato largo o ancho
+
+Nos permite transformar datos de formato largo a ancho y viceversa. Nos puede convenir una forma u otra según lo que queramos hacer con lo datos: presentarlos en una tabla, hacer transformaciones o análisis, hacer un gráfico etc.
+
+En la siguiente imagen, extraída de [The Epidemiologist R Handbook](https://www.epirhandbook.com/en/) se puede ver en qué consiste esta transformación.
+
+![Pivot data transformation](images/pivot_longer_epirhandbook.png){fig-align="center" width="555"}
+
+```{r pivot}
+#| warning: false
+
+recetas_Vietnam<- recetas |>  select(name, country, fat, carbs,protein) |>  filter(country=="Vietnamese")
+
+# transformamos a formato largo, incluyendo los valores de grasas, carbohidratos y proteinas en una columna llamada "nutritional_value
+
+recetas_Vietnam_long <- recetas_Vietnam |> 
+  pivot_longer(cols=fat:protein, names_to="nutritional_value")
+
+#volvemos al set original
+
+recetas_Vietnam_wide<- recetas_Vietnam_long |> 
+  pivot_wider(names_from=nutritional_value, values_from=value)
+
+```
+
+#### 🧩 *Ejercicio: transformar datos largo ancho*
+
++-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/pixar_image3_flickr.jpg) | -   Lee el set de datos pixar_public_response y pixar_films                                                                     |
+|                                     |                                                                                                                                 |
+|                                     | -   Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()                        |
+|                                     |                                                                                                                                 |
+|                                     | -   Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión |
+|                                     |                                                                                                                                 |
+|                                     | -   Guarda el nuevo set de datos como pixar_joint                                                                               |
++-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+
+Fuente imagen: <https://www.flickr.com/photos/harshlight/17294952412> (CC BY 2.0)
+
+### Unir data.frames: [joins](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+
+`*_join()` añade columnas de `y` (segundo data.frame) a `x` (primer data.frame), haciendo coincidir las observaciones en función de la variable común.
+
+![](images/joins_from_dataWrangling_RStudio_cheatsheet.png){width="559"}
+
+```{r joins}
+#| warning: false
+
+# join: left, right, full, inner
+
+#datos de pais - capital- continente
+paises <- tibble(
+  pais = c("España", "Francia", "Japón", "Brasil", "Sudáfrica"),
+  capital = c("Madrid", "París", "Tokio", "Brasilia", "Pretoria"),
+  continente = c("Europa", "Europa", "Asia", "América", "África")
+)
+
+#datos demográficos
+demografia <- tibble(
+  pais = c("España", "Japón", "Brasil", "Canadá", "Sudáfrica"),
+  poblacion_millones = c(47.4, 125.7, 203.1, 39.6, 60.0),
+  extension_km2 = c(505990, 377975, 8515767, 9984670, 1221037)
+)
+
+#left join: se une al set de datos de pais los datos de demografia (si los hay)
+left_join(paises, demografia, by="pais")
+
+#right join: se une al set de datos de demografa los datos de pais (si los hay)
+right_join(paises, demografia, by="pais")
+
+#inner join: une los paises presentes en los dos set de datos
+inner_join(paises, demografia, by="pais")
+
+#full join: une todos los paises presentes en uno u otro.
+paises_demo_full_join<-full_join(paises, demografia, by="pais")
+```
+
+### Guardar datos con [Write_delim](https://readr.tidyverse.org/reference/write_delim.html):
+
+```{r export}
+#| warning: false
+
+write_delim(paises_demo_full_join, file = "paises_demo_full_join.csv", delim = ";")
+# en file hay que especificar el directorio donde queremos que se guarde. Si no, se guardará en el directorio de trabajo (getwd())
+```
+
+#### 🧩 *Ejercicio: \*\_join() y exportar datos*
+
++-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/pixar_image3_flickr.jpg) | -   Lee el set de datos pixar_public_response y pixar_films                                                                     |
+|                                     |                                                                                                                                 |
+|                                     | -   Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()                        |
+|                                     |                                                                                                                                 |
+|                                     | -   Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión |
+|                                     |                                                                                                                                 |
+|                                     | -   Guarda el nuevo set de datos como pixar_joint                                                                               |
++-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+
+Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
+
+### 🧩 *Ejercicio final manejo de datos*
+
+|  |  |
+|----|----|
+| ![](images/palmer_penguins.png) | Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse: |
+
+🐧 Instala el paquete palmerpenguins y cárgalo
+
+🐧 Crea un data frame con dos columnas, la primera denominada "islands_info" con los valores "Torgersen", "Biscoe", "Dream" y otra llamada "protected_area" con los valores "Si", "No", "Si"
+
+🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_length_mm) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)
+
+🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length_mm, bill_depth_mm y body_mass_g
+
+🐧Añade una columna llamada bill_ratio que calcule la relación entre longitud y profundidad del pico
+
+🐧Une el resultado con el dataset islands_info, de forma que cada pingüino quede asociado a si su isla es un área protegida.
+
+🐧Crea una columna categoria_peso con valores "ligero", "medio", "pesado"según los umbrales que quieras o, más dificil, con terciles de body_mass.
+
+🐧Si no lo has hecho, organiza todos los pasos anteriores (excepto cargar el paquete y crear el data frame) en un solo flujo de trabajo
+
+🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas
+
+🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas?
+
+## Introducción a la programación con funciones
+
+### ¿Qué es una funcion?
+
+Una característica clave de R son las funciones. Las funciones son una serie de intruccciones agrupadas para lograr un resultado específico. Más concretamente, son módulos de código ‘autocontenidos’ que realizan una tarea específica. Normalmente reciben algún tipo de estructura de datos (valor, vector, data frame, etc.), la procesan y devuelven un resultado.
+
+![](images/funcion.png)
+
+El uso general de una función consiste en escribir el nombre de la función seguido de paréntesis. Por ejemplo, la funcion head() en R nos permite ver las primeras filas de un data frame
+
+```{r ejemplo head}
+
+library(tidyverse)
+
+head(msleep, n=10L)
+
+```
+
+Los valores de entrada se llaman argumentos y pueden incluir tanto el objeto (estructura de datos) como especificaciones que modifican el modo en el que la función opera (por ejemplo, opciones o parámetros).
+
+En el ejemplo de la función head() el objeto sería un data frame (en este caso el data frame msleep) y el argumento "n" indicaría el número de filas a mostrar.
+
+Otro ejemplo:
+
+```{r read_delim}
+recetas<-read_delim(file="data/cuisines.csv", # argumento "file" 
+                    delim=",")                  # argumento "delim"
+
+```
+
+Cuando consultamos la ayuda de R lo que consultamos es cuales son los argumentos de la funcion.
+
+#### 🧩 Ejercicio: consultar la función matrix()
+
+Consulta la ayuda de la función matrix. ¿Cuantos argumentos tiene?. Genera una matriz con esta funcion usando todos los argumentos.
+
+### Funciones definidas por el usuario ¿Para qué?
+
+Además de las funciones que nos ofrece R en los diferentes paquetes, también podemos crear nuestras propias funciones. Esto resulta muy útil cuando necesiutamos realizar una tarea para la cual no existe una funcion específica en R. Un ejemplo de creación de una función:
+
+```{r ejemplo funcion}
+
+# Estandarizar (media 0 y desv tipica 1) las calorias, grasas carbohidratos y proteínas
+
+recetas_Z <- recetas |> 
+  mutate(calories_Z = (calories - mean(calories, na.rm=T))/sd(calories, na.rm=T),
+         fat_Z = (fat - mean(fat, na.rm=T))/sd(fat, na.rm=T),
+         carbs_Z = (carbs - mean(carbs, na.rm=T))/sd(carbs, na.rm=T),
+         protein_z = (protein - mean(protein, na.rm=T))/sd(protein, na.rm=T))
+
+# función que estandariza
+estandarizar_variable <- function(x) {
+  (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
+}
+
+recetas_Z <- recetas |> 
+  mutate(calories_Z = estandarizar_variable(calories),
+         fat_Z = estandarizar_variable(fat),
+         carbs_Z = estandarizar_variable(carbs),
+         protein_z = estandarizar_variable(protein))
+
+```
+
+La ventajas de usar funciones son:
+
+-   **Reutilización de código:** Las funciones permiten encapsular pasos repetidos en una única unidad que puedes llamar muchas veces, reduciendo duplicación y errores.
+
+-   **Abstracción y claridad:** Al ocultar detalles de implementación dentro de una función, el flujo principal del script queda más limpio y fácil de entender.
+
+-   **Modularidad y mantenimiento:** Dividir el trabajo en funciones pequeñas facilita probar, depurar y actualizar partes concretas sin afectar el resto del código.
+
+-   **Parámetros y flexibilidad:** Los **argumentos** permiten adaptar el comportamiento de una función sin cambiar su código interno, lo que favorece la generalización y la experimentación.
+
+-   **Composición y reutilización avanzada:** Las funciones pueden combinarse (una función llama a otra), lo que facilita construir pipelines y procesos complejos a partir de bloques simples.
+
+-   **Compatibilidad con ecosistema R:** Muchas librerías y herramientas en R esperan o devuelven funciones; escribir funciones propias facilita integrarlas con `apply`, `purrr`, `dplyr`, `knitr` y otras herramientas del ecosistema.
+
+![](images/funcion_reutilizacion.png)
+
+### ¿Cuando hay que usar funciones?
+
+Se recomienda seguir el principio "do not repeat yourself" ([DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself#:~:text=%22Don't%20repeat%20yourself%22,redundancy%20in%20the%20first%20place.)): cada unidad de conocimiento o información debe tener una representación única, inequívoca y autoritativa en un sistema.
+
+Escribir una función ya merece la pena cuando has copiado y pegado más de dos veces lo mismo (don't be WET! - Write Everything Twice). Cuantas más veces esté repetido un código, en más sitios necesitarás actualizarlo si hay algun cambio y más aumenta la probabilidad de error.
+
+### Tipos de funciones
+
+Según el tipo de output generado hay dos tipos de funciones:
+
+-   Las **funciones de transformación** (*pure functions*): transforman el objeto que entra en la función (primer argumento) y devuelven otro objeto o el anterior modificado.
+
+-   Las **funciones secundarias** (*side-effect functions*): tienen efectos colaterales y ejecutan una acción, como guardar un archivo, una variable o dibujar un plot. Algunos ejemplos de funciones secundarias que se usan comunmente son: `library()`, `setwd()`, `plot()`, `write_delim()`...
+
+### Cómo escribir una función
+
+En general, sintácticamente, las funciones tienen tres componentes:
+
+-   Función para crear la funcion `function().` Se le asigna un nombre para poder reutilizarla
+-   Argumentos: lista de entradas.
+    -   Argumentos que especifican los datos de entrada
+    -   Argumentos que especifican detalles de la ejecución de la función (se suelen colocar despues y tienen valores por defecto, si no los especificamos la función se ejecuta con los valores por defecto)
+-   Cuerpo: trozo de código que sigue a `function()`, tradicionalmente entre llaves.
+    -   La última expresión ejecutada en una función es el valor de retorno.
+
+![](images/funcion_componentes.png)
+
+#### 🧩 Ejercicio: consultar la función sort()
+
+-   Ordena el vector c(5, 8, 6, 2, 4, 5, NA) usando la funcion sort()
+
+-   Utiliza el argumento "decreasing" para ordenarlo de mayor a menor (consulta la ayuda para ver como se usa este argumento). ¿Qué valor tiene por defecto?
+
+-   ¿Que otro argumento tiene la funcion que especifica detalles de la ejecución? Cámbialo a otro valor que no sea su valor por defecto.
+
+-   ¿Cual es el valor de retorno de la función?
+
+Cuando escribimos una funcion tenemos que especificar estos componentes. Ejemplo:
+
+```{r funcion escribe_suma}
+escribe_suma <- function(n1,n2) { #argumentos de entrada n1 y n2
+  
+  suma<-n1+n2 #cuerpo de la funcion: paso intermedio
+  
+  paste0("La suma de ",n1," mas ", n2, " es: ", suma) # cuerpo de la funcion: valor de retorno
+  
+}
+
+escribe_suma(10,100)
+escribe_suma(33,2)
+
+```
+
+💡Atajo para escribir funciones: escribir la palabra fun + tabulador
+
+📝 Es conveniente usar comentarios (#) para explicar el razonamiento detrás de tus funciones.
+
+#### 🧩 Ejercicio: primera función
+
+1.  Crea una función que sirva para calcular el área de habitaciones cuadradas o rectangulares. Para ello crea una función de dos argumentos (el ancho de la habitación y el largo) y que devuelva el área.
+
+    ```{r habitaciones, eval = FALSE}
+    mi_funcion <- function(largo, ancho) {
+      # Escribe el código aquí
+    }
+    ```
+
+2.  Queremos saber el precio de enlosar la habitación. Para ello añade un tercer argumento con el precio por metro cuadrado.
+
+3.  ¿Cuanto cuesta enlosar una habitación de 10x16m con un tipo de losa que cuesta 5€ el metro cuadrado? ¿Y una de 32x4m con una que cuesta 16€ por metro cuadrado?
+
+#### 🧩 Ejercicio: funcion de media aritmética
+
+Crea una función que calcule la media aritmética de los valores de un vector (sin usar la función mean()). De tal manera que si introducimos, por ejemplo, el vector c(1, 8, 18) nos devuelva el valor 9
+
+-   Pista1: sum() nos da el valor de la suma de los elementos de un vector \# prueba sum(c(1, 2, 3)) para comprobarlo
+
+-   Pista 2: length() nos da la longitud (numero de elementos) del vector.
+
+### Iteraciones con bucles for
+
+Una **iteración** en programación es la **repetición controlada** de un bloque de instrucciones hasta que se cumple una condición o se alcanza un número de repeticiones; cada vez que se ejecuta ese bloque se llama **una iteración.**
+
+![](images/funcion_iteracion.png)
+
+En R, el `for` itera sobre los elementos de una **secuencia** (por ejemplo `1:10`, un vector o una lista) y ejecuta el cuerpo del bucle una vez por cada elemento. La variable de control (i) toma el valor de cada elemento en cada iteración.
+
+```{r ejemplo bucle print}
+
+for (i in 1:5){
+  print(i)
+}
+
+for (i in 1:5){
+  print(i+10)
+}
+```
+
+Para programar un bucle es necesario definir tres partes diferentes: la salida, la secuencia y el cuerpo
+
+1.  Salida: el espacio de la salida, es decir, primero tenemos que crear un espacio donde se va a ir almacenando el resultado del bucle. Puede ser un vector, una lista...
+
+2.  Secuencia: sobre lo que queremos iterar. Cada ejecución del bucle *for* asignará un valor diferente a `i`, la variable control. La variable control puede ser una secuencia de números o también una secuencia de elementos de un vector o de una lista.
+
+3.  Cuerpo del bucle: aquí determinamos lo que queremos que haga cada iteración. Se ejecuta repetidamente, cada vez con un valor diferente para `i`.
+
+```{r ejemplo bucle 2}
+#Ejemplo bucle 1:
+
+# Salida
+salida<- vector("integer",5)
+salida # veo que es un vector de 0 (vacio)
+
+for (i in 1:5){ # 1:5 es la secuencia
+  salida[[i]] <- i+10 #cuerpo del bucle
+}
+
+salida # ahora tiene el resultado del bucle
+
+# Ejemplo bucle 2:
+salida<- vector("character",5)
+salida
+
+semana5<- c("lunes", "martes","miercoles","jueves","viernes")
+
+for (j in 1:length(semana5)){
+  salida[[j]]<- paste0("hoy es ", semana5[[j]])
+}
+
+
+```
+
+#### 🧩 Ejercicio: creando bucles for
+
+Elige al menos una de las siguientes opciones y crea un bucle:
+
+-   A partir del vector v\<- c(1,2,3,4), crea un vector w donde el pimer elemento de w sea el primer de v al cuadrado más uno y así sucesivamente.
+
+-   A partir de una lista con los dataframes de tidyverse msleep, diamonds y mpg, crea una nueva lista pero seleccionado solo las columnas que empiecen por "c" y las filas de la 10 a la 20.
+
+-   Genera un bucle para leer los archivos df1 a df5 de la carpeta data y almacenarlos en una lista. Pista: consulta la funcion list.files() y mira cuidadosamente todos los argumentos.
+
+### Iteraciones con funcionales
+
+Un funcional es una función que toma una función como entrada y devuelve un vector u otro tipo de objeto como salida. Un uso comun de los funcionales es como sustitutos de los bucles for. En R base los funcionales que sustituyen a los bucles for son las funciones de la familia apply (apply(), lapply(), tapply(), etc). En la colección de paquetes de tidyverse, el equivalente a estos funcionales son los provistos por el paquete purr:: map().
+
+Para programar un funcional, primero, solucionamos el problema para un elemento. Después, generamos una función que nos permita tener la solución en una función . Por último, aplicamos la función a todos los elementos que estamos interesados.
+
+```{r map por10}
+
+x10<- function(x) x*10
+
+map(1:3, x10)
+
+
+```
+
+Usando map función operará en todos los elementos de `x`, es decir, cada valor si `x` es un vector, cada columna si `x` es un `data.frame`, o cada elemento si `x` es una lista. Toma un vector y una función, llama a la función una vez por cada elemento del vector y devuelve los resultados en una lista. `map(1:3, f)` es equivalente a `list(f(1), f(2), f(3))`. Es el equivalente de `lapply()` de R base.
+
+![](images/map.png)
+
+`map()` devuelve una lista, lo que la convierte en la más general de la familia `map` porque puedes poner cualquier cosa en una lista. Pero es incómodo devolver una lista cuando una estructura de datos más simple bastaría, por eso existen cuatro variantes más específicas: `map_lgl()`, `map_int()`, `map_dbl()` y `map_chr()`. Cada una devuelve un vector atómico del tipo especificado.
+
+```{r}
+
+mi_lista<-list("hola", 2, 25.1, TRUE)
+
+#Para cada componente de la lista dime el tipo de dato y devuelve un vector tipo character
+map_chr(mi_lista, typeof)
+
+#Para cada componente de la lista devuelve un vector lógico indicando TRUE si es de tipo doble y FALSE si no lo es
+map_lgl(mi_lista, is.double)
+
+#Para cada columna del dataframe devuelve un vector numérico con la media (NA cuando en esa columna no hay números)
+map_dbl(msleep, mean)
+
+#Para cada columna del dataframe devuelve el número de casos únicos
+map_int(msleep, n_distinct)
+
+```
+
+#### 🧩 Ejercicio: map()
+
+-   Genera un vector, una función y aplica la función a cada uno de los elementos del vector utilizando `map()`.
+
+-   para la lista list(a = 1:3, b = letters\[1:5\], c = c(TRUE, FALSE)) utiliza map() para generar una salida que sea una lista con las longitudes de cada elemento. ¿Que funcion tendrías que utilizar si quieres que la salida sea un vector de números enteros en lugar de una lista?
+
+-   para la lista_num \<- list(a = c(1,2,3), b = c(4,5), c = 6) aplica la funcion de la familia map para obtener la media de cada elemento a, b, c en un vector numérico.
+
+## 🧩 *Para seguir practicando...*
+
+El paquete swirl es un paquete de R que transforma la consola de R en un tutor interactivo que presenta lecciones, plantea preguntas (texto, numéricas, opciones) y evalúa tus respuestas en tiempo real. A parte de los módulos de aprendizaje que vienenen el propio paquete permite crear módulos nuevos.
+
+![](images/swirl_R.png)
+
+Paquete [swirl](https://swirlstats.com/): aprendiendo R en R
+
+Si quieres seguir practicando con el paquete tidyverse puedes seguir el siguiente curso obtenido de <https://github.com/sysilviakim/swirl-tidy>.
+
+```{r tidyswirl, eval=FALSE}
+install.packages("swirl")
+library(swirl)
+install_course_github("sysilviakim", "swirl-tidy")
+swirl()
+```
+
+## Enlaces de interés
+
+-   [Hands-On Programming with R](https://rstudio-education.github.io/hopr/)
+
+-   [R for data Science (Data transformation)](https://r4ds.had.co.nz/transform.html)
+
+-   [Style guide](http://adv-r.had.co.nz/Style.html)
+
+-   [Página web de *tidyverse*](https://www.tidyverse.org)
+
+-   [Cheat sheet the dplyr](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf)
+
+-   [Quince consejos para mejorar nuestro código y flujo de trabajo con R](https://www.revistaecosistemas.net/index.php/ecosistemas/article/view/2129)
+
+------------------------------------------------------------------------
+
+<details>
+
+<summary>Session Info</summary>
+
+```{r session_info} Sys.time() sessionInfo()}
+```
+
+</details>

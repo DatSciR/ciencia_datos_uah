@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Marina Rodes Blanco, Julián Tijerin Triviño, Paloma Ruiz Benito y Verónica Cruz Alonso,">
+<meta name="dcterms.date" content="2026-12-01">
+
+<title>Día 2 - Manejo y visualización de datos en R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="dia_2_manejo_datos_funciones_files/libs/clipboard/clipboard.min.js"></script>
+<script src="dia_2_manejo_datos_funciones_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="dia_2_manejo_datos_funciones_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="dia_2_manejo_datos_funciones_files/libs/quarto-html/popper.min.js"></script>
+<script src="dia_2_manejo_datos_funciones_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="dia_2_manejo_datos_funciones_files/libs/quarto-html/anchor.min.js"></script>
+<link href="dia_2_manejo_datos_funciones_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="dia_2_manejo_datos_funciones_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="dia_2_manejo_datos_funciones_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="dia_2_manejo_datos_funciones_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="dia_2_manejo_datos_funciones_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#síntesis-del-día-1-introducción-a-r-y-a-r-studio" id="toc-síntesis-del-día-1-introducción-a-r-y-a-r-studio" class="nav-link active" data-scroll-target="#síntesis-del-día-1-introducción-a-r-y-a-r-studio"><span class="header-section-number">1</span> Síntesis del día 1: Introducción a R y a R studio</a>
+  <ul>
+  <li><a href="#modelo-de-ciencia-de-datos" id="toc-modelo-de-ciencia-de-datos" class="nav-link" data-scroll-target="#modelo-de-ciencia-de-datos"><span class="header-section-number">1.1</span> Modelo de ciencia de datos</a></li>
+  <li><a href="#buenas-prácticas-en-la-gestión-de-datos" id="toc-buenas-prácticas-en-la-gestión-de-datos" class="nav-link" data-scroll-target="#buenas-prácticas-en-la-gestión-de-datos"><span class="header-section-number">1.2</span> Buenas prácticas en la gestión de datos</a></li>
+  <li><a href="#tipos-de-objetos-y-operaciones-básicas-en-r" id="toc-tipos-de-objetos-y-operaciones-básicas-en-r" class="nav-link" data-scroll-target="#tipos-de-objetos-y-operaciones-básicas-en-r"><span class="header-section-number">1.3</span> Tipos de objetos y operaciones básicas en R</a></li>
+  <li><a href="#qué-son-los-datos-ordenados" id="toc-qué-son-los-datos-ordenados" class="nav-link" data-scroll-target="#qué-son-los-datos-ordenados"><span class="header-section-number">1.4</span> ¿Qué son los datos ordenados?</a></li>
+  <li><a href="#qué-es-tidyverse" id="toc-qué-es-tidyverse" class="nav-link" data-scroll-target="#qué-es-tidyverse"><span class="header-section-number">1.5</span> ¿Qué es tidyverse?</a>
+  <ul>
+  <li><a href="#ejercicio-repaso-del-día-anterior" id="toc-ejercicio-repaso-del-día-anterior" class="nav-link" data-scroll-target="#ejercicio-repaso-del-día-anterior"><span class="header-section-number">1.5.1</span> 🧩 Ejercicio: <em>repaso</em> <em>del día anterior</em></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2</span> Introducción</a>
+  <ul>
+  <li><a href="#objetivos-de-la-sesión" id="toc-objetivos-de-la-sesión" class="nav-link" data-scroll-target="#objetivos-de-la-sesión"><span class="header-section-number">2.1</span> Objetivos de la sesión</a></li>
+  <li><a href="#set-de-datos-con-los-que-vamos-a-trabajar" id="toc-set-de-datos-con-los-que-vamos-a-trabajar" class="nav-link" data-scroll-target="#set-de-datos-con-los-que-vamos-a-trabajar"><span class="header-section-number">2.2</span> Set de datos con los que vamos a trabajar</a></li>
+  </ul></li>
+  <li><a href="#manejo-y-gestión-de-datos" id="toc-manejo-y-gestión-de-datos" class="nav-link" data-scroll-target="#manejo-y-gestión-de-datos"><span class="header-section-number">3</span> Manejo y gestión de datos</a>
+  <ul>
+  <li><a href="#resumen-de-funciones" id="toc-resumen-de-funciones" class="nav-link" data-scroll-target="#resumen-de-funciones"><span class="header-section-number">3.1</span> Resumen de funciones</a></li>
+  <li><a href="#importar-y-renombrar-datos" id="toc-importar-y-renombrar-datos" class="nav-link" data-scroll-target="#importar-y-renombrar-datos"><span class="header-section-number">3.2</span> Importar y renombrar datos</a>
+  <ul>
+  <li><a href="#read_delim-leer-datos-desde-fuera-de-r" id="toc-read_delim-leer-datos-desde-fuera-de-r" class="nav-link" data-scroll-target="#read_delim-leer-datos-desde-fuera-de-r"><span class="header-section-number">3.2.1</span> Read_delim: leer datos desde fuera de R</a></li>
+  <li><a href="#rename-cambiar-nombres-de-variables-columnas" id="toc-rename-cambiar-nombres-de-variables-columnas" class="nav-link" data-scroll-target="#rename-cambiar-nombres-de-variables-columnas"><span class="header-section-number">3.2.2</span> Rename: cambiar nombres de variables (columnas)</a></li>
+  </ul></li>
+  <li><a href="#funciones-básicas-de-filtrado-y-selección" id="toc-funciones-básicas-de-filtrado-y-selección" class="nav-link" data-scroll-target="#funciones-básicas-de-filtrado-y-selección"><span class="header-section-number">3.3</span> Funciones básicas de filtrado y selección</a>
+  <ul>
+  <li><a href="#slice-filtrar-filas-según-el-índice-numérico" id="toc-slice-filtrar-filas-según-el-índice-numérico" class="nav-link" data-scroll-target="#slice-filtrar-filas-según-el-índice-numérico"><span class="header-section-number">3.3.1</span> Slice: filtrar filas según el índice numérico</a></li>
+  <li><a href="#filter-filtrar-filas-utilizando-condiciones" id="toc-filter-filtrar-filas-utilizando-condiciones" class="nav-link" data-scroll-target="#filter-filtrar-filas-utilizando-condiciones"><span class="header-section-number">3.3.2</span> Filter: filtrar filas utilizando condiciones</a>
+  <ul class="collapse">
+  <li><a href="#ejercicio-slice-filter-arrange" id="toc-ejercicio-slice-filter-arrange" class="nav-link" data-scroll-target="#ejercicio-slice-filter-arrange"><span class="header-section-number">3.3.2.1</span> 🧩 <em>Ejercicio: slice(), filter(), arrange()</em></a></li>
+  </ul></li>
+  <li><a href="#select-sirve-para-seleccionar-columnas-utilizando-condiciones" id="toc-select-sirve-para-seleccionar-columnas-utilizando-condiciones" class="nav-link" data-scroll-target="#select-sirve-para-seleccionar-columnas-utilizando-condiciones"><span class="header-section-number">3.3.3</span> Select: sirve para seleccionar columnas utilizando condiciones</a>
+  <ul class="collapse">
+  <li><a href="#ejercicio-select" id="toc-ejercicio-select" class="nav-link" data-scroll-target="#ejercicio-select"><span class="header-section-number">3.3.3.1</span> 🧩 <em>Ejercicio: select()</em></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#transformar-los-datos-y-calcular-nuevas-variables" id="toc-transformar-los-datos-y-calcular-nuevas-variables" class="nav-link" data-scroll-target="#transformar-los-datos-y-calcular-nuevas-variables"><span class="header-section-number">3.4</span> Transformar los datos y calcular nuevas variables</a>
+  <ul>
+  <li><a href="#mutate-crear-modificar-o-eliminar-columnas" id="toc-mutate-crear-modificar-o-eliminar-columnas" class="nav-link" data-scroll-target="#mutate-crear-modificar-o-eliminar-columnas"><span class="header-section-number">3.4.1</span> Mutate: crear, modificar o eliminar columnas</a>
+  <ul class="collapse">
+  <li><a href="#ejercicio-mutate" id="toc-ejercicio-mutate" class="nav-link" data-scroll-target="#ejercicio-mutate"><span class="header-section-number">3.4.1.1</span> 🧩 <em>Ejercicio: mutate()</em></a></li>
+  </ul></li>
+  <li><a href="#summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" id="toc-summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" class="nav-link" data-scroll-target="#summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila"><span class="header-section-number">3.4.2</span> Summarise y group by: generar un nuevo <code>data.frame</code> resumiendo cada grupo a una fila</a></li>
+  <li><a href="#ejercicio-group_by-summrise" id="toc-ejercicio-group_by-summrise" class="nav-link" data-scroll-target="#ejercicio-group_by-summrise"><span class="header-section-number">3.4.3</span> 🧩 <em>Ejercicio: group_by(), summrise()</em></a></li>
+  </ul></li>
+  <li><a href="#pivot-transformar-datos-a-formato-largo-o-ancho" id="toc-pivot-transformar-datos-a-formato-largo-o-ancho" class="nav-link" data-scroll-target="#pivot-transformar-datos-a-formato-largo-o-ancho"><span class="header-section-number">3.5</span> Pivot: transformar datos a formato largo o ancho</a>
+  <ul>
+  <li><a href="#ejercicio-transformar-datos-largo-ancho" id="toc-ejercicio-transformar-datos-largo-ancho" class="nav-link" data-scroll-target="#ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">3.5.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></a></li>
+  </ul></li>
+  <li><a href="#unir-data.frames-joins" id="toc-unir-data.frames-joins" class="nav-link" data-scroll-target="#unir-data.frames-joins"><span class="header-section-number">3.6</span> Unir data.frames: joins</a></li>
+  <li><a href="#guardar-datos-con-write_delim" id="toc-guardar-datos-con-write_delim" class="nav-link" data-scroll-target="#guardar-datos-con-write_delim"><span class="header-section-number">3.7</span> Guardar datos con Write_delim:</a>
+  <ul>
+  <li><a href="#ejercicio-_join-y-exportar-datos" id="toc-ejercicio-_join-y-exportar-datos" class="nav-link" data-scroll-target="#ejercicio-_join-y-exportar-datos"><span class="header-section-number">3.7.1</span> 🧩 <em>Ejercicio: *_join() y exportar datos</em></a></li>
+  </ul></li>
+  <li><a href="#ejercicio-final-manejo-de-datos" id="toc-ejercicio-final-manejo-de-datos" class="nav-link" data-scroll-target="#ejercicio-final-manejo-de-datos"><span class="header-section-number">3.8</span> 🧩 <em>Ejercicio final manejo de datos</em></a></li>
+  </ul></li>
+  <li><a href="#introducción-a-la-programación-con-funciones" id="toc-introducción-a-la-programación-con-funciones" class="nav-link" data-scroll-target="#introducción-a-la-programación-con-funciones"><span class="header-section-number">4</span> Introducción a la programación con funciones</a>
+  <ul>
+  <li><a href="#qué-es-una-funcion" id="toc-qué-es-una-funcion" class="nav-link" data-scroll-target="#qué-es-una-funcion"><span class="header-section-number">4.1</span> ¿Qué es una funcion?</a>
+  <ul>
+  <li><a href="#ejercicio-consultar-la-función-matrix" id="toc-ejercicio-consultar-la-función-matrix" class="nav-link" data-scroll-target="#ejercicio-consultar-la-función-matrix"><span class="header-section-number">4.1.1</span> 🧩 Ejercicio: consultar la función matrix()</a></li>
+  </ul></li>
+  <li><a href="#funciones-definidas-por-el-usuario-para-qué" id="toc-funciones-definidas-por-el-usuario-para-qué" class="nav-link" data-scroll-target="#funciones-definidas-por-el-usuario-para-qué"><span class="header-section-number">4.2</span> Funciones definidas por el usuario ¿Para qué?</a></li>
+  <li><a href="#cuando-hay-que-usar-funciones" id="toc-cuando-hay-que-usar-funciones" class="nav-link" data-scroll-target="#cuando-hay-que-usar-funciones"><span class="header-section-number">4.3</span> ¿Cuando hay que usar funciones?</a></li>
+  <li><a href="#tipos-de-funciones" id="toc-tipos-de-funciones" class="nav-link" data-scroll-target="#tipos-de-funciones"><span class="header-section-number">4.4</span> Tipos de funciones</a></li>
+  <li><a href="#cómo-escribir-una-función" id="toc-cómo-escribir-una-función" class="nav-link" data-scroll-target="#cómo-escribir-una-función"><span class="header-section-number">4.5</span> Cómo escribir una función</a>
+  <ul>
+  <li><a href="#ejercicio-consultar-la-función-sort" id="toc-ejercicio-consultar-la-función-sort" class="nav-link" data-scroll-target="#ejercicio-consultar-la-función-sort"><span class="header-section-number">4.5.1</span> 🧩 Ejercicio: consultar la función sort()</a></li>
+  <li><a href="#ejercicio-primera-función" id="toc-ejercicio-primera-función" class="nav-link" data-scroll-target="#ejercicio-primera-función"><span class="header-section-number">4.5.2</span> 🧩 Ejercicio: primera función</a></li>
+  <li><a href="#ejercicio-funcion-de-media-aritmética" id="toc-ejercicio-funcion-de-media-aritmética" class="nav-link" data-scroll-target="#ejercicio-funcion-de-media-aritmética"><span class="header-section-number">4.5.3</span> 🧩 Ejercicio: funcion de media aritmética</a></li>
+  </ul></li>
+  <li><a href="#iteraciones-con-bucles-for" id="toc-iteraciones-con-bucles-for" class="nav-link" data-scroll-target="#iteraciones-con-bucles-for"><span class="header-section-number">4.6</span> Iteraciones con bucles for</a>
+  <ul>
+  <li><a href="#ejercicio-creando-bucles-for" id="toc-ejercicio-creando-bucles-for" class="nav-link" data-scroll-target="#ejercicio-creando-bucles-for"><span class="header-section-number">4.6.1</span> 🧩 Ejercicio: creando bucles for</a></li>
+  </ul></li>
+  <li><a href="#iteraciones-con-funcionales" id="toc-iteraciones-con-funcionales" class="nav-link" data-scroll-target="#iteraciones-con-funcionales"><span class="header-section-number">4.7</span> Iteraciones con funcionales</a>
+  <ul>
+  <li><a href="#ejercicio-map" id="toc-ejercicio-map" class="nav-link" data-scroll-target="#ejercicio-map"><span class="header-section-number">4.7.1</span> 🧩 Ejercicio: map()</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#para-seguir-practicando" id="toc-para-seguir-practicando" class="nav-link" data-scroll-target="#para-seguir-practicando"><span class="header-section-number">5</span> 🧩 <em>Para seguir practicando…</em></a></li>
+  <li><a href="#enlaces-de-interés" id="toc-enlaces-de-interés" class="nav-link" data-scroll-target="#enlaces-de-interés"><span class="header-section-number">6</span> Enlaces de interés</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="dia_2_manejo_datos_funciones.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Día 2 - Manejo y visualización de datos en R</h1>
+<p class="subtitle lead">Gestión de datos y funciones en R</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Marina Rodes Blanco, Julián Tijerin Triviño, Paloma Ruiz Benito y Verónica Cruz Alonso, </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">12/01/2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="síntesis-del-día-1-introducción-a-r-y-a-r-studio" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="síntesis-del-día-1-introducción-a-r-y-a-r-studio"><span class="header-section-number">1</span> Síntesis del día 1: Introducción a R y a R studio</h2>
+<section id="modelo-de-ciencia-de-datos" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="modelo-de-ciencia-de-datos"><span class="header-section-number">1.1</span> Modelo de ciencia de datos</h3>
+<div id="fig-datascience" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-datascience-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/datascience.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-datascience-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="buenas-prácticas-en-la-gestión-de-datos" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="buenas-prácticas-en-la-gestión-de-datos"><span class="header-section-number">1.2</span> Buenas prácticas en la gestión de datos</h3>
+<ul>
+<li>Trabajar por proyectos</li>
+<li>Usar teclas rápidas</li>
+<li>Consultar documentacion / pedir ayuda</li>
+<li>Código reproducible</li>
+<li>Seguir estilo (guia de estilo)</li>
+</ul>
+</section>
+<section id="tipos-de-objetos-y-operaciones-básicas-en-r" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="tipos-de-objetos-y-operaciones-básicas-en-r"><span class="header-section-number">1.3</span> Tipos de objetos y operaciones básicas en R</h3>
+<ul>
+<li>Vectores</li>
+<li>Matrices</li>
+<li>Data frames</li>
+<li>Listas</li>
+</ul>
+</section>
+<section id="qué-son-los-datos-ordenados" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="qué-son-los-datos-ordenados"><span class="header-section-number">1.4</span> ¿Qué son los datos ordenados?</h3>
+<p><img src="images/tidydata_1.png" class="img-fluid"></p>
+<p><img src="images/tidydata_3.png" class="img-fluid"></p>
+</section>
+<section id="qué-es-tidyverse" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="qué-es-tidyverse"><span class="header-section-number">1.5</span> ¿Qué es tidyverse?</h3>
+<p><img src="images/tidyverse_packages.png" class="img-fluid"></p>
+<section id="ejercicio-repaso-del-día-anterior" class="level4" data-number="1.5.1">
+<h4 data-number="1.5.1" class="anchored" data-anchor-id="ejercicio-repaso-del-día-anterior"><span class="header-section-number">1.5.1</span> 🧩 Ejercicio: <em>repaso</em> <em>del día anterior</em></h4>
+<ul>
+<li>Crea un vector (mes) con los meses del año (en número)</li>
+<li>Crea otro vector con el número de días de cada mes y calcula la media y la desviación típica</li>
+<li>Junta los dos vectores en un data frame</li>
+<li>Con el set de datos de penguins:
+<ul>
+<li>selecciona solo las columnas <code>species</code>y <code>body_mass_g</code>de <code>penguins</code> usando tanto base R como tidyverse.</li>
+<li>filtra los individuos que tengan un body_mass menor de 4,5 kg. ¿Cual es la media de peso de estos individuos?</li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="introducción" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">2</span> Introducción</h2>
+<section id="objetivos-de-la-sesión" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="objetivos-de-la-sesión"><span class="header-section-number">2.1</span> Objetivos de la sesión</h3>
+<ul>
+<li><p>Entender la sintaxis y las principales funciones de los paquetes dplyr y tidyr de tidyverse.</p></li>
+<li><p>Utilizar estas librerías para manipular, reordenar y operar con un set de datos.</p></li>
+<li><p>Comprender la estructura de las funciones y aprender a escribir funciones en R.</p></li>
+<li><p>Aplicar funciones en programación iterativa por medio de bucles y la función map() del paquete purr.</p></li>
+</ul>
+</section>
+<section id="set-de-datos-con-los-que-vamos-a-trabajar" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="set-de-datos-con-los-que-vamos-a-trabajar"><span class="header-section-number">2.2</span> Set de datos con los que vamos a trabajar</h3>
+<p>Vamos a trabajar con datos de Tidytuesday y de las librerias de tidyverse principalmente. En todos los casos son datos reales.</p>
+<p>Tidytuesday es un proyecto comunitario de ciencia de datos impulsado por la comunidad de R, especialmente por usuarios de tidyverse. Cada martes se publica un dataset limpio y listo para analizar, junto con una breve descripción y enlaces a la fuente original.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tidyTuesday_logo.png" class="img-fluid figure-img"></p>
+<figcaption>TidyTuesday</figcaption>
+</figure>
+</div>
+<p>De este proyecto vamos a trabajar principalmente con el set de datos cuisine:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/recetas1_copilot.png" class="img-fluid"></td>
+<td><p><strong>CUISINE</strong></p>
+<p>El dataset de **Cuisine** de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. Puedes consultarlo con la función data(). De los sets de datos de tidyverse vamos a trabajar con msleep</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/mammals_sleeping_picture1_copilot.png" class="img-fluid"></td>
+<td><p><strong>MSLEEP</strong></p>
+<p>El dataset **msleep** contiene información sobre **el sueño de distintos** mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="manejo-y-gestión-de-datos" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="manejo-y-gestión-de-datos"><span class="header-section-number">3</span> Manejo y gestión de datos</h2>
+<section id="resumen-de-funciones" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="resumen-de-funciones"><span class="header-section-number">3.1</span> Resumen de funciones</h3>
+<p><img src="images/resumen_funciones.png" class="img-fluid"></p>
+</section>
+<section id="importar-y-renombrar-datos" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="importar-y-renombrar-datos"><span class="header-section-number">3.2</span> Importar y renombrar datos</h3>
+<section id="read_delim-leer-datos-desde-fuera-de-r" class="level4" data-number="3.2.1">
+<h4 data-number="3.2.1" class="anchored" data-anchor-id="read_delim-leer-datos-desde-fuera-de-r"><span class="header-section-number">3.2.1</span> <a href="https://readr.tidyverse.org/reference/read_delim.html">Read_delim</a>: leer datos desde fuera de R</h4>
+<p>Leer datos que tenemos almacenados, como por ejemplo, una tabla en formato csv.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>recetas <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="at">file =</span> <span class="st">"data/cuisines.csv"</span>, <span class="at">delim =</span> <span class="st">","</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>recetas <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"data/cuisines.csv"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">delim =</span> <span class="st">","</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_type =</span> <span class="fu">list</span>(<span class="at">country =</span> <span class="st">"f"</span>, <span class="at">servings=</span><span class="st">"f"</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># puedo especificar el tipo de dato (country como factor)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>recetas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,218 × 17
+   name     country url   author date_published ingredients calories   fat carbs
+   &lt;chr&gt;    &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Saganak… Greek   http… John … 2024-02-07     1 (4 ounce…      391    25    15
+ 2 Coney I… Jewish  http… John … 2024-11-26     2 ¾ cups a…      301    17    31
+ 3 Diana's… Austra… http… CHIPP… 2022-07-14     1 ½ cups w…       64     3     9
+ 4 Chilean… Chilean http… Heidi  2025-01-31     ½ cup chop…      106     9     7
+ 5 Tex-Mex… Tex-Mex http… Ann    2025-02-18     2 cups all…      449    23    58
+ 6 Newfoun… Canadi… http… MomWh… 2022-08-12     1 (3 pound…      958    24   144
+ 7 Pasta e… Italian http… Buckw… 2023-12-12     1 cup dry …      378    10    59
+ 8 Danish … Danish  http… TheOt… 2020-06-19     4 cups all…       90     5    10
+ 9 Lemon P… Amish … http… Laura… 2025-01-21     2 cups all…      157     6    25
+10 Pan con… Spanish http… Luis … 2025-06-02     1 large to…      322    16    39
+# ℹ 2,208 more rows
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(recetas)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(recetas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     name                                   country         url           
+ Length:2218        Canadian                    :  67   Length:2218       
+ Class :character   Brazilian                   :  67   Class :character  
+ Mode  :character   Filipino                    :  66   Mode  :character  
+                    Australian and New Zealander:  65                     
+                    Cuban                       :  65                     
+                    Chinese                     :  65                     
+                    (Other)                     :1823                     
+    author          date_published       ingredients           calories     
+ Length:2218        Min.   :2009-02-09   Length:2218        Min.   :   3.0  
+ Class :character   1st Qu.:2022-11-02   Class :character   1st Qu.: 190.0  
+ Mode  :character   Median :2024-07-14   Mode  :character   Median : 319.5  
+                    Mean   :2023-10-27                      Mean   : 358.4  
+                    3rd Qu.:2025-01-06                      3rd Qu.: 477.0  
+                    Max.   :2025-07-29                      Max.   :2266.0  
+                                                            NA's   :32      
+      fat             carbs           protein         avg_rating   
+ Min.   :  0.00   Min.   :  1.00   Min.   :  0.00   Min.   :1.000  
+ 1st Qu.:  7.00   1st Qu.: 13.00   1st Qu.:  4.00   1st Qu.:4.300  
+ Median : 15.00   Median : 26.00   Median : 11.00   Median :4.600  
+ Mean   : 18.76   Mean   : 31.96   Mean   : 16.61   Mean   :4.509  
+ 3rd Qu.: 26.00   3rd Qu.: 45.00   3rd Qu.: 25.00   3rd Qu.:4.800  
+ Max.   :225.00   Max.   :264.00   Max.   :159.00   Max.   :5.000  
+ NA's   :55       NA's   :35       NA's   :39       NA's   :97     
+ total_ratings       reviews         prep_time        cook_time     
+ Min.   :  1.00   Min.   :  1.00   Min.   :   0.0   Min.   :  0.00  
+ 1st Qu.:  6.00   1st Qu.:  6.00   1st Qu.:  10.0   1st Qu.: 10.00  
+ Median : 24.00   Median : 21.00   Median :  15.0   Median : 25.00  
+ Mean   : 85.25   Mean   : 76.93   Mean   :  21.5   Mean   : 41.75  
+ 3rd Qu.: 87.00   3rd Qu.: 74.00   3rd Qu.:  25.0   3rd Qu.: 45.00  
+ Max.   :997.00   Max.   :975.00   Max.   :1800.0   Max.   :600.00  
+ NA's   :97       NA's   :108                                       
+   total_time       servings  
+ Min.   :    0   4      :487  
+ 1st Qu.:   35   6      :419  
+ Median :   60   8      :396  
+ Mean   :  171   12     :238  
+ 3rd Qu.:  120   10     :104  
+ Max.   :14440   (Other):572  
+                 NA's   :  2  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(recetas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2,218
+Columns: 17
+$ name           &lt;chr&gt; "Saganaki (Flaming Greek Cheese)", "Coney Island Knishe…
+$ country        &lt;fct&gt; Greek, Jewish, Australian and New Zealander, Chilean, T…
+$ url            &lt;chr&gt; "https://www.allrecipes.com/recipe/263750/flaming-greek…
+$ author         &lt;chr&gt; "John Mitzewich", "John Mitzewich", "CHIPPENDALE", "Hei…
+$ date_published &lt;date&gt; 2024-02-07, 2024-11-26, 2022-07-14, 2025-01-31, 2025-0…
+$ ingredients    &lt;chr&gt; "1 (4 ounce) package kasseri cheese, 1 tablespoon water…
+$ calories       &lt;dbl&gt; 391, 301, 64, 106, 449, 958, 378, 90, 157, 322, 4, NA, …
+$ fat            &lt;dbl&gt; 25, 17, 3, 9, 23, 24, 10, 5, 6, 16, 0, NA, 21, 2, 66, 8…
+$ carbs          &lt;dbl&gt; 15, 31, 9, 7, 58, 144, 59, 10, 25, 39, 1, NA, 16, 63, 7…
+$ protein        &lt;dbl&gt; 16, 7, 1, 1, 7, 46, 14, 1, 2, 7, 0, NA, 28, 6, 54, 17, …
+$ avg_rating     &lt;dbl&gt; 4.8, 4.6, 4.3, 5.0, 3.8, 4.4, 4.3, NA, 4.6, 5.0, 4.7, 4…
+$ total_ratings  &lt;dbl&gt; 25, 10, 126, 1, 13, 40, 3, NA, 65, 2, 182, 2, 19, 16, 9…
+$ reviews        &lt;dbl&gt; 22, 9, 104, 1, 11, 32, 3, NA, 55, 2, 138, 2, 15, 16, 84…
+$ prep_time      &lt;dbl&gt; 10, 30, 20, 10, 30, 30, 30, 40, 0, 5, 5, 5, 10, 10, 20,…
+$ cook_time      &lt;dbl&gt; 5, 75, 15, 0, 15, 165, 75, 30, 0, 5, 0, 25, 10, 50, 16,…
+$ total_time     &lt;dbl&gt; 15, 180, 180, 10, 45, 675, 585, 155, 0, 10, 5, 30, 50, …
+$ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4, 8, …</code></pre>
+</div>
+</div>
+</section>
+<section id="rename-cambiar-nombres-de-variables-columnas" class="level4" data-number="3.2.2">
+<h4 data-number="3.2.2" class="anchored" data-anchor-id="rename-cambiar-nombres-de-variables-columnas"><span class="header-section-number">3.2.2</span> <a href="https://dplyr.tidyverse.org/reference/rename.html">Rename</a>: cambiar nombres de variables (columnas)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(recetas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "name"           "country"        "url"            "author"        
+ [5] "date_published" "ingredients"    "calories"       "fat"           
+ [9] "carbs"          "protein"        "avg_rating"     "total_ratings" 
+[13] "reviews"        "prep_time"      "cook_time"      "total_time"    
+[17] "servings"      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cambio el nombre y añado la unidad de medida (gramos)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>recetas_g <span class="ot">&lt;-</span> recetas <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fat_g =</span> fat,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">carbs_g =</span> carbs,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># nombre nuevo = nombre viejo</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">protein_g =</span> protein</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>📝 Ajustar sangría de código: Ctrl + i; Reformatear código: Ctrl + Shift + a</p>
+</section>
+</section>
+<section id="funciones-básicas-de-filtrado-y-selección" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="funciones-básicas-de-filtrado-y-selección"><span class="header-section-number">3.3</span> Funciones básicas de filtrado y selección</h3>
+<section id="slice-filtrar-filas-según-el-índice-numérico" class="level4" data-number="3.3.1">
+<h4 data-number="3.3.1" class="anchored" data-anchor-id="slice-filtrar-filas-según-el-índice-numérico"><span class="header-section-number">3.3.1</span> <a href="https://dplyr.tidyverse.org/reference/slice.html">Slice</a>: filtrar filas según el índice numérico</h4>
+<p>Seleccionar filas concretas del set de datos</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># warning: false</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span> <span class="co"># shortcut para el pipe: CTRL + SHIFT + M</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="co"># la primera fila</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 17
+  name      country url   author date_published ingredients calories   fat carbs
+  &lt;chr&gt;     &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Saganaki… Greek   http… John … 2024-02-07     1 (4 ounce…      391    25    15
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>, <span class="dv">5</span>) <span class="co"># la fila 1 y la 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 17
+  name      country url   author date_published ingredients calories   fat carbs
+  &lt;chr&gt;     &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Saganaki… Greek   http… John … 2024-02-07     1 (4 ounce…      391    25    15
+2 Tex-Mex … Tex-Mex http… Ann    2025-02-18     2 cups all…      449    23    58
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="co"># de la fila 1 a la 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 17
+  name      country url   author date_published ingredients calories   fat carbs
+  &lt;chr&gt;     &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Saganaki… Greek   http… John … 2024-02-07     1 (4 ounce…      391    25    15
+2 Coney Is… Jewish  http… John … 2024-11-26     2 ¾ cups a…      301    17    31
+3 Diana's … Austra… http… CHIPP… 2022-07-14     1 ½ cups w…       64     3     9
+4 Chilean … Chilean http… Heidi  2025-01-31     ½ cup chop…      106     9     7
+5 Tex-Mex … Tex-Mex http… Ann    2025-02-18     2 cups all…      449    23    58
+6 Newfound… Canadi… http… MomWh… 2022-08-12     1 (3 pound…      958    24   144
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)) <span class="co"># todas las filas excepto de la 1 a la 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,213 × 17
+   name     country url   author date_published ingredients calories   fat carbs
+   &lt;chr&gt;    &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Newfoun… Canadi… http… MomWh… 2022-08-12     1 (3 pound…      958    24   144
+ 2 Pasta e… Italian http… Buckw… 2023-12-12     1 cup dry …      378    10    59
+ 3 Danish … Danish  http… TheOt… 2020-06-19     4 cups all…       90     5    10
+ 4 Lemon P… Amish … http… Laura… 2025-01-21     2 cups all…      157     6    25
+ 5 Pan con… Spanish http… Luis … 2025-06-02     1 large to…      322    16    39
+ 6 Traci's… Filipi… http… Traci… 2022-08-28     2 tablespo…        4     0     1
+ 7 Brazili… Brazil… http… JESSY… 2022-09-25     1 cup whit…       NA    NA    NA
+ 8 Lomo de… Cuban   http… lillo… 2024-12-19     1 tablespo…      389    21    16
+ 9 Peruvia… Peruvi… http… Kat N… 2022-09-15     1 gallon w…      253     2    63
+10 Chef Jo… Southe… http… John … 2023-12-08     1  whole c…     1115    66    75
+# ℹ 2,203 more rows
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="filter-filtrar-filas-utilizando-condiciones" class="level4" data-number="3.3.2">
+<h4 data-number="3.3.2" class="anchored" data-anchor-id="filter-filtrar-filas-utilizando-condiciones"><span class="header-section-number">3.3.2</span> <a href="https://dplyr.tidyverse.org/reference/filter.html">Filter</a>: filtrar filas utilizando condiciones</h4>
+<p>Se necesita un vector de filtrado que contenga valores lógicos (TRUE/FALSE).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Chilean"</span>) <span class="co"># filtrar por filas que cumplen un patrón </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 22 × 17
+   name     country url   author date_published ingredients calories   fat carbs
+   &lt;chr&gt;    &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Chilean… Chilean http… Heidi  2025-01-31     ½ cup chop…      106     9     7
+ 2 Pebre    Chilean http… Buckw… 2025-04-09     1  dried a…      164    14    10
+ 3 Porotos… Chilean http… Stefa… 2021-12-29     1 tablespo…      285     4    53
+ 4 Ajiaco … Chilean http… damas… 2025-02-16     2 tablespo…      579    24    34
+ 5 Chilean… Chilean http… Alici… 2022-10-18     1 tablespo…      530    28    54
+ 6 Empanad… Chilean http… damas… 2019-04-02     3 cups all…      343    14    39
+ 7 Pastel … Chilean http… Epicu… 2025-04-08     2  eggs, 1…      435    21    38
+ 8 Pastel … Chilean http… Cucin… 2024-11-22     5 cups pot…      366    25    22
+ 9 Leche A… Chilean http… damas… 2020-06-18     1 quart wh…      258     9    25
+10 Chilean… Chilean http… Barba… 2025-06-04     4 cups all…      477    28    49
+# ℹ 12 more rows
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#En este caso, todass las recetas chilenas</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Chilean"</span> <span class="sc">&amp;</span> total_time  <span class="sc">&lt;</span> <span class="dv">60</span>) <span class="co"># combinar criterios: AND</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 17
+  name      country url   author date_published ingredients calories   fat carbs
+  &lt;chr&gt;     &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Chilean … Chilean http… Heidi  2025-01-31     ½ cup chop…      106     9     7
+2 Pebre     Chilean http… Buckw… 2025-04-09     1  dried a…      164    14    10
+3 Empanada… Chilean http… damas… 2019-04-02     3 cups all…      343    14    39
+4 Chilean … Chilean http… Barba… 2025-06-04     4 cups all…      477    28    49
+5 Lemon Pi… Chilean http… Ruper… 2025-02-01     1 tablespo…       NA    NA    NA
+6 Isa's Co… Chilean http… Wonde… 2022-09-26     20  whole …       NA    NA    NA
+7 Pisco So… Chilean http… DORITA 2022-10-03     4 cups ice…       NA    NA    NA
+8 Gambas P… Chilean http… damas… 2025-02-14     10 cloves …      278    19     4
+9 Pisco So… Chilean http… PattyQ 2025-01-31     2 cups pis…       NA    NA    NA
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#En este caso, todas las recetas chilenas que se preparan en menos de 60 minutos</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Chilean"</span> <span class="sc">&amp;</span> total_time  <span class="sc">&lt;</span> <span class="dv">60</span>) <span class="co"># combinar criterios: OR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 17
+  name      country url   author date_published ingredients calories   fat carbs
+  &lt;chr&gt;     &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Chilean … Chilean http… Heidi  2025-01-31     ½ cup chop…      106     9     7
+2 Pebre     Chilean http… Buckw… 2025-04-09     1  dried a…      164    14    10
+3 Empanada… Chilean http… damas… 2019-04-02     3 cups all…      343    14    39
+4 Chilean … Chilean http… Barba… 2025-06-04     4 cups all…      477    28    49
+5 Lemon Pi… Chilean http… Ruper… 2025-02-01     1 tablespo…       NA    NA    NA
+6 Isa's Co… Chilean http… Wonde… 2022-09-26     20  whole …       NA    NA    NA
+7 Pisco So… Chilean http… DORITA 2022-10-03     4 cups ice…       NA    NA    NA
+8 Gambas P… Chilean http… damas… 2025-02-14     10 cloves …      278    19     4
+9 Pisco So… Chilean http… PattyQ 2025-01-31     2 cups pis…       NA    NA    NA
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#En este caso, todas las recetas chilenas (independientemente del tiempo de preparación) o bien aquellas recetas que se preparen en menos de 60mins (independientemente del país)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Chilean"</span>, <span class="st">"Brazilian"</span>, <span class="st">"Peruvian"</span>)) <span class="co"># combinar criterios: %in% </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 127 × 17
+   name     country url   author date_published ingredients calories   fat carbs
+   &lt;chr&gt;    &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Chilean… Chilean http… Heidi  2025-01-31     ½ cup chop…      106     9     7
+ 2 Brazili… Brazil… http… JESSY… 2022-09-25     1 cup whit…       NA    NA    NA
+ 3 Peruvia… Peruvi… http… Kat N… 2022-09-15     1 gallon w…      253     2    63
+ 4 Pebre    Chilean http… Buckw… 2025-04-09     1  dried a…      164    14    10
+ 5 Porotos… Chilean http… Stefa… 2021-12-29     1 tablespo…      285     4    53
+ 6 Brazili… Brazil… http… Socce… 2023-02-13     1 cup brow…      255     0    66
+ 7 Pollo S… Peruvi… http… Laure… 2025-02-03     2 large sk…      351    11    37
+ 8 Citrus … Peruvi… http… Lorna  2025-01-28     ½ cup fres…      440    29    17
+ 9 Ajiaco … Chilean http… damas… 2025-02-16     2 tablespo…      579    24    34
+10 Brazili… Brazil… http… Cacau  2020-03-05     3 tablespo…      451    11    83
+# ℹ 117 more rows
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#En este caso, todas las recetas de países del cono sur. Es equivalente a:</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Chilean"</span> <span class="sc">|</span> country <span class="sc">==</span> <span class="st">"Brazilian"</span><span class="sc">|</span> country <span class="sc">==</span> <span class="st">"Peruvian"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 127 × 17
+   name     country url   author date_published ingredients calories   fat carbs
+   &lt;chr&gt;    &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Chilean… Chilean http… Heidi  2025-01-31     ½ cup chop…      106     9     7
+ 2 Brazili… Brazil… http… JESSY… 2022-09-25     1 cup whit…       NA    NA    NA
+ 3 Peruvia… Peruvi… http… Kat N… 2022-09-15     1 gallon w…      253     2    63
+ 4 Pebre    Chilean http… Buckw… 2025-04-09     1  dried a…      164    14    10
+ 5 Porotos… Chilean http… Stefa… 2021-12-29     1 tablespo…      285     4    53
+ 6 Brazili… Brazil… http… Socce… 2023-02-13     1 cup brow…      255     0    66
+ 7 Pollo S… Peruvi… http… Laure… 2025-02-03     2 large sk…      351    11    37
+ 8 Citrus … Peruvi… http… Lorna  2025-01-28     ½ cup fres…      440    29    17
+ 9 Ajiaco … Chilean http… damas… 2025-02-16     2 tablespo…      579    24    34
+10 Brazili… Brazil… http… Cacau  2020-03-05     3 tablespo…      451    11    83
+# ℹ 117 more rows
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+</div>
+<section id="ejercicio-slice-filter-arrange" class="level5" data-number="3.3.2.1">
+<h5 data-number="3.3.2.1" class="anchored" data-anchor-id="ejercicio-slice-filter-arrange"><span class="header-section-number">3.3.2.1</span> 🧩 <em>Ejercicio: slice(), filter(), arrange()</em></h5>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 79%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/mammals_sleeping_picture1_copilot.png" class="img-fluid"></td>
+<td><ul>
+<li><p>Lee el data.frame “msleep.csv”. Pista: el delimitador entre datos es la coma (“,”).</p></li>
+<li><p>Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?</p></li>
+<li><p>Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas?</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="select-sirve-para-seleccionar-columnas-utilizando-condiciones" class="level4" data-number="3.3.3">
+<h4 data-number="3.3.3" class="anchored" data-anchor-id="select-sirve-para-seleccionar-columnas-utilizando-condiciones"><span class="header-section-number">3.3.3</span> <a href="https://dplyr.tidyverse.org/reference/select.html">Select</a>: sirve para seleccionar columnas utilizando condiciones</h4>
+<p>Para ver como funciona esta función vamos a usar un set de datos sobre el sueño de los mamíferos. Se llama “msleep” y viene en librería de tidyverse. Puedes encontrar mas información sobre este set de datos en ?msleep</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(recetas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "name"           "country"        "url"            "author"        
+ [5] "date_published" "ingredients"    "calories"       "fat"           
+ [9] "carbs"          "protein"        "avg_rating"     "total_ratings" 
+[13] "reviews"        "prep_time"      "cook_time"      "total_time"    
+[17] "servings"      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ?select</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, calories, fat, carbs, protein) <span class="co">#solo nos interesan las columnas con informacion nutricional de cada receta</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,218 × 5
+   name                                           calories   fat carbs protein
+   &lt;chr&gt;                                             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Saganaki (Flaming Greek Cheese)                     391    25    15      16
+ 2 Coney Island Knishes                                301    17    31       7
+ 3 Diana's Hawaiian Bread Rolls                         64     3     9       1
+ 4 Chilean Pebre                                       106     9     7       1
+ 5 Tex-Mex Sheet Cake                                  449    23    58       7
+ 6 Newfoundland Jigg's Dinner                          958    24   144      46
+ 7 Pasta e Ceci (Italian Chickpea and Pasta Stew)      378    10    59      14
+ 8 Danish Butter Cookies                                90     5    10       1
+ 9 Lemon Poppy Seed Amish Friendship Bread             157     6    25       2
+10 Pan con Tomate (Spanish Tomato Bread)               322    16    39       7
+# ℹ 2,208 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, calories, fat, carbs, protein)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,218 × 5
+   name                                           calories   fat carbs protein
+   &lt;chr&gt;                                             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Saganaki (Flaming Greek Cheese)                     391    25    15      16
+ 2 Coney Island Knishes                                301    17    31       7
+ 3 Diana's Hawaiian Bread Rolls                         64     3     9       1
+ 4 Chilean Pebre                                       106     9     7       1
+ 5 Tex-Mex Sheet Cake                                  449    23    58       7
+ 6 Newfoundland Jigg's Dinner                          958    24   144      46
+ 7 Pasta e Ceci (Italian Chickpea and Pasta Stew)      378    10    59      14
+ 8 Danish Butter Cookies                                90     5    10       1
+ 9 Lemon Poppy Seed Amish Friendship Bread             157     6    25       2
+10 Pan con Tomate (Spanish Tomato Bread)               322    16    39       7
+# ℹ 2,208 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se puede usar un patron de texto pra seleccionar colmnas</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"time"</span>)) <span class="co"># solo nos interesan las columnas relacionadas con el tiempo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,218 × 3
+   prep_time cook_time total_time
+       &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+ 1        10         5         15
+ 2        30        75        180
+ 3        20        15        180
+ 4        10         0         10
+ 5        30        15         45
+ 6        30       165        675
+ 7        30        75        585
+ 8        40        30        155
+ 9         0         0          0
+10         5         5         10
+# ℹ 2,208 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># se pueden utilizar todo tipo de patrones de texto: https://rstudio.github.io/cheatsheets/strings.pdf</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name,author, <span class="fu">everything</span>()) <span class="co"># se puede usar para reordenar variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,218 × 17
+   name     author country url   date_published ingredients calories   fat carbs
+   &lt;chr&gt;    &lt;chr&gt;  &lt;fct&gt;   &lt;chr&gt; &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Saganak… John … Greek   http… 2024-02-07     1 (4 ounce…      391    25    15
+ 2 Coney I… John … Jewish  http… 2024-11-26     2 ¾ cups a…      301    17    31
+ 3 Diana's… CHIPP… Austra… http… 2022-07-14     1 ½ cups w…       64     3     9
+ 4 Chilean… Heidi  Chilean http… 2025-01-31     ½ cup chop…      106     9     7
+ 5 Tex-Mex… Ann    Tex-Mex http… 2025-02-18     2 cups all…      449    23    58
+ 6 Newfoun… MomWh… Canadi… http… 2022-08-12     1 (3 pound…      958    24   144
+ 7 Pasta e… Buckw… Italian http… 2023-12-12     1 cup dry …      378    10    59
+ 8 Danish … TheOt… Danish  http… 2020-06-19     4 cups all…       90     5    10
+ 9 Lemon P… Laura… Amish … http… 2025-01-21     2 cups all…      157     6    25
+10 Pan con… Luis … Spanish http… 2025-06-02     1 large to…      322    16    39
+# ℹ 2,208 more rows
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">recipes_name=</span>name, country, author, reviews) <span class="co"># y para renombrarlas a la vez que hacemos la seleccion</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,218 × 4
+   recipes_name                                   country         author reviews
+   &lt;chr&gt;                                          &lt;fct&gt;           &lt;chr&gt;    &lt;dbl&gt;
+ 1 Saganaki (Flaming Greek Cheese)                Greek           John …      22
+ 2 Coney Island Knishes                           Jewish          John …       9
+ 3 Diana's Hawaiian Bread Rolls                   Australian and… CHIPP…     104
+ 4 Chilean Pebre                                  Chilean         Heidi        1
+ 5 Tex-Mex Sheet Cake                             Tex-Mex         Ann         11
+ 6 Newfoundland Jigg's Dinner                     Canadian        MomWh…      32
+ 7 Pasta e Ceci (Italian Chickpea and Pasta Stew) Italian         Buckw…       3
+ 8 Danish Butter Cookies                          Danish          TheOt…      NA
+ 9 Lemon Poppy Seed Amish Friendship Bread        Amish and Menn… Laura…      55
+10 Pan con Tomate (Spanish Tomato Bread)          Spanish         Luis …       2
+# ℹ 2,208 more rows</code></pre>
+</div>
+</div>
+<section id="ejercicio-select" class="level5" data-number="3.3.3.1">
+<h5 data-number="3.3.3.1" class="anchored" data-anchor-id="ejercicio-select"><span class="header-section-number">3.3.3.1</span> 🧩 <em>Ejercicio: select()</em></h5>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 75%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/mammals_sleeping_picture2_copilot.png" class="img-fluid"></td>
+<td><ul>
+<li><p>Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño.</p></li>
+<li><p>Con el data set de msleep, crea un nuevo data.frame que contenga todas las variables excepto el estado de conservacion.</p></li>
+<li><p>(extra) Crea un nuevo objeto (data frame) con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="transformar-los-datos-y-calcular-nuevas-variables" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="transformar-los-datos-y-calcular-nuevas-variables"><span class="header-section-number">3.4</span> Transformar los datos y calcular nuevas variables</h3>
+<section id="mutate-crear-modificar-o-eliminar-columnas" class="level4" data-number="3.4.1">
+<h4 data-number="3.4.1" class="anchored" data-anchor-id="mutate-crear-modificar-o-eliminar-columnas"><span class="header-section-number">3.4.1</span> <a href="https://dplyr.tidyverse.org/reference/mutate.html">Mutate</a>: crear, modificar o eliminar columnas</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># definir una variable </span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># desde cero</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(recetas),</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># utilizando una variable para calcular otra (ej.- el numero de personas que       han dejado una puntuación pero no han escrito un review)</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_ratings_no_review =</span> total_ratings <span class="sc">-</span> reviews) <span class="sc">|&gt;</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    ID, </span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    name<span class="sc">:</span>date_published, </span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    total_ratings,</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>    reviews,</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>    num_ratings_no_review,</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">everything</span>()</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,218 × 19
+      ID name          country url   author date_published total_ratings reviews
+   &lt;int&gt; &lt;chr&gt;         &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;                 &lt;dbl&gt;   &lt;dbl&gt;
+ 1     1 Saganaki (Fl… Greek   http… John … 2024-02-07                25      22
+ 2     2 Coney Island… Jewish  http… John … 2024-11-26                10       9
+ 3     3 Diana's Hawa… Austra… http… CHIPP… 2022-07-14               126     104
+ 4     4 Chilean Pebre Chilean http… Heidi  2025-01-31                 1       1
+ 5     5 Tex-Mex Shee… Tex-Mex http… Ann    2025-02-18                13      11
+ 6     6 Newfoundland… Canadi… http… MomWh… 2022-08-12                40      32
+ 7     7 Pasta e Ceci… Italian http… Buckw… 2023-12-12                 3       3
+ 8     8 Danish Butte… Danish  http… TheOt… 2020-06-19                NA      NA
+ 9     9 Lemon Poppy … Amish … http… Laura… 2025-01-21                65      55
+10    10 Pan con Toma… Spanish http… Luis … 2025-06-02                 2       2
+# ℹ 2,208 more rows
+# ℹ 11 more variables: num_ratings_no_review &lt;dbl&gt;, ingredients &lt;chr&gt;,
+#   calories &lt;dbl&gt;, fat &lt;dbl&gt;, carbs &lt;dbl&gt;, protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;,
+#   prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;, servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sobreescribir una variable.</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fct_recode sirve para redefinir los niveles de un factor (ojo sintaxis:          new_name="old_name")</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">servings =</span> <span class="fu">fct_recode</span>(</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>      servings,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">una_persona =</span> <span class="st">"1"</span> ,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">dos_personas =</span> <span class="st">"2"</span>,</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">tres_personas =</span> <span class="st">"3"</span> </span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>      ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,218 × 17
+   name     country url   author date_published ingredients calories   fat carbs
+   &lt;chr&gt;    &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Saganak… Greek   http… John … 2024-02-07     1 (4 ounce…      391    25    15
+ 2 Coney I… Jewish  http… John … 2024-11-26     2 ¾ cups a…      301    17    31
+ 3 Diana's… Austra… http… CHIPP… 2022-07-14     1 ½ cups w…       64     3     9
+ 4 Chilean… Chilean http… Heidi  2025-01-31     ½ cup chop…      106     9     7
+ 5 Tex-Mex… Tex-Mex http… Ann    2025-02-18     2 cups all…      449    23    58
+ 6 Newfoun… Canadi… http… MomWh… 2022-08-12     1 (3 pound…      958    24   144
+ 7 Pasta e… Italian http… Buckw… 2023-12-12     1 cup dry …      378    10    59
+ 8 Danish … Danish  http… TheOt… 2020-06-19     4 cups all…       90     5    10
+ 9 Lemon P… Amish … http… Laura… 2025-01-21     2 cups all…      157     6    25
+10 Pan con… Spanish http… Luis … 2025-06-02     1 large to…      322    16    39
+# ℹ 2,208 more rows
+# ℹ 8 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#utilizar mas de una variable para generar otra</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">classification =</span> <span class="fu">case_when</span>(</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>      <span class="co"># utilizar varias variables para calcular otra nueva</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>      avg_rating <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">&amp;</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>        country <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Chilean"</span>,</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Brazilian"</span>,</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Peruvian"</span>,</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cuban"</span>,</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Puerto Rican"</span>,</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Colombian"</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>        )  <span class="sc">~</span> <span class="st">"highest‑rated_Latin_cuisine"</span>,</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>      avg_rating <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">&amp;</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>        country <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Chilean"</span>,</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Brazilian"</span>,</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Peruvian"</span>,</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cuban"</span>,</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Puerto Rican"</span>,</span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Colombian"</span></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>        )  <span class="sc">~</span> <span class="st">"lowest‑rated_Latin_cuisine"</span>,</span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"others"</span> <span class="co">#resto de casos</span></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,218 × 18
+   name     country url   author date_published ingredients calories   fat carbs
+   &lt;chr&gt;    &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;date&gt;         &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Saganak… Greek   http… John … 2024-02-07     1 (4 ounce…      391    25    15
+ 2 Coney I… Jewish  http… John … 2024-11-26     2 ¾ cups a…      301    17    31
+ 3 Diana's… Austra… http… CHIPP… 2022-07-14     1 ½ cups w…       64     3     9
+ 4 Chilean… Chilean http… Heidi  2025-01-31     ½ cup chop…      106     9     7
+ 5 Tex-Mex… Tex-Mex http… Ann    2025-02-18     2 cups all…      449    23    58
+ 6 Newfoun… Canadi… http… MomWh… 2022-08-12     1 (3 pound…      958    24   144
+ 7 Pasta e… Italian http… Buckw… 2023-12-12     1 cup dry …      378    10    59
+ 8 Danish … Danish  http… TheOt… 2020-06-19     4 cups all…       90     5    10
+ 9 Lemon P… Amish … http… Laura… 2025-01-21     2 cups all…      157     6    25
+10 Pan con… Spanish http… Luis … 2025-06-02     1 large to…      322    16    39
+# ℹ 2,208 more rows
+# ℹ 9 more variables: protein &lt;dbl&gt;, avg_rating &lt;dbl&gt;, total_ratings &lt;dbl&gt;,
+#   reviews &lt;dbl&gt;, prep_time &lt;dbl&gt;, cook_time &lt;dbl&gt;, total_time &lt;dbl&gt;,
+#   servings &lt;fct&gt;, classification &lt;chr&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Podemos hacer todo lo anterior concatenando todo el proceso y guardar el set de datos:</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>recetas_modif <span class="ot">&lt;-</span> recetas <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(recetas),</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_ratings_no_review =</span> total_ratings <span class="sc">-</span> reviews,</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">servings =</span> <span class="fu">fct_recode</span>(</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>      servings,</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">una_persona =</span> <span class="st">"1"</span> ,</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">dos_personas =</span> <span class="st">"2"</span>,</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">tres_personas =</span> <span class="st">"3"</span>),</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">classification =</span> <span class="fu">case_when</span>(</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>      <span class="co"># utilizar varias variables para calcular otra nueva</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>      avg_rating <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">&amp;</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>        country <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Chilean"</span>,</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Brazilian"</span>,</span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Peruvian"</span>,</span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cuban"</span>,</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Puerto Rican"</span>,</span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Colombian"</span>)  <span class="sc">~</span> <span class="st">"highest‑rated_Latin_cuisine"</span>,</span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>      avg_rating <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">&amp;</span></span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>        country <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Chilean"</span>,</span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Brazilian"</span>,</span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Peruvian"</span>,</span>
+<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cuban"</span>,</span>
+<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Puerto Rican"</span>,</span>
+<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Colombian"</span>)  <span class="sc">~</span> <span class="st">"lowest‑rated_Latin_cuisine"</span>,</span>
+<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"others"</span> <span class="co">#resto de casos</span></span>
+<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="ejercicio-mutate" class="level5" data-number="3.4.1.1">
+<h5 data-number="3.4.1.1" class="anchored" data-anchor-id="ejercicio-mutate"><span class="header-section-number">3.4.1.1</span> 🧩 <em>Ejercicio: mutate()</em></h5>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/mammals_sleeping_picture3_copilot.png" class="img-fluid"></td>
+<td><ul>
+<li><p>Con el data set de msleep, incluye una nueva columna con el porcentaje de horas que duerme cada animal al día.</p></li>
+<li><p>Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr).</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" class="level4" data-number="3.4.2">
+<h4 data-number="3.4.2" class="anchored" data-anchor-id="summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila"><span class="header-section-number">3.4.2</span> <a href="https://dplyr.tidyverse.org/reference/summarise.html">Summarise</a> y <a href="https://dplyr.tidyverse.org/reference/group_by.html">group by</a>: generar un nuevo <code>data.frame</code> resumiendo cada grupo a una fila</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mínimo y máximo tiempo de preparación</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prep_time_max =</span> <span class="fu">max</span>(prep_time),</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">prep_time_total_min =</span> <span class="fu">min</span>(prep_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  prep_time_max prep_time_total_min
+          &lt;dbl&gt;               &lt;dbl&gt;
+1          1800                   0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># minimo, máximo y media de proteínas de todas las recetas</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span> </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">protein_max =</span> <span class="fu">max</span>(protein),</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">protein_mean =</span> <span class="fu">mean</span>(protein),</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">protein_min =</span> <span class="fu">min</span>(prep_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  protein_max protein_mean protein_min
+        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+1          NA           NA           0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a> <span class="do">## Ojo! si no queremos que tenga en cuenta los NA hay que añadir argumento na.rm=T</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span> </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">protein_max =</span> <span class="fu">max</span>(protein, <span class="at">na.rm=</span>T),</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">protein_mean =</span> <span class="fu">mean</span>(protein, <span class="at">na.rm=</span>T),</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">protein_min =</span> <span class="fu">min</span>(prep_time, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  protein_max protein_mean protein_min
+        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+1         159         16.6           0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Lo mismo que antes, pero por país</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span> </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">protein_max =</span> <span class="fu">max</span>(protein, <span class="at">na.rm=</span>T),</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">protein_mean =</span> <span class="fu">mean</span>(protein, <span class="at">na.rm=</span>T),</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">protein_min =</span> <span class="fu">min</span>(prep_time, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 49 × 4
+   country                      protein_max protein_mean protein_min
+   &lt;fct&gt;                              &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Greek                                 65        15.9            5
+ 2 Jewish                                62        11.7            0
+ 3 Australian and New Zealander          27         4.61           0
+ 4 Chilean                               54        12.3            0
+ 5 Tex-Mex                               56        23.2            0
+ 6 Canadian                              58        15.3            0
+ 7 Italian                               91        25.4            5
+ 8 Danish                                35         7.61           5
+ 9 Amish and Mennonite                   69         8.92           0
+10 Spanish                               95        19.9            0
+# ℹ 39 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="ejercicio-group_by-summrise" class="level4" data-number="3.4.3">
+<h4 data-number="3.4.3" class="anchored" data-anchor-id="ejercicio-group_by-summrise"><span class="header-section-number">3.4.3</span> 🧩 <em>Ejercicio: group_by(), summrise()</em></h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 75%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/mammals_sleeping_picture4_copilot.png" class="img-fluid"></td>
+<td><ul>
+<li><p>Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)</p></li>
+<li><p>Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset?</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="pivot-transformar-datos-a-formato-largo-o-ancho" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="pivot-transformar-datos-a-formato-largo-o-ancho"><span class="header-section-number">3.5</span> <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">Pivot</a>: transformar datos a formato largo o ancho</h3>
+<p>Nos permite transformar datos de formato largo a ancho y viceversa. Nos puede convenir una forma u otra según lo que queramos hacer con lo datos: presentarlos en una tabla, hacer transformaciones o análisis, hacer un gráfico etc.</p>
+<p>En la siguiente imagen, extraída de <a href="https://www.epirhandbook.com/en/">The Epidemiologist R Handbook</a> se puede ver en qué consiste esta transformación.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pivot_longer_epirhandbook.png" class="img-fluid figure-img" width="555"></p>
+<figcaption>Pivot data transformation</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>recetas_Vietnam<span class="ot">&lt;-</span> recetas <span class="sc">|&gt;</span>  <span class="fu">select</span>(name, country, fat, carbs,protein) <span class="sc">|&gt;</span>  <span class="fu">filter</span>(country<span class="sc">==</span><span class="st">"Vietnamese"</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># transformamos a formato largo, incluyendo los valores de grasas, carbohidratos y proteinas en una columna llamada "nutritional_value</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>recetas_Vietnam_long <span class="ot">&lt;-</span> recetas_Vietnam <span class="sc">|&gt;</span> </span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span>fat<span class="sc">:</span>protein, <span class="at">names_to=</span><span class="st">"nutritional_value"</span>)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co">#volvemos al set original</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>recetas_Vietnam_wide<span class="ot">&lt;-</span> recetas_Vietnam_long <span class="sc">|&gt;</span> </span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>nutritional_value, <span class="at">values_from=</span>value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="ejercicio-transformar-datos-largo-ancho" class="level4" data-number="3.5.1">
+<h4 data-number="3.5.1" class="anchored" data-anchor-id="ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">3.5.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/pixar_image3_flickr.jpg" class="img-fluid"></td>
+<td><ul>
+<li><p>Lee el set de datos pixar_public_response y pixar_films</p></li>
+<li><p>Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()</p></li>
+<li><p>Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión</p></li>
+<li><p>Guarda el nuevo set de datos como pixar_joint</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/17294952412" class="uri">https://www.flickr.com/photos/harshlight/17294952412</a> (CC BY 2.0)</p>
+</section>
+</section>
+<section id="unir-data.frames-joins" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="unir-data.frames-joins"><span class="header-section-number">3.6</span> Unir data.frames: <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">joins</a></h3>
+<p><code>*_join()</code> añade columnas de <code>y</code> (segundo data.frame) a <code>x</code> (primer data.frame), haciendo coincidir las observaciones en función de la variable común.</p>
+<p><img src="images/joins_from_dataWrangling_RStudio_cheatsheet.png" class="img-fluid" width="559"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># join: left, right, full, inner</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co">#datos de pais - capital- continente</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>paises <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">pais =</span> <span class="fu">c</span>(<span class="st">"España"</span>, <span class="st">"Francia"</span>, <span class="st">"Japón"</span>, <span class="st">"Brasil"</span>, <span class="st">"Sudáfrica"</span>),</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">capital =</span> <span class="fu">c</span>(<span class="st">"Madrid"</span>, <span class="st">"París"</span>, <span class="st">"Tokio"</span>, <span class="st">"Brasilia"</span>, <span class="st">"Pretoria"</span>),</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">continente =</span> <span class="fu">c</span>(<span class="st">"Europa"</span>, <span class="st">"Europa"</span>, <span class="st">"Asia"</span>, <span class="st">"América"</span>, <span class="st">"África"</span>)</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="co">#datos demográficos</span></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>demografia <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">pais =</span> <span class="fu">c</span>(<span class="st">"España"</span>, <span class="st">"Japón"</span>, <span class="st">"Brasil"</span>, <span class="st">"Canadá"</span>, <span class="st">"Sudáfrica"</span>),</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">poblacion_millones =</span> <span class="fu">c</span>(<span class="fl">47.4</span>, <span class="fl">125.7</span>, <span class="fl">203.1</span>, <span class="fl">39.6</span>, <span class="fl">60.0</span>),</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">extension_km2 =</span> <span class="fu">c</span>(<span class="dv">505990</span>, <span class="dv">377975</span>, <span class="dv">8515767</span>, <span class="dv">9984670</span>, <span class="dv">1221037</span>)</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="co">#left join: se une al set de datos de pais los datos de demografia (si los hay)</span></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(paises, demografia, <span class="at">by=</span><span class="st">"pais"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  pais      capital  continente poblacion_millones extension_km2
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;                   &lt;dbl&gt;         &lt;dbl&gt;
+1 España    Madrid   Europa                   47.4        505990
+2 Francia   París    Europa                   NA              NA
+3 Japón     Tokio    Asia                    126.         377975
+4 Brasil    Brasilia América                 203.        8515767
+5 Sudáfrica Pretoria África                   60         1221037</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#right join: se une al set de datos de demografa los datos de pais (si los hay)</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(paises, demografia, <span class="at">by=</span><span class="st">"pais"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  pais      capital  continente poblacion_millones extension_km2
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;                   &lt;dbl&gt;         &lt;dbl&gt;
+1 España    Madrid   Europa                   47.4        505990
+2 Japón     Tokio    Asia                    126.         377975
+3 Brasil    Brasilia América                 203.        8515767
+4 Sudáfrica Pretoria África                   60         1221037
+5 Canadá    &lt;NA&gt;     &lt;NA&gt;                     39.6       9984670</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">#inner join: une los paises presentes en los dos set de datos</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(paises, demografia, <span class="at">by=</span><span class="st">"pais"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  pais      capital  continente poblacion_millones extension_km2
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;                   &lt;dbl&gt;         &lt;dbl&gt;
+1 España    Madrid   Europa                   47.4        505990
+2 Japón     Tokio    Asia                    126.         377975
+3 Brasil    Brasilia América                 203.        8515767
+4 Sudáfrica Pretoria África                   60         1221037</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#full join: une todos los paises presentes en uno u otro.</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>paises_demo_full_join<span class="ot">&lt;-</span><span class="fu">full_join</span>(paises, demografia, <span class="at">by=</span><span class="st">"pais"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="guardar-datos-con-write_delim" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="guardar-datos-con-write_delim"><span class="header-section-number">3.7</span> Guardar datos con <a href="https://readr.tidyverse.org/reference/write_delim.html">Write_delim</a>:</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_delim</span>(paises_demo_full_join, <span class="at">file =</span> <span class="st">"paises_demo_full_join.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># en file hay que especificar el directorio donde queremos que se guarde. Si no, se guardará en el directorio de trabajo (getwd())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="ejercicio-_join-y-exportar-datos" class="level4" data-number="3.7.1">
+<h4 data-number="3.7.1" class="anchored" data-anchor-id="ejercicio-_join-y-exportar-datos"><span class="header-section-number">3.7.1</span> 🧩 <em>Ejercicio: *_join() y exportar datos</em></h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/pixar_image3_flickr.jpg" class="img-fluid"></td>
+<td><ul>
+<li><p>Lee el set de datos pixar_public_response y pixar_films</p></li>
+<li><p>Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()</p></li>
+<li><p>Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión</p></li>
+<li><p>Guarda el nuevo set de datos como pixar_joint</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/6988729286" class="uri">https://www.flickr.com/photos/harshlight/6988729286</a> (CC BY 2.0)</p>
+</section>
+</section>
+<section id="ejercicio-final-manejo-de-datos" class="level3" data-number="3.8">
+<h3 data-number="3.8" class="anchored" data-anchor-id="ejercicio-final-manejo-de-datos"><span class="header-section-number">3.8</span> 🧩 <em>Ejercicio final manejo de datos</em></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/palmer_penguins.png" class="img-fluid"></td>
+<td>Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse:</td>
+</tr>
+</tbody>
+</table>
+<p>🐧 Instala el paquete palmerpenguins y cárgalo</p>
+<p>🐧 Crea un data frame con dos columnas, la primera denominada “islands_info” con los valores “Torgersen”, “Biscoe”, “Dream” y otra llamada “protected_area” con los valores “Si”, “No”, “Si”</p>
+<p>🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_length_mm) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)</p>
+<p>🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length_mm, bill_depth_mm y body_mass_g</p>
+<p>🐧Añade una columna llamada bill_ratio que calcule la relación entre longitud y profundidad del pico</p>
+<p>🐧Une el resultado con el dataset islands_info, de forma que cada pingüino quede asociado a si su isla es un área protegida.</p>
+<p>🐧Crea una columna categoria_peso con valores “ligero”, “medio”, “pesado”según los umbrales que quieras o, más dificil, con terciles de body_mass.</p>
+<p>🐧Si no lo has hecho, organiza todos los pasos anteriores (excepto cargar el paquete y crear el data frame) en un solo flujo de trabajo</p>
+<p>🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas</p>
+<p>🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas?</p>
+</section>
+</section>
+<section id="introducción-a-la-programación-con-funciones" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="introducción-a-la-programación-con-funciones"><span class="header-section-number">4</span> Introducción a la programación con funciones</h2>
+<section id="qué-es-una-funcion" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="qué-es-una-funcion"><span class="header-section-number">4.1</span> ¿Qué es una funcion?</h3>
+<p>Una característica clave de R son las funciones. Las funciones son una serie de intruccciones agrupadas para lograr un resultado específico. Más concretamente, son módulos de código ‘autocontenidos’ que realizan una tarea específica. Normalmente reciben algún tipo de estructura de datos (valor, vector, data frame, etc.), la procesan y devuelven un resultado.</p>
+<p><img src="images/funcion.png" class="img-fluid"></p>
+<p>El uso general de una función consiste en escribir el nombre de la función seguido de paréntesis. Por ejemplo, la funcion head() en R nos permite ver las primeras filas de un data frame</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(msleep, <span class="at">n=</span><span class="dv">10</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+ 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Los valores de entrada se llaman argumentos y pueden incluir tanto el objeto (estructura de datos) como especificaciones que modifican el modo en el que la función opera (por ejemplo, opciones o parámetros).</p>
+<p>En el ejemplo de la función head() el objeto sería un data frame (en este caso el data frame msleep) y el argumento “n” indicaría el número de filas a mostrar.</p>
+<p>Otro ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>recetas<span class="ot">&lt;-</span><span class="fu">read_delim</span>(<span class="at">file=</span><span class="st">"data/cuisines.csv"</span>, <span class="co"># argumento "file" </span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">delim=</span><span class="st">","</span>)                  <span class="co"># argumento "delim"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2218 Columns: 17
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (5): name, country, url, author, ingredients
+dbl  (11): calories, fat, carbs, protein, avg_rating, total_ratings, reviews...
+date  (1): date_published
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Cuando consultamos la ayuda de R lo que consultamos es cuales son los argumentos de la funcion.</p>
+<section id="ejercicio-consultar-la-función-matrix" class="level4" data-number="4.1.1">
+<h4 data-number="4.1.1" class="anchored" data-anchor-id="ejercicio-consultar-la-función-matrix"><span class="header-section-number">4.1.1</span> 🧩 Ejercicio: consultar la función matrix()</h4>
+<p>Consulta la ayuda de la función matrix. ¿Cuantos argumentos tiene?. Genera una matriz con esta funcion usando todos los argumentos.</p>
+</section>
+</section>
+<section id="funciones-definidas-por-el-usuario-para-qué" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="funciones-definidas-por-el-usuario-para-qué"><span class="header-section-number">4.2</span> Funciones definidas por el usuario ¿Para qué?</h3>
+<p>Además de las funciones que nos ofrece R en los diferentes paquetes, también podemos crear nuestras propias funciones. Esto resulta muy útil cuando necesiutamos realizar una tarea para la cual no existe una funcion específica en R. Un ejemplo de creación de una función:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estandarizar (media 0 y desv tipica 1) las calorias, grasas carbohidratos y proteínas</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>recetas_Z <span class="ot">&lt;-</span> recetas <span class="sc">|&gt;</span> </span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">calories_Z =</span> (calories <span class="sc">-</span> <span class="fu">mean</span>(calories, <span class="at">na.rm=</span>T))<span class="sc">/</span><span class="fu">sd</span>(calories, <span class="at">na.rm=</span>T),</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">fat_Z =</span> (fat <span class="sc">-</span> <span class="fu">mean</span>(fat, <span class="at">na.rm=</span>T))<span class="sc">/</span><span class="fu">sd</span>(fat, <span class="at">na.rm=</span>T),</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">carbs_Z =</span> (carbs <span class="sc">-</span> <span class="fu">mean</span>(carbs, <span class="at">na.rm=</span>T))<span class="sc">/</span><span class="fu">sd</span>(carbs, <span class="at">na.rm=</span>T),</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">protein_z =</span> (protein <span class="sc">-</span> <span class="fu">mean</span>(protein, <span class="at">na.rm=</span>T))<span class="sc">/</span><span class="fu">sd</span>(protein, <span class="at">na.rm=</span>T))</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="co"># función que estandariza</span></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>estandarizar_variable <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>recetas_Z <span class="ot">&lt;-</span> recetas <span class="sc">|&gt;</span> </span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">calories_Z =</span> <span class="fu">estandarizar_variable</span>(calories),</span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">fat_Z =</span> <span class="fu">estandarizar_variable</span>(fat),</span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">carbs_Z =</span> <span class="fu">estandarizar_variable</span>(carbs),</span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">protein_z =</span> <span class="fu">estandarizar_variable</span>(protein))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La ventajas de usar funciones son:</p>
+<ul>
+<li><p><strong>Reutilización de código:</strong> Las funciones permiten encapsular pasos repetidos en una única unidad que puedes llamar muchas veces, reduciendo duplicación y errores.</p></li>
+<li><p><strong>Abstracción y claridad:</strong> Al ocultar detalles de implementación dentro de una función, el flujo principal del script queda más limpio y fácil de entender.</p></li>
+<li><p><strong>Modularidad y mantenimiento:</strong> Dividir el trabajo en funciones pequeñas facilita probar, depurar y actualizar partes concretas sin afectar el resto del código.</p></li>
+<li><p><strong>Parámetros y flexibilidad:</strong> Los <strong>argumentos</strong> permiten adaptar el comportamiento de una función sin cambiar su código interno, lo que favorece la generalización y la experimentación.</p></li>
+<li><p><strong>Composición y reutilización avanzada:</strong> Las funciones pueden combinarse (una función llama a otra), lo que facilita construir pipelines y procesos complejos a partir de bloques simples.</p></li>
+<li><p><strong>Compatibilidad con ecosistema R:</strong> Muchas librerías y herramientas en R esperan o devuelven funciones; escribir funciones propias facilita integrarlas con <code>apply</code>, <code>purrr</code>, <code>dplyr</code>, <code>knitr</code> y otras herramientas del ecosistema.</p></li>
+</ul>
+<p><img src="images/funcion_reutilizacion.png" class="img-fluid"></p>
+</section>
+<section id="cuando-hay-que-usar-funciones" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="cuando-hay-que-usar-funciones"><span class="header-section-number">4.3</span> ¿Cuando hay que usar funciones?</h3>
+<p>Se recomienda seguir el principio “do not repeat yourself” (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself#:~:text=%22Don't%20repeat%20yourself%22,redundancy%20in%20the%20first%20place.">DRY principle</a>): cada unidad de conocimiento o información debe tener una representación única, inequívoca y autoritativa en un sistema.</p>
+<p>Escribir una función ya merece la pena cuando has copiado y pegado más de dos veces lo mismo (don’t be WET! - Write Everything Twice). Cuantas más veces esté repetido un código, en más sitios necesitarás actualizarlo si hay algun cambio y más aumenta la probabilidad de error.</p>
+</section>
+<section id="tipos-de-funciones" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="tipos-de-funciones"><span class="header-section-number">4.4</span> Tipos de funciones</h3>
+<p>Según el tipo de output generado hay dos tipos de funciones:</p>
+<ul>
+<li><p>Las <strong>funciones de transformación</strong> (<em>pure functions</em>): transforman el objeto que entra en la función (primer argumento) y devuelven otro objeto o el anterior modificado.</p></li>
+<li><p>Las <strong>funciones secundarias</strong> (<em>side-effect functions</em>): tienen efectos colaterales y ejecutan una acción, como guardar un archivo, una variable o dibujar un plot. Algunos ejemplos de funciones secundarias que se usan comunmente son: <code>library()</code>, <code>setwd()</code>, <code>plot()</code>, <code>write_delim()</code>…</p></li>
+</ul>
+</section>
+<section id="cómo-escribir-una-función" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="cómo-escribir-una-función"><span class="header-section-number">4.5</span> Cómo escribir una función</h3>
+<p>En general, sintácticamente, las funciones tienen tres componentes:</p>
+<ul>
+<li>Función para crear la funcion <code>function().</code> Se le asigna un nombre para poder reutilizarla</li>
+<li>Argumentos: lista de entradas.
+<ul>
+<li>Argumentos que especifican los datos de entrada</li>
+<li>Argumentos que especifican detalles de la ejecución de la función (se suelen colocar despues y tienen valores por defecto, si no los especificamos la función se ejecuta con los valores por defecto)</li>
+</ul></li>
+<li>Cuerpo: trozo de código que sigue a <code>function()</code>, tradicionalmente entre llaves.
+<ul>
+<li>La última expresión ejecutada en una función es el valor de retorno.</li>
+</ul></li>
+</ul>
+<p><img src="images/funcion_componentes.png" class="img-fluid"></p>
+<section id="ejercicio-consultar-la-función-sort" class="level4" data-number="4.5.1">
+<h4 data-number="4.5.1" class="anchored" data-anchor-id="ejercicio-consultar-la-función-sort"><span class="header-section-number">4.5.1</span> 🧩 Ejercicio: consultar la función sort()</h4>
+<ul>
+<li><p>Ordena el vector c(5, 8, 6, 2, 4, 5, NA) usando la funcion sort()</p></li>
+<li><p>Utiliza el argumento “decreasing” para ordenarlo de mayor a menor (consulta la ayuda para ver como se usa este argumento). ¿Qué valor tiene por defecto?</p></li>
+<li><p>¿Que otro argumento tiene la funcion que especifica detalles de la ejecución? Cámbialo a otro valor que no sea su valor por defecto.</p></li>
+<li><p>¿Cual es el valor de retorno de la función?</p></li>
+</ul>
+<p>Cuando escribimos una funcion tenemos que especificar estos componentes. Ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>escribe_suma <span class="ot">&lt;-</span> <span class="cf">function</span>(n1,n2) { <span class="co">#argumentos de entrada n1 y n2</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  suma<span class="ot">&lt;-</span>n1<span class="sc">+</span>n2 <span class="co">#cuerpo de la funcion: paso intermedio</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"La suma de "</span>,n1,<span class="st">" mas "</span>, n2, <span class="st">" es: "</span>, suma) <span class="co"># cuerpo de la funcion: valor de retorno</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="fu">escribe_suma</span>(<span class="dv">10</span>,<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "La suma de 10 mas 100 es: 110"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">escribe_suma</span>(<span class="dv">33</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "La suma de 33 mas 2 es: 35"</code></pre>
+</div>
+</div>
+<p>💡Atajo para escribir funciones: escribir la palabra fun + tabulador</p>
+<p>📝 Es conveniente usar comentarios (#) para explicar el razonamiento detrás de tus funciones.</p>
+</section>
+<section id="ejercicio-primera-función" class="level4" data-number="4.5.2">
+<h4 data-number="4.5.2" class="anchored" data-anchor-id="ejercicio-primera-función"><span class="header-section-number">4.5.2</span> 🧩 Ejercicio: primera función</h4>
+<ol type="1">
+<li><p>Crea una función que sirva para calcular el área de habitaciones cuadradas o rectangulares. Para ello crea una función de dos argumentos (el ancho de la habitación y el largo) y que devuelva el área.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>mi_funcion <span class="ot">&lt;-</span> <span class="cf">function</span>(largo, ancho) {</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Escribe el código aquí</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Queremos saber el precio de enlosar la habitación. Para ello añade un tercer argumento con el precio por metro cuadrado.</p></li>
+<li><p>¿Cuanto cuesta enlosar una habitación de 10x16m con un tipo de losa que cuesta 5€ el metro cuadrado? ¿Y una de 32x4m con una que cuesta 16€ por metro cuadrado?</p></li>
+</ol>
+</section>
+<section id="ejercicio-funcion-de-media-aritmética" class="level4" data-number="4.5.3">
+<h4 data-number="4.5.3" class="anchored" data-anchor-id="ejercicio-funcion-de-media-aritmética"><span class="header-section-number">4.5.3</span> 🧩 Ejercicio: funcion de media aritmética</h4>
+<p>Crea una función que calcule la media aritmética de los valores de un vector (sin usar la función mean()). De tal manera que si introducimos, por ejemplo, el vector c(1, 8, 18) nos devuelva el valor 9</p>
+<ul>
+<li><p>Pista1: sum() nos da el valor de la suma de los elementos de un vector # prueba sum(c(1, 2, 3)) para comprobarlo</p></li>
+<li><p>Pista 2: length() nos da la longitud (numero de elementos) del vector.</p></li>
+</ul>
+</section>
+</section>
+<section id="iteraciones-con-bucles-for" class="level3" data-number="4.6">
+<h3 data-number="4.6" class="anchored" data-anchor-id="iteraciones-con-bucles-for"><span class="header-section-number">4.6</span> Iteraciones con bucles for</h3>
+<p>Una <strong>iteración</strong> en programación es la <strong>repetición controlada</strong> de un bloque de instrucciones hasta que se cumple una condición o se alcanza un número de repeticiones; cada vez que se ejecuta ese bloque se llama <strong>una iteración.</strong></p>
+<p><img src="images/funcion_iteracion.png" class="img-fluid"></p>
+<p>En R, el <code>for</code> itera sobre los elementos de una <strong>secuencia</strong> (por ejemplo <code>1:10</code>, un vector o una lista) y ejecuta el cuerpo del bucle una vez por cada elemento. La variable de control (i) toma el valor de cada elemento en cada iteración.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i<span class="sc">+</span><span class="dv">10</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11
+[1] 12
+[1] 13
+[1] 14
+[1] 15</code></pre>
+</div>
+</div>
+<p>Para programar un bucle es necesario definir tres partes diferentes: la salida, la secuencia y el cuerpo</p>
+<ol type="1">
+<li><p>Salida: el espacio de la salida, es decir, primero tenemos que crear un espacio donde se va a ir almacenando el resultado del bucle. Puede ser un vector, una lista…</p></li>
+<li><p>Secuencia: sobre lo que queremos iterar. Cada ejecución del bucle <em>for</em> asignará un valor diferente a <code>i</code>, la variable control. La variable control puede ser una secuencia de números o también una secuencia de elementos de un vector o de una lista.</p></li>
+<li><p>Cuerpo del bucle: aquí determinamos lo que queremos que haga cada iteración. Se ejecuta repetidamente, cada vez con un valor diferente para <code>i</code>.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ejemplo bucle 1:</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>salida<span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"integer"</span>,<span class="dv">5</span>)</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>salida <span class="co"># veo que es un vector de 0 (vacio)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 0 0 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){ <span class="co"># 1:5 es la secuencia</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  salida[[i]] <span class="ot">&lt;-</span> i<span class="sc">+</span><span class="dv">10</span> <span class="co">#cuerpo del bucle</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>salida <span class="co"># ahora tiene el resultado del bucle</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11 12 13 14 15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo bucle 2:</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>salida<span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"character"</span>,<span class="dv">5</span>)</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>salida</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "" "" "" "" ""</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>semana5<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lunes"</span>, <span class="st">"martes"</span>,<span class="st">"miercoles"</span>,<span class="st">"jueves"</span>,<span class="st">"viernes"</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(semana5)){</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  salida[[j]]<span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"hoy es "</span>, semana5[[j]])</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="ejercicio-creando-bucles-for" class="level4" data-number="4.6.1">
+<h4 data-number="4.6.1" class="anchored" data-anchor-id="ejercicio-creando-bucles-for"><span class="header-section-number">4.6.1</span> 🧩 Ejercicio: creando bucles for</h4>
+<p>Elige al menos una de las siguientes opciones y crea un bucle:</p>
+<ul>
+<li><p>A partir del vector v&lt;- c(1,2,3,4), crea un vector w donde el pimer elemento de w sea el primer de v al cuadrado más uno y así sucesivamente.</p></li>
+<li><p>A partir de una lista con los dataframes de tidyverse msleep, diamonds y mpg, crea una nueva lista pero seleccionado solo las columnas que empiecen por “c” y las filas de la 10 a la 20.</p></li>
+<li><p>Genera un bucle para leer los archivos df1 a df5 de la carpeta data y almacenarlos en una lista. Pista: consulta la funcion list.files() y mira cuidadosamente todos los argumentos.</p></li>
+</ul>
+</section>
+</section>
+<section id="iteraciones-con-funcionales" class="level3" data-number="4.7">
+<h3 data-number="4.7" class="anchored" data-anchor-id="iteraciones-con-funcionales"><span class="header-section-number">4.7</span> Iteraciones con funcionales</h3>
+<p>Un funcional es una función que toma una función como entrada y devuelve un vector u otro tipo de objeto como salida. Un uso comun de los funcionales es como sustitutos de los bucles for. En R base los funcionales que sustituyen a los bucles for son las funciones de la familia apply (apply(), lapply(), tapply(), etc). En la colección de paquetes de tidyverse, el equivalente a estos funcionales son los provistos por el paquete purr:: map().</p>
+<p>Para programar un funcional, primero, solucionamos el problema para un elemento. Después, generamos una función que nos permita tener la solución en una función . Por último, aplicamos la función a todos los elementos que estamos interesados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>x10<span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">*</span><span class="dv">10</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, x10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 10
+
+[[2]]
+[1] 20
+
+[[3]]
+[1] 30</code></pre>
+</div>
+</div>
+<p>Usando map función operará en todos los elementos de <code>x</code>, es decir, cada valor si <code>x</code> es un vector, cada columna si <code>x</code> es un <code>data.frame</code>, o cada elemento si <code>x</code> es una lista. Toma un vector y una función, llama a la función una vez por cada elemento del vector y devuelve los resultados en una lista. <code>map(1:3, f)</code> es equivalente a <code>list(f(1), f(2), f(3))</code>. Es el equivalente de <code>lapply()</code> de R base.</p>
+<p><img src="images/map.png" class="img-fluid"></p>
+<p><code>map()</code> devuelve una lista, lo que la convierte en la más general de la familia <code>map</code> porque puedes poner cualquier cosa en una lista. Pero es incómodo devolver una lista cuando una estructura de datos más simple bastaría, por eso existen cuatro variantes más específicas: <code>map_lgl()</code>, <code>map_int()</code>, <code>map_dbl()</code> y <code>map_chr()</code>. Cada una devuelve un vector atómico del tipo especificado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>mi_lista<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="st">"hola"</span>, <span class="dv">2</span>, <span class="fl">25.1</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Para cada componente de la lista dime el tipo de dato y devuelve un vector tipo character</span></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="fu">map_chr</span>(mi_lista, typeof)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character" "double"    "double"    "logical"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Para cada componente de la lista devuelve un vector lógico indicando TRUE si es de tipo doble y FALSE si no lo es</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_lgl</span>(mi_lista, is.double)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Para cada columna del dataframe devuelve un vector numérico con la media (NA cuando en esa columna no hay números)</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dbl</span>(msleep, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
+returning NA
+Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
+returning NA
+Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
+returning NA
+Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
+returning NA
+Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
+returning NA</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        name        genus         vore        order conservation  sleep_total 
+          NA           NA           NA           NA           NA     10.43373 
+   sleep_rem  sleep_cycle        awake      brainwt       bodywt 
+          NA           NA     13.56747           NA    166.13635 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Para cada columna del dataframe devuelve el número de casos únicos</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_int</span>(msleep, n_distinct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        name        genus         vore        order conservation  sleep_total 
+          83           77            5           19            7           65 
+   sleep_rem  sleep_cycle        awake      brainwt       bodywt 
+          33           23           65           54           82 </code></pre>
+</div>
+</div>
+<section id="ejercicio-map" class="level4" data-number="4.7.1">
+<h4 data-number="4.7.1" class="anchored" data-anchor-id="ejercicio-map"><span class="header-section-number">4.7.1</span> 🧩 Ejercicio: map()</h4>
+<ul>
+<li><p>Genera un vector, una función y aplica la función a cada uno de los elementos del vector utilizando <code>map()</code>.</p></li>
+<li><p>para la lista list(a = 1:3, b = letters[1:5], c = c(TRUE, FALSE)) utiliza map() para generar una salida que sea una lista con las longitudes de cada elemento. ¿Que funcion tendrías que utilizar si quieres que la salida sea un vector de números enteros en lugar de una lista?</p></li>
+<li><p>para la lista_num &lt;- list(a = c(1,2,3), b = c(4,5), c = 6) aplica la funcion de la familia map para obtener la media de cada elemento a, b, c en un vector numérico.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="para-seguir-practicando" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="para-seguir-practicando"><span class="header-section-number">5</span> 🧩 <em>Para seguir practicando…</em></h2>
+<p>El paquete swirl es un paquete de R que transforma la consola de R en un tutor interactivo que presenta lecciones, plantea preguntas (texto, numéricas, opciones) y evalúa tus respuestas en tiempo real. A parte de los módulos de aprendizaje que vienenen el propio paquete permite crear módulos nuevos.</p>
+<p><img src="images/swirl_R.png" class="img-fluid"></p>
+<p>Paquete <a href="https://swirlstats.com/">swirl</a>: aprendiendo R en R</p>
+<p>Si quieres seguir practicando con el paquete tidyverse puedes seguir el siguiente curso obtenido de <a href="https://github.com/sysilviakim/swirl-tidy" class="uri">https://github.com/sysilviakim/swirl-tidy</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"swirl"</span>)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(swirl)</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install_course_github</span>(<span class="st">"sysilviakim"</span>, <span class="st">"swirl-tidy"</span>)</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="fu">swirl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="enlaces-de-interés" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="enlaces-de-interés"><span class="header-section-number">6</span> Enlaces de interés</h2>
+<ul>
+<li><p><a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a></p></li>
+<li><p><a href="https://r4ds.had.co.nz/transform.html">R for data Science (Data transformation)</a></p></li>
+<li><p><a href="http://adv-r.had.co.nz/Style.html">Style guide</a></p></li>
+<li><p><a href="https://www.tidyverse.org">Página web de <em>tidyverse</em></a></p></li>
+<li><p><a href="https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf">Cheat sheet the dplyr</a></p></li>
+<li><p><a href="https://www.revistaecosistemas.net/index.php/ecosistemas/article/view/2129">Quince consejos para mejorar nuestro código y flujo de trabajo con R</a></p></li>
+</ul>
+<hr>
+<details>
+<summary>
+Session Info
+</summary>
+</details>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
