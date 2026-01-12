@@ -19,17 +19,27 @@ number-sections: true
 bibliography: references.bib
 ---
 
-## Síntesis del día 1: Introducción a R y a R studio (POR TERMINAR)
+## Síntesis del día 1: Introducción a R y a R studio
 
 #### 🧩 Ejercicio: *repaso* *del día anterior*
 
--   Crea un vector con los meses del año (en número) y calcula la media
--   Crea una matriz ... ¿Cual es el elemento de la fila 3 columna 2?
--   Crea una lista .. ¿Que hay en el tercer elemento de la lista?
--   Crea un data frame con la siguiente información
+Crea un vector (mes) con los meses del año (en número)
+
+Crea otro vector con el número de días de cada mes y calcula la media y la desviación típica
+
+Junta los dos vectores en un data frame
 
 ```{r solucion ej repaso}
-#Pendiente
+
+mes<-1:12
+
+dias<-c(31,28,31,30,31,30,31,31,30,30,31,31)
+
+mean(dias)
+sd(dias)
+
+data.frame(m=mes,
+           d=dias)
 ```
 
 ## Manejo y gestión de datos
