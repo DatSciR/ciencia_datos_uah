@@ -8,10 +8,10 @@ toc-title: "Índice"
 format:
   html:
     link-external-newwindow: true
-    title: Día 4 - Manejo y visualización de datos en R
-    subtitle: Trabajo reproducible y colaborativo
+    title: Día 1  - Introduccion a la programación en R
+    subtitle: Introducción
   gfm: 
-    title: "Día 4 - Manejo y visualización de datos en R"
+    title: "Día 1 - Manejo y visualización de datos en R"
 editor: visual
 editor_options: 
   chunk_output_type: console
@@ -272,7 +272,7 @@ library(swirlify)
 
 Además de un archivo ".README" que explique la organización del trabajo, podéis especificar archivos de entrada, salida, scripts o procesos. Todo análisis depende de un conjunto de paquetes que conviene documentar consistentemente, y permite tener todo organizado.
 
-![](images/readme_proyectos_RodriguezSanchez et al.jpg)
+![](images/readme_proyectos_RodriguezSanchez%20et%20al.jpg)
 
 [ESTE](https://revistaecosistemas.net/index.php/ecosistemas/article/view/2129/1336) artículo publicado en la revista ECOSISTEMAS.
 
@@ -286,39 +286,39 @@ Utiliza **comentarios** para guiar al lector con `#`, acordarte por qué hiciste
 
 *¡No tienes que seleccionar con el ratón la línea de ejecutar y darle a "Run"! con las techas de más arriba e incluso shift te ahorrara tiempo!*
 
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Atajo                       | Efecto                                                                                   |
-+=============================+==========================================================================================+
-| Ctrl + Z                    | Deshacer                                                                                 |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Shift + Z            | Rehacer (no es la convención habitual)                                                   |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + O                    | Abrir archivo                                                                            |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + A                    | Seleccionar todo                                                                         |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + S                    | Guardar archivo                                                                          |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + F                    | Buscar en el archivo actual                                                              |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Shift + F            | Buscar en varios archivos                                                                |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + W                    | Cerrar pestaña                                                                           |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Tab                  | Ir a la siguiente pestaña                                                                |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Q                    | Salir de RStudio                                                                         |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Tab                         | Indentar / Autocompletado                                                                |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Shift + Tab                 | Quitar indentación                                                                       |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Shift + F10          | Reiniciar la sesión de R (¡conviene hacerlo a menudo!)                                   |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Shift + H            | Elegir directorio de trabajo (no necesario si trabajas en un proyecto de R 😉)           |
-+-----------------------------+------------------------------------------------------------------------------------------+
-| Ctrl + F7                   | Añadir una nueva columna de código (se elimina cerrando todas sus pestañas con Ctrl + W) |
-+-----------------------------+------------------------------------------------------------------------------------------+
++--------------------+------------------------------------------------------------------------------------------+
+| Atajo              | Efecto                                                                                   |
++====================+==========================================================================================+
+| Ctrl + Z           | Deshacer                                                                                 |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Shift + Z   | Rehacer (no es la convención habitual)                                                   |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + O           | Abrir archivo                                                                            |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + A           | Seleccionar todo                                                                         |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + S           | Guardar archivo                                                                          |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + F           | Buscar en el archivo actual                                                              |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Shift + F   | Buscar en varios archivos                                                                |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + W           | Cerrar pestaña                                                                           |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Tab         | Ir a la siguiente pestaña                                                                |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Q           | Salir de RStudio                                                                         |
++--------------------+------------------------------------------------------------------------------------------+
+| Tab                | Indentar / Autocompletado                                                                |
++--------------------+------------------------------------------------------------------------------------------+
+| Shift + Tab        | Quitar indentación                                                                       |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Shift + F10 | Reiniciar la sesión de R (¡conviene hacerlo a menudo!)                                   |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Shift + H   | Elegir directorio de trabajo (no necesario si trabajas en un proyecto de R 😉)           |
++--------------------+------------------------------------------------------------------------------------------+
+| Ctrl + F7          | Añadir una nueva columna de código (se elimina cerrando todas sus pestañas con Ctrl + W) |
++--------------------+------------------------------------------------------------------------------------------+
 
 ### Consejo 3: Aprende a pedir ayuda, conoce las funciones y argumentos
 
