@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marina Rodes Blanco, Julián Tijerin Triviño, Paloma Ruiz Benito y Verónica Cruz Alonso,">
-<meta name="dcterms.date" content="2026-11-01">
+<meta name="dcterms.date" content="2026-12-01">
 
 <title>Día 2 - Manejo y visualización de datos en R</title>
 <style>
@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar" id="toc-síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar" class="nav-link active" data-scroll-target="#síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar"><span class="header-section-number">1</span> Síntesis del día 1: Introducción a R y a R studio (POR TERMINAR)</a>
+  <li><a href="#síntesis-del-día-1-introducción-a-r-y-a-r-studio" id="toc-síntesis-del-día-1-introducción-a-r-y-a-r-studio" class="nav-link active" data-scroll-target="#síntesis-del-día-1-introducción-a-r-y-a-r-studio"><span class="header-section-number">1</span> Síntesis del día 1: Introducción a R y a R studio</a>
   <ul>
   <li><a href="#modelo-de-ciencia-de-datos" id="toc-modelo-de-ciencia-de-datos" class="nav-link" data-scroll-target="#modelo-de-ciencia-de-datos"><span class="header-section-number">1.1</span> Modelo de ciencia de datos</a></li>
   <li><a href="#buenas-prácticas-en-la-gestión-de-datos" id="toc-buenas-prácticas-en-la-gestión-de-datos" class="nav-link" data-scroll-target="#buenas-prácticas-en-la-gestión-de-datos"><span class="header-section-number">1.2</span> Buenas prácticas en la gestión de datos</a></li>
@@ -101,45 +101,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#manejo-y-gestión-de-datos" id="toc-manejo-y-gestión-de-datos" class="nav-link" data-scroll-target="#manejo-y-gestión-de-datos"><span class="header-section-number">3</span> Manejo y gestión de datos</a>
   <ul>
-  <li><a href="#importar-y-renombrar-datos" id="toc-importar-y-renombrar-datos" class="nav-link" data-scroll-target="#importar-y-renombrar-datos"><span class="header-section-number">3.1</span> Importar y renombrar datos</a>
+  <li><a href="#resumen-de-funciones" id="toc-resumen-de-funciones" class="nav-link" data-scroll-target="#resumen-de-funciones"><span class="header-section-number">3.1</span> Resumen de funciones</a></li>
+  <li><a href="#importar-y-renombrar-datos" id="toc-importar-y-renombrar-datos" class="nav-link" data-scroll-target="#importar-y-renombrar-datos"><span class="header-section-number">3.2</span> Importar y renombrar datos</a>
   <ul>
-  <li><a href="#read_delim-leer-datos-desde-fuera-de-r" id="toc-read_delim-leer-datos-desde-fuera-de-r" class="nav-link" data-scroll-target="#read_delim-leer-datos-desde-fuera-de-r"><span class="header-section-number">3.1.1</span> Read_delim: leer datos desde fuera de R</a></li>
-  <li><a href="#rename-cambiar-nombres-de-variables-columnas" id="toc-rename-cambiar-nombres-de-variables-columnas" class="nav-link" data-scroll-target="#rename-cambiar-nombres-de-variables-columnas"><span class="header-section-number">3.1.2</span> Rename: cambiar nombres de variables (columnas)</a></li>
+  <li><a href="#read_delim-leer-datos-desde-fuera-de-r" id="toc-read_delim-leer-datos-desde-fuera-de-r" class="nav-link" data-scroll-target="#read_delim-leer-datos-desde-fuera-de-r"><span class="header-section-number">3.2.1</span> Read_delim: leer datos desde fuera de R</a></li>
+  <li><a href="#rename-cambiar-nombres-de-variables-columnas" id="toc-rename-cambiar-nombres-de-variables-columnas" class="nav-link" data-scroll-target="#rename-cambiar-nombres-de-variables-columnas"><span class="header-section-number">3.2.2</span> Rename: cambiar nombres de variables (columnas)</a></li>
   </ul></li>
-  <li><a href="#funciones-básicas-de-filtrado-y-selección" id="toc-funciones-básicas-de-filtrado-y-selección" class="nav-link" data-scroll-target="#funciones-básicas-de-filtrado-y-selección"><span class="header-section-number">3.2</span> Funciones básicas de filtrado y selección</a>
+  <li><a href="#funciones-básicas-de-filtrado-y-selección" id="toc-funciones-básicas-de-filtrado-y-selección" class="nav-link" data-scroll-target="#funciones-básicas-de-filtrado-y-selección"><span class="header-section-number">3.3</span> Funciones básicas de filtrado y selección</a>
   <ul>
-  <li><a href="#slice-filtrar-filas-según-el-índice-numérico" id="toc-slice-filtrar-filas-según-el-índice-numérico" class="nav-link" data-scroll-target="#slice-filtrar-filas-según-el-índice-numérico"><span class="header-section-number">3.2.1</span> Slice: filtrar filas según el índice numérico</a></li>
-  <li><a href="#filter-filtrar-filas-utilizando-condiciones" id="toc-filter-filtrar-filas-utilizando-condiciones" class="nav-link" data-scroll-target="#filter-filtrar-filas-utilizando-condiciones"><span class="header-section-number">3.2.2</span> Filter: filtrar filas utilizando condiciones</a>
+  <li><a href="#slice-filtrar-filas-según-el-índice-numérico" id="toc-slice-filtrar-filas-según-el-índice-numérico" class="nav-link" data-scroll-target="#slice-filtrar-filas-según-el-índice-numérico"><span class="header-section-number">3.3.1</span> Slice: filtrar filas según el índice numérico</a></li>
+  <li><a href="#filter-filtrar-filas-utilizando-condiciones" id="toc-filter-filtrar-filas-utilizando-condiciones" class="nav-link" data-scroll-target="#filter-filtrar-filas-utilizando-condiciones"><span class="header-section-number">3.3.2</span> Filter: filtrar filas utilizando condiciones</a>
   <ul class="collapse">
-  <li><a href="#ejercicio-slice-filter-arrange" id="toc-ejercicio-slice-filter-arrange" class="nav-link" data-scroll-target="#ejercicio-slice-filter-arrange"><span class="header-section-number">3.2.2.1</span> 🧩 <em>Ejercicio: slice(), filter(), arrange()</em></a></li>
+  <li><a href="#ejercicio-slice-filter-arrange" id="toc-ejercicio-slice-filter-arrange" class="nav-link" data-scroll-target="#ejercicio-slice-filter-arrange"><span class="header-section-number">3.3.2.1</span> 🧩 <em>Ejercicio: slice(), filter(), arrange()</em></a></li>
   </ul></li>
-  <li><a href="#select-sirve-para-seleccionar-columnas-utilizando-condiciones" id="toc-select-sirve-para-seleccionar-columnas-utilizando-condiciones" class="nav-link" data-scroll-target="#select-sirve-para-seleccionar-columnas-utilizando-condiciones"><span class="header-section-number">3.2.3</span> Select: sirve para seleccionar columnas utilizando condiciones</a>
+  <li><a href="#select-sirve-para-seleccionar-columnas-utilizando-condiciones" id="toc-select-sirve-para-seleccionar-columnas-utilizando-condiciones" class="nav-link" data-scroll-target="#select-sirve-para-seleccionar-columnas-utilizando-condiciones"><span class="header-section-number">3.3.3</span> Select: sirve para seleccionar columnas utilizando condiciones</a>
   <ul class="collapse">
-  <li><a href="#ejercicio-select" id="toc-ejercicio-select" class="nav-link" data-scroll-target="#ejercicio-select"><span class="header-section-number">3.2.3.1</span> 🧩 <em>Ejercicio: select()</em></a></li>
+  <li><a href="#ejercicio-select" id="toc-ejercicio-select" class="nav-link" data-scroll-target="#ejercicio-select"><span class="header-section-number">3.3.3.1</span> 🧩 <em>Ejercicio: select()</em></a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#transformar-los-datos-y-calcular-nuevas-variables" id="toc-transformar-los-datos-y-calcular-nuevas-variables" class="nav-link" data-scroll-target="#transformar-los-datos-y-calcular-nuevas-variables"><span class="header-section-number">3.3</span> Transformar los datos y calcular nuevas variables</a>
+  <li><a href="#transformar-los-datos-y-calcular-nuevas-variables" id="toc-transformar-los-datos-y-calcular-nuevas-variables" class="nav-link" data-scroll-target="#transformar-los-datos-y-calcular-nuevas-variables"><span class="header-section-number">3.4</span> Transformar los datos y calcular nuevas variables</a>
   <ul>
-  <li><a href="#mutate-crear-modificar-o-eliminar-columnas" id="toc-mutate-crear-modificar-o-eliminar-columnas" class="nav-link" data-scroll-target="#mutate-crear-modificar-o-eliminar-columnas"><span class="header-section-number">3.3.1</span> Mutate: crear, modificar o eliminar columnas</a>
+  <li><a href="#mutate-crear-modificar-o-eliminar-columnas" id="toc-mutate-crear-modificar-o-eliminar-columnas" class="nav-link" data-scroll-target="#mutate-crear-modificar-o-eliminar-columnas"><span class="header-section-number">3.4.1</span> Mutate: crear, modificar o eliminar columnas</a>
   <ul class="collapse">
-  <li><a href="#ejercicio-mutate" id="toc-ejercicio-mutate" class="nav-link" data-scroll-target="#ejercicio-mutate"><span class="header-section-number">3.3.1.1</span> 🧩 <em>Ejercicio: mutate()</em></a></li>
+  <li><a href="#ejercicio-mutate" id="toc-ejercicio-mutate" class="nav-link" data-scroll-target="#ejercicio-mutate"><span class="header-section-number">3.4.1.1</span> 🧩 <em>Ejercicio: mutate()</em></a></li>
   </ul></li>
-  <li><a href="#summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" id="toc-summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" class="nav-link" data-scroll-target="#summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila"><span class="header-section-number">3.3.2</span> Summarise y group by: generar un nuevo <code>data.frame</code> resumiendo cada grupo a una fila</a></li>
-  <li><a href="#ejercicio-group_by-summrise" id="toc-ejercicio-group_by-summrise" class="nav-link" data-scroll-target="#ejercicio-group_by-summrise"><span class="header-section-number">3.3.3</span> 🧩 <em>Ejercicio: group_by(), summrise()</em></a></li>
+  <li><a href="#summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" id="toc-summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" class="nav-link" data-scroll-target="#summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila"><span class="header-section-number">3.4.2</span> Summarise y group by: generar un nuevo <code>data.frame</code> resumiendo cada grupo a una fila</a></li>
+  <li><a href="#ejercicio-group_by-summrise" id="toc-ejercicio-group_by-summrise" class="nav-link" data-scroll-target="#ejercicio-group_by-summrise"><span class="header-section-number">3.4.3</span> 🧩 <em>Ejercicio: group_by(), summrise()</em></a></li>
   </ul></li>
-  <li><a href="#pivot-transformar-datos-a-formato-largo-o-ancho" id="toc-pivot-transformar-datos-a-formato-largo-o-ancho" class="nav-link" data-scroll-target="#pivot-transformar-datos-a-formato-largo-o-ancho"><span class="header-section-number">3.4</span> Pivot: transformar datos a formato largo o ancho</a>
+  <li><a href="#pivot-transformar-datos-a-formato-largo-o-ancho" id="toc-pivot-transformar-datos-a-formato-largo-o-ancho" class="nav-link" data-scroll-target="#pivot-transformar-datos-a-formato-largo-o-ancho"><span class="header-section-number">3.5</span> Pivot: transformar datos a formato largo o ancho</a>
   <ul>
-  <li><a href="#ejercicio-transformar-datos-largo-ancho" id="toc-ejercicio-transformar-datos-largo-ancho" class="nav-link" data-scroll-target="#ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">3.4.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></a></li>
+  <li><a href="#ejercicio-transformar-datos-largo-ancho" id="toc-ejercicio-transformar-datos-largo-ancho" class="nav-link" data-scroll-target="#ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">3.5.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#unir-data.frames" id="toc-unir-data.frames" class="nav-link" data-scroll-target="#unir-data.frames"><span class="header-section-number">4</span> Unir data.frames</a></li>
-  <li><a href="#guardar-datos" id="toc-guardar-datos" class="nav-link" data-scroll-target="#guardar-datos"><span class="header-section-number">5</span> Guardar datos</a>
+  <li><a href="#unir-data.frames-joins" id="toc-unir-data.frames-joins" class="nav-link" data-scroll-target="#unir-data.frames-joins"><span class="header-section-number">3.6</span> Unir data.frames: joins</a></li>
+  <li><a href="#guardar-datos-con-write_delim" id="toc-guardar-datos-con-write_delim" class="nav-link" data-scroll-target="#guardar-datos-con-write_delim"><span class="header-section-number">3.7</span> Guardar datos con Write_delim:</a>
   <ul>
-  <li><a href="#ejercicio-_join-y-exportar-datos" id="toc-ejercicio-_join-y-exportar-datos" class="nav-link" data-scroll-target="#ejercicio-_join-y-exportar-datos"><span class="header-section-number">5.0.1</span> 🧩 <em>Ejercicio: *_join() y exportar datos</em></a></li>
+  <li><a href="#ejercicio-_join-y-exportar-datos" id="toc-ejercicio-_join-y-exportar-datos" class="nav-link" data-scroll-target="#ejercicio-_join-y-exportar-datos"><span class="header-section-number">3.7.1</span> 🧩 <em>Ejercicio: *_join() y exportar datos</em></a></li>
   </ul></li>
-  <li><a href="#ejercicio-final-manejo-de-datos" id="toc-ejercicio-final-manejo-de-datos" class="nav-link" data-scroll-target="#ejercicio-final-manejo-de-datos"><span class="header-section-number">6</span> 🧩 <em>Ejercicio final manejo de datos</em></a></li>
-  <li><a href="#para-seguir-practicando" id="toc-para-seguir-practicando" class="nav-link" data-scroll-target="#para-seguir-practicando"><span class="header-section-number">7</span> 🧩 <em>Para seguir practicando…</em></a></li>
-  <li><a href="#enlaces-de-interés" id="toc-enlaces-de-interés" class="nav-link" data-scroll-target="#enlaces-de-interés"><span class="header-section-number">8</span> Enlaces de interés</a></li>
+  <li><a href="#ejercicio-final-manejo-de-datos" id="toc-ejercicio-final-manejo-de-datos" class="nav-link" data-scroll-target="#ejercicio-final-manejo-de-datos"><span class="header-section-number">3.8</span> 🧩 <em>Ejercicio final manejo de datos</em></a></li>
+  </ul></li>
+  <li><a href="#introducción-a-la-programación-con-funciones" id="toc-introducción-a-la-programación-con-funciones" class="nav-link" data-scroll-target="#introducción-a-la-programación-con-funciones"><span class="header-section-number">4</span> Introducción a la programación con funciones</a>
+  <ul>
+  <li><a href="#qué-es-una-funcion" id="toc-qué-es-una-funcion" class="nav-link" data-scroll-target="#qué-es-una-funcion"><span class="header-section-number">4.1</span> ¿Qué es una funcion?</a>
+  <ul>
+  <li><a href="#ejercicio-consultar-la-función-matrix" id="toc-ejercicio-consultar-la-función-matrix" class="nav-link" data-scroll-target="#ejercicio-consultar-la-función-matrix"><span class="header-section-number">4.1.1</span> 🧩 Ejercicio: consultar la función matrix()</a></li>
+  </ul></li>
+  <li><a href="#funciones-definidas-por-el-usuario-para-qué" id="toc-funciones-definidas-por-el-usuario-para-qué" class="nav-link" data-scroll-target="#funciones-definidas-por-el-usuario-para-qué"><span class="header-section-number">4.2</span> Funciones definidas por el usuario ¿Para qué?</a></li>
+  <li><a href="#cuando-hay-que-usar-funciones" id="toc-cuando-hay-que-usar-funciones" class="nav-link" data-scroll-target="#cuando-hay-que-usar-funciones"><span class="header-section-number">4.3</span> ¿Cuando hay que usar funciones?</a></li>
+  <li><a href="#tipos-de-funciones" id="toc-tipos-de-funciones" class="nav-link" data-scroll-target="#tipos-de-funciones"><span class="header-section-number">4.4</span> Tipos de funciones</a></li>
+  <li><a href="#cómo-escribir-una-función" id="toc-cómo-escribir-una-función" class="nav-link" data-scroll-target="#cómo-escribir-una-función"><span class="header-section-number">4.5</span> Cómo escribir una función</a>
+  <ul>
+  <li><a href="#ejercicio-consultar-la-función-sort" id="toc-ejercicio-consultar-la-función-sort" class="nav-link" data-scroll-target="#ejercicio-consultar-la-función-sort"><span class="header-section-number">4.5.1</span> 🧩 Ejercicio: consultar la función sort()</a></li>
+  <li><a href="#ejercicio-primera-función" id="toc-ejercicio-primera-función" class="nav-link" data-scroll-target="#ejercicio-primera-función"><span class="header-section-number">4.5.2</span> 🧩 Ejercicio: primera función</a></li>
+  <li><a href="#ejercicio-funcion-de-media-aritmética" id="toc-ejercicio-funcion-de-media-aritmética" class="nav-link" data-scroll-target="#ejercicio-funcion-de-media-aritmética"><span class="header-section-number">4.5.3</span> 🧩 Ejercicio: funcion de media aritmética</a></li>
+  </ul></li>
+  <li><a href="#iteraciones-con-bucles-for" id="toc-iteraciones-con-bucles-for" class="nav-link" data-scroll-target="#iteraciones-con-bucles-for"><span class="header-section-number">4.6</span> Iteraciones con bucles for</a>
+  <ul>
+  <li><a href="#ejercicio-creando-bucles-for" id="toc-ejercicio-creando-bucles-for" class="nav-link" data-scroll-target="#ejercicio-creando-bucles-for"><span class="header-section-number">4.6.1</span> 🧩 Ejercicio: creando bucles for</a></li>
+  </ul></li>
+  <li><a href="#iteraciones-con-funcionales" id="toc-iteraciones-con-funcionales" class="nav-link" data-scroll-target="#iteraciones-con-funcionales"><span class="header-section-number">4.7</span> Iteraciones con funcionales</a>
+  <ul>
+  <li><a href="#ejercicio-map" id="toc-ejercicio-map" class="nav-link" data-scroll-target="#ejercicio-map"><span class="header-section-number">4.7.1</span> 🧩 Ejercicio: map()</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#para-seguir-practicando" id="toc-para-seguir-practicando" class="nav-link" data-scroll-target="#para-seguir-practicando"><span class="header-section-number">5</span> 🧩 <em>Para seguir practicando…</em></a></li>
+  <li><a href="#enlaces-de-interés" id="toc-enlaces-de-interés" class="nav-link" data-scroll-target="#enlaces-de-interés"><span class="header-section-number">6</span> Enlaces de interés</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="dia_2_manejo_datos_funciones.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
 </div>
@@ -165,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">11/01/2026</p>
+      <p class="date">12/01/2026</p>
     </div>
   </div>
   
@@ -177,8 +202,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="síntesis-del-día-1-introducción-a-r-y-a-r-studio-por-terminar"><span class="header-section-number">1</span> Síntesis del día 1: Introducción a R y a R studio (POR TERMINAR)</h2>
+<section id="síntesis-del-día-1-introducción-a-r-y-a-r-studio" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="síntesis-del-día-1-introducción-a-r-y-a-r-studio"><span class="header-section-number">1</span> Síntesis del día 1: Introducción a R y a R studio</h2>
 <section id="modelo-de-ciencia-de-datos" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="modelo-de-ciencia-de-datos"><span class="header-section-number">1.1</span> Modelo de ciencia de datos</h3>
 <div id="fig-datascience" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -213,16 +238,23 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 </section>
 <section id="qué-son-los-datos-ordenados" class="level3" data-number="1.4">
 <h3 data-number="1.4" class="anchored" data-anchor-id="qué-son-los-datos-ordenados"><span class="header-section-number">1.4</span> ¿Qué son los datos ordenados?</h3>
+<p><img src="images/tidydata_1.png" class="img-fluid"></p>
+<p><img src="images/tidydata_3.png" class="img-fluid"></p>
 </section>
 <section id="qué-es-tidyverse" class="level3" data-number="1.5">
 <h3 data-number="1.5" class="anchored" data-anchor-id="qué-es-tidyverse"><span class="header-section-number">1.5</span> ¿Qué es tidyverse?</h3>
+<p><img src="images/tidyverse_packages.png" class="img-fluid"></p>
 <section id="ejercicio-repaso-del-día-anterior" class="level4" data-number="1.5.1">
 <h4 data-number="1.5.1" class="anchored" data-anchor-id="ejercicio-repaso-del-día-anterior"><span class="header-section-number">1.5.1</span> 🧩 Ejercicio: <em>repaso</em> <em>del día anterior</em></h4>
 <ul>
-<li>Crea un vector con los meses del año (en número) y calcula la media</li>
-<li>Crea una matriz … ¿Cual es el elemento de la fila 3 columna 2?</li>
-<li>Crea una lista .. ¿Que hay en el tercer elemento de la lista?</li>
-<li>Crea un data frame con la siguiente información</li>
+<li>Crea un vector (mes) con los meses del año (en número)</li>
+<li>Crea otro vector con el número de días de cada mes y calcula la media y la desviación típica</li>
+<li>Junta los dos vectores en un data frame</li>
+<li>Con el set de datos de penguins:
+<ul>
+<li>selecciona solo las columnas <code>species</code>y <code>body_mass_g</code>de <code>penguins</code> usando tanto base R como tidyverse.</li>
+<li>filtra los individuos que tengan un body_mass menor de 4,5 kg. ¿Cual es la media de peso de estos individuos?</li>
+</ul></li>
 </ul>
 </section>
 </section>
@@ -280,10 +312,14 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 </section>
 <section id="manejo-y-gestión-de-datos" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="manejo-y-gestión-de-datos"><span class="header-section-number">3</span> Manejo y gestión de datos</h2>
-<section id="importar-y-renombrar-datos" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="importar-y-renombrar-datos"><span class="header-section-number">3.1</span> Importar y renombrar datos</h3>
-<section id="read_delim-leer-datos-desde-fuera-de-r" class="level4" data-number="3.1.1">
-<h4 data-number="3.1.1" class="anchored" data-anchor-id="read_delim-leer-datos-desde-fuera-de-r"><span class="header-section-number">3.1.1</span> <a href="https://readr.tidyverse.org/reference/read_delim.html">Read_delim</a>: leer datos desde fuera de R</h4>
+<section id="resumen-de-funciones" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="resumen-de-funciones"><span class="header-section-number">3.1</span> Resumen de funciones</h3>
+<p><img src="images/resumen_funciones.png" class="img-fluid"></p>
+</section>
+<section id="importar-y-renombrar-datos" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="importar-y-renombrar-datos"><span class="header-section-number">3.2</span> Importar y renombrar datos</h3>
+<section id="read_delim-leer-datos-desde-fuera-de-r" class="level4" data-number="3.2.1">
+<h4 data-number="3.2.1" class="anchored" data-anchor-id="read_delim-leer-datos-desde-fuera-de-r"><span class="header-section-number">3.2.1</span> <a href="https://readr.tidyverse.org/reference/read_delim.html">Read_delim</a>: leer datos desde fuera de R</h4>
 <p>Leer datos que tenemos almacenados, como por ejemplo, una tabla en formato csv.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -385,8 +421,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </div>
 </div>
 </section>
-<section id="rename-cambiar-nombres-de-variables-columnas" class="level4" data-number="3.1.2">
-<h4 data-number="3.1.2" class="anchored" data-anchor-id="rename-cambiar-nombres-de-variables-columnas"><span class="header-section-number">3.1.2</span> <a href="https://dplyr.tidyverse.org/reference/rename.html">Rename</a>: cambiar nombres de variables (columnas)</h4>
+<section id="rename-cambiar-nombres-de-variables-columnas" class="level4" data-number="3.2.2">
+<h4 data-number="3.2.2" class="anchored" data-anchor-id="rename-cambiar-nombres-de-variables-columnas"><span class="header-section-number">3.2.2</span> <a href="https://dplyr.tidyverse.org/reference/rename.html">Rename</a>: cambiar nombres de variables (columnas)</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(recetas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -409,10 +445,10 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 <p>📝 Ajustar sangría de código: Ctrl + i; Reformatear código: Ctrl + Shift + a</p>
 </section>
 </section>
-<section id="funciones-básicas-de-filtrado-y-selección" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="funciones-básicas-de-filtrado-y-selección"><span class="header-section-number">3.2</span> Funciones básicas de filtrado y selección</h3>
-<section id="slice-filtrar-filas-según-el-índice-numérico" class="level4" data-number="3.2.1">
-<h4 data-number="3.2.1" class="anchored" data-anchor-id="slice-filtrar-filas-según-el-índice-numérico"><span class="header-section-number">3.2.1</span> <a href="https://dplyr.tidyverse.org/reference/slice.html">Slice</a>: filtrar filas según el índice numérico</h4>
+<section id="funciones-básicas-de-filtrado-y-selección" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="funciones-básicas-de-filtrado-y-selección"><span class="header-section-number">3.3</span> Funciones básicas de filtrado y selección</h3>
+<section id="slice-filtrar-filas-según-el-índice-numérico" class="level4" data-number="3.3.1">
+<h4 data-number="3.3.1" class="anchored" data-anchor-id="slice-filtrar-filas-según-el-índice-numérico"><span class="header-section-number">3.3.1</span> <a href="https://dplyr.tidyverse.org/reference/slice.html">Slice</a>: filtrar filas según el índice numérico</h4>
 <p>Seleccionar filas concretas del set de datos</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># warning: false</span></span>
@@ -479,8 +515,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </div>
 </div>
 </section>
-<section id="filter-filtrar-filas-utilizando-condiciones" class="level4" data-number="3.2.2">
-<h4 data-number="3.2.2" class="anchored" data-anchor-id="filter-filtrar-filas-utilizando-condiciones"><span class="header-section-number">3.2.2</span> <a href="https://dplyr.tidyverse.org/reference/filter.html">Filter</a>: filtrar filas utilizando condiciones</h4>
+<section id="filter-filtrar-filas-utilizando-condiciones" class="level4" data-number="3.3.2">
+<h4 data-number="3.3.2" class="anchored" data-anchor-id="filter-filtrar-filas-utilizando-condiciones"><span class="header-section-number">3.3.2</span> <a href="https://dplyr.tidyverse.org/reference/filter.html">Filter</a>: filtrar filas utilizando condiciones</h4>
 <p>Se necesita un vector de filtrado que contenga valores lógicos (TRUE/FALSE).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span></span>
@@ -593,8 +629,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 #   servings &lt;fct&gt;</code></pre>
 </div>
 </div>
-<section id="ejercicio-slice-filter-arrange" class="level5" data-number="3.2.2.1">
-<h5 data-number="3.2.2.1" class="anchored" data-anchor-id="ejercicio-slice-filter-arrange"><span class="header-section-number">3.2.2.1</span> 🧩 <em>Ejercicio: slice(), filter(), arrange()</em></h5>
+<section id="ejercicio-slice-filter-arrange" class="level5" data-number="3.3.2.1">
+<h5 data-number="3.3.2.1" class="anchored" data-anchor-id="ejercicio-slice-filter-arrange"><span class="header-section-number">3.3.2.1</span> 🧩 <em>Ejercicio: slice(), filter(), arrange()</em></h5>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -613,8 +649,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </table>
 </section>
 </section>
-<section id="select-sirve-para-seleccionar-columnas-utilizando-condiciones" class="level4" data-number="3.2.3">
-<h4 data-number="3.2.3" class="anchored" data-anchor-id="select-sirve-para-seleccionar-columnas-utilizando-condiciones"><span class="header-section-number">3.2.3</span> <a href="https://dplyr.tidyverse.org/reference/select.html">Select</a>: sirve para seleccionar columnas utilizando condiciones</h4>
+<section id="select-sirve-para-seleccionar-columnas-utilizando-condiciones" class="level4" data-number="3.3.3">
+<h4 data-number="3.3.3" class="anchored" data-anchor-id="select-sirve-para-seleccionar-columnas-utilizando-condiciones"><span class="header-section-number">3.3.3</span> <a href="https://dplyr.tidyverse.org/reference/select.html">Select</a>: sirve para seleccionar columnas utilizando condiciones</h4>
 <p>Para ver como funciona esta función vamos a usar un set de datos sobre el sueño de los mamíferos. Se llama “msleep” y viene en librería de tidyverse. Puedes encontrar mas información sobre este set de datos en ?msleep</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(recetas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -724,8 +760,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 # ℹ 2,208 more rows</code></pre>
 </div>
 </div>
-<section id="ejercicio-select" class="level5" data-number="3.2.3.1">
-<h5 data-number="3.2.3.1" class="anchored" data-anchor-id="ejercicio-select"><span class="header-section-number">3.2.3.1</span> 🧩 <em>Ejercicio: select()</em></h5>
+<section id="ejercicio-select" class="level5" data-number="3.3.3.1">
+<h5 data-number="3.3.3.1" class="anchored" data-anchor-id="ejercicio-select"><span class="header-section-number">3.3.3.1</span> 🧩 <em>Ejercicio: select()</em></h5>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 24%">
@@ -745,10 +781,10 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </section>
 </section>
 </section>
-<section id="transformar-los-datos-y-calcular-nuevas-variables" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="transformar-los-datos-y-calcular-nuevas-variables"><span class="header-section-number">3.3</span> Transformar los datos y calcular nuevas variables</h3>
-<section id="mutate-crear-modificar-o-eliminar-columnas" class="level4" data-number="3.3.1">
-<h4 data-number="3.3.1" class="anchored" data-anchor-id="mutate-crear-modificar-o-eliminar-columnas"><span class="header-section-number">3.3.1</span> <a href="https://dplyr.tidyverse.org/reference/mutate.html">Mutate</a>: crear, modificar o eliminar columnas</h4>
+<section id="transformar-los-datos-y-calcular-nuevas-variables" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="transformar-los-datos-y-calcular-nuevas-variables"><span class="header-section-number">3.4</span> Transformar los datos y calcular nuevas variables</h3>
+<section id="mutate-crear-modificar-o-eliminar-columnas" class="level4" data-number="3.4.1">
+<h4 data-number="3.4.1" class="anchored" data-anchor-id="mutate-crear-modificar-o-eliminar-columnas"><span class="header-section-number">3.4.1</span> <a href="https://dplyr.tidyverse.org/reference/mutate.html">Mutate</a>: crear, modificar o eliminar columnas</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># definir una variable </span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -902,8 +938,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 <span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="ejercicio-mutate" class="level5" data-number="3.3.1.1">
-<h5 data-number="3.3.1.1" class="anchored" data-anchor-id="ejercicio-mutate"><span class="header-section-number">3.3.1.1</span> 🧩 <em>Ejercicio: mutate()</em></h5>
+<section id="ejercicio-mutate" class="level5" data-number="3.4.1.1">
+<h5 data-number="3.4.1.1" class="anchored" data-anchor-id="ejercicio-mutate"><span class="header-section-number">3.4.1.1</span> 🧩 <em>Ejercicio: mutate()</em></h5>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 14%">
@@ -921,8 +957,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </table>
 </section>
 </section>
-<section id="summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" class="level4" data-number="3.3.2">
-<h4 data-number="3.3.2" class="anchored" data-anchor-id="summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila"><span class="header-section-number">3.3.2</span> <a href="https://dplyr.tidyverse.org/reference/summarise.html">Summarise</a> y <a href="https://dplyr.tidyverse.org/reference/group_by.html">group by</a>: generar un nuevo <code>data.frame</code> resumiendo cada grupo a una fila</h4>
+<section id="summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila" class="level4" data-number="3.4.2">
+<h4 data-number="3.4.2" class="anchored" data-anchor-id="summarise-y-group-by-generar-un-nuevo-data.frame-resumiendo-cada-grupo-a-una-fila"><span class="header-section-number">3.4.2</span> <a href="https://dplyr.tidyverse.org/reference/summarise.html">Summarise</a> y <a href="https://dplyr.tidyverse.org/reference/group_by.html">group by</a>: generar un nuevo <code>data.frame</code> resumiendo cada grupo a una fila</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mínimo y máximo tiempo de preparación</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>recetas <span class="sc">|&gt;</span> </span>
@@ -982,8 +1018,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </div>
 </div>
 </section>
-<section id="ejercicio-group_by-summrise" class="level4" data-number="3.3.3">
-<h4 data-number="3.3.3" class="anchored" data-anchor-id="ejercicio-group_by-summrise"><span class="header-section-number">3.3.3</span> 🧩 <em>Ejercicio: group_by(), summrise()</em></h4>
+<section id="ejercicio-group_by-summrise" class="level4" data-number="3.4.3">
+<h4 data-number="3.4.3" class="anchored" data-anchor-id="ejercicio-group_by-summrise"><span class="header-section-number">3.4.3</span> 🧩 <em>Ejercicio: group_by(), summrise()</em></h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 24%">
@@ -1001,8 +1037,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 </table>
 </section>
 </section>
-<section id="pivot-transformar-datos-a-formato-largo-o-ancho" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="pivot-transformar-datos-a-formato-largo-o-ancho"><span class="header-section-number">3.4</span> <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">Pivot</a>: transformar datos a formato largo o ancho</h3>
+<section id="pivot-transformar-datos-a-formato-largo-o-ancho" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="pivot-transformar-datos-a-formato-largo-o-ancho"><span class="header-section-number">3.5</span> <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">Pivot</a>: transformar datos a formato largo o ancho</h3>
 <p>Nos permite transformar datos de formato largo a ancho y viceversa. Nos puede convenir una forma u otra según lo que queramos hacer con lo datos: presentarlos en una tabla, hacer transformaciones o análisis, hacer un gráfico etc.</p>
 <p>En la siguiente imagen, extraída de <a href="https://www.epirhandbook.com/en/">The Epidemiologist R Handbook</a> se puede ver en qué consiste esta transformación.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -1024,8 +1060,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 <span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>recetas_Vietnam_wide<span class="ot">&lt;-</span> recetas_Vietnam_long <span class="sc">|&gt;</span> </span>
 <span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>nutritional_value, <span class="at">values_from=</span>value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="ejercicio-transformar-datos-largo-ancho" class="level4" data-number="3.4.1">
-<h4 data-number="3.4.1" class="anchored" data-anchor-id="ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">3.4.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></h4>
+<section id="ejercicio-transformar-datos-largo-ancho" class="level4" data-number="3.5.1">
+<h4 data-number="3.5.1" class="anchored" data-anchor-id="ejercicio-transformar-datos-largo-ancho"><span class="header-section-number">3.5.1</span> 🧩 <em>Ejercicio: transformar datos largo ancho</em></h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 22%">
@@ -1046,10 +1082,8 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 <p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/17294952412" class="uri">https://www.flickr.com/photos/harshlight/17294952412</a> (CC BY 2.0)</p>
 </section>
 </section>
-</section>
-<section id="unir-data.frames" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="unir-data.frames"><span class="header-section-number">4</span> Unir data.frames</h2>
-<p><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">Joins</a></p>
+<section id="unir-data.frames-joins" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="unir-data.frames-joins"><span class="header-section-number">3.6</span> Unir data.frames: <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">joins</a></h3>
 <p><code>*_join()</code> añade columnas de <code>y</code> (segundo data.frame) a <code>x</code> (primer data.frame), haciendo coincidir las observaciones en función de la variable común.</p>
 <p><img src="images/joins_from_dataWrangling_RStudio_cheatsheet.png" class="img-fluid" width="559"></p>
 <div class="cell">
@@ -1108,15 +1142,14 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>paises_demo_full_join<span class="ot">&lt;-</span><span class="fu">full_join</span>(paises, demografia, <span class="at">by=</span><span class="st">"pais"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="guardar-datos" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="guardar-datos"><span class="header-section-number">5</span> Guardar datos</h2>
-<p><a href="https://readr.tidyverse.org/reference/write_delim.html">Write_delim</a>:</p>
+<section id="guardar-datos-con-write_delim" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="guardar-datos-con-write_delim"><span class="header-section-number">3.7</span> Guardar datos con <a href="https://readr.tidyverse.org/reference/write_delim.html">Write_delim</a>:</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_delim</span>(paises_demo_full_join, <span class="at">file =</span> <span class="st">"paises_demo_full_join.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>)</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># en file hay que especificar el directorio donde queremos que se guarde. Si no, se guardará en el directorio de trabajo (getwd())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="ejercicio-_join-y-exportar-datos" class="level4" data-number="5.0.1">
-<h4 data-number="5.0.1" class="anchored" data-anchor-id="ejercicio-_join-y-exportar-datos"><span class="header-section-number">5.0.1</span> 🧩 <em>Ejercicio: *_join() y exportar datos</em></h4>
+<section id="ejercicio-_join-y-exportar-datos" class="level4" data-number="3.7.1">
+<h4 data-number="3.7.1" class="anchored" data-anchor-id="ejercicio-_join-y-exportar-datos"><span class="header-section-number">3.7.1</span> 🧩 <em>Ejercicio: *_join() y exportar datos</em></h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 22%">
@@ -1137,12 +1170,12 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 <p>Fuente imagen: <a href="https://www.flickr.com/photos/harshlight/6988729286" class="uri">https://www.flickr.com/photos/harshlight/6988729286</a> (CC BY 2.0)</p>
 </section>
 </section>
-<section id="ejercicio-final-manejo-de-datos" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="ejercicio-final-manejo-de-datos"><span class="header-section-number">6</span> 🧩 <em>Ejercicio final manejo de datos</em></h2>
+<section id="ejercicio-final-manejo-de-datos" class="level3" data-number="3.8">
+<h3 data-number="3.8" class="anchored" data-anchor-id="ejercicio-final-manejo-de-datos"><span class="header-section-number">3.8</span> 🧩 <em>Ejercicio final manejo de datos</em></h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 85%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -1162,21 +1195,335 @@ $ servings       &lt;fct&gt; 2, 16, 12, 6, 15, 6, 6, 84, 24, 1, 21, 8, 4, 10, 4,
 <p>🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas</p>
 <p>🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas?</p>
 </section>
-<section id="para-seguir-practicando" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="para-seguir-practicando"><span class="header-section-number">7</span> 🧩 <em>Para seguir practicando…</em></h2>
+</section>
+<section id="introducción-a-la-programación-con-funciones" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="introducción-a-la-programación-con-funciones"><span class="header-section-number">4</span> Introducción a la programación con funciones</h2>
+<section id="qué-es-una-funcion" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="qué-es-una-funcion"><span class="header-section-number">4.1</span> ¿Qué es una funcion?</h3>
+<p>Una característica clave de R son las funciones. Las funciones son una serie de intruccciones agrupadas para lograr un resultado específico. Más concretamente, son módulos de código ‘autocontenidos’ que realizan una tarea específica. Normalmente reciben algún tipo de estructura de datos (valor, vector, data frame, etc.), la procesan y devuelven un resultado.</p>
+<p><img src="images/funcion.png" class="img-fluid"></p>
+<p>El uso general de una función consiste en escribir el nombre de la función seguido de paréntesis. Por ejemplo, la funcion head() en R nos permite ver las primeras filas de un data frame</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(msleep, <span class="at">n=</span><span class="dv">10</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 3 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 4 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 5 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 6 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 7 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 8 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+ 9 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+10 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Los valores de entrada se llaman argumentos y pueden incluir tanto el objeto (estructura de datos) como especificaciones que modifican el modo en el que la función opera (por ejemplo, opciones o parámetros).</p>
+<p>En el ejemplo de la función head() el objeto sería un data frame (en este caso el data frame msleep) y el argumento “n” indicaría el número de filas a mostrar.</p>
+<p>Otro ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>recetas<span class="ot">&lt;-</span><span class="fu">read_delim</span>(<span class="at">file=</span><span class="st">"data/cuisines.csv"</span>, <span class="co"># argumento "file" </span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">delim=</span><span class="st">","</span>)                  <span class="co"># argumento "delim"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2218 Columns: 17
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (5): name, country, url, author, ingredients
+dbl  (11): calories, fat, carbs, protein, avg_rating, total_ratings, reviews...
+date  (1): date_published
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Cuando consultamos la ayuda de R lo que consultamos es cuales son los argumentos de la funcion.</p>
+<section id="ejercicio-consultar-la-función-matrix" class="level4" data-number="4.1.1">
+<h4 data-number="4.1.1" class="anchored" data-anchor-id="ejercicio-consultar-la-función-matrix"><span class="header-section-number">4.1.1</span> 🧩 Ejercicio: consultar la función matrix()</h4>
+<p>Consulta la ayuda de la función matrix. ¿Cuantos argumentos tiene?. Genera una matriz con esta funcion usando todos los argumentos.</p>
+</section>
+</section>
+<section id="funciones-definidas-por-el-usuario-para-qué" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="funciones-definidas-por-el-usuario-para-qué"><span class="header-section-number">4.2</span> Funciones definidas por el usuario ¿Para qué?</h3>
+<p>Además de las funciones que nos ofrece R en los diferentes paquetes, también podemos crear nuestras propias funciones. Esto resulta muy útil cuando necesiutamos realizar una tarea para la cual no existe una funcion específica en R. Un ejemplo de creación de una función:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estandarizar (media 0 y desv tipica 1) las calorias, grasas carbohidratos y proteínas</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>recetas_Z <span class="ot">&lt;-</span> recetas <span class="sc">|&gt;</span> </span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">calories_Z =</span> (calories <span class="sc">-</span> <span class="fu">mean</span>(calories, <span class="at">na.rm=</span>T))<span class="sc">/</span><span class="fu">sd</span>(calories, <span class="at">na.rm=</span>T),</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">fat_Z =</span> (fat <span class="sc">-</span> <span class="fu">mean</span>(fat, <span class="at">na.rm=</span>T))<span class="sc">/</span><span class="fu">sd</span>(fat, <span class="at">na.rm=</span>T),</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">carbs_Z =</span> (carbs <span class="sc">-</span> <span class="fu">mean</span>(carbs, <span class="at">na.rm=</span>T))<span class="sc">/</span><span class="fu">sd</span>(carbs, <span class="at">na.rm=</span>T),</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">protein_z =</span> (protein <span class="sc">-</span> <span class="fu">mean</span>(protein, <span class="at">na.rm=</span>T))<span class="sc">/</span><span class="fu">sd</span>(protein, <span class="at">na.rm=</span>T))</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="co"># función que estandariza</span></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>estandarizar_variable <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>recetas_Z <span class="ot">&lt;-</span> recetas <span class="sc">|&gt;</span> </span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">calories_Z =</span> <span class="fu">estandarizar_variable</span>(calories),</span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">fat_Z =</span> <span class="fu">estandarizar_variable</span>(fat),</span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">carbs_Z =</span> <span class="fu">estandarizar_variable</span>(carbs),</span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">protein_z =</span> <span class="fu">estandarizar_variable</span>(protein))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La ventajas de usar funciones son:</p>
+<ul>
+<li><p><strong>Reutilización de código:</strong> Las funciones permiten encapsular pasos repetidos en una única unidad que puedes llamar muchas veces, reduciendo duplicación y errores.</p></li>
+<li><p><strong>Abstracción y claridad:</strong> Al ocultar detalles de implementación dentro de una función, el flujo principal del script queda más limpio y fácil de entender.</p></li>
+<li><p><strong>Modularidad y mantenimiento:</strong> Dividir el trabajo en funciones pequeñas facilita probar, depurar y actualizar partes concretas sin afectar el resto del código.</p></li>
+<li><p><strong>Parámetros y flexibilidad:</strong> Los <strong>argumentos</strong> permiten adaptar el comportamiento de una función sin cambiar su código interno, lo que favorece la generalización y la experimentación.</p></li>
+<li><p><strong>Composición y reutilización avanzada:</strong> Las funciones pueden combinarse (una función llama a otra), lo que facilita construir pipelines y procesos complejos a partir de bloques simples.</p></li>
+<li><p><strong>Compatibilidad con ecosistema R:</strong> Muchas librerías y herramientas en R esperan o devuelven funciones; escribir funciones propias facilita integrarlas con <code>apply</code>, <code>purrr</code>, <code>dplyr</code>, <code>knitr</code> y otras herramientas del ecosistema.</p></li>
+</ul>
+<p><img src="images/funcion_reutilizacion.png" class="img-fluid"></p>
+</section>
+<section id="cuando-hay-que-usar-funciones" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="cuando-hay-que-usar-funciones"><span class="header-section-number">4.3</span> ¿Cuando hay que usar funciones?</h3>
+<p>Se recomienda seguir el principio “do not repeat yourself” (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself#:~:text=%22Don't%20repeat%20yourself%22,redundancy%20in%20the%20first%20place.">DRY principle</a>): cada unidad de conocimiento o información debe tener una representación única, inequívoca y autoritativa en un sistema.</p>
+<p>Escribir una función ya merece la pena cuando has copiado y pegado más de dos veces lo mismo (don’t be WET! - Write Everything Twice). Cuantas más veces esté repetido un código, en más sitios necesitarás actualizarlo si hay algun cambio y más aumenta la probabilidad de error.</p>
+</section>
+<section id="tipos-de-funciones" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="tipos-de-funciones"><span class="header-section-number">4.4</span> Tipos de funciones</h3>
+<p>Según el tipo de output generado hay dos tipos de funciones:</p>
+<ul>
+<li><p>Las <strong>funciones de transformación</strong> (<em>pure functions</em>): transforman el objeto que entra en la función (primer argumento) y devuelven otro objeto o el anterior modificado.</p></li>
+<li><p>Las <strong>funciones secundarias</strong> (<em>side-effect functions</em>): tienen efectos colaterales y ejecutan una acción, como guardar un archivo, una variable o dibujar un plot. Algunos ejemplos de funciones secundarias que se usan comunmente son: <code>library()</code>, <code>setwd()</code>, <code>plot()</code>, <code>write_delim()</code>…</p></li>
+</ul>
+</section>
+<section id="cómo-escribir-una-función" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="cómo-escribir-una-función"><span class="header-section-number">4.5</span> Cómo escribir una función</h3>
+<p>En general, sintácticamente, las funciones tienen tres componentes:</p>
+<ul>
+<li>Función para crear la funcion <code>function().</code> Se le asigna un nombre para poder reutilizarla</li>
+<li>Argumentos: lista de entradas.
+<ul>
+<li>Argumentos que especifican los datos de entrada</li>
+<li>Argumentos que especifican detalles de la ejecución de la función (se suelen colocar despues y tienen valores por defecto, si no los especificamos la función se ejecuta con los valores por defecto)</li>
+</ul></li>
+<li>Cuerpo: trozo de código que sigue a <code>function()</code>, tradicionalmente entre llaves.
+<ul>
+<li>La última expresión ejecutada en una función es el valor de retorno.</li>
+</ul></li>
+</ul>
+<p><img src="images/funcion_componentes.png" class="img-fluid"></p>
+<section id="ejercicio-consultar-la-función-sort" class="level4" data-number="4.5.1">
+<h4 data-number="4.5.1" class="anchored" data-anchor-id="ejercicio-consultar-la-función-sort"><span class="header-section-number">4.5.1</span> 🧩 Ejercicio: consultar la función sort()</h4>
+<ul>
+<li><p>Ordena el vector c(5, 8, 6, 2, 4, 5, NA) usando la funcion sort()</p></li>
+<li><p>Utiliza el argumento “decreasing” para ordenarlo de mayor a menor (consulta la ayuda para ver como se usa este argumento). ¿Qué valor tiene por defecto?</p></li>
+<li><p>¿Que otro argumento tiene la funcion que especifica detalles de la ejecución? Cámbialo a otro valor que no sea su valor por defecto.</p></li>
+<li><p>¿Cual es el valor de retorno de la función?</p></li>
+</ul>
+<p>Cuando escribimos una funcion tenemos que especificar estos componentes. Ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>escribe_suma <span class="ot">&lt;-</span> <span class="cf">function</span>(n1,n2) { <span class="co">#argumentos de entrada n1 y n2</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  suma<span class="ot">&lt;-</span>n1<span class="sc">+</span>n2 <span class="co">#cuerpo de la funcion: paso intermedio</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"La suma de "</span>,n1,<span class="st">" mas "</span>, n2, <span class="st">" es: "</span>, suma) <span class="co"># cuerpo de la funcion: valor de retorno</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="fu">escribe_suma</span>(<span class="dv">10</span>,<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "La suma de 10 mas 100 es: 110"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">escribe_suma</span>(<span class="dv">33</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "La suma de 33 mas 2 es: 35"</code></pre>
+</div>
+</div>
+<p>💡Atajo para escribir funciones: escribir la palabra fun + tabulador</p>
+<p>📝 Es conveniente usar comentarios (#) para explicar el razonamiento detrás de tus funciones.</p>
+</section>
+<section id="ejercicio-primera-función" class="level4" data-number="4.5.2">
+<h4 data-number="4.5.2" class="anchored" data-anchor-id="ejercicio-primera-función"><span class="header-section-number">4.5.2</span> 🧩 Ejercicio: primera función</h4>
+<ol type="1">
+<li><p>Crea una función que sirva para calcular el área de habitaciones cuadradas o rectangulares. Para ello crea una función de dos argumentos (el ancho de la habitación y el largo) y que devuelva el área.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>mi_funcion <span class="ot">&lt;-</span> <span class="cf">function</span>(largo, ancho) {</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Escribe el código aquí</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Queremos saber el precio de enlosar la habitación. Para ello añade un tercer argumento con el precio por metro cuadrado.</p></li>
+<li><p>¿Cuanto cuesta enlosar una habitación de 10x16m con un tipo de losa que cuesta 5€ el metro cuadrado? ¿Y una de 32x4m con una que cuesta 16€ por metro cuadrado?</p></li>
+</ol>
+</section>
+<section id="ejercicio-funcion-de-media-aritmética" class="level4" data-number="4.5.3">
+<h4 data-number="4.5.3" class="anchored" data-anchor-id="ejercicio-funcion-de-media-aritmética"><span class="header-section-number">4.5.3</span> 🧩 Ejercicio: funcion de media aritmética</h4>
+<p>Crea una función que calcule la media aritmética de los valores de un vector (sin usar la función mean()). De tal manera que si introducimos, por ejemplo, el vector c(1, 8, 18) nos devuelva el valor 9</p>
+<ul>
+<li><p>Pista1: sum() nos da el valor de la suma de los elementos de un vector # prueba sum(c(1, 2, 3)) para comprobarlo</p></li>
+<li><p>Pista 2: length() nos da la longitud (numero de elementos) del vector.</p></li>
+</ul>
+</section>
+</section>
+<section id="iteraciones-con-bucles-for" class="level3" data-number="4.6">
+<h3 data-number="4.6" class="anchored" data-anchor-id="iteraciones-con-bucles-for"><span class="header-section-number">4.6</span> Iteraciones con bucles for</h3>
+<p>Una <strong>iteración</strong> en programación es la <strong>repetición controlada</strong> de un bloque de instrucciones hasta que se cumple una condición o se alcanza un número de repeticiones; cada vez que se ejecuta ese bloque se llama <strong>una iteración.</strong></p>
+<p><img src="images/funcion_iteracion.png" class="img-fluid"></p>
+<p>En R, el <code>for</code> itera sobre los elementos de una <strong>secuencia</strong> (por ejemplo <code>1:10</code>, un vector o una lista) y ejecuta el cuerpo del bucle una vez por cada elemento. La variable de control (i) toma el valor de cada elemento en cada iteración.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i<span class="sc">+</span><span class="dv">10</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11
+[1] 12
+[1] 13
+[1] 14
+[1] 15</code></pre>
+</div>
+</div>
+<p>Para programar un bucle es necesario definir tres partes diferentes: la salida, la secuencia y el cuerpo</p>
+<ol type="1">
+<li><p>Salida: el espacio de la salida, es decir, primero tenemos que crear un espacio donde se va a ir almacenando el resultado del bucle. Puede ser un vector, una lista…</p></li>
+<li><p>Secuencia: sobre lo que queremos iterar. Cada ejecución del bucle <em>for</em> asignará un valor diferente a <code>i</code>, la variable control. La variable control puede ser una secuencia de números o también una secuencia de elementos de un vector o de una lista.</p></li>
+<li><p>Cuerpo del bucle: aquí determinamos lo que queremos que haga cada iteración. Se ejecuta repetidamente, cada vez con un valor diferente para <code>i</code>.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ejemplo bucle 1:</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>salida<span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"integer"</span>,<span class="dv">5</span>)</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>salida <span class="co"># veo que es un vector de 0 (vacio)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 0 0 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){ <span class="co"># 1:5 es la secuencia</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  salida[[i]] <span class="ot">&lt;-</span> i<span class="sc">+</span><span class="dv">10</span> <span class="co">#cuerpo del bucle</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>salida <span class="co"># ahora tiene el resultado del bucle</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11 12 13 14 15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo bucle 2:</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>salida<span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"character"</span>,<span class="dv">5</span>)</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>salida</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "" "" "" "" ""</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>semana5<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lunes"</span>, <span class="st">"martes"</span>,<span class="st">"miercoles"</span>,<span class="st">"jueves"</span>,<span class="st">"viernes"</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(semana5)){</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  salida[[j]]<span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"hoy es "</span>, semana5[[j]])</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="ejercicio-creando-bucles-for" class="level4" data-number="4.6.1">
+<h4 data-number="4.6.1" class="anchored" data-anchor-id="ejercicio-creando-bucles-for"><span class="header-section-number">4.6.1</span> 🧩 Ejercicio: creando bucles for</h4>
+<p>Elige al menos una de las siguientes opciones y crea un bucle:</p>
+<ul>
+<li><p>A partir del vector v&lt;- c(1,2,3,4), crea un vector w donde el pimer elemento de w sea el primer de v al cuadrado más uno y así sucesivamente.</p></li>
+<li><p>A partir de una lista con los dataframes de tidyverse msleep, diamonds y mpg, crea una nueva lista pero seleccionado solo las columnas que empiecen por “c” y las filas de la 10 a la 20.</p></li>
+<li><p>Genera un bucle para leer los archivos df1 a df5 de la carpeta data y almacenarlos en una lista. Pista: consulta la funcion list.files() y mira cuidadosamente todos los argumentos.</p></li>
+</ul>
+</section>
+</section>
+<section id="iteraciones-con-funcionales" class="level3" data-number="4.7">
+<h3 data-number="4.7" class="anchored" data-anchor-id="iteraciones-con-funcionales"><span class="header-section-number">4.7</span> Iteraciones con funcionales</h3>
+<p>Un funcional es una función que toma una función como entrada y devuelve un vector u otro tipo de objeto como salida. Un uso comun de los funcionales es como sustitutos de los bucles for. En R base los funcionales que sustituyen a los bucles for son las funciones de la familia apply (apply(), lapply(), tapply(), etc). En la colección de paquetes de tidyverse, el equivalente a estos funcionales son los provistos por el paquete purr:: map().</p>
+<p>Para programar un funcional, primero, solucionamos el problema para un elemento. Después, generamos una función que nos permita tener la solución en una función . Por último, aplicamos la función a todos los elementos que estamos interesados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>x10<span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">*</span><span class="dv">10</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, x10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 10
+
+[[2]]
+[1] 20
+
+[[3]]
+[1] 30</code></pre>
+</div>
+</div>
+<p>Usando map función operará en todos los elementos de <code>x</code>, es decir, cada valor si <code>x</code> es un vector, cada columna si <code>x</code> es un <code>data.frame</code>, o cada elemento si <code>x</code> es una lista. Toma un vector y una función, llama a la función una vez por cada elemento del vector y devuelve los resultados en una lista. <code>map(1:3, f)</code> es equivalente a <code>list(f(1), f(2), f(3))</code>. Es el equivalente de <code>lapply()</code> de R base.</p>
+<p><img src="images/map.png" class="img-fluid"></p>
+<p><code>map()</code> devuelve una lista, lo que la convierte en la más general de la familia <code>map</code> porque puedes poner cualquier cosa en una lista. Pero es incómodo devolver una lista cuando una estructura de datos más simple bastaría, por eso existen cuatro variantes más específicas: <code>map_lgl()</code>, <code>map_int()</code>, <code>map_dbl()</code> y <code>map_chr()</code>. Cada una devuelve un vector atómico del tipo especificado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>mi_lista<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="st">"hola"</span>, <span class="dv">2</span>, <span class="fl">25.1</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Para cada componente de la lista dime el tipo de dato y devuelve un vector tipo character</span></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="fu">map_chr</span>(mi_lista, typeof)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character" "double"    "double"    "logical"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Para cada componente de la lista devuelve un vector lógico indicando TRUE si es de tipo doble y FALSE si no lo es</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_lgl</span>(mi_lista, is.double)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Para cada columna del dataframe devuelve un vector numérico con la media (NA cuando en esa columna no hay números)</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dbl</span>(msleep, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
+returning NA
+Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
+returning NA
+Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
+returning NA
+Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
+returning NA
+Warning in mean.default(.x[[i]], ...): argument is not numeric or logical:
+returning NA</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        name        genus         vore        order conservation  sleep_total 
+          NA           NA           NA           NA           NA     10.43373 
+   sleep_rem  sleep_cycle        awake      brainwt       bodywt 
+          NA           NA     13.56747           NA    166.13635 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Para cada columna del dataframe devuelve el número de casos únicos</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_int</span>(msleep, n_distinct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        name        genus         vore        order conservation  sleep_total 
+          83           77            5           19            7           65 
+   sleep_rem  sleep_cycle        awake      brainwt       bodywt 
+          33           23           65           54           82 </code></pre>
+</div>
+</div>
+<section id="ejercicio-map" class="level4" data-number="4.7.1">
+<h4 data-number="4.7.1" class="anchored" data-anchor-id="ejercicio-map"><span class="header-section-number">4.7.1</span> 🧩 Ejercicio: map()</h4>
+<ul>
+<li><p>Genera un vector, una función y aplica la función a cada uno de los elementos del vector utilizando <code>map()</code>.</p></li>
+<li><p>para la lista list(a = 1:3, b = letters[1:5], c = c(TRUE, FALSE)) utiliza map() para generar una salida que sea una lista con las longitudes de cada elemento. ¿Que funcion tendrías que utilizar si quieres que la salida sea un vector de números enteros en lugar de una lista?</p></li>
+<li><p>para la lista_num &lt;- list(a = c(1,2,3), b = c(4,5), c = 6) aplica la funcion de la familia map para obtener la media de cada elemento a, b, c en un vector numérico.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="para-seguir-practicando" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="para-seguir-practicando"><span class="header-section-number">5</span> 🧩 <em>Para seguir practicando…</em></h2>
 <p>El paquete swirl es un paquete de R que transforma la consola de R en un tutor interactivo que presenta lecciones, plantea preguntas (texto, numéricas, opciones) y evalúa tus respuestas en tiempo real. A parte de los módulos de aprendizaje que vienenen el propio paquete permite crear módulos nuevos.</p>
 <p><img src="images/swirl_R.png" class="img-fluid"></p>
 <p>Paquete <a href="https://swirlstats.com/">swirl</a>: aprendiendo R en R</p>
 <p>Si quieres seguir practicando con el paquete tidyverse puedes seguir el siguiente curso obtenido de <a href="https://github.com/sysilviakim/swirl-tidy" class="uri">https://github.com/sysilviakim/swirl-tidy</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"swirl"</span>)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(swirl)</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install_course_github</span>(<span class="st">"sysilviakim"</span>, <span class="st">"swirl-tidy"</span>)</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">swirl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"swirl"</span>)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(swirl)</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install_course_github</span>(<span class="st">"sysilviakim"</span>, <span class="st">"swirl-tidy"</span>)</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="fu">swirl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="enlaces-de-interés" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="enlaces-de-interés"><span class="header-section-number">8</span> Enlaces de interés</h2>
+<section id="enlaces-de-interés" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="enlaces-de-interés"><span class="header-section-number">6</span> Enlaces de interés</h2>
 <ul>
 <li><p><a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a></p></li>
 <li><p><a href="https://r4ds.had.co.nz/transform.html">R for data Science (Data transformation)</a></p></li>

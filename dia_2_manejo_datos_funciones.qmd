@@ -19,6 +19,8 @@ number-sections: true
 bibliography: references.bib
 ---
 
+![](images/01_logo-vA_pant293.jpg){fig-align="left" width="40%"}
+
 ## Síntesis del día 1: Introducción a R y a R studio
 
 ### Modelo de ciencia de datos
@@ -514,9 +516,9 @@ Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
 
 ### 🧩 *Ejercicio final manejo de datos*
 
-+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  |  |
+|----|----|
 | ![](images/palmer_penguins.png) | Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse: |
-+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 🐧 Instala el paquete palmerpenguins y cárgalo
 
