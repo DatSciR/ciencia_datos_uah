@@ -42,14 +42,22 @@ bibliography: references.bib
 
 ### ¿Qué son los datos ordenados?
 
+![](images/tidydata_1.png)
+
+![](images/tidydata_3.png)
+
 ### ¿Qué es tidyverse?
+
+![](images/tidyverse_packages.png)
 
 #### 🧩 Ejercicio: *repaso* *del día anterior*
 
--   Crea un vector con los meses del año (en número) y calcula la media
--   Crea una matriz ... ¿Cual es el elemento de la fila 3 columna 2?
--   Crea una lista .. ¿Que hay en el tercer elemento de la lista?
--   Crea un data frame con la siguiente información
+-   Crea un vector (mes) con los meses del año (en número)
+-   Crea otro vector con el número de días de cada mes y calcula la media y la desviación típica
+-   Junta los dos vectores en un data frame
+-   Con el set de datos de penguins:
+    -   selecciona solo las columnas `species`y `body_mass_g`de `penguins` usando tanto base R como tidyverse.
+    -   filtra los individuos que tengan un body_mass menor de 4,5 kg. ¿Cual es la media de peso de estos individuos?
 
 ## Introducción
 
