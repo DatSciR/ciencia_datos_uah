@@ -27,13 +27,33 @@ bibliography: references.bib
 
 ![Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram](images/datascience.png){#fig-datascience}
 
+### Concepto básicos
+
+-   R es un lenguaje de programación dinámico
+
+    -   Objetos: "cualquier cosa" que almacenamos en R
+
+    -   Funciones: las acciones (reciben información -argumentos- y devuelven un resultado)
+
+    -   Paquetes: conjunto de funciones ya diseñadas. La primera vez los instalamos con install.packages() las siguientes veces sólo hace falta cargarlos library().
+
+-   **RStudio**: entorno de desarrollo integrado para programar en R (*IDE: Integrated Development Environemnt*). Tiene cuatro zonas diferenciadas:
+
+    -   el editor de código (scripts abiertos y ventana de código),
+
+    -   el navegador del espacio de trabajo (con el entorno –*environment-* y el historial de comandos)
+
+    -   la consola (donde se ejecuta el código)
+
+    -   el mix de abajo a la derecha (Archivos, Gráficos, Paquetes, Ayuda).
+
 ### Buenas prácticas en la gestión de datos
 
--   Trabajar por proyectos
--   Usar teclas rápidas
--   Consultar documentacion / pedir ayuda
--   Código reproducible
--   Seguir estilo (guia de estilo)
+1.  Trabajar por proyectos
+2.  Usar teclas rápidas
+3.  Consultar documentacion / pedir ayuda
+4.  Código reproducible
+5.  Nombrar adecuadamente: seguir estilo (guia de estilo)
 
 ### Tipos de objetos y operaciones básicas en R
 
@@ -41,6 +61,49 @@ bibliography: references.bib
 -   Matrices
 -   Data frames
 -   Listas
+
++--------------------------+----------------+--------------------------------+
+| Tipo                     | Dimensiones    | Tipos de datos                 |
++==========================+================+================================+
+| Vector                   | 1              | un tipo                        |
++--------------------------+----------------+--------------------------------+
+| Matriz                   | 2              | un tipo                        |
++--------------------------+----------------+--------------------------------+
+| Array                    | \>2            | un tipo                        |
++--------------------------+----------------+--------------------------------+
+| Data frame               | 2              | varios tipos (uno por columna) |
++--------------------------+----------------+--------------------------------+
+| Listas                   | 1              | varios tipos                   |
++--------------------------+----------------+--------------------------------+
+
+```{r}
+
+library(tidyverse)
+
+# Crear vectores
+v1<- 1:25
+v1 #veo el vector que he creado
+v2<-seq(from=1,to=20,by=2)
+v2
+v3<- rep(1:2, times=5)
+v3
+
+#Crar matrices
+m1<-matrix(1:25, nrow=5, ncol=5)
+m1 #veo la matriz
+
+#Crear data frames
+df1<-data.frame(letra=c("a","b","c","d"),
+                id=1:4,
+                col1=c(TRUE, FALSE, FALSE, TRUE),
+                col2=c(13,64,23,9))
+df1
+summary(df1)
+glimpse(df1)
+
+#crear una lista
+l1<-list(v1,v2,m1,df1)
+```
 
 ### ¿Qué son los datos ordenados?
 
@@ -57,9 +120,6 @@ bibliography: references.bib
 -   Crea un vector (mes) con los meses del año (en número)
 -   Crea otro vector con el número de días de cada mes y calcula la media y la desviación típica
 -   Junta los dos vectores en un data frame
--   Con el set de datos de penguins:
-    -   selecciona solo las columnas `species`y `body_mass_g`de `penguins` usando tanto base R como tidyverse.
-    -   filtra los individuos que tengan un body_mass menor de 4,5 kg. ¿Cual es la media de peso de estos individuos?
 
 ## Introducción
 
@@ -168,7 +228,7 @@ recetas |>
   slice(1, 5) # la fila 1 y la 5
 
 recetas |> 
-  slice(1:6) # de la fila 1 a la 5
+  slice(1:5) # de la fila 1 a la 5
 
 recetas |>
   slice(-c(1:5)) # todas las filas excepto de la 1 a la 5
@@ -191,7 +251,7 @@ recetas |>
 #En este caso, todas las recetas chilenas que se preparan en menos de 60 minutos
 
 recetas |>
-  filter(country == "Chilean" & total_time  < 60) # combinar criterios: OR
+  filter(country == "Chilean" | total_time  < 60) # combinar criterios: OR
 #En este caso, todas las recetas chilenas (independientemente del tiempo de preparación) o bien aquellas recetas que se preparen en menos de 60mins (independientemente del país)
 
 recetas |>
@@ -516,9 +576,9 @@ Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
 
 ### 🧩 *Ejercicio final manejo de datos*
 
-|  |  |
-|----|----|
++---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ![](images/palmer_penguins.png) | Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse: |
++---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 🐧 Instala el paquete palmerpenguins y cárgalo
 
