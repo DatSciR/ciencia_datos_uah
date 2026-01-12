@@ -73,7 +73,7 @@ En lugar de “dibujar” un gráfico de una sola vez, **ggplot2** nos invita a 
 knitr::include_graphics("images/imagen_capas.gif")
 ```
 
-En este contexto, **ggplot2** es una herramienta clave para crear figuras como mapas, relaciones entre variables ambientales, comparaciones entre tratamientos de manejo o análisis de respuestas de multitud de disciplinas. A lo largo de esta sesión, aprenderemos a utilizar **ggplot2** desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.
+En este contexto, **ggplot2** es una herramienta clave para crear figuras como mapas, relaciones entre variables, comparaciones entre tratamientos de manejo o análisis de respuestas de multitud de disciplinas. A lo largo de esta sesión, aprenderemos a utilizar **ggplot2** desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.
 
 ## 2.1. Visualización eficaz y ggplot2
 
@@ -99,7 +99,7 @@ Primero de todo, tenemos que realizar la **instalación y carga los paquetes nec
 
 ```{r libs}
 #| label: libs-1
-#| echo: false
+#| echo: true
 #| message: false
 #| warning: false
 
@@ -148,7 +148,7 @@ Con `head()` vamos a ver las primeras líneas de nuestro dataframe. Con `srt()` 
 
 La visualización exploratoria de datos es una etapa fundamental en cualquier análisis estadístico científico. Nos permite detectar patrones, identificar valores atípicos, entender relaciones entre variables y comunicar resultados de manera efectiva. Una visualización bien construida debe ser clara, tener ejes etiquetados apropiadamente, incluir un título descriptivo, una leyenda legible cuando sea necesario, y siempre indicar las unidades de medida.
 
-El paquete ggplot2 implementa la *Grammar of Graphics* (Gramática de los Gráficos), un sistema coherente y estructurado para construir visualizaciones. Esta gramática se compone de varios elementos fundamentales: **datos** + **aesthetics** + **geometrías** + **opciones adicionales**, que se combinan de forma modular para crear gráficos complejos.
+El paquete `ggplot2` implementa la *Grammar of Graphics* (Gramática de los Gráficos), un sistema coherente y estructurado para construir visualizaciones de nuestros datos. Esta gramática se compone de varios elementos fundamentales: **datos** + **aesthetics** + **geometrías** + **opciones adicionales**, que se combinan de forma modular para crear gráficos complejos.
 
 ------------------------------------------------------------------------
 
@@ -239,7 +239,7 @@ Por ahora seguimos sin dibujar nada, pero **el gráfico ya sabe qué representar
 
 ## 3.6 Creación de un gráfico paso a paso: las geometrías que vamos dar a nuestro gráfico
 
-Las **geometrías** (funciones que comienzan con geom\_) son las capas que realmente dibujan elementos en el gráfico. Cada tipo de gráfico corresponde a una geometría específica. La elección de la geometría depende del tipo de datos y del mensaje que queremos comunicar.
+Las **geometrías** (funciones que comienzan con `geom_`) son las capas que realmente dibujan elementos en el gráfico. Cada tipo de gráfico corresponde a una geometría específica. La elección de la geometría depende del tipo de datos y del mensaje que queremos comunicar.
 
 Algunos ejemplos de gráficos:
 
@@ -256,7 +256,7 @@ Ahora añadimos una geometría (`geom_bar`) de barras al gráfico anterior para 
 ```{r ejemplo de gráfico de barras, echo=TRUE}
 #| fig-cap: "Representación del conteo de individuos por especie en nuestra base de datos"
 ggplot(penguins, aes(x = species)) +
-  geom_bar(stat = "count")
+  geom_bar()
 
 ```
 
@@ -308,7 +308,7 @@ IMPORTANTE: Los datos se pueden colocar dentro de la funcion `ggplot()` si se va
 # Gráfico de dispersión bidimensional básico con recta de regresión
 # Aquí necesitamos especificar tanto el eje X como el eje Y
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = year)) +
-  geom_point() + geom_smooth(method = "lm")
+  geom_point(size = 1) + geom_smooth(method = "lm")
 
 ```
 
@@ -318,11 +318,14 @@ Hasta aquí habríamos creado un gráfico básico utilizando **ggplot2**. A part
 
 Partiendo de la base de datos `penguins`, crea **un gráfico de dispersión (scatterplot)** que muestre la relación entre:
 
--    **Longitud de la aleta** (`flipper_length_mm`) en el eje X
+-   **Longitud de la aleta** (`flipper_length_mm`) en el eje X
 
--    **Masa corporal** (`body_mass_g`) en el eje Y
+-   **Masa corporal** (`body_mass_g`) en el eje Y
 
     -   En el gráfico, **deben incorporarse los siguientes aesthetics dentro de `aes()`**:
+
+```         
+```
 
 -   **Color (`color`)**
 
@@ -330,7 +333,7 @@ Partiendo de la base de datos `penguins`, crea **un gráfico de dispersión (sca
 
 -   **Forma (`shape`)**
 
-    -    Usa la variable **`sex`** para asignar distintas formas a los puntos.
+    -   Usa la variable **`sex`** para asignar distintas formas a los puntos.
 
 -   **Tamaño (`size`)**
 
@@ -375,9 +378,9 @@ Partiendo del **gráfico creado en el ejercicio anterior**, realiza las siguient
 
 ### Instrucciones:
 
-1.   Utiliza la función **`ggsave()`** para exportar el gráfico.
+1.  Utiliza la función **`ggsave()`** para exportar el gráfico.
 
-2.   Prueba **distintas combinaciones** de los siguientes argumentos:
+2.  Prueba **distintas combinaciones** de los siguientes argumentos:
 
     -   `width` y `height`
 
@@ -387,7 +390,10 @@ Partiendo del **gráfico creado en el ejercicio anterior**, realiza las siguient
 
     -   `device` (por ejemplo `"jpg"`, `"png"`)
 
-3.   Guarda **al menos dos versiones** del mismo gráfico.
+```         
+```
+
+3.  Guarda **al menos dos versiones** del mismo gráfico.
 
 ## 3.8 *Aesthetics* vs. argumentos estéticos
 
@@ -534,7 +540,7 @@ ggplot(penguins, aes(x = body_mass_g)) +
 
 Comparación entre grupos: Cuando queremos comparar la distribución de una variable continua entre diferentes categorías podemos utilizar:
 
-Diagrama de cajas (`geom_boxplot()`) - Muestra estadísticos de resumen (mediana, cuartiles, valores atípicos):
+Diagrama de cajas (`geom_boxplot()`) -\> Muestra estadísticos de resumen (mediana, cuartiles, valores atípicos):
 
 ```{r boxplot}
 # Boxplot comparando masa corporal entre especies
@@ -542,7 +548,7 @@ ggplot(penguins, aes(x = species, y = body_mass_g)) +
   geom_boxplot()
 ```
 
-Gráfico de violín (geom_violin()) - Combina las ventajas del boxplot con la visualización de la densidad:
+Gráfico de violín (`geom_violin()`) -\> Combina las ventajas del boxplot con la visualización de la densidad:
 
 ```{r violin}
 # Gráfico de violín mostrando la forma completa de la distribución
@@ -583,7 +589,7 @@ ggplot(datos_crias, aes(x = crias)) +
 ## Característica Variables continuas Variables discretas
 
 | Característica | Variables continuas | Variables discretas |
-|------------------|-------------------------|-----------------------------|
+|-------------------|-------------------------|-----------------------------|
 | Valores posibles | Cualquier valor en un rango (incluye decimales) | Solo valores específicos (generalmente enteros) |
 | Geometría típica | `geom_histogram()`, `geom_density()` | `geom_bar()`, `geom_histogram()` |
 | Ajuste de bins | binwidth o bins para agrupar valores continuos | binwidth = 1 para separar cada valor entero |
@@ -605,29 +611,7 @@ Violín (`geom_violin`): Para comparar distribuciones completas entre grupos
 
 Gráfico de barras (`geom_bar`): Cuando tenemos pocos valores posibles y queremos mostrar conteos
 
-Histograma con binwidth = 1 (`geom_histogram`): Cuando queremos mantener la apariencia de histograma pero con valores discretos
-
-Ejercicio: Para cada una de estas variables de penguins, identifica si es continua o discreta (o podría tratarse como discreta) y crea el gráfico apropiado:
-
-flipper_length_mm (longitud de aleta)
-
-island (isla)
-
-bill_depth_mm (profundidad del pico)
-
-year (año de observación)
-
-sex (sexo)
-
-Consejo clave: La elección entre tratar una variable como continua o discreta depende del contexto analítico. En general:
-
--   Variables de medición (peso, longitud, tiempo) suelen ser continuas
-
--   Variables de conteo (número de hijos, número de errores) suelen ser discretas
-
--   Variables como year pueden tratarse como discretas cuando nos interesan los valores específicos
-
-Esta distinción es importante porque afecta cómo interpretamos los gráficos y qué tipo de análisis estadístico realizamos posteriormente.
+Histograma con binwidth adecuado (`geom_histogram`): Cuando queremos mantener la apariencia de histograma pero con valores discretos
 
 ## 🧩Ejercicio f):
 
@@ -635,11 +619,13 @@ Crea dos gráficos:
 
 1.  Exploración de variables cualitativas
 
-Variables: species, island, sex
+Tareas:
 
-Tareas: a) Identifica qué variable(s) se pueden graficar con un `geom_bar()`. b) Crea un gráfico de barras para la variable más interesante y colorea las barras según sex. c) Ajusta la posición para mostrar proporciones (position = "fill") y otra vez para mostrar conteos (position = "dodge").
+a\) Identifica qué variable(s) se pueden graficar con un `geom_bar()`.
 
-Preguntas:
+b\) Crea un gráfico de barras para la variable más interesante y colorea las barras según sex.
+
+c\) Ajusta la posición para mostrar proporciones y otra vez para mostrar conteos utilizando "position".
 
 ¿Cuál es la especie/isla más frecuente?
 
@@ -651,7 +637,7 @@ Preguntas:
 
 Variables: bill_length_mm, bill_depth_mm, body_mass_g
 
-Tareas: a) Crea un scatterplot de bill_length_mm vs bill_depth_mm. b) Colorea los puntos según species y usa tamaño de punto (size) según body_mass_g. c) Agrega transparencia (alpha) para manejar solapamiento.
+Tareas: a) Crea un scatterplot de *bill_length_mm* vs *bill_depth_mm*. b) Colorea los puntos según species y usa tamaño de punto según *body_mass_g*. c) Agrega transparencia para manejar solapamiento.
 
 Preguntas:
 
@@ -661,9 +647,9 @@ Preguntas:
 
 ¿Cómo ayuda el tamaño y la transparencia a visualizar la relación entre variables?
 
-# 5 **ggplot2**: Funciones avanzadas
+# 4 `ggplot2`: Funciones avanzadas
 
-## 5.1 Etiquetas (`labs()`)
+## 4.1 Etiquetas (`labs()`)
 
 Las etiquetas son elementos fundamentales para mejorar la claridad y comprensión de los gráficos. La función labs() nos permite personalizar todos los textos descriptivos de un gráfico, haciéndolo autónomo y comprensible sin necesidad de referencias externas. Es crucial para crear visualizaciones profesionales que puedan ser interpretadas correctamente fuera de su contexto original, por ejemplo en una presentación de ppt.
 
@@ -674,10 +660,11 @@ Comenzamos creando un gráfico base de diagramas de caja que relaciona la especi
 # Gráfico base
 miplot1 <- ggplot(data = penguins) + 
   geom_boxplot(aes(x = species, y = body_mass_g))
+
 miplot1
 ```
 
-Ahora aplicamos la función labs() para añadir todos los elementos textuales necesarios: título principal, subtítulo contextual, etiquetas descriptivas para ambos ejes y un pie de figura que indica la fuente de los datos.
+Ahora aplicamos la función `labs()` para añadir todos los elementos textuales necesarios: título principal, subtítulo contextual, etiquetas descriptivas para ambos ejes y un pie de figura que indica la fuente de los datos.
 
 ```{r grafico-2}
 # Añadir etiquetas descriptivas
@@ -691,13 +678,13 @@ miplot1 +
   )
 ```
 
-La función {labs()} permite personalizar los textos del gráfico. Es crucial para hacer los gráficos autónomos y comprensibles.
+La función `labs()` permite personalizar los textos del gráfico. Es crucial para hacer los gráficos autónomos y comprensibles.
 
-## 5.2 Sistema de coordenadas
+## 4.2 Sistema de coordenadas
 
-Por defecto, ggplot2 usa coordenadas cartesianas, pero ofrece flexibilidad para ajustar la vista de los datos. **Es importante distinguir entre hacer zoom (manteniendo todos los datos) y limitar el rango (eliminando datos fuera del rango).**
+Por defecto, `ggplot2` usa coordenadas cartesianas, pero ofrece flexibilidad para ajustar la vista de los datos. **Es importante distinguir entre hacer zoom (manteniendo todos los datos) y limitar el rango (eliminando datos fuera del rango).**
 
-La función coord_cartesian() permite enfocar en una región específica del gráfico **sin descartar observaciones**.
+La función `coord_cartesian()` permite enfocar en una región específica del gráfico **sin descartar observaciones**.
 
 ```{r coordenadas}
 # Zoom en el eje Y
@@ -729,12 +716,11 @@ Esta diferencia es crucial cuando se usan estadísticos como regresiones o suavi
 
 ## 🧩Ejercicio g):
 
-1.  Diagrama de cajas con etiquetas completas
+## 1️⃣ Diagrama de cajas con etiquetas completas
 
-<!-- -->
+1.  Crea un gráfico de **boxplot** de `body_mass_g` por `species` (especies de pingüinos).
 
-a)  Crea un gráfico de boxplot de body_mass_g por species.
-b)  Añade etiquetas usando labs() para:
+    Añade **etiquetas completas** usando `labs()`:
 
 Título principal: “Distribución de masa corporal por especie”
 
@@ -752,69 +738,128 @@ Preguntas:
 
 ¿Qué aporta el subtítulo respecto al título?
 
-2.  Ajuste de coordenadas / zoom
+2.  2️⃣ Ajuste de coordenadas / zoom
 
-<!-- -->
+    **Instrucciones:**
 
-a)  Aplica coord_cartesian() para enfocar la vista entre 3000 y 5000 g en el eje Y.
-b)  Crea otro gráfico usando ylim(3000, 5000) y observa la diferencia.
+    1.   Aplica `coord_cartesian()` para enfocar la vista entre **3000 y 5000 g** en el eje Y.
 
-Preguntas:
+    2.  Crea un segundo gráfico usando `ylim(3000, 5000)`.
 
-¿Qué sucede con los puntos fuera del rango cuando usamos coord_cartesian() vs ylim()?
+    3.  Compara los resultados y observa la diferencia.
 
-¿Por qué podría ser problemático usar ylim() si más adelante añadimos suavizados o regresiones?
+**Preguntas de reflexión:**
 
-3.  Bonus opcional – combinación de aesthetics
+-    ¿Qué sucede con los puntos fuera del rango cuando usamos `coord_cartesian()` vs `ylim()`?
 
-Agrega color a los boxplots según sex.
+-    ¿Por qué podría ser problemático usar `ylim()` si más adelante añadimos suavizados o regresiones?
 
-Mantén las etiquetas y el zoom aplicados.
+## 4.3 Faceting
 
-Observa si el patrón de masas cambia entre sexos dentro de cada especie.
+En el análisis de datos, a menudo no solo nos interesa estudiar la relación entre dos variables, sino también **cómo cambia esa relación entre distintos grupos** (por ejemplo, entre islas, sexos o especies). Representar todos los datos juntos puede ocultar patrones importantes.
 
-Pregunta:
+El **faceting** es una técnica de `ggplot2` que permite **dividir un mismo gráfico en varios paneles**, de modo que cada panel muestra un subconjunto de los datos, manteniendo una estructura visual común. Esto facilita la **comparación directa entre grupos**.
 
-¿Qué insights adicionales proporciona el color dentro de cada grupo?
+## 4.3.1 Gráfico base
 
-## 5.3 Faceting
-
-El faceting (o creación de múltiples paneles) es una técnica muy potente para visualizar subconjuntos de datos en gráficos separados pero comparables. Es especialmente útil para analizar patrones entre diferentes grupos categóricos. Comenzamos creando un gráfico de dispersión base que relaciona masa corporal con longitud de aleta, coloreado por especie.
+Antes de aplicar faceting, es fundamental construir un **gráfico base** que represente correctamente la relación que queremos analizar. En este ejemplo, estudiaremos la relación entre la masa corporal y la longitud de la aleta de los pingüinos, diferenciando las especies mediante color.
 
 ```{r facets}
-miplot2 <- ggplot(data = penguins, 
-                  aes(x = body_mass_g, y = flipper_length_mm, 
-                      color = species)) + 
+miplot2 <- ggplot(
+  data = penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm,
+    color = species
+  )
+) +
   geom_point(na.rm = TRUE)
 
 miplot2
 ```
 
-La función facet_grid() organiza los paneles en una rejilla según variables categóricas. En este primer ejemplo, creamos filas separadas por el sexo de los pingüinos, permitiendo comparar la relación entre variables para machos y hembras por separado.
+Este gráfico muestra **todos los individuos juntos**. Permite observar la tendencia general, pero no facilita la comparación entre grupos específicos como islas o sexos.
+
+## 4.3.2 Faceting por una variable categórica
+
+Para analizar si la relación entre masa corporal y longitud de aleta varía según la isla, podemos dividir el gráfico en varios paneles, uno por cada isla. Esto se consigue con `facet_wrap()`.
 
 ```{r facets-2}
 # Facet en filas
-miplot2 + 
-  facet_grid(rows = vars(sex), scales = "free")
+miplot2 +
+  facet_wrap(vars(island))
 ```
 
-Podemos extender el faceting a dos dimensiones, creando una matriz de gráficos que cruza dos variables categóricas. Esto permite analizar interacciones complejas entre diferentes factores.
+Cada panel contiene únicamente los datos correspondientes a una isla, pero todos comparten los mismos ejes. Esto permite comparar visualmente las distribuciones y relaciones entre islas de forma clara y directa.
+
+Este tipo de faceting es especialmente útil cuando se quiere estudiar **un único factor categórico**.
+
+## 4.3.3 Faceting estructurado: filas y columnas con `facet_grid()`
+
+Cuando queremos estudiar simultáneamente **dos variables categóricas**, `facet_grid()` permite organizar los paneles en una rejilla definida por filas y columnas.
+
+En el siguiente ejemplo, los datos se separan por especie (filas) e isla (columnas):
 
 ```{r facets-3}
-# Facet en filas y columnas
-miplot2 + 
-  facet_grid(rows = vars(sex), cols = vars(island))
+miplot2 +
+  facet_grid(rows = vars(species), cols = vars(island))
 ```
 
-Cuando tenemos muchas categorías, facet_wrap() es más flexible que facet_grid(), ya que empaqueta los paneles en una rejilla que se adapta al número de categorías y al espacio disponible.
+Cada panel representa una combinación concreta de sexo e isla. Este enfoque es muy potente para detectar interacciones entre factores, aunque puede generar un número elevado de paneles y resultar más complejo de interpretar para usuarios principiantes.
+
+## 4.3.4 `facet_wrap()` frente a `facet_grid()`
+
+Aunque ambas funciones crean múltiples paneles, tienen usos distintos:
+
+-   `facet_grid()` se utiliza cuando queremos **controlar explícitamente** la disposición en filas y columnas.
+
+-   `facet_wrap()` es más flexible y se adapta mejor cuando una variable categórica tiene muchos niveles.
+
+    Por ejemplo, una representación más compacta por especie sería:
+
+```         
+```
 
 ```{r facets-4}
 # Facet wrap (organiza en rejilla)
 miplot2 + 
-  facet_wrap(facets = vars(island), ncol = 3)
+  facet_wrap(facets = vars(species), ncol = 3)
 ```
 
-Explicación: facet_grid() organiza por filas/columnas, facet_wrap() empaqueta múltiples paneles.
+## 4.3.5 Comparación visual: sin faceting vs con faceting
+
+Sin faceting, el gráfico muestra una visión global, pero dificulta responder preguntas como:
+
+-   ¿La relación entre masa corporal y longitud de aleta es igual en todas las islas?
+
+-   ¿Hay islas con mayor variabilidad?
+
+El faceting no añade datos nuevos, pero **organiza la información de forma que estas comparaciones sean evidentes**.
+
+## 4.3.6 Escalas fijas y escalas libres
+
+Por defecto, todos los paneles utilizan la misma escala en los ejes, lo que facilita la comparación entre grupos.
+
+```{r facets-5}
+miplot2 +
+  facet_wrap(vars(island))
+```
+
+Sin embargo, en algunos casos puede ser útil permitir que cada panel tenga su propia escala:
+
+```{r facets-6}
+miplot2 +
+  facet_wrap(vars(island), scales = "free")
+```
+
+-   **Escalas fijas**: recomendadas cuando se quiere comparar valores entre grupos.
+
+-   **Escalas libres**: útiles para explorar la variabilidad interna de cada grupo, aunque dificultan la comparación directa.
+
+    ## Idea clave
+
+    El faceting permite comparar grupos sin cambiar el diseño del gráfico.\
+    No crea gráficos diferentes, sino distintas “ventanas” de la misma visualización.
 
 ## 🧩Ejercicio h)
 
@@ -848,9 +893,9 @@ Preguntas:
 
 -   ¿Qué información adicional se obtiene al comparar paneles lado a lado?
 
-## 5.4 Posición
+## 4.4 Posición
 
-El parámetro *position* controla cómo se disponen elementos geométricos cuando hay superposiciones, especialmente en gráficos de barras con agrupaciones. Por defecto, ggplot2 usa posición "stack" (apilado), donde las barras se apilan unas sobre otras mostrando el total por categoría.
+El parámetro *position* controla cómo se disponen elementos geométricos cuando hay superposiciones, especialmente en gráficos de barras con agrupaciones. Por defecto, `ggplot2` usa posición "stack" (apilado), donde las barras se apilan unas sobre otras mostrando el total por categoría.
 
 ```{r position}
 # Por defecto: apilado (stack)
@@ -875,412 +920,395 @@ ggplot(data = penguins) +
   labs(y = "Proporción")
 ```
 
-## 5.5 Escalas de color
+```         
+```
 
-Las funciones **scale\_\*** permiten personalizar cómo se mapean los datos a atributos visuales. La estructura general es \*scale\_"aesthetic"\_"tipo"()\*, donde "aesthetic" puede ser color, fill, x, y, etc., y "tipo" puede ser continuous, discrete, manual, etc. En este ejemplo, personalizamos manualmente los colores y etiquetas de una variable categórica, y también modificamos las marcas y etiquetas del eje Y.
+# 4.5 Escalas en ggplot2: cómo se traducen los datos en colores
 
-```{r escalas de color}
-# Escala de color manual
+En `ggplot2`, cuando usamos una variable dentro de `aes()`, estamos diciendo que **los valores de esa variable se representen visualmente** (por ejemplo, mediante color, tamaño o posición).\
+La función que decide **cómo se hace esa traducción** se llama **escala**.
+
+Dicho de forma sencilla: **Las escalas controlan cómo los datos se convierten en elementos visuales.**
+
+## 4.5.1 El papel de las escalas (idea básica)
+
+Observa el siguiente gráfico:
+
+```{r colores}
+miplot2 <- ggplot(penguins,
+       aes(x = body_mass_g,
+           y = flipper_length_mm,
+           color = species)) +
+  geom_point(na.rm = TRUE)
+miplot2
+```
+
+```         
+```
+
+Aquí ocurre lo siguiente:
+
+-   `species` es una variable categórica
+
+-   `ggplot2` asigna automáticamente un color distinto a cada especie
+
+```         
+Ese comportamiento automático **ya es una escala**, aunque no la veamos explícitamente.
+```
+
+## 4.5.2 ¿Qué son las funciones `scale_*()`?
+
+Las funciones `scale_*()` nos permiten **modificar ese comportamiento automático**.
+
+Su estructura general es:
+
+scale\_<aesthetic>\_<tipo>()
+
+-   **aesthetic**: qué propiedad visual estamos modificando\
+    (`color`, `fill`, `x`, `y`, etc.)
+
+-   **tipo**: qué tipo de datos tiene la variable\
+    (`discrete`, `continuous`, `manual`, `gradient`, etc.
+
+Ejemplos:
+
+-   `scale_color_manual()` → colores definidos por el usuario
+
+-   `scale_color_gradient()` → gradiente para variables numéricas
+
+-   `scale_y_continuous()` → control del eje Y
+
+## 4.5.3 Escalas manuales para variables categóricas
+
+Cuando la variable es **categórica**, suele ser buena idea **elegir los colores manualmente**, sobre todo en gráficos para informes o presentaciones.
+
+```{r colores-2}
+miplot2 <- ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm,
+    color = species
+  )
+) +
+  geom_point(na.rm = TRUE)
+
+miplot2
+```
+
+```{r colores_3}
 miplot2 +
   scale_color_manual(
     values = c("darkorange", "purple", "cyan4"),
     labels = c("Adelie", "Chinstrap", "Gentoo")
-  ) + 
+  )
+```
+
+### Qué estamos haciendo aquí:
+
+-    `values`: define los colores asignados a cada categoría
+
+-    `labels`: cambia los nombres que aparecen en la leyenda
+
+👉 Esto **no cambia los datos**, solo cómo se muestran.
+
+## 4.5.4 Modificar los ejes con escalas
+
+Las escalas no solo controlan colores, también los ejes.
+
+```{r colores_4}
+
+miplot2 +
   scale_y_continuous(
     breaks = c(180, 200, 220),
     labels = c("Bajo", "Medio", "Alto")
   )
 ```
 
-Es importante comprender la diferencia entre scale_y_continuous (limits) y coord_cartesian (ylim). La primera función elimina permanentemente los datos fuera de los límites especificados, lo que puede afectar cálculos estadísticos como los cuartiles en diagramas de caja.
+## 4.5.5 Escalas de color para variables continuas (gradientes)
 
-```{r escalas de color-2}
-# ¡Cuidado! scale_y_continuous(limits) ELIMINA datos fuera de los límites
-ggplot(data = penguins) + 
-  geom_boxplot(aes(x = species, y = body_mass_g)) +
-  scale_y_continuous(limits = c(3000, 5000))
-```
+Cuando la variable mapeada al color es **numérica**, lo habitual es usar un **gradiente de color**.
 
-En contraste, coord_cartesian(ylim) simplemente aplica un zoom visual a la región especificada, manteniendo todos los datos para los cálculos estadísticos. Esta es generalmente la opción preferida cuando queremos enfocar en un rango específico.
+```{r}
 
-```{r escalas de color-3}
-# coord_cartesian(ylim) hace zoom sin eliminar datos
-ggplot(data = penguins) + 
-  geom_boxplot(aes(x = species, y = body_mass_g)) +
-  coord_cartesian(ylim = c(3000, 5000))
-```
-
-5.5.1 Ejercicio Modifica el siguiente gráfico para usar una escala de color gradiente de azul a amarillo. Pista: Usa scale_color_gradient()
-
-```{r escalas de color-4}
-# Modificar para usar una escala de color gradiente de azul a amarillo
-ggplot(data = penguins, 
-       aes(x = body_mass_g, y = flipper_length_mm, 
+ggplot(penguins,
+       aes(x = body_mass_g,
+           y = flipper_length_mm,
            color = body_mass_g)) +
   geom_point(na.rm = TRUE, size = 3) +
   scale_color_gradient(low = "blue", high = "yellow")
-
 ```
 
-5.6 Los colores en R R ofrece múltiples sistemas para trabajar con paletas de colores, cada uno con sus ventajas y casos de uso específicos. Las paletas *ColorBrewer* son ampliamente utilizadas y están organizadas en tres tipos: cualitativas (para datos categóricos sin orden), secuenciales (para datos numéricos ordenados) y divergentes (para datos con un punto medio significativo).
+Aquí:
 
-```{r paletas de color}
-# Paletas Brewer (cualitativas, secuenciales, divergentes)
-RColorBrewer::display.brewer.all()
+-    Los valores bajos de masa corporal se muestran en azul
+
+-    Los valores altos se muestran en amarillo
+
+-   Los valores intermedios se interpolan automáticamente
+
+## 4.6 Paletas de colores en `ggplot2`
+
+La elección de colores en un gráfico **no es solo una cuestión estética**: influye directamente en la legibilidad, la interpretación de los datos y la accesibilidad. R dispone de distintos sistemas de paletas, cada uno adecuado para un tipo de variable y objetivo visual.
+
+### Paletas ColorBrewer: datos categóricos
+
+Las paletas **ColorBrewer** son especialmente útiles cuando trabajamos con **variables categóricas**. Están diseñadas para diferenciar claramente grupos sin introducir un orden artificial.
+
+```{r colores-4}
+ggplot(penguins,
+       aes(x = body_mass_g,
+           y = flipper_length_mm,
+           color = species)) +
+  geom_point(na.rm = TRUE) +
+  scale_color_brewer(palette = "Set1")
 ```
 
-Podemos extraer colores específicos de una paleta *Brewer* usando la función **brewer.pal()**, especificando el nombre de la paleta y el número de colores deseado.
+Este tipo de paletas es apropiado cuando las categorías **no tienen un orden natural**, como especies o tipos de individuos.
 
-```{r paletas de color-2}
-# Crear una paleta Brewer
-RColorBrewer::brewer.pal(name = "Set2", n = 3)
+### Paletas secuenciales: datos continuos
+
+Cuando el color representa una **variable numérica**, es preferible usar una paleta **secuencial o un gradiente**.
+
+```{r colores-5}
+
+ggplot(penguins,
+       aes(x = body_mass_g,
+           y = flipper_length_mm,
+           color = body_mass_g)) +
+  geom_point(na.rm = TRUE) +
+  scale_color_gradient(low = "blue", high = "yellow")
 ```
 
-Las paletas HCL (Hue-Chroma-Luminance) están diseñadas para ser perceptualmente uniformes y accesibles para personas con daltonismo. A continuación vemos algunas de las paletas disponibles en este sistema.
+Aquí el color indica progresión: valores bajos y altos se distinguen claramente.
 
-```{r paletas de color-3}
-# Paletas HCL (más accesibles)
-grDevices::hcl.pals()[1:10]
-```
+### Paletas HCL y Viridis: accesibilidad y contraste
 
-La función **hcl.colors()** nos permite generar secuencias de colores de cualquier paleta HCL, especificando el número de colores y la paleta deseada.
+Las paletas **HCL**, y en particular **Viridis**, están diseñadas para ser perceptualmente uniformes y accesibles, funcionando bien tanto en pantalla como en impresión.
 
-```{r paletas de color-4}
-# Crear una paleta HCL
-grDevices::hcl.colors(n = 6, palette = "Blues 3")
-```
-
-Aplicamos una paleta de colores en un gráfico real. Usamos scale_color_gradientn() con la paleta "Viridis", que es perceptualmente uniforme, de alto contraste y apta para personas con daltonismo.
-
-```{r paletas de color-5}
-# Uso en gráficos: gradiente con Viridis
-ggplot(data = penguins, 
-       aes(x = body_mass_g, y = flipper_length_mm, 
-           color = body_mass_g)) + 
-  geom_point(na.rm = TRUE) + 
-  scale_color_gradientn(colours = hcl.colors(12, "Viridis"))
-```
-
-Para mayor comodidad, **ggplot2** ofrece funciones directas para paletas populares como Viridis. scale_color_viridis_c() aplica automáticamente la paleta Viridis a variables continuas.
-
-```{r paletas de color-6}
-# Versión directa con scale_color_viridis_c()
-ggplot(data = penguins, 
-       aes(x = body_mass_g, y = flipper_length_mm, 
-           color = body_mass_g)) + 
-  geom_point(na.rm = TRUE) + 
+```{r colores-6}
+ggplot(penguins,
+       aes(x = body_mass_g,
+           y = flipper_length_mm,
+           color = body_mass_g)) +
+  geom_point(na.rm = TRUE) +
   scale_color_viridis_c()
 ```
 
-## 5.7 Temas
+Esta es la opción recomendada por defecto en la mayoría de contextos analíticos y divulgativos.
 
-Los temas *(theme\_)* en **ggplot2** controlan los elementos no relacionados con los datos de un gráfico, es decir, los componentes estéticos que no dependen de la información que estamos visualizando. Esto incluye fuentes, colores de fondo, líneas de la cuadrícula, marcas de los ejes, leyendas y otros elementos decorativos. Los temas permiten dar un estilo coherente y profesional a nuestras visualizaciones, adaptándolas al contexto de presentación (informes académicos, presentaciones, publicaciones web, etc.).
+El tipo de paleta debe elegirse en función del tipo de variable que representa el color:\
 
-### 5.7.1 Temas predefinidos
+**categórica → paleta cualitativa**,\
 
-**ggplot2** incluye varios temas predefinidos que podemos aplicar inmediatamente a cualquier gráfico. Cada uno tiene un propósito y estilo diferente.
+**numérica → paleta secuencial o gradiente**.
 
-Comenzamos creando un gráfico base que usaremos para demostrar los diferentes temas. Utilizaremos un gráfico de dispersión que relaciona la masa corporal con la longitud de la aleta, coloreado por especie.
+# 4.7 Temas en ggplot2: controlar la apariencia del gráfico
 
-```{r themes}
-# Gráfico base para demostrar temas
-base_plot <- ggplot(penguins, 
-                    aes(x = body_mass_g, y = flipper_length_mm, 
-                        color = species)) +
+En `ggplot2`, los **temas (`theme_*`) controlan todos los elementos del gráfico que NO representan datos**.\
+Es decir, todo aquello que afecta a la **apariencia** pero no al contenido informativo:
+
+-    fuentes y tamaños de texto
+
+-    colores y fondos
+
+-   líneas de cuadrícula
+
+-   ejes y marcas
+
+-   posición y estilo de la leyenda
+
+-   márgenes del gráfico
+
+    Una idea clave para empezar es esta:
+
+    > 
+    >
+    > **Las escalas controlan cómo se representan los datos.\
+    > Los temas controlan cómo se ve el gráfico.**
+
+## 4.7.1 Gráfico base de referencia
+
+Para entender los temas, partimos siempre de **un mismo gráfico base**.\
+De este modo, cualquier cambio visual se debe únicamente al tema.
+
+```{r themes-0}
+
+base_plot <- ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm,
+    color = species
+  )
+) +
   geom_point(alpha = 0.7, na.rm = TRUE) +
-  labs(title = "Relación entre masa corporal y longitud de aleta",
-       subtitle = "Datos de pingüinos Palmer",
-       x = "Masa corporal (g)",
-       y = "Longitud de aleta (mm)",
-       color = "Especie")
+  labs(
+    title = "Relación entre masa corporal y longitud de aleta",
+    subtitle = "Datos de pingüinos Palmer",
+    x = "Masa corporal (g)",
+    y = "Longitud de aleta (mm)",
+    color = "Especie"
+  )
 
 base_plot
+
 ```
 
-theme_gray() - Tema por defecto Este es el tema predeterminado de ggplot2. Tiene un fondo gris claro con líneas de cuadrícula blancas. Es un buen punto de partida, pero puede no ser ideal para publicaciones formales.
+## 4.7.2 Temas predefinidos: cambiar el estilo general
+
+`ggplot2` incluye varios **temas predefinidos** que modifican el estilo completo del gráfico con una sola línea de código. Son útiles para adaptar rápidamente una visualización a distintos contextos.
+
+```{r theme-1}
+base_plot + theme_bw() 
+```
+
+```         
+```
+
+Algunos de los más utilizados son:
+
+-    `theme_gray()` → tema por defecto
+
+-    `theme_bw()` → fondo blanco, ideal para impresión
+
+-    `theme_minimal()` → elimina elementos decorativos
+
+-    `theme_classic()` → estilo estadístico tradicional
+
+-    `theme_void()` → elimina casi todo salvo los datos
+
+👉 **Recomendación didáctica**: usar temas predefinidos para cambiar el *estilo general* y `theme()` para ajustes finos.
+
+## 4.7.3 `theme()`: personalización por componentes
+
+La función `theme()` permite modificar **elementos concretos del gráfico**, uno a uno.\
+Cada elemento pertenece a una **familia lógica**.
+
+Si se consulta la ayuda (`?theme`), se observa que hay muchas opciones, pero **no se usan todas a la vez**. En la práctica, se trabaja por bloques.
+
+### 1️⃣ Texto (títulos, ejes, leyenda)
+
+Todos los textos del gráfico se controlan con `element_text()`.
 
 ```{r themes-2}
-# Tema por defecto (se aplica automáticamente, pero lo mostramos explícitamente)
-base_plot + theme_gray()
+
+base_plot +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.title = element_text(face = "bold")
+  )
 ```
 
-theme_bw() - Tema blanco y negro Un tema clásico con fondo blanco y líneas de cuadrícula grises. Es muy útil para publicaciones académicas donde se requiere alta legibilidad y compatibilidad con impresión en blanco y negro.
+👉 Regla práctica:
+
+-    `plot.*` → títulos
+
+-    `axis.*` → ejes
+
+-    `legend.*` → leyenda
+
+### 2️⃣ Leyenda (posición y organización)
+
+La leyenda suele requerir ajustes para presentaciones o informes.
 
 ```{r themes-3}
-# Tema en blanco y negro, ideal para publicaciones
-base_plot + theme_bw()
+
+base_plot +
+  theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal"
+  )
+
+
 ```
 
-theme_minimal() - Tema minimalista Elimina muchos elementos decorativos, manteniendo solo lo esencial. No tiene líneas de cuadrícula ni marco alrededor del gráfico. Es moderno y se enfoca completamente en los datos.
+Opciones habituales para `legend.position`:
+
+-    `"right"` (por defecto)
+
+-    `"bottom"`
+
+-    `"top"`
+
+-    `"left"`
+
+-    `"none"` (ocultar leyenda)
+
+### 3️⃣ Ejes y cuadrícula
+
+Los ejes y las líneas de fondo influyen mucho en la claridad del gráfico.
 
 ```{r themes-4}
-# Tema minimalista, sin elementos superfluos
-base_plot + theme_minimal()
+base_plot +
+  theme(
+    panel.grid.major = element_line(color = "gray90"),
+    panel.grid.minor = element_blank(),
+    axis.line = element_line(color = "black")
+  )
 ```
 
-theme_classic() - Tema clásico Inspirado en gráficos tradicionales de estadística. Tiene ejes simples con líneas en los bordes, sin líneas de cuadrícula. Es limpio y apropiado para publicaciones científicas.
+👉 En gráficos para publicación:
+
+-    menos cuadrícula suele significar **más claridad**
+
+-    eliminar `grid.minor` es muy común
+
+### 4️⃣ Fondos y márgenes
+
+El gráfico tiene dos fondos distintos:
+
+-    `panel.background` → zona de los datos
+
+-    `plot.background` → toda la figura
 
 ```{r themes-5}
-# Tema clásico, similar a gráficos de software estadístico tradicional
-base_plot + theme_classic()
-```
-
-theme_void() - Tema vacío Elimina prácticamente todos los elementos excepto los datos. Es útil cuando queremos crear visualizaciones muy limpias o cuando vamos a añadir anotaciones personalizadas.
-
-```{r themes-6}
-# Tema vacío, solo muestra los datos
-base_plot + theme_void()
-```
-
-theme_dark() - Tema oscuro Similar al tema gris por defecto, pero con colores invertidos (fondo oscuro). Puede ser útil para presentaciones con fondos oscuros o para resaltar colores brillantes.
-
-```{r themes-7}
-# Tema oscuro, útil para presentaciones con fondo negro
-base_plot + theme_dark()
-```
-
-## 5.7.2 Temas de paquetes externos Existen paquetes adicionales que proporcionan temas especializados. Uno de los más populares es *ggthemes*, que incluye temas que imitan estilos de publicaciones como *The Economist*, *Wall Street Journal*, *Excel*, entre otros.
-
-Primero, si no está instalado, debemos instalar el paquete ggthemes:
-
-```{r ggthemes}
-# Instalar ggthemes si no está disponible
-# install.packages("ggthemes")
-library(ggthemes)
-```
-
-theme_economist() - Estilo The Economist Imita el estilo característico de las gráficas de la revista The Economist. Usa colores distintivos y tipografía específica.
-
-```{r themes-8}
-# Tema estilo The Economist
-base_plot + theme_economist() +
-  scale_color_economist()
-```
-
-theme_wsj() - Estilo Wall Street Journal Basado en las gráficas del Wall Street Journal, con un estilo más periodístico y accesible.
-
-```{r themes-9}
-# Tema estilo Wall Street Journal
-base_plot + theme_wsj() +
-  scale_color_wsj("colors6")
-```
-
-theme_excel() - Estilo Excel Recrea la estética por defecto de Microsoft Excel. Puede ser útil para transicionar usuarios de Excel a R, o para mantener consistencia con gráficos existentes.
-
-```{r themes-10}
-# Tema estilo Excel (versión antigua)
-base_plot + theme_excel() +
-  scale_color_excel()
-```
-
-theme_fivethirtyeight() - Estilo FiveThirtyEight Inspirado en el sitio web de análisis estadístico FiveThirtyEight, conocido por sus visualizaciones atractivas y claras.
-
-```{r themes-11}
-# Tema estilo FiveThirtyEight
-base_plot + theme_fivethirtyeight() +
-  scale_color_fivethirtyeight()
-```
-
-5.7.3 Personalización avanzada con theme() La función theme() permite ajustar individualmente casi cualquier aspecto del tema. Podemos modificar elementos específicos como textos, leyendas, ejes, fondos y márgenes.
-
-Si accedéis a la ayuda para los temas (?theme), podréis modificar toooooodas estas opciones:
-
-```{r themes-help}
-?theme
-```
-
-Modificar elementos de texto Podemos cambiar la fuente, tamaño, color y estilo de todos los textos del gráfico: título, subtítulo, etiquetas de ejes, texto de los ejes, leyenda, etc.
-
-```{r themes-12}
-# Personalización completa de elementos de texto
 base_plot +
-  theme_bw() +
   theme(
-    # Título principal
-    plot.title = element_text(
-      family = "serif",        # Fuente con serifas
-      size = 16,               # Tamaño 16
-      face = "bold",           # Negrita
-      hjust = 0.5,             # Centrado horizontal
-      color = "darkblue"       # Color azul oscuro
-    ),
-    
-    # Subtítulo
-    plot.subtitle = element_text(
-      family = "serif",
-      size = 12,
-      hjust = 0.5,
-      color = "gray40"
-    ),
-    
-    # Etiquetas de ejes
-    axis.title = element_text(
-      family = "sans",         # Fuente sin serifas
-      size = 12,
-      face = "bold"
-    ),
-    
-    # Texto de los ejes (números)
-    axis.text = element_text(
-      family = "sans",
-      size = 10,
-      color = "black"
-    ),
-    
-    # Texto de la leyenda
-    legend.text = element_text(
-      family = "sans",
-      size = 10,
-      face = "italic"          # Cursiva
-    ),
-    
-    # Título de la leyenda
-    legend.title = element_text(
-      family = "sans",
-      size = 11,
-      face = "bold"
-    )
+    panel.background = element_rect(fill = "gray"),
+    plot.background = element_rect(fill = "white"),
+    plot.margin = margin(20, 20, 20, 20)
   )
 ```
 
-Modificar elementos de la leyenda La leyenda puede reposicionarse, ajustarse su fondo, borde, espaciado y más.
+## 4.7.4 Temas externos
 
-```{r themes-13}
-# Personalización de la leyenda
-base_plot +
-  theme_bw() +
-  theme(
-    # Posición de la leyenda (opciones: "none", "left", "right", "bottom", "top")
-    legend.position = "bottom",
-    
-    # Dirección de la leyenda ("horizontal" o "vertical")
-    legend.direction = "horizontal",
-    
-    # Justificación de la leyenda dentro de su área
-    legend.justification = "center",
-    
-    # Fondo de la leyenda
-    legend.background = element_rect(
-      fill = "gray95",        # Color de fondo
-      color = "gray50",       # Color del borde
-      linewidth = 0.5         # Grosor del borde
-    ),
-    
-    # Espaciado alrededor de la leyenda
-    legend.margin = margin(10, 10, 10, 10),  # márgenes: arriba, derecha, abajo, izquierda
-    
-    # Espaciado entre elementos de la leyenda
-    legend.spacing = unit(0.5, "cm"),
-    
-    # Tamaño de los símbolos en la leyenda
-    legend.key.size = unit(1, "cm"),
-    
-    # Fondo de los símbolos en la leyenda
-    legend.key = element_rect(fill = "white", color = "gray50")
-  ) +
-  guides(color = guide_legend(
-    title.position = "top",    # Posición del título
-    title.hjust = 0.5,         # Centrado horizontal del título
-    nrow = 1                   # Una sola fila para los elementos
-  ))
-```
+Existen paquetes como **`ggthemes`** que proporcionan temas con estilos reconocibles (revistas, periódicos, software).\
+No es necesario aprenderlos todos: se usan cuando se busca **un estilo concreto**.
 
-Modificar elementos de los ejes Podemos personalizar las líneas de los ejes, marcas de graduación (ticks) y líneas de cuadrícula.
-
-```{r themes-14}
-# Personalización de ejes
-base_plot +
-  theme_bw() +
-  theme(
-    # Líneas de los ejes
-    axis.line = element_line(
-      color = "darkred",      # Color de las líneas de los ejes
-      linewidth = 1           # Grosor
-    ),
-    
-    # Marcas de graduación (ticks) en los ejes
-    axis.ticks = element_line(
-      color = "darkred",      # Color
-      linewidth = 1           # Grosor
-    ),
-    
-    # Longitud de las marcas de graduación
-    axis.ticks.length = unit(0.2, "cm"),
-    
-    # Líneas de cuadrícula mayores (grid.major)
-    panel.grid.major = element_line(
-      color = "gray90",       # Color más claro
-      linewidth = 0.5,        # Grosor
-      linetype = "dashed"     # Línea discontinua
-    ),
-    
-    # Líneas de cuadrícula menores (grid.minor)
-    panel.grid.minor = element_line(
-      color = "gray95",       # Color muy claro
-      linewidth = 0.25        # Muy fino
-    ),
-    
-    # Eliminar líneas de cuadrícula verticales
-    panel.grid.major.x = element_blank(),
-    panel.grid.minor.x = element_blank()
-  )
-```
-
-Modificar el fondo y márgenes El área del gráfico completa puede personalizarse, incluyendo fondos y márgenes.
-
-```{r themes-15}
-# Personalización de fondos y márgenes
-base_plot +
-  theme(
-    # Fondo del área del gráfico (donde están los datos)
-    panel.background = element_rect(
-      fill = "lightblue",     # Color de fondo
-      color = "darkblue",     # Color del borde
-      linewidth = 1.5         # Grosor del borde
-    ),
-    
-    # Fondo de toda la figura (incluye títulos, leyenda, etc.)
-    plot.background = element_rect(
-      fill = "gray98",        # Color de fondo claro
-      color = "gray50",       # Borde gris
-      linewidth = 1
-    ),
-    
-    # Márgenes del gráfico (arriba, derecha, abajo, izquierda)
-    plot.margin = margin(30, 30, 30, 30, unit = "pt"),
-    
-    # Fondo de la leyenda
-    legend.background = element_rect(
-      fill = "white",
-      color = "gray50"
-    )
-  )
-```
+👉 Lo importante es saber que **existen**, no memorizar sus nombres.
 
 ## 🧩Ejercicio aplicado):
 
 Estudios previos en aves marinas indican que esta enfermedad se manifiesta principalmente en:
 
-1.   **Reducción de la masa corporal**
+1.  **Reducción de la masa corporal**
 
-2.   **Desacople entre tamaño corporal y longitud de la aleta**, es decir:
+2.  **Desacople entre tamaño corporal y longitud de la aleta**, es decir:
 
-    -   Para una misma longitud de aleta, los individuos enfermos pesan menos.
+```         
+-   Para una misma longitud de aleta, los individuos enfermos pesan menos.
+```
 
-3.   **Mayor impacto en los machos**, debido a su mayor gasto energético durante el periodo reproductivo.
+3.  **Mayor impacto en los machos**, debido a su mayor gasto energético durante el periodo reproductivo.
 
-    Además, los primeros informes sugieren que **algunas especies podrían ser más vulnerables que otras**, especialmente aquellas de menor masa corporal media.
+```         
+Además, los primeros informes sugieren que **algunas especies podrían ser más vulnerables que otras**, especialmente aquellas de menor masa corporal media.
+```
 
 👉 **Hipótesis científica de partida**\
 Los pingüinos potencialmente más afectados serán:
 
--    Individuos de **menor masa corporal**
+-   Individuos de **menor masa corporal**
 
--    Con **menor masa relativa respecto a la longitud de la aleta**
+-   Con **menor masa relativa respecto a la longitud de la aleta**
 
--    Especialmente **machos**
+-   Especialmente **machos**
 
--    Pertenecientes a determinadas especies e islas
+-   Pertenecientes a determinadas especies e islas
 
 Tu tarea es comprobar **si los datos apoyan esta hipótesis** mediante visualización. Las variables que se midieron en campo fueron:
 

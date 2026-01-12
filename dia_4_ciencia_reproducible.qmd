@@ -17,37 +17,16 @@ editor_options:
   chunk_output_type: console
 number-sections: true
 bibliography: references.bib
+csl: ecosistemas.csl
 ---
 
 ![](images/01_logo-vA_pant293.jpg){fig-align="left" width="40%"}
 
-# Objetivos
-
--   Comprender la importancia de los flujos de análisis reproducibles.
-
--   Comprender la funcionalidad y potencialidad de Git y GitHub en análisis científicos.
-
--   Comprender el flujo de trabajo entre Git, GitHub y RStudio.
-
--   Aprender a trabajar colaborativamente con Git y GitHub.
-
--   Aprender las bases de la programación literaria en R.
-
--   Aprender los fundamentos básicos de Quarto.
-
--   Generar documentos reproducibles en R.
-
 # Introducción
 
-La trazabilidad y el control de versiones de los análisis están ganando cada vez más importancia en diversos campos de estudio a medida que el volumen de datos aumenta y los análisis se hacen más complejos. Aprenderemos cómo Git puede usarse para controlar la trazabilidad de los cambios realizados en proyectos o archivos y veremos cómo este control de versiones es especialmente útil en proyectos colaborativos mediante el uso de un servidor de alojamiento en línea como GitHub.
+**La reproducibilidad y la trazabilidad** de los análisis están ganando cada vez más importancia en diversos campos de estudio a medida que el volumen de datos aumenta y los análisis se hacen más complejos. En la sesión de hoy aprenderemos cómo **Quarto** puede utilizarse para generar documentos reproducibles, **Git** puede usarse para controlar los cambios realizados en proyectos o archivos y veremos cómo este control de versiones y su trazabilidad es especialmente útil en proyectos colaborativos mediante el uso de un servidor de alojamiento en línea como **GitHub**.
 
-Aunque existen multitud de manuales disponibles gratuitamente sobre cómo utilizar Git y GitHub, estas herramientas son complejas. El propósito original de Git era ayudar a grupos de desarrolladores informáticos a trabajar en colaboración en grandes proyectos de software, por lo que puede resultar enrevesado, hay múltiples soluciones para el mismo problema y tiene una curva de aprendizaje pronunciada.
-
-::: callout-note
-Git surge en 2005, tras la ruptura de la relación entre la comunidad que estaba desarrollando Linux y la empresa comercial que desarrollaba BitKeeper (DVCS). En ese momento BitKeeper dejó de ser gratuita y esto llevó a la comunidad de desarrolladores de Linux (y en particular a Linus Torvalds, el creador de Linux) a desarrollar su propia herramienta para el control de versiones basándose en su experiencia al utilizar BitKeeper.
-:::
-
-Sin embargo, Git y GitHub nos pueden ayudar a solucionar algunos problemas comunes derivados de la creación de diferentes versiones que pueden ser un poco molestos:
+Estas herramientas nos pueden ayudar a solucionar algunos problemas comunes derivados de la creación de diferentes versiones y la falta de reproducibilidad que pueden ser un poco molestos:
 
 \- Sobreescritura de un archivo
 
@@ -61,7 +40,261 @@ Sin embargo, Git y GitHub nos pueden ayudar a solucionar algunos problemas comun
 
 \- Ediciones sin control de cambios
 
-![Ediciones sin control de cambios](images/tracker.png)\
+![](images/tracker.png){alt="Ediciones sin control de cambios" fig-align="center" width="70%"}
+
+En [*The Turing Way*](https://book.the-turing-way.org/) definen la investigación reproducible como aquel trabajo que puede recrearse de forma independiente a partir de los mismos datos y el mismo código que utilizó el equipo original. Lo reproducible es distinto de lo replicable, robusto y generalizable, tal y como se describe en la figura siguiente.
+
+![Diferentes dimensiones de la investigación reproducible según *The Turing Way*. Figura de <https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/>](images/reproducible-matrix.jpg){fig-align="mid" width="50%"}
+
+Dentro del modelo de ciencia de datos, en la sesión de hoy nos centraremos en la parte de comunicar resultados a través de documentos dinámicos. Además, aprenderemos como controlar y trazar todo este modelo de análisis.
+
+![Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund modificado. Original traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram](images/datascience_modificado.png){#fig-datascience}
+
+Los objetivos concretos son:
+
+-   Comprender la importancia de los flujos de análisis reproducibles.
+
+-   Aprender las bases de la programación literaria en R.
+
+-   Aprender los fundamentos básicos de Quarto.
+
+-   Generar documentos reproducibles en R.
+
+-   Comprender la funcionalidad y potencialidad de Git y GitHub en análisis científicos.
+
+-   Comprender el flujo de trabajo entre Git, GitHub y RStudio.
+
+-   Aprender las bases de trabajo colaborativo con Git y GitHub.
+
+# Introducción a Quarto y R Markdown
+
+**R Markdown** (<https://rmarkdown.rstudio.com/>) empezó en 2012 con el objetivo de facilitar la reproducibilidad en R. Ha sido desarrollado principalmente por [Yihui Xie](https://yihui.org/). R Markdown es un formato de archivo para crear documentos dinámicos con R que se apoya en [**`knitr`**](https://yihui.org/knitr/) (paquete para generación de informes dinámicos en Markdown) y [**Pandoc**](https://pandoc.org/) (conversor de documentos) para crear documentos estáticos (p. ej. PDF).
+
+R Markdown utiliza **programación literaria**, un paradigma de programación creado por Donald E. Knuth que consiste en escribir un texto narrativo (p. ej. inglés, castellano) con fragmentos de código e instrucciones. R Markdown está escrito en **Markdown** (un lenguaje de marcado ligero que permite escribir texto con formato usando símbolos simples) y contiene partes de **código de R** (o algún otro lenguaje de programación) integrado.
+
+R Markdown nace en el ecosistema R pero en 2022 se lanza Quarto (<https://quarto.org/>) que es una evolución y generalización de R Markdown. Quarto se ha generado para la colaboración de más de una comunidad (es decir, no solo usuarios de R o Python), tiene sintaxis compartida entre diferentes editores de código y lenguajes y viene preinstalado con las últimas versiones de RStudio. Es decir, no se tienen que instalar diferentes paquetes para crear diferentes formatos de salida.
+
+**Quarto** es un sistema de publicación científica y técnica de código abierto construido sobre Pandoc. Convierte los formatos de texto plano o los formatos mixtos (p. ej. **`.qmd`**, `.Rmd`, `.md`, `.ipynb`) en informes estáticos PDF, word, HTML, etc. Puede entrelazar texto narrativo y código para producir resultados con un formato elegante en forma de documentos, páginas web, entradas de blog, libros, etc. Para ello, Quarto utiliza un ***engine*** como `knitr` o `jupyter` para ejecutar el código y generar una salida temporal `.md`. El archivo `.md` se procesa mediante Pandoc y los **filtros Lua** de Quarto que modifican la estructura del documento antes del resultado final (p. ej. para modificar las referencias cruzadas). **Lua** es el lenguaje de extensión de Pandoc (<https://quarto.org/docs/extensions/lua.html>). Además, Quarto utiliza Bootstrap y CSS (*Cascading Style Sheets*) para obtener un HTML o LaTeX para un PDF para definir el **estilo visual**.
+
+![Diagrama de funcionamiento de R Markdown. Figura de jthomasmock.github.io/quarto-2hr-webinar](images/knitr-diagram-rmd.png)
+
+![Diagramas de funcionamiento de Quarto. Figura de jthomasmock.github.io/quarto-2hr-webinar](images/knitr-diagram-qmd-jupyter.png)
+
+Sea cual sea el sistema, Quarto y R Markdown aumentan de la eficiencia de trabajo (a medio-largo plazo), permiten centrarse en el texto sin perder tiempo en el diseño y permiten la producción de documentos de alta calidad.
+
+## Fundamentos básicos de Quarto
+
+Para crear un archivo Quarto: *File -\> New File -\> Quarto document*. Debemos cambiar el modelo mental: ahora tendremos un documento fuente de texto plano y a partir de dicho documento generamos un documento renderizado. Estos archivos tienen tres componentes principales: (i) metadatos, (ii) texto, (iii) código.
+
+-   Metadatos: se escriben entre `` `---` `` al comienzo del archivo. Utiliza la sintaxis de [YAML](https://en.wikipedia.org/wiki/YAML) (*Yet Another Markup Language*). Se utiliza para evitar teclear manualmente todas las opciones que pueden afectar al código, al contenido y al proceso de creación de un archivo estático. Aquí se es especifica el formado de salida: <https://quarto.org/docs/output-formats/all-formats.html>
+
+::: callout-important
+¡La sangría es importante en el YAML!
+:::
+
+-   Texto: sintaxis Markdown. Markdown es un lenguaje de marcado ligero que permite escribir texto con formato usando símbolos simples. Está diseñado para ser fácil de escribir y, aún más importante, fácil de leer.
+
+::: callout-note
+💡Con el editor visual de RStudio puedes ver en tiempo real cómo es la conversión a word, HTML, etc. del texto Markdown.
+:::
+
+-   Código (dos tipos):
+
+    -   *Code chunk* (bloque): se escribe ```` ```{r nombre_chunck} codigo aqui``` ````; entre corchetes se indica el lenguaje. Se puede escribir manualmente, utilizar el atajo `Ctrl + Alt + I` (Mac OS: `Cmd + Option + I`), utilizar el comando `Insert -> Executable Cell` en la barra de herramientas del editor.
+
+    -   *Inline code* (en línea): se escribe `r "código aquí"`.
+
+::: callout-note
+💡Cada opción de ejecución del chunk (<https://quarto.org/docs/computations/execution-options.html>) se especifica en una línea al principio del chunk con el *(hash pipe)* `#|`. Estas opciones presentan tabulación enriquecida, es decir, inicias una palabra y tabulas para completar o `Ctrl + espacio` para ver todas las opciones disponibles.
+
+```{r tabulacion}
+#| eval: false   
+
+2 * 2
+```
+:::
+
+Los bloques de código son compatibles con muchos lenguajes de programación:
+
+```{r reticulate}
+#| echo: FALSE  
+#| eval: TRUE  
+#| warning: FALSE    
+
+library(knitr)   
+names(knitr::knit_engines$get())   
+library(reticulate) # for python
+```
+
+```{python example_python}  
+x = "R mola!"   
+print(x.split(" "))
+```
+
+```{r example}
+#| warning: FALSE     
+
+library(ggplot2)  
+names(cars)   
+ggplot(cars, aes(speed, dist)) +      
+  geom_point() +      
+  geom_smooth()
+```
+
+## Notación Markdown
+
+Para buscar ayuda sobre como escribir el texto plano: *Help -\> Markdown Quick Reference* (italics, bold, headers, lists, links, images, R codes, tables, page break, superscripts...)
+
+Referencias: [@blischak2016]
+
+Formato: **negrita**, *cursiva*, subíndice~1~, superíndice^2^, `código`, [hipervínculo](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html), notas al pie[^1]
+
+[^1]: hello world
+
+Títulos: \# primer nivel; \## segundo nivel...
+
+Listas y sublistas: \*, -, +
+
+Citas:
+
+> "R Markdown es maravilloso pero ojo con Quarto"
+>
+> --- Julen Astigarraga
+
+Fórmulas:
+
+$f(os) = {esta \choose gustando} esto^{?} (1-p)^{n-k}$
+
+Comentarios:
+
+<!--# esto es un comentario (atajo: Ctrl + Shift + C; OS X Cmd + Shift + C)-->
+
+Tablas:
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+|      |      |      |
+|      |      |      |
+|      |      |      |
+
+: Esto es el pie de tabla
+
+Figuras:
+
+![Esto es el pie de figura](images/rmarkdown.png){width="30%"}
+
+Videos:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/s3JldKoA0zw">
+
+</iframe>
+
+### 🧩 *Ejercicio*
+
+Genera un documento Quarto que esté compuesto por al menos metadatos, código y texto. También puedes añadir otros elementos, como tablas.
+
+## Renderización
+
+Existen tres formas para producir un archivo estático (renderizar). Todas llaman a `quarto render` en un trabajo de fondo. Esto evita que el renderizado abarrote la consola de R y así es fácil de detener.
+
+1.  Dentro de RStudio puedes usar el botón de *Render* (atajo: `Ctrl + Shift + K`; Mac OS `Cmd + Shift + K`),
+2.  En el terminal mediante quarto render: 🤓
+
+::: callout.note
+¿Qué es el terminal? El *shell* (o terminal) es un programa en tu ordenador cuyo trabajo es ejecutar otros programas (ver <https://happygitwithr.com/shell.html#shell>). RStudio incorpora una terminal que se puede utilizar para interactuar con Git; sin embargo, también incorpora una pestaña llamada "Git" que contiene las funcionalidades básicas de Git y facilita mucho su uso.
+:::
+
+`quarto render archivo.qmd` (por defecto a HTML)
+
+`quarto render archivo.qmd --to pdf`
+
+`quarto render archivo.qmd --to docx`
+
+`quarto --help`
+
+::: callout.note
+Sobre la importancia del YAML: las especificaciones del YAML se puede incluir también en el terminal, pero si las hemos incluido en el YAML no tendremos que escribirlas cada vez.
+:::
+
+`quarto render archivo.qmd --to html`
+
+`quarto render archivo.qmd --to html -M code-fold:true`
+
+3.  En la consola de R mediante el paquete `quarto`
+
+`library(quarto)`
+
+`quarto_render("archivo.qmd")`
+
+`quarto_render("archivo.qmd", output_format = "pdf")`
+
+### 🧩 *Ejercicio*
+
+Renderiza el documento Quarto creado en el ejercicio anterior en un PDF y después en un word.
+
+## ¿Qué hago si he estado utilizando R Markdown?
+
+Aunque Quarto presenta mejores características y tendrá más mejoras en el futuro, R Markdown todavía se mantiene y quizás lo habéis estado utilizando.
+
+¡No pasa nada! No tienes que convertir la sintaxis de todos tus documentos antiguos. Quarto es compatible con versiones anteriores de R Markdown. La mayoría de los `.Rmd` o `.ipynb` existentes se pueden convertir `as-is` a través de Quarto. Para hacerlo a través de la línea de comandos de la terminal se escribe:
+
+`quarto render archivo.Rmd --to html`
+
+Además existen distintas opciones para convertir archivos `.Rmd` a `.qmd`:
+
+1.  Cambiar `.Rmd` a `.qmd` (esto siempre usará Quarto para la renderización)
+
+2.  Cambiar la salida YAML: `html_document` a `format: html`
+
+3.  `knitr::convert_chunk_header("archivo.Rmd", "archivo.qmd")`
+
+## Generando el documento final
+
+### Formato
+
+Títulos coloreados en azul, el texto no está con un espaciado doble, no hay números de línea y... ¡manuscrito rechazado porque el formato no es adecuado! ¡PERO NO VAMOS A EDITAR NADA EN WORD! Podemos asegurarnos de que el `.docx` creado tenga siempre el formato deseado utilizando una plantilla `.docx`. Para utilizarla, la plantilla debe colocarse en la misma carpeta que el archivo `.qmd` y debemos hacer un pequeño ajuste en el YAML.
+
+1.  Primero generamos la plantilla en el terminal:
+
+    `quarto pandoc -o reference_custom.docx --print-default-data-file reference.docx`
+
+2.  Modificamos la plantilla generada como la queramos utilizando los estilos de Word.
+
+💡Fíjate en [este link](https://quarto.org/docs/output-formats/ms-word-templates.html) para saber como modificar una plantilla de Word.
+
+3.  Especificamos en el YAML que queremos usar esa plantilla.
+
+```{r plantilla}
+#| eval: false  
+# format:     
+#   docx:       
+#     reference-doc: reference_custom.docx
+```
+
+### Referencias
+
+Para introducir citas y referencias en nuestro texto en Quarto utilizaremos el sistema **BibTeX** y así evitaremos tener que hacerlo manualmente. Con BibTex, en lugar de escribir la cita se escribe una "clave" única (clave de citación: @cita) cada vez que se cita una referencia. El sistema genera un archivo .bib que guarda las referencias en un formato estructurado.
+
+::: callout.note
+Recomendamos utilizar [Zotero](https://www.zotero.org/) como gestor bibliográfico porque está incluido en RStudio, lo que facilita la inclusión de citas y referencias, pero se puede utilizar cualquier otro gestor.
+:::
+
+Para añadir las referencias en algún lugar concreto del archivo se escribe:
+
+```{r refs}
+#| eval: false  
+# ::: {#refs}  
+#    
+#:::
+```
+
+BibTex permite cambiar los estilos de las referencias sin tener que reformatear nada manualmente (por ejemplo, si hay que enviar un manuscrito a una revista diferente para su publicación). Para aplicar un formato específico a las referencias, en [*Zotero Style Repository*](https://www.zotero.org/styles) puedes descargar el archivo de estilo correspondiente (.cls) y especificarlo en los metadatos (ver ejemplo en el archivo .qmd de los apuntes de esta sesión).
+
+#### 🧩 *Ejercicio*
+
+Genera una plantilla de formato y modifica los colores, tamaño de los títulos, etc. Después, añade la plantilla al YAML y renderiza de nuevo el documento de word. 
+
+# Introducción a Git y GitHub
 
 ## [Qué es Git](https://git-scm.com/)
 
@@ -69,7 +302,15 @@ Git es un sistema avanzado de **control de versiones** (como el "control de camb
 
 ![Ejemplo de un proyecto rastreado por Git con indicaciones de cómo se registran los cambios y la evolución del proyecto, el autor o autora de los cambios (¿quién?), el momento en que se han registrado (¿cuándo?), en qué documentos o líneas se han producido cambios (¿dónde?) y qué ha cambiado (¿qué?)](images/git.jpg)
 
-Además, Git facilita el trabajo en paralelo de varios participantes. Mientras que en otros sistemas de control de versiones (p. ej. Subversion (SVN, <https://subversion.apache.org/>) o Concurrent Versions System (CVS, <http://cvs.nongnu.org/>)) hay un servidor central y cualquier cambio hecho por un usuario se sincroniza con este servidor y de ahí con el resto de usuarios, Git es un control de versiones distribuido que permite a todos los usuarios trabajar en el proyecto paralelamente e ir haciendo "capturas" del trabajo de cada uno para luego unirlos. Otras alternativas de control de versiones distribuido comparables a Git son Mercurial (<https://www.mercurial-scm.org/>) o Bazaar (<https://bazaar.canonical.com/>), pero Git es con diferencia el más utilizado.
+Aunque existen multitud de manuales disponibles gratuitamente sobre cómo utilizar Git, es una herramienta son compleja. El propósito original de Git era ayudar a grupos de desarrolladores informáticos a trabajar en colaboración en grandes proyectos de *software*, por lo que puede resultar enrevesado, hay múltiples soluciones para el mismo problema y tiene una curva de aprendizaje pronunciada.
+
+![git hug. Allison Horst](images/githug.png)\
+
+::: callout-note
+Git surge en 2005, tras la ruptura de la relación entre la comunidad que estaba desarrollando Linux y la empresa comercial que desarrollaba BitKeeper (DVCS). En ese momento BitKeeper dejó de ser gratuita y esto llevó a la comunidad de desarrolladores de Linux (y en particular a Linus Torvalds, el creador de Linux) a desarrollar su propia herramienta para el control de versiones basándose en su experiencia al utilizar BitKeeper.
+:::
+
+Git facilita el trabajo en paralelo de varios participantes. Mientras que en otros sistemas de control de versiones (p. ej. Subversion (SVN, <https://subversion.apache.org/>) o Concurrent Versions System (CVS, <http://cvs.nongnu.org/>)) hay un servidor central y cualquier cambio hecho por un usuario se sincroniza con este servidor y de ahí con el resto de usuarios, Git es un control de versiones distribuido que permite a todos los usuarios trabajar en el proyecto paralelamente e ir haciendo "capturas" del trabajo de cada uno para luego unirlos. Otras alternativas de control de versiones distribuido comparables a Git son Mercurial (<https://www.mercurial-scm.org/>) o Bazaar (<https://bazaar.canonical.com/>), pero Git es con diferencia el más utilizado.
 
 ![Interacción entre Git y GitHub. Git, al ser un control de versiones distribuido, permite que todos los usuarios trabajen paralelamente sin interferir en el trabajo de los demás. Luego cada usuario sincroniza su trabajo con la copia principal del proyecto ubicado en GitHub](images/conexiones.jpg){fig-align="center"}
 
@@ -83,7 +324,7 @@ Cuando se trabaja en proyectos colaborativos, la base de la interacción entre G
 
 # Instalación
 
-#### 🧩 *Ejercicio*
+## 🧩 *Ejercicio*
 
 En este punto es necesario que tengas instalada la versión más reciente de R (<https://cloud.r-project.org/>), RStudio (<https://www.rstudio.com/products/rstudio/download/>), Git (<https://happygitwithr.com/install-git.html>) y una cuenta en GitHub (<https://github.com/>) creada.
 
@@ -114,10 +355,6 @@ En este punto es necesario que tengas instalada la versión más reciente de R (
     Para ver tanto el usuario como el correo asociado:
 
     `git config --global --list`
-
-::: callout.note
-¿Qué es el *shell*? El *shell* (o terminal) es un programa en tu ordenador cuyo trabajo es ejecutar otros programas (ver <https://happygitwithr.com/shell.html#shell>). RStudio incorpora una terminal que se puede utilizar para interactuar con Git; sin embargo, también incorpora una pestaña llamada "Git" que contiene las funcionalidades básicas de Git y facilita mucho su uso.
-:::
 
 3.  Genera un PAT (*Personal Access Token*) para HTTPS
 
@@ -150,7 +387,7 @@ Si vamos al directorio local seleccionado, encontraremos la carpeta conectada a 
 
 💡En caso de querer conectar un antiguo proyecto de RStudio a Git y GitHub, puedes seguir los pasos que se describen aquí: <https://happygitwithr.com/existing-github-first.html>.
 
-#### 🧩 *Ejercicio*
+## 🧩 *Ejercicio*
 
 1.  Crea un repositorio en GitHub y conéctalo a un nuevo proyecto de RStudio (esto generará un repositorio (carpeta) en tu ordenador en la ubicación que hayas especificado). Incluir un archivo "*.gitignore"*
 
@@ -158,13 +395,13 @@ Si vamos al directorio local seleccionado, encontraremos la carpeta conectada a 
 
 3.  En RStudio ve a la pestaña Git para ver todos los documentos que han sido identificados por Git
 
-![Git en RStudio](images/clipboard-1722222267.png)\
+![Git en RStudio](images/clipboard-1722222267.png)
 
 ### Git ignore
 
 Al crear un repositorio se recomienda crear un archivo "*.gitignore*". Este archivo contendrá los nombres o extensiones de los archivos del proyecto que por defecto no queremos compartir aunque estén en el repositorio local (p. ej., el archivo "*.Rhistory*" que RStudio crea por defecto). Es una buena práctica ignorar archivos que no sean útiles para el resto de colaboradores así como archivos muy pesados (p. ej., una base de datos resultado de correr un script) para no subirlos y descargarlos continuamente de GitHub. Para añadir archivos al *gitignore* se puede utilizar el botón derecho del ratón sobre el archivo en la pestaña Git de RStudio pero también se puede añadir el nombre del archivo que desamos ignorar en el archivo "*.gitignore*" manualmente.
 
-#### 🧩 *Ejercicio*
+## 🧩 *Ejercicio*
 
 1.  Añade el archivo .Rproj de tu proyecto al archivo *.gitignore.*
 
@@ -232,7 +469,7 @@ Para registrar los cambios que nos interesen hay que utilizar `git commit` (en l
 
 💡Usar `git commit` es para el proyecto como usar anclajes cuando estamos escalando una pared de roca. Desarrollar un script sin commits es como escalar sin asegurarse: puedes avanzar mucho más rápido a corto plazo, pero a largo plazo las probabilidades de fallo catastrófico son altas. Por otro lado, hacer muchos commits va a ralentizar tu progreso. Lo mejor: usar más commits cuando estás en un territorio incierto o peligroso.
 
-![Lineas de trabajo (cuerdas) aseguradas con varios commits (anclajes)](images/climbing.png)
+![Lineas de trabajo (cuerdas) aseguradas con varios commits (anclajes). Allison Horst](images/climbing.png)
 
 Por último, `git push` permite subir los cambios que hemos hecho a GitHub y quedarán visibles para nuestros colaboradores (en la pestaña Git de RStudio se hace clickando el botón "*Push*"). Básicamente, `git commit` registra los cambios en el repositorio local y `git push` actualiza el repositorio remoto con los cambios y archivos asociados.
 
@@ -242,7 +479,7 @@ Cuando se retoma un proyecto tras horas, días o incluso meses, con `git pull` s
 
 Además de los botones principales anteriormente descritos, en la pestaña Git de RStudio podemos observar el botón "*Diff*" que muestra los cambios que se han hecho a cada archivo desde el último commit y las ramas (que lo explicaremos más abajo). Clickando con el botón derecho del ratón podemos abrir los archivos que han sido modificados mediante "*Open file*" y con el botón "*Revert*" volvemos al estado del último commit (⚠️cuidado con esto porque te borrará los cambios realizados en tu directorio de trabajo).
 
-#### 🧩 *Ejercicio*
+## 🧩 *Ejercicio*
 
 En el proyecto generado en el Ejercicio 1.2, guardad y subid los cambios realizados a GitHub (`git add` + `git commit` + `git push`)
 
@@ -302,286 +539,9 @@ Para solucionarlo hay que escoger los cambios de la rama principal o de la rama 
 
 💡[Aquí](https://github.com/DatSciR/intro_git-github/blob/main/centra/dia3_comandos.md) (en la sección de "Otros comandos útiles") podéis ver cómo borrar ramas que ya no se necesitan y otros comandos útiles
 
-# Introducción a Quarto y R Markdown
+<div>
 
-R Markdown (<https://rmarkdown.rstudio.com/>) empezó en 2012 con el objetivo de facilitar la reproducibilidad en R. Ha sido desarrollado principalmente por [Yihui Xie](https://yihui.org/). R Markdown es un formato de archivo para crear documentos dinámicos con R que se apoya en [`knitr`](https://yihui.org/knitr/) (paquete para generación de informes dinámicos en R) y [Pandoc](https://pandoc.org/) (conversor de documentos).
-
-R Markdown utiliza **programación literaria**, un paradigma de programación creado por Donald E. Knuth que consiste en escribir en un lenguaje humano (p. ej. inglés, castellano) con fragmentos de código e instrucciones. R Markdown está escrito en Markdown y contiene partes de código de R (o algún otro lenguaje de programación) integrado.
-
-Quarto (<https://quarto.org/>) es un sistema de publicación científica y técnica de código abierto construido sobre Pandoc. Convierte los formatos de texto plano o los formatos mixtos (p. ej. `.qmd`, `.Rmd`, `.md`, `.ipynb`) en informes estáticos PDF, word, HTML, etc. Puede entrelazar texto narrativo y código para producir resultados con un formato elegante en forma de documentos, páginas web, entradas de blog, libros, etc.
-
-La extensión de Quarto es `.qmd` y utiliza filtros Lua que es el lenguaje de extensión de Pandoc (<https://quarto.org/docs/extensions/lua.html>). Para ello, Quarto utiliza un *engine* como `knitr` para ejecutar el código y generar una salida temporal `.md`. El archivo `.md` se procesa mediante Pandoc y los filtros Lua de Quarto + Bootstrap CSS para HTML o LaTeX para PDF.
-
-![Figura de jthomasmock.github.io/quarto-2hr-webinar](images/qmd-universe.png)
-
-La diferencia principal de Quarto respecto a R Markdown es que Quarto se ha generado para la colaboración de más de una comunidad (es decir, no solo usuarios de R o Python) y utiliza una sintaxis y formato compartido entre distintos lenguajes. Además, a medida que se añadían más capacidades a R Markdown a través de paquetes externos de R, la sintaxis para las tareas básicas se volvía incoherente.
-
-![Diagrama de funcionamiento de R Markdown. Figura de jthomasmock.github.io/quarto-2hr-webinar](images/knitr-diagram-rmd.png)
-
-![Diagrama de funcionamiento de Quarto. Figura de jthomasmock.github.io/quarto-2hr-webinar](images/knitr-diagram-qmd.png)
-
-![Diagramas de funcionamiento de Quarto. Figura de jthomasmock.github.io/quarto-2hr-webinar](images/knitr-diagram-qmd-jupyter.png)
-
-Sea cual sea el sistema, Quarto y R Markdown aumentan de la eficiencia de trabajo (a medio-largo plazo), permiten centrarse en el texto sin perder tiempo en el diseño y permiten la producción de documentos de alta calidad.
-
-## Fundamentos básicos de Quarto
-
-Para crear un archivo Quarto: *File -\> New File -\> Quarto document*. Debemos cambiar el modelo mental: ahora tendremos un documento fuente de texto plano y a partir de dicho documento generamos un documento renderizado. Estos archivos tienen tres componentes principales: (i) metadatos, (ii) texto, (iii) código.
-
--   Metadatos: se escriben entre `` `---` `` al comienzo del archivo. Utiliza la sintaxis de [YAML](https://en.wikipedia.org/wiki/YAML) (Yet Another Markup Language). Se utiliza para evitar teclear manualmente todas las opciones que pueden afectar al código, al contenido y al proceso de renderizado cada vez que renderizamos el archivo. ¡La sangría es importante!
-
--   Texto: sintaxis Markdown. Markdown es un formato de texto plano que está diseñado para ser fácil de escribir y, aún más importante, fácil de leer.
-
--   Código (dos tipos):
-
-    -   Code chunk (bloque de código): se escribe ```` ```{r} codigo aqui``` ````; entre corchetes se indica el lenguaje. Se puede escribir manualmente, utilizar el atajo `Ctrl + Alt + I` (OS X: `Cmd + Option + I`), utilizar el comando `Insert -> Executable Cell` en la barra de herramientas del editor.
-
-    -   Inline (en línea): se escribe `r "código aquí"`.
-
-Para compilar un archivo, se ejecuta el botón de `Render` en RStudio (atajo: `Ctrl + Shift + K`; OS X `Cmd + Shift + K`), que llama a Quarto render en un trabajo de fondo. Esto evita que el renderizado abarrote la consola de R y así es fácil de detener.
-
-💡Con el editor visual de RStudio puedes ver en tiempo real cómo es la conversión a word, HTML, etc.
-
-💡Opciones de ejecución de los chunk: <https://quarto.org/docs/computations/execution-options.html>
-
-Son compatibles con muchos lenguajes de programación:
-
-```{r reticulate}
-#| echo: FALSE 
-#| eval: TRUE 
-#| warning: FALSE  
-
-library(knitr)  
-names(knitr::knit_engines$get())  
-library(reticulate) # for python 
-```
-
-```{python}
-
-x = "R mola!"  
-print(x.split(" ")) 
-```
-
-```{r example}
-#| warning: FALSE  
- 
-library(ggplot2) 
-names(cars)  
-ggplot(cars, aes(speed, dist)) +   
-  geom_point() +   
-  geom_smooth() 
-```
-
-Para buscar ayuda sobre como escribir el texto plano: *Help -\> Markdown Quick Reference* (italics, bold, headers, lists, links, images, R codes, tables, page break, superscripts...)
-
-Referencias: [@blischak2016]
-
-Formato: **negrita**, *cursiva*, subíndice~1~, superíndice^2^, `código`, [hipervínculo](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html), notas al pie[^1]
-
-[^1]: hello world
-
-Títulos: \# primer nivel; \## segundo nivel...
-
-Listas y sublistas: \*, -, +
-
-Citas:
-
-> "R Markdown es maravilloso pero ojo con Quarto"
->
-> --- Julen Astigarraga
-
-Fórmulas:
-
-$f(os) = {esta \choose gustando} esto^{?} (1-p)^{n-k}$
-
-Comentarios:
-
-<!--# esto es un comentario (atajo: Ctrl + Shift + C; OS X Cmd + Shift + C)-->
-
-Tablas:
-
-| Col1 | Col2 | Col3 |
-|------|------|------|
-|      |      |      |
-|      |      |      |
-|      |      |      |
-
-: Esto es el pie de tabla
-
-Figuras:
-
-![Esto es el pie de figura](images/rmarkdown.png){width="30%"}
-
-Videos:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/s3JldKoA0zw">
-
-</iframe>
-
-### 📝Ejercicio 3.1
-
-Genera un documento Quarto que esté compuesto por al menos metadatos, código y texto. También puedes añadir otros elementos, como tablas.
-
-## Diferencias de Quarto respecto a R Markdown
-
-Algunas diferencias entre Quarto y R Markdown en cuanto al código (chunks):
-
--   Estructura de las opciones tipo `key: value`. Las [opciones de los chunks](https://quarto.org/docs/computations/execution-options.html) son similares a las de R Markdown.
-
--   `#|` sintaxis *(hash pipe)*. Esta es la sintaxis preferida de Quarto, aunque es compatible con la sintaxis anterior de R Markdown. El *hash pipe* le añade más consistencia entre los *engine* (Jupyter, knitr) y nos da más control sobre el orden o espacio de las opciones del chunk (no está limitado a una línea de opciones). No hay ningún atajo para un *hash pipe* pero si escribes uno los siguientes se añadirán automáticamente cuando le das a enter.
-
--   Tabulación enriquecida: inicias una palabra y tabulas para completar o `Ctrl + espacio` para ver todas las opciones disponibles.
-
-```{r tabulacion}
-#| eval: false 
-
-2 * 2
-```
-
--   Baterias incluidas: Quarto viene preinstalado con las últimas versiones de RStudio. No se tiene que instalar diferentes paquetes para crear diferentes formatos de salida: <https://quarto.org/docs/output-formats/all-formats.html>
-
--   Sintaxis compartida (elige tu propio editor y lenguaje preferido)
-
--   Mejores características y más mejoras en el futuro (R Markdown todavía se mantiene, pero la mayoría de las nuevas características serán incorporadas en Quarto)
-
-### ¿Qué hago con mi `.Rmd` o `.ipynb` existentes?
-
-¡No pasa nada! La mayoría de los `.Rmd` o `.ipynb` existentes se pueden convertir `as-is` a través de Quarto. Para hacerlo a través de la línea de comandos de la terminal se escribe:
-
-`quarto render archivo.Rmd --to html`
-
-Además existen distintas opciones para convertir archivos `.Rmd` a `.qmd`:
-
-1.  Cambiar `.Rmd` a `.qmd` (esto siempre usará Quarto para la renderización)
-
-2.  Cambiar la salida YAML: `html_document` a `format: html`
-
-3.  `knitr::convert_chunk_header("archivo.Rmd", "archivo.qmd")`
-
-No tienes que convertir la sintaxis de todos tus documentos antiguos. Quarto es compatible con versiones anteriores de R Markdown.
-
-## Renderización
-
-Existen tres formas para renderizar un documento en Quarto:
-
-1.  Dentro de RStudio puedes usar el botón de *Render*
-
-2.  En el terminal mediante quarto render: 🤓
-
-`quarto render archivo.qmd` (por defecto a HTML)
-
-`quarto render archivo.qmd --to pdf`
-
-`quarto render archivo.qmd --to docx`
-
-`quarto --help`
-
-💡Sobre la importancia del YAML: las especificaciones del YAML se puede incluir también en el terminal, pero si las hemos incluido en el YAML no tendremos que escribirlas cada vez.
-
-`quarto render archivo.qmd --to html`
-
-`quarto render archivo.qmd --to html -M code-fold:true`
-
-3.  En la consola de R mediante el paquete `quarto`
-
-`library(quarto)`
-
-`quarto_render("archivo.qmd")`
-
-`quarto_render("archivo.qmd", output_format = "pdf")`
-
-## Generando el documento final
-
-### Formato
-
-Títulos coloreados en azul, el texto no está con un espaciado doble, no hay números de línea y... ¡manuscrito rechazado! ¡PERO NO VAMOS A EDITAR NADA EN WORD! Podemos asegurarnos de que el `.docx` creado tenga siempre el formato deseado utilizando una plantilla `.docx`. Para utilizarla, la plantilla debe colocarse en la misma carpeta que el archivo `.qmd` y debemos hacer un pequeño ajuste en el YAML.
-
-1.  Primero generamos la plantilla en el terminal:
-
-    `quarto pandoc -o plantilla.docx --print-default-data-file reference.docx`
-
-2.  Modificamos la plantilla generada como la queramos utilizando los estilos de Word.
-
-3.  Lo añadimos al YAML
-
-💡Fíjate en [este link](https://quarto.org/docs/output-formats/ms-word-templates.html) para saber como modificar una plantilla de Word.
-
-```{r plantilla}
-#| eval: false 
-# format:    
-#   docx:      
-#     reference-doc: plantilla.docx
-```
-
-### Referencias
-
-Para introducir citas y referencias en nuestro texto en Quarto utilizaremos BibTeX y así evitaremos tener que hacerlo manualmente. Con BibTex, en lugar de escribir la cita se escribe una "clave" única (clave de citación: @cita) cada vez que se cita una referencia. Esto permite a los autores cambiar los estilos de las referencias sin tener que reformatear nada manualmente (por ejemplo, si hay que enviar un manuscrito a una revista diferente para su publicación).
-
-💡 Recomendamos utilizar [Zotero](https://www.zotero.org/) como gestor bibliográfico porque está incluido en RStudio, lo que facilita la inclusión de citas y referencias, pero se puede utilizar cualquier otro gestor.
-
-Para añadir las referencias en algún lugar concreto del archivo (ver código fuente):
-
-::: {#refs}
-### 📝Ejercicio 3.2
-
-Genera una plantilla de formato y modifica los colores, tamaño de los títulos, etc. Después, añadelo al YAML. Añade alguna referencia en el documento y renderizalo. Por último, sube el .qmd y la plantilla al repositorio sincronizado con Git y GitHub.
-
-# Optimización de los flujos de trabajo
-
-## Estilo
-
--   [Style guide](http://adv-r.had.co.nz/Style.html)
-
--   [Tidyverse style guide](https://style.tidyverse.org/)
-
-## Uso de bases de datos en la nube
-
-Se pueden descargar los datos actualizados cada vez que se vayan a utilizar o tener los datos almacenados en carpetas compartidas pero con acceso local.
-
-```{r googledrive}
-#| eval: false
-
-library(googledrive)
-
-# drive_download(file = "https://docs.google.com/spreadsheets/d/1gOII3LXas0wkS3QCZzFiqC5sGbCaAoHl6MiHGRxssPw/edit?gid=0#gid=0", path = "aplicaciones_bioinformaticas/data/raw_data.xlsx", overwrite = TRUE)
-
-library(readxl)
-raw_data <- read_excel("aplicaciones_bioinformaticas/data/raw_data.xlsx", sheet = 1)
-
-```
-
-### 📝Ejercicio 4.1
-
-Crea una hoja de cálculo de Google y compartela con tus compañeros de equipo. Descargarla todos a vuestro directorio de trabajo.
-
-## Colaboración en documentos a través de RStudio
-
-Lo ideal sería que todos los colaboradores del proyecto manejaran Git, GitHub y RStudio, pero...
-
-![Algunos directores de tesis usando R](images/advisor.png){width="425"}
-
-Existen algunas funciones que pueden ayudarnos.
-
-```{r subir_bajar}
-
-# carpeta <- drive_get("ejemplos_ciencia_reproducible")  # Busca la carpeta por nombre
-
-# drive_upload("aplicaciones_bioinformaticas/ejemplo_quarto.docx", 
-#                           path = as_id(carpeta),
-#                           overwrite = TRUE)
-
-# drive_download(file = "https://docs.google.com/document/d/1aAqSYS44o28KqNscysalqrx_LdU39Tvj/edit#bookmark=id.cbk5j26lx6k5", path = "aplicaciones_bioinformaticas/ejemplo_quarto.docx", overwrite = TRUE)
-```
-
-En el caso de que los colaboradores utilicen Git, GitHub y RStudio:
-
-En RStudio se pueden visualizar los cambios hechos en el archivo Quarto utilizando *Diff* pero no se pueden visualizar los cambios por palabras a no ser que se usen herramientas externas.
-
--   Con la terminal: `git diff --word-diff`. Con esto te va saliendo en la terminal todo el texto del archivo (dandole a intro todo el rato) con las palabras específicas cambiadas resaltadas en verde (adiciones) o en rojo (eliminaciones).
-
-💡Para salir de aquí en la terminal se pone `:q`.
-
--   En GitHub, en el historial del repositorio, aparecen los cambios respecto al commit anterior en rojo y verde, pero con las palabras específicas resaltadas en un tono más oscuro.
+-   
 
 # Algunos enlaces interesantes
 
@@ -597,21 +557,15 @@ En RStudio se pueden visualizar los cambios hechos en el archivo Quarto utilizan
 
 -   [Happy Git and GitHub for the useR](https://happygitwithr.com/)
 
--   [Ciencia reproducible y colaborativa con R, Git y GitHub (DatSciR)](https://github.com/DatSciR/intro_git-github)
+-   [Ciencia reproducible y colaborativa con R, Git y GitHub (DatSciR)](https://github.com/DatSciR/intro_git-github/tree/main/centra)
+
+# Referencias
+
+:::{#refs}
+:::
+
 
 Y recordad:
 
 ![](images/in_case_of_fire.png){width="339"}
 
-<details>
-
-<summary>Session Info</summary>
-
-```{r session-info}
-Sys.time()
-git2r::repository()
-sessionInfo()
-```
-
-</details>
-:::

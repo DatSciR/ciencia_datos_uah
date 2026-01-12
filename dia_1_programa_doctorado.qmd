@@ -24,7 +24,7 @@ bibliography: references.bib
 
 ![](images/clipboard-77513458.png)
 
-Paloma Ruiz Benito (paloma.ruizb\@uah), Verónica Cruz-Alonso (veronica.cruza\@uah), Marina Rodes Blanco (marina.rodesb\@uah.es) y Julián Tijerin Triviño (julian.tijerint\@uah.es) somos investigadores de la Universidad de Alcalá, en el grupo de Ecología y Restauración Forestal (<https://portalcientifico.uah.es/grupos/9603/detalle>) y en el Grupo de Investigación en Teledetección Ambiental (<https://geogra.uah.es/gita/>).
+Paloma Ruiz Benito (paloma.ruizb\@uah), Verónica Cruz-Alonso (veronica.cruz\@uah), Marina Rodes Blanco (marina.rodesb\@uah.es) y Julián Tijerin Triviño (julian.tijerint\@uah.es) somos investigadores de la Universidad de Alcalá, en el grupo de Ecología y Restauración Forestal (<https://portalcientifico.uah.es/grupos/9603/detalle>) y en el Grupo de Investigación en Teledetección Ambiental (<https://geogra.uah.es/gita/>).
 
 Junto con Julen Astigarraga Urcelay (colaborador y amigo), publicamos los materiales de los curso que impartimos en DatSciR.
 
