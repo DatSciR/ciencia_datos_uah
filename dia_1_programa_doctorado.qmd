@@ -64,29 +64,29 @@ En este curso no veremos ningún día modelizar (ya que hay un curso específico
 
 ## Estructura del curso
 
-+------------------------------+-----------------------------------------------------------------------------------------------+
-| Días de trabajo              | Contenido                                                                                     |
-+==============================+===============================================================================================+
-| **Día 1.** Introducción      | Introducción a la programación en R                                                           |
-|                              |                                                                                               |
-| ¿Qué necesitamos?            | Conceptos básicos, tipos de datos, consejos básicos de programación y definición de objetivos |
-+------------------------------+-----------------------------------------------------------------------------------------------+
-| **Día 2.** Organizando datos | Tidyverse                                                                                     |
-|                              |                                                                                               |
-| ¿Cómo lo organizamos?        | Importar, filtrar, seleccionar, transformar, unir y exportar datos                            |
-|                              |                                                                                               |
-|                              | Estructuras de programación                                                                   |
-+------------------------------+-----------------------------------------------------------------------------------------------+
-| **Día 3.** Visualización     | Introducción a ggplot2                                                                        |
-|                              |                                                                                               |
-| ¿Cómo lo mostramos?          | Bases: gráficos por capas unidimensionales y bidimensionales                                  |
-|                              |                                                                                               |
-|                              | Visualización avanzada: personalización y multipanel                                          |
-+------------------------------+-----------------------------------------------------------------------------------------------+
-| **Día 4.** Colaboración      | Introducción y flujo en Git y GitHub                                                          |
-|                              |                                                                                               |
-| ¿Cómo trabajamos en equipo?  | Trabajos colaborativos                                                                        |
-+------------------------------+-----------------------------------------------------------------------------------------------+
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| Días de trabajo              | Contenido                                                                                                                                      |
++==============================+================================================================================================================================================+
+| **Día 1.** Introducción      | Introducción a la programación en R                                                                                                            |
+|                              |                                                                                                                                                |
+| ¿Qué necesitamos?            | Conceptos básicos, tipos de datos, consejos básicos de programación, introducción a tidyverse (filtrar, seleccionar) y definición de objetivos |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Día 2.** Organizando datos | Tidyverse                                                                                                                                      |
+|                              |                                                                                                                                                |
+| ¿Cómo lo organizamos?        | Importar, transformar, unir y exportar datos                                                                                                   |
+|                              |                                                                                                                                                |
+|                              | Estructuras de programación                                                                                                                    |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Día 3.** Visualización     | Introducción a ggplot2                                                                                                                         |
+|                              |                                                                                                                                                |
+| ¿Cómo lo mostramos?          | Bases: gráficos por capas unidimensionales y bidimensionales                                                                                   |
+|                              |                                                                                                                                                |
+|                              | Visualización avanzada: personalización y multipanel                                                                                           |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Día 4.** Colaboración      | Introducción y flujo en Git y GitHub                                                                                                           |
+|                              |                                                                                                                                                |
+| ¿Cómo trabajamos en equipo?  | Trabajos colaborativos                                                                                                                         |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Día 5**
 
@@ -108,15 +108,15 @@ Cada día combinaremos teoría con ejercicios. Idealmente, tendremos tiempo para
 
 **Antes de empezar. Estamos de acuerdo con el código ético y hacemos un ejemplo de este curso**
 
-Lee: <https://www.contributor-covenant.org/version/2/0/code_of_conduct/> e información sacada de <https://datasciencebox.org/>
+Lee: <https://www.contributor-covenant.org/adopt/> e información sacada de <https://datasciencebox.org/>
 
 ![](images/data-science-box.png)
 
 Usamos mucha bibliografía distinta para realizar este curso, pero os recomendamos los siguientes recursos:
 
-[![\[R for data Science\](https://r4ds.hadley.nz/)](images/Wickham_RDataScience.jpg){fig-align="left" width="154"}](https://r4ds.hadley.nz/)
+[![\[\[R for data Science\](https://r4ds.hadley.nz/)\] https://r4ds.hadley.nz/)](images/Wickham_RDataScience.jpg){fig-align="left" width="154"}](https://r4ds.hadley.nz/)
 
-[![\[Advance R\](http://adv-r.had.co.nz/)](images/Wickham_AdvanceR.png){width="151"}](http://adv-r.had.co.nz/)
+[![\[\[Advance R\](http://adv-r.had.co.nz/)\](http://adv-r.had.co.nz/)](images/Wickham_AdvanceR.png){width="151"}](http://adv-r.had.co.nz/)
 
 # Objetivos día 1
 
@@ -132,11 +132,13 @@ Usamos mucha bibliografía distinta para realizar este curso, pero os recomendam
 
 ### 🧩 *Ejercicio ¿Estáis de acuerdo con las siguientes afirmaciones?*
 
-¿Podéis en parejas encontrar aspectos por lo que estéis de acuerdo o en desacuerdo con cadaafirmación? ¿por qué crees que es espacialmente importante usar R (u otro lenguaje de programación) en ciencia?
+¿Podéis en parejas encontrar aspectos por lo que estéis de acuerdo o en desacuerdo con cada afirmación?
 
-> R es un lenguaje de programación para el análisis estadístico.
+¿por qué crees que es espacialmente importante usar R (u otro lenguaje de programación) en ciencia?
 
-Cumple con los siguientes aspectos:
+> *R es un lenguaje de programación para el análisis estadístico.*
+
+R cumple con los siguientes aspectos:
 
 -   Código libre (gratuito)
 
@@ -150,9 +152,27 @@ Cumple con los siguientes aspectos:
 
 -   Por y para la comunidad
 
+¿Cómo debe ser la Ciencia?
+
+-   La ciencia debe ser gratuita
+
+-   La ciencia debe ser en código abierto
+
+-   La ciencia debe ser colaborativa.
+
+-   La ciencia debe ser replicable
+
 > RStudio es lo mismo que R
 
-🎯 **RStudio**: entorno de desarrollo integrado para programar en R (IDE: Integrated Development Environemnt). Tiene cuatro zonas diferenciadas: el editor de código, la consola (donde se ejecuta el código), el navegador del espacio de trabajo (con el entorno –*environment-* y el historial de comandos) y el mix de abajo a la derecha (Archivos, Gráficos, Paquetes, Ayuda).
+🎯 **RStudio**: entorno de desarrollo integrado para programar en R (*IDE: Integrated Development Environemnt*). Tiene cuatro zonas diferenciadas:
+
+-   el editor de código (scripts abiertos y ventana de código),
+
+-   el navegador del espacio de trabajo (con el entorno –*environment-* y el historial de comandos)
+
+-   la consola (donde se ejecuta el código),
+
+-   el mix de abajo a la derecha (Archivos, Gráficos, Paquetes, Ayuda).
 
 ![](images/Rstudio_entorno.png)
 
@@ -208,46 +228,38 @@ Los **paquetes o librerias** contienen funciones reutilizables, documentación s
 >
 > — John Chambers ([Advanced R](https://adv-r.hadley.nz/index.html))
 
+🎯 **CRAN**: the Comprehensive R Archive Network.
+
 ## Consejos para la gestión de datos y programación
 
-### Trabaja siempre por proyectos
+Puedes ver y ahondar en los consejos de programación en [ESTE](https://revistaecosistemas.net/index.php/ecosistemas/article/view/2129/1336) artículo publicado en la revista ECOSISTEMAS.
+
+### Consejo 1: Trabaja siempre por proyectos e instala los paquetes necesarios
 
 El directorio de trabajo es la carpeta de nuestro ordenador donde estamos trabajando. El script es el archivo básico que almacena código de R de nuestra sesión de trabajo.
-
-*¡En este curso debes usar las TECLAS RÁPIDAS para programar!*
 
 ``` r
 getwd() # saber directorio de trabajo 
 setwd("C:/Users/uah/OneDrive - Universidad de Alcala/GitHub_Projects/ciencia_datos_uah") # ojo con la ruta / o \\
 ```
 
-ℹ️ **Información importante**
-
-Cuando ejecutes un comando en RStudio, recuerda que el resultado aparece inmediatamente en la consola.
+ℹ️ **Información importante:** Cuando ejecutes un comando en RStudio, recuerda que el resultado aparece inmediatamente en la consola.
 
 No es recomendable establecer el directorio de trabajo manualmente porque el trabajo deja de ser reproducible. Es mejor crear desde el principio un **proyecto en R** ligado a un directorio relativo que contenga todos los datos de entrada, los scripts y los resultados del script. Al abrir el proyecto, se sincroniza con pestaña Files.
 
 💡Para crear un proyecto: Archivo \> Nuevo proyecto.
 
+Es muy importante ENTENDER las ventajas de trabajar por proyectos, [aquí](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects) podéis ver más información.
+
+Cuando trabajes en R revisa la **configuración del código** en optiones globales. En el "código" las secciones de "1.3.1 Edición, 1.3.2 Visualización, 1.3.3 Guardado, 1.3.4 Autocompletado , y 1.3.5 Diagnósticos" pueden ser relevantes.
+
+Idealmente **todos los archivos de trabajo** deben estar en la misma carpeta dividiendo datos, analisis, resultados, etc. (aunque el jueves veremos algunas excepciones). Los datos con los que trabajamos deben estar adecuadamente documentados (metadatos, con una descripción de variables y unidades, autoría, etc.) y debemos conocer las relaciones entre las tablas con las que trabajamos (bases de datos relacionales).
+
 ### 🧩 *Ejercicio*
 
-Crea un proyecto para el Curso: **proyecto_doctorado_UAH_R** y un proyecto del cuaderno de clase **cuaderno_doctorado_UAH_R** Una vez creado genera una carpeta de "scripts" y una de "resultados". Revisa en tu panel de Rstudio a la derecha, abajo, que archivos tienes. ¿Cómo has nombrado tu archivo de trabajo actual? ¡Revisa y cambia el nombre al final de la sesión!
+Crea un proyecto para el Curso: **proyecto_doctorado_UAH_R** y un proyecto del cuaderno de clase **cuaderno_doctorado_UAH_R.** Una vez creado genera una carpeta de "scripts" y una de "resultados". Revisa en tu panel de Rstudio a la derecha, abajo, que archivos tienes. ¿Cómo has nombrado tu archivo de trabajo actual? ¡Revisa y cambia el nombre al final de la sesión!
 
 Normalmente, para trabajar adecuadamente debemos organizar las carpetas y los nombres de los archivos con los que trabajamos ¿Cómo lo hacéis habitualmente?
-
-Además de un archivo ".README" que explique la organización del trabajo, podéis especificar archivos de entrada, salida, scripts o procesos.
-
-### Usa teclas rápidas y comenta tu código
-
-Utiliza comentarios para guiar al lector con `#`, acordarte por qué hiciste un determinado código, o ayudar a otra persona a entender tu código sin necesitar que tu se lo expliques (o a ti mismo dentro de un tiempo...) ¡un código buen comentado te ahorrará mucho tiempo!
-
-💡Para ejecutar una línea de código usa el comando: *Ctrl + Enter (Ctrl + R)*
-
-*¡No tienes que seleccionar con el ratón la línea de ejecutar y darle a "Run"! con las techas de más arriba e incluso shift te ahorrara tiempo!*
-
-### Aprende a pedir ayuda, conoce las funciones y argumentos
-
-Dentro de los paquetes puedes pedir ayuda de multiples maneras.
 
 ``` r
 # install.packages("tidyverse", dep = T) # dep = T significa instalar dependencias
@@ -257,6 +269,60 @@ library(tidyverse)
 install.packages(c("swirl", "swirlify"))
 library(swirlify)
 ```
+
+Además de un archivo ".README" que explique la organización del trabajo, podéis especificar archivos de entrada, salida, scripts o procesos. Todo análisis depende de un conjunto de paquetes que conviene documentar consistentemente, y permite tener todo organizado.
+
+![](images/readme_proyectos_RodriguezSanchez et al.jpg)
+
+[ESTE](https://revistaecosistemas.net/index.php/ecosistemas/article/view/2129/1336) artículo publicado en la revista ECOSISTEMAS.
+
+### Consejo 2: Usa teclas rápidas y comenta tu código
+
+*¡En este curso debes usar las TECLAS RÁPIDAS para programar!*
+
+Utiliza **comentarios** para guiar al lector con `#`, acordarte por qué hiciste un determinado código, o ayudar a otra persona a entender tu código sin necesitar que tu se lo expliques (o a ti mismo dentro de un tiempo...) ¡un código buen comentado te ahorrará mucho tiempo! Además, te aconsejamos usar un **código modular**, partiendo un script en varios pequeños o escribiendo funciones con un cometido específico (evitando repeticiones de código).
+
+💡 Para ejecutar una línea de código usa el comando: *Ctrl + Enter (Ctrl + R)*
+
+*¡No tienes que seleccionar con el ratón la línea de ejecutar y darle a "Run"! con las techas de más arriba e incluso shift te ahorrara tiempo!*
+
++-----------------------------+------------------------------------------------------------------------------------------+
+| Atajo                       | Efecto                                                                                   |
++=============================+==========================================================================================+
+| Ctrl + Z                    | Deshacer                                                                                 |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Shift + Z            | Rehacer (no es la convención habitual)                                                   |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + O                    | Abrir archivo                                                                            |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + A                    | Seleccionar todo                                                                         |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + S                    | Guardar archivo                                                                          |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + F                    | Buscar en el archivo actual                                                              |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Shift + F            | Buscar en varios archivos                                                                |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + W                    | Cerrar pestaña                                                                           |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Tab                  | Ir a la siguiente pestaña                                                                |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Q                    | Salir de RStudio                                                                         |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Tab                         | Indentar / Autocompletado                                                                |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Shift + Tab                 | Quitar indentación                                                                       |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Shift + F10          | Reiniciar la sesión de R (¡conviene hacerlo a menudo!)                                   |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + Shift + H            | Elegir directorio de trabajo (no necesario si trabajas en un proyecto de R 😉)           |
++-----------------------------+------------------------------------------------------------------------------------------+
+| Ctrl + F7                   | Añadir una nueva columna de código (se elimina cerrando todas sus pestañas con Ctrl + W) |
++-----------------------------+------------------------------------------------------------------------------------------+
+
+### Consejo 3: Aprende a pedir ayuda, conoce las funciones y argumentos
+
+Dentro de los paquetes puedes pedir ayuda de multiples maneras.
 
 ### 🧩 *Ejercicio*
 
@@ -270,13 +336,15 @@ library(swirlify)
 ?select
 ```
 
-### Mantén el código reproducible
+En [este](https://www.revistaecosistemas.net/index.php/ecosistemas/article/view/1880/1242)trabajo puedes leer "por qué escribir funciones en R", y la respuesta es sencilla: proque todo se basa en funciones en R. Cuando trabajes con una función debes comprender sus argumentos (elementros de entrada de la función), el funcionamiento (qué hace la función) y la salida.
+
+### Consejo 4: Mantén el código reproducible
 
 ![[The Reproducibility process](https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html#rr-overview-definitions). [The Turing Way Community (2025)](https://doi.org/10.5281/ZENODO.3233853).](images/evolution-openscien.png)
 
 ### 🧩 *Ejercicio*
 
-Aprende sobre reproducibilidad, ya que es clave y fundamental en ciencia. Lee el [siguiente](https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/) enlace y discute
+Aprende sobre reproducibilidad, ya que es clave y fundamental en ciencia. Lee el [siguiente](https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/) enlace (qué es la reproducibilidad y por qué debe usarse) y discute
 
 -   ¿es realmente todo lo que haces reproducible? ¿haces algún aspecto del proceso de publicación reproducible?
 
@@ -286,11 +354,19 @@ Aprende sobre reproducibilidad, ya que es clave y fundamental en ciencia. Lee el
 
 **Discutelo en parejas.**
 
+¿es todo lo que habéis realmente reproducible?
+
+![](images/flujo_trabajo.jpg)
+
+![](images/reproducibility_spectrum.jpg)
+
 Aquí os dejamos algunas de las ventajas de la reproducibildiad y porqué debe implementarse en los equipos de trabajo.
 
 ![Ventajas de la reproducibilidad. The Turing Way Community (2025).](images/reasons-reproducibil.png)
 
-### Nombra objetos y archivos adecuadamente
+Ver [este](https://www.youtube.com/watch?v=s3JldKoA0zw)video de EcoInformática.
+
+### Consejo 5: Nombra objetos y archivos adecuadamente
 
 ![](images/Importance-style-guide.png)
 
@@ -310,7 +386,9 @@ class(x) # función para ver de que clase es nuestro objeto
 
 📝R es sensible a las mayúsculas. Mejor no usarlas.
 
-📝Los nombre de los objetos deben ser descriptivos y no deben contener símbolos especiales. Es mejor usar nombres largos pero descriptivos, que cortos o sin sentido. Excepción: para archivos temporales yo generalmente uso "kk" que me recuerda a recordar que este archivo es temporal y prescindible...
+📝Los nombre de los objetos deben ser **descriptivos** y no deben contener símbolos especiales. Es mejor usar nombres largos pero descriptivos, que cortos o sin sentido.
+
+💡 Excepción: para archivos temporales yo generalmente uso "kk" que me recuerda a recordar que este archivo es temporal y prescindible...
 
 ![](images/FINALdoc.png)
 
@@ -324,23 +402,23 @@ class(x) # función para ver de que clase es nuestro objeto
 
 📝Usa nombre memorables y correctos para tus variables:
 
-✅ Siempre empiezan por letras (en el caso de objetos)
+-   ✅ Siempre empiezan por letras (en el caso de objetos)
 
-✅ Solo pueden contener letras, numeros, "\_" y ".".
+-   ✅ Solo pueden contener letras, numeros, "\_" y ".".
 
-✅ Los nombres deben ser legibles por máquinas: No uses espacios, caracteres especiales o palabras reservadas.: (`^`, `!`, `$`, `@`, `+`, `-`, `/`, `*`).
+-   ✅ Los nombres deben ser legibles por máquinas: No uses espacios, caracteres especiales o palabras reservadas.: (`^`, `!`, `$`, `@`, `+`, `-`, `/`, `*`).
 
-✅ Usa minúsculas separadas por "\_"
+-   ✅ Usa minúsculas separadas por "\_"
 
-✅ Los nombres deben ser legibles para humanos: describen lo que continene. Para variables usa nombres y para funciones verbos.
+-   ✅ Los nombres deben ser legibles para humanos: describen lo que continene. Para variables usa nombres y para funciones verbos.
 
-✅ Evita el uso de nombres comunes Object names must start with a letter and can only contain letters, numbers, \_, and ..
+-   ✅ Evita el uso de nombres comunes Object names must start with a letter and can only contain letters, numbers, \_, and ..
 
 💡 Numerar los scripts e incluso las salidas (tablas, figuras, etc.) ayuda a simplificar el orden y trabajar comodamente mediante proyectos.
 
 ### 🧩 *Ejercicio*
 
-Lee la guía de estilo de tidyverse (con la que trabajaremos en el curso):
+Lee la **guía de estilo** de tidyverse (con la que trabajaremos en el curso):
 
 -   Sección 2.2.: <https://r4ds.hadley.nz/workflow-style.html>
 
@@ -352,13 +430,33 @@ Revisa cómo nombras a las tablas y las variables con las que trabajas:
 
 -   ¿trabajas en proyectos y tienes todo ordenado adecuadamente?
 
--   
-
 ## Tipos de objetos, exploración básica de datos e indexación con R base vs. Tidyverse
 
 En R, el código que tecleas se llama **comando**. La interfaz de Rstudio es sencilla, cuando en el ***prompt*** de la consola de RStudio ejecutas una línea de comando da instrucciones al ordenador para hacer la operación escrita. Puedes usar R como una calculadora, usando operadores matemáticos, relacionales o lógicos, que son:
 
 ![](images/Operadores.png)
+
+```{r aritmetica}
+
+5 + 6
+5 * 6
+60 / 4
+5 + 4 - 2
+5 + 4 * 5
+(5 + 4) * 5
+log(10) # logaritmo neperiano 
+log10(10) 
+exp(1) 
+3 ^ 2 
+3 ^ 2 / 3 
+sqrt(16) 
+pi 
+sin(pi / 2) # en radianes 
+cos(pi / 2)
+tan(pi / 2)
+asin(1) * 2
+acos(1)
+```
 
 ### Tipos de objetos
 
@@ -370,19 +468,126 @@ Si tu dato es numerico, puede ser discreto (int) o continue (num)
 
 ![](images/continuous_discrete_allinson) [Imagen de Allson Horst](https://allisonhorst.com/everything-else)
 
-🧠 *¿Existe algún otro tipo de dato númerico?*
+🧠 *¿Existe algún otro tipo de dato númerico? Busca información sobre otro tipo de dato.*
 
 ⚠️ *¿son todos los tipos de datos categóricos iguales?*
 
 ![](images/nominal_ordinal_Allinson) [Imagen de Allson Horst](https://allisonhorst.com/everything-else)
 
-usar funciones básicas como `mean()`, `min()`, `max()`.
+Sobre los datos numéricos, o grupos sobre factor se pueden usar funciones básicas como `mean()`, `min()`, `max()`, además de poder realizar las operaciones básicas con vectores.
+
+```{r vectores}
+
+vector1 <- c(2.4, 4, 6, 3.2) # si quiero asignar mas de un valor uso "c" (concatenar) 
+vector1 
+vector1 * 100 # puedo operar con los vectores 
+log(vector1)
+vector2 <- c(1, 3, 4, 8) # pero también entre vectores 
+vector1 + vector2
+vector3 <- vector1 - vector2 
+vector3
+
+mean(x = vector2) # funciones ya programadas 
+# ?mean # ayuda de funciones
+sd(vector2) 
+length(vector2) # n vector 
+max(vector2) 
+min(vector2)
+
+# funciones que facilitan la creación de vectores
+rep(x = 1, times = 4) 
+1:10 # dos puntos de a a b 
+seq(from = 1, to = 20, by = 2) 
+c(vector1, vector2) 
+c(vector1, rep(0, 3), vector1)
+```
+
+Para crear vectores se pueden usar otras estrategias como las que tenéis recogidas a continuación.
+
+```{r mas_vectores}
+
+rep(x = 1, times = 4) 
+rep(1:4, times = 2) 
+rep(1:4, each = 2) 
+rep(1:4, times = 1:4)
+rep(x = c("gato", "perro", "pez"), times = c(5, 3, 1))
+rnorm(10, mean = 4, sd = 2.2)
+```
 
 🎯 Las **matrices** son datos bidimensionales que contienen datos del mismo tipo.
 
+```{r matrices}
+
+mivector <- sample(x = 1:10, size = 1000, replace = T) # sample: función para crear numeros aleatorios 
+
+mimatriz <- matrix(mivector, nrow = 100, ncol = 10) # matrix: función para convertir vector en matriz. matrix va a rellenar por columnas por defecto
+
+str(mivector) # mostrar estructura datos 
+str(mimatriz)
+
+summary(mivector) # resumen de los datos 
+summary(mimatriz)
+
+a <- c(1, 2, 3, 4) 
+b <- c(1, 2, 3, 4) 
+d <- c("hi", "hola", "hola", "hi")
+
+mimatriz_num <- matrix(c(a, b), nrow = 4, ncol = 2) 
+mimatriz_num
+
+mimatriz_car <- matrix(c(a, b, d), nrow = 4, ncol = 3) 
+mimatriz_car
+
+summary(mimatriz_num) 
+summary(mimatriz_car)
+```
+
 🎯 Una **lista** puede contener objetos heterogéneos: vectores, matrices, data.frames, modelos, etc.
 
+```{r listas}
+
+a <- c(1, 2, 3, 4) 
+b <- c(1, 2, 3, 4) 
+d <- c("hi", "hola", "hola", "hi")
+e <- c(TRUE, TRUE, TRUE, FALSE, FALSE)
+
+milista <- list(a, b, d, e)
+milista 
+
+str(milista) 
+summary(milista)
+
+milista2 <- list(a, b, d, e, mimatriz)
+str(milista2)
+```
+
 🎯 Un **data.frame** es una tabla (2D) donde cada columna puede ser de distinto tipo. Es la estructura más usada para análisis y la que normalmente acompaña a una capa espacial (atributos).
+
+```{r dataframes}
+
+midataframe <- data.frame(
+  mivariable1 = a, 
+  mivariable2 = b, 
+  mivariable3 = d)
+
+View(midataframe)
+
+# un tibble es un data.frame de tidyverse, con características mejoradas
+
+mitibble <- tibble(
+  mivariable1 = a, 
+  mivariable2 = b, 
+  mivariable3 = d)
+
+str(mitibble) 
+str(midataframe) 
+
+summary(mitibble) 
+summary(midataframe) 
+
+mitibble
+midataframe
+```
 
 ### 🧩 *Ejercicio*
 
@@ -418,17 +623,29 @@ Realiza las estadísticas básicas de los datos de **penguins** con summary. Sel
 
 ### Indexación y exploración básica de datos con Rbase y tidyverse. Uso de la pipa
 
-`Rbase` es el paquete que viene en R por defecto, mientras que `tidyverse` es un conjunto de paquetes de R para ciencia de datos. Todos los paquetes tienen una misma estructura (filosofía, gramática y estructura de datos).
+`Rbase` es el paquete que viene en R por defecto, mientras que `tidyverse` es un conjunto de paquetes de R para ciencia de datos. El núcleo contiene ocho paquetes principales (`readr`, `tibble`, `dplyr`, `tidyr`, `stringr`, `forcats`, `ggplot2` y `purrr`), que comparten el diseño, la gramática y la estructura de los datos que necesitan. En el centro de la filosofía de tidyverse se encuentra la noción de “datos ordenados” (*tidy data*). Hadley Wickham (principal desarrollador de *tidyverse*) los define como “fáciles de manipular, modelar y visualizar, y que tienen una estructura específica: cada variable es una columna, cada observación es una fila y cada valor es una celda”. *Tidyverse* puede considerarse un dialecto del lenguaje de programación R que discretiza funciones amplias de R base (p. ej. `merge`) en diversas funciones específicas (p. ej. `left_join`, `right_join`).
 
 ![<https://tidyverse.org/>](images/tidyverse_packages.png)
 
-Se basa en los siguientes principios:
+Se basa en los siguientes [principios básicos](https://design.tidyverse.org/unifying.html):
 
 -   **Centrado en humanos**: tiene un diseño intuitivo que facilita su uso y accesibilidad para el usuario
 
+> Los programas deben escribirse para que las personas los lean, y solo de manera incidental para que las máquinas los ejecuten.
+>
+> — Hal Abelson
+
 -   **Consistencia**: todos los paquetes están diseñados para trabajar con datos ordenados (“Tidy Data”), y las funciones de los paquetes tienen una nomenclatura común y congruente. Esto permite que un usuario que aprende sobre una función o paquete pueda aplicar ese conocimiento a otros, facilitando así la tarea de recordar y deducir código de manera más sencilla.
 
+> Un sistema debe construirse con un conjunto mínimo de partes inmutables; esas partes deben ser lo más generales posible; y todas las partes del sistema deben mantenerse dentro de un marco uniforme.
+>
+> — Daniel H. H. Ingalls
+
 -   **Componiblidad**: permite al usuario resolver problemas complejos dividiéndolos en pequeñas partes, que pueden combinarse utilizando el operador “pipe” (`%>%` or `|>)`.
+
+> Por muy complejas y pulidas que sean las operaciones individuales, a menudo es la calidad del “pegamento” lo que determina de forma más directa el poder del sistema.
+>
+> — Hal Abelson
 
 -   **Inclusividad**: no se trata sólo de la colección de paquetes, sino también la comunidad de personas que los usan, basándose en la ayuda entre usuarios y generando un ambiente inclusivo.
 
@@ -531,6 +748,8 @@ select_penguins_filtrado <- penguins_rbase1[penguins_rbase1$sex == "male", ]
 
 ### Con tidyverse (`filter()`)
 
+[Filter](https://dplyr.tidyverse.org/reference/filter.html): filtrar filas utilizando condiciones
+
 ```{r}
 select_penguins_filtrado <- filter(penguins_rbase1, sex == "male")
 
@@ -552,7 +771,11 @@ penguins_male_body_kg <- penguins |>
   arrange(body_mass_kg) 
 ```
 
-👉 Ventajas: más intuitivo, cada paso es claro y en “lenguaje natural”. 👉 Inconvenientes: requiere instalar/cargar dplyr.
+[Arrange](https://dplyr.tidyverse.org/reference/arrange.html): ordenar filas por los valores de una o más variables (columnas)
+
+👉 Ventajas: más intuitivo, cada paso es claro y en “lenguaje natural”.
+
+👉 Inconvenientes: requiere instalar/cargar dplyr.
 
 ### Con Rbase (piping)
 
@@ -621,3 +844,31 @@ Piensa en el modelo de ciencia de datos que hemos visto al principio del día:
     -   Revisa el tipo de datos tipo caracter que que significan, ¿son de tipo nominal, ordinal o binario?¿puedes comprobar los niveles de las variables seleccionadas?
 
 -   Revisa que tipo de gráfico te gustaría visualizar al terminar el curso. Mañana veréis las operaciones que podéis / tenéis que realizar para ello, y el miércoles cómo realizar la visualización, pero es conveneinte que tengáis una idea de QUÉ QUEREIS HACER, y es muy importante saberlo ANTES de programar.
+
+### ¿Quién responde a mis dudas?
+
+-   [RStudio User Guide](https://docs.posit.co/ide/user)
+
+-   [Cheatsheet de buenas prácticas en R](https://rstudio.github.io/cheatsheets/R-best-practice.pdf)
+
+-   [Posit Recipes](https://posit.cloud/learn/recipes) y en general [Posit Resources](https://posit.co/resources)
+
+-   Ayuda \> Cheat Sheets
+
+-   [Stack Overflow: plataforma de preguntas y respuestas para programadores profesionales y aficionados](https://stackoverflow.com)
+
+-   [Comunidad de RStudio/Posit](RStudio%20community)
+
+-   [GitHub copilot](https://github.com/features/copilot)
+
+-   [ChatGPT](https://chatgpt.com) y similares
+
+-   Slack del [Grupo de Ecoinformática de la AEET](https://ecoinfaeet.github.io/website/index.html)
+
+-   [Discusiones del repositorio del curso de GitHub](https://github.com/DatSciR/ciencia_datos/discussions/2)
+
+-   Para dudas relacionadas con errores de paquetes: repositorio de GitHub del paquete en cuestión (p. ej. <https://github.com/tidyverse/dplyr/issues>)
+
+-   Pedir ayuda utilizando ejemplos reproducibles con {[reprex](#0)}.
+
+![Por Allison Horst. <https://allisonhorst.com/everything-else>](images/rhelpers.png){width="538"}

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Verónica Cruz Alonso, Marina Rodes Blanco, Julián Tijerin Triviño y Paloma Ruiz Benito">
-<meta name="dcterms.date" content="2026-08-01">
+<meta name="dcterms.date" content="2026-12-01">
 
 <title>Día 4 - Manejo y visualización de datos en R</title>
 <style>
@@ -92,14 +92,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ejercicio-ves-alguna-función-especifica-en-el-chunk-más-arriba" id="toc-ejercicio-ves-alguna-función-especifica-en-el-chunk-más-arriba" class="nav-link" data-scroll-target="#ejercicio-ves-alguna-función-especifica-en-el-chunk-más-arriba"><span class="header-section-number">2.0.2</span> 🧩 <em>Ejercicio ¿Ves alguna función especifica en el “chunk” más arriba?</em></a></li>
   <li><a href="#consejos-para-la-gestión-de-datos-y-programación" id="toc-consejos-para-la-gestión-de-datos-y-programación" class="nav-link" data-scroll-target="#consejos-para-la-gestión-de-datos-y-programación"><span class="header-section-number">2.1</span> Consejos para la gestión de datos y programación</a>
   <ul>
-  <li><a href="#trabaja-siempre-por-proyectos" id="toc-trabaja-siempre-por-proyectos" class="nav-link" data-scroll-target="#trabaja-siempre-por-proyectos"><span class="header-section-number">2.1.1</span> Trabaja siempre por proyectos</a></li>
+  <li><a href="#consejo-1-trabaja-siempre-por-proyectos-e-instala-los-paquetes-necesarios" id="toc-consejo-1-trabaja-siempre-por-proyectos-e-instala-los-paquetes-necesarios" class="nav-link" data-scroll-target="#consejo-1-trabaja-siempre-por-proyectos-e-instala-los-paquetes-necesarios"><span class="header-section-number">2.1.1</span> Consejo 1: Trabaja siempre por proyectos e instala los paquetes necesarios</a></li>
   <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio"><span class="header-section-number">2.1.2</span> 🧩 <em>Ejercicio</em></a></li>
-  <li><a href="#usa-teclas-rápidas-y-comenta-tu-código" id="toc-usa-teclas-rápidas-y-comenta-tu-código" class="nav-link" data-scroll-target="#usa-teclas-rápidas-y-comenta-tu-código"><span class="header-section-number">2.1.3</span> Usa teclas rápidas y comenta tu código</a></li>
-  <li><a href="#aprende-a-pedir-ayuda-conoce-las-funciones-y-argumentos" id="toc-aprende-a-pedir-ayuda-conoce-las-funciones-y-argumentos" class="nav-link" data-scroll-target="#aprende-a-pedir-ayuda-conoce-las-funciones-y-argumentos"><span class="header-section-number">2.1.4</span> Aprende a pedir ayuda, conoce las funciones y argumentos</a></li>
+  <li><a href="#consejo-2-usa-teclas-rápidas-y-comenta-tu-código" id="toc-consejo-2-usa-teclas-rápidas-y-comenta-tu-código" class="nav-link" data-scroll-target="#consejo-2-usa-teclas-rápidas-y-comenta-tu-código"><span class="header-section-number">2.1.3</span> Consejo 2: Usa teclas rápidas y comenta tu código</a></li>
+  <li><a href="#consejo-3-aprende-a-pedir-ayuda-conoce-las-funciones-y-argumentos" id="toc-consejo-3-aprende-a-pedir-ayuda-conoce-las-funciones-y-argumentos" class="nav-link" data-scroll-target="#consejo-3-aprende-a-pedir-ayuda-conoce-las-funciones-y-argumentos"><span class="header-section-number">2.1.4</span> Consejo 3: Aprende a pedir ayuda, conoce las funciones y argumentos</a></li>
   <li><a href="#ejercicio-1" id="toc-ejercicio-1" class="nav-link" data-scroll-target="#ejercicio-1"><span class="header-section-number">2.1.5</span> 🧩 <em>Ejercicio</em></a></li>
-  <li><a href="#mantén-el-código-reproducible" id="toc-mantén-el-código-reproducible" class="nav-link" data-scroll-target="#mantén-el-código-reproducible"><span class="header-section-number">2.1.6</span> Mantén el código reproducible</a></li>
+  <li><a href="#consejo-4-mantén-el-código-reproducible" id="toc-consejo-4-mantén-el-código-reproducible" class="nav-link" data-scroll-target="#consejo-4-mantén-el-código-reproducible"><span class="header-section-number">2.1.6</span> Consejo 4: Mantén el código reproducible</a></li>
   <li><a href="#ejercicio-2" id="toc-ejercicio-2" class="nav-link" data-scroll-target="#ejercicio-2"><span class="header-section-number">2.1.7</span> 🧩 <em>Ejercicio</em></a></li>
-  <li><a href="#nombra-objetos-y-archivos-adecuadamente" id="toc-nombra-objetos-y-archivos-adecuadamente" class="nav-link" data-scroll-target="#nombra-objetos-y-archivos-adecuadamente"><span class="header-section-number">2.1.8</span> Nombra objetos y archivos adecuadamente</a></li>
+  <li><a href="#consejo-5-nombra-objetos-y-archivos-adecuadamente" id="toc-consejo-5-nombra-objetos-y-archivos-adecuadamente" class="nav-link" data-scroll-target="#consejo-5-nombra-objetos-y-archivos-adecuadamente"><span class="header-section-number">2.1.8</span> Consejo 5: Nombra objetos y archivos adecuadamente</a></li>
   <li><a href="#nombrar-objetos-y-archivos" id="toc-nombrar-objetos-y-archivos" class="nav-link" data-scroll-target="#nombrar-objetos-y-archivos"><span class="header-section-number">2.1.9</span> Nombrar objetos y archivos</a></li>
   <li><a href="#ejercicio-3" id="toc-ejercicio-3" class="nav-link" data-scroll-target="#ejercicio-3"><span class="header-section-number">2.1.10</span> 🧩 <em>Ejercicio</em></a></li>
   <li><a href="#ejercicio-4" id="toc-ejercicio-4" class="nav-link" data-scroll-target="#ejercicio-4"><span class="header-section-number">2.1.11</span> 🧩 <em>Ejercicio</em></a></li>
@@ -136,6 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ejercicio-9" id="toc-ejercicio-9" class="nav-link" data-scroll-target="#ejercicio-9"><span class="header-section-number">2.2.12.2</span> 🧩 Ejercicio</a></li>
   <li><a href="#trabajos-con-vuestros-datos-y-proyecto" id="toc-trabajos-con-vuestros-datos-y-proyecto" class="nav-link" data-scroll-target="#trabajos-con-vuestros-datos-y-proyecto"><span class="header-section-number">2.2.12.3</span> 🧩 Trabajos con vuestros datos y proyecto</a></li>
   </ul></li>
+  <li><a href="#quién-responde-a-mis-dudas" id="toc-quién-responde-a-mis-dudas" class="nav-link" data-scroll-target="#quién-responde-a-mis-dudas"><span class="header-section-number">2.2.13</span> ¿Quién responde a mis dudas?</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -163,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">08/01/2026</p>
+      <p class="date">12/01/2026</p>
     </div>
   </div>
   
@@ -178,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code></code></pre>
 <p><img src="images/clipboard-77513458.png" class="img-fluid"></p>
 <p>Paloma Ruiz Benito (paloma.ruizb@uah), Verónica Cruz-Alonso (veronica.cruza@uah), Marina Rodes Blanco (marina.rodesb@uah.es) y Julián Tijerin Triviño (julian.tijerint@uah.es) somos investigadores de la Universidad de Alcalá, en el grupo de Ecología y Restauración Forestal (<a href="https://portalcientifico.uah.es/grupos/9603/detalle" class="uri">https://portalcientifico.uah.es/grupos/9603/detalle</a>) y en el Grupo de Investigación en Teledetección Ambiental (<a href="https://geogra.uah.es/gita/" class="uri">https://geogra.uah.es/gita/</a>).</p>
-<p>Junto con Julen Astigarraga Urcelay (colaborador y amigo), pubilcamos los materiales de los curso que impartimos en DatSciR.</p>
+<p>Junto con Julen Astigarraga Urcelay (colaborador y amigo), publicamos los materiales de los curso que impartimos en DatSciR.</p>
 <p>Y vosotros <strong>¿quiénes sois?</strong></p>
 <p>LINK ENCUESTA: <a href="https://forms.gle/zmqTKWiwM3qVtJi79" class="uri">https://forms.gle/zmqTKWiwM3qVtJi79</a></p>
 <p>Ahora os toca presentaros a la clase, para que este curso también sirva para conocernos todos un poco mejor.</p>
@@ -187,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Nombre y apellidos,</p></li>
 <li><p>el área y departamento en el que trabajáis,</p></li>
 <li><p>sobre qué es vuestra tesis</p></li>
-<li><p>cómo usáis o planeaís usar R</p></li>
+<li><p>cómo usáis o planeás usar R</p></li>
 <li><p>qué esperáis del curso</p></li>
 <li><p>cualquier otra cosa relevante….</p></li>
 </ul>
@@ -213,8 +214,8 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <h2 data-number="0.2" class="anchored" data-anchor-id="estructura-del-curso"><span class="header-section-number">0.2</span> Estructura del curso</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 24%">
-<col style="width: 75%">
+<col style="width: 17%">
+<col style="width: 82%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -227,13 +228,13 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <td><p><strong>Día 1.</strong> Introducción</p>
 <p>¿Qué necesitamos?</p></td>
 <td><p>Introducción a la programación en R</p>
-<p>Conceptos básicos, tipos de datos, consejos básicos de programación y definición de objetivos</p></td>
+<p>Conceptos básicos, tipos de datos, consejos básicos de programación, introducción a tidyverse (filtrar, seleccionar) y definición de objetivos</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Día 2.</strong> Organizando datos</p>
 <p>¿Cómo lo organizamos?</p></td>
 <td><p>Tidyverse</p>
-<p>Importar, filtrar, seleccionar, transformar, unir y exportar datos</p>
+<p>Importar, transformar, unir y exportar datos</p>
 <p>Estructuras de programación</p></td>
 </tr>
 <tr class="odd">
@@ -266,7 +267,7 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 </div>
 <p>❤️💜❤️💜 En el curso intentaremos dedicar al menos una hora al día a vuestros trabajos, por lo que debéis hacer grupos de dos-tres personas para programar. ❤️💜❤️💜</p>
 <p><strong>Antes de empezar. Estamos de acuerdo con el código ético y hacemos un ejemplo de este curso</strong></p>
-<p>Lee: <a href="https://www.contributor-covenant.org/version/2/0/code_of_conduct/" class="uri">https://www.contributor-covenant.org/version/2/0/code_of_conduct/</a> e información sacada de <a href="https://datasciencebox.org/" class="uri">https://datasciencebox.org/</a></p>
+<p>Lee: <a href="https://www.contributor-covenant.org/adopt/" class="uri">https://www.contributor-covenant.org/adopt/</a> e información sacada de <a href="https://datasciencebox.org/" class="uri">https://datasciencebox.org/</a></p>
 <p><img src="images/data-science-box.png" class="img-fluid"></p>
 <p>Usamos mucha bibliografía distinta para realizar este curso, pero os recomendamos los siguientes recursos:</p>
 <div class="quarto-figure quarto-figure-left">
@@ -276,13 +277,13 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <p><a href="https://r4ds.hadley.nz/"><img src="images/Wickham_RDataScience.jpg" class="img-fluid quarto-figure quarto-figure-left figure-img" width="154"></a></p>
 </figure>
 </div>
-<figcaption>[R for data Science](https://r4ds.hadley.nz/)</figcaption>
+<figcaption>[[R for data Science](https://r4ds.hadley.nz/)] https://r4ds.hadley.nz/)</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="http://adv-r.had.co.nz/"><img src="images/Wickham_AdvanceR.png" class="img-fluid figure-img" width="151"></a></p>
-<figcaption>[Advance R](http://adv-r.had.co.nz/)</figcaption>
+<figcaption>[[Advance R](http://adv-r.had.co.nz/)](http://adv-r.had.co.nz/)</figcaption>
 </figure>
 </div>
 </section>
@@ -299,11 +300,12 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <p>🎯 <strong>R</strong>: lenguaje de programación dinámico (se interpreta el código en el momento que se ejecuta).</p>
 <section id="ejercicio-estáis-de-acuerdo-con-las-siguientes-afirmaciones" class="level3" data-number="2.0.1">
 <h3 data-number="2.0.1" class="anchored" data-anchor-id="ejercicio-estáis-de-acuerdo-con-las-siguientes-afirmaciones"><span class="header-section-number">2.0.1</span> 🧩 <em>Ejercicio ¿Estáis de acuerdo con las siguientes afirmaciones?</em></h3>
-<p>¿Podéis en parejas encontrar aspectos por lo que estéis de acuerdo o en desacuerdo con cadaafirmación? ¿por qué crees que es espacialmente importante usar R (u otro lenguaje de programación) en ciencia?</p>
+<p>¿Podéis en parejas encontrar aspectos por lo que estéis de acuerdo o en desacuerdo con cada afirmación?</p>
+<p>¿por qué crees que es espacialmente importante usar R (u otro lenguaje de programación) en ciencia?</p>
 <blockquote class="blockquote">
-<p>R es un lenguaje de programación para el análisis estadístico.</p>
+<p><em>R es un lenguaje de programación para el análisis estadístico.</em></p>
 </blockquote>
-<p>Cumple con los siguientes aspectos:</p>
+<p>R cumple con los siguientes aspectos:</p>
 <ul>
 <li><p>Código libre (gratuito)</p></li>
 <li><p>Estado del arte</p></li>
@@ -312,10 +314,23 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <li><p>Ejemplos para “casi” cualquier análisis</p></li>
 <li><p>Por y para la comunidad</p></li>
 </ul>
+<p>¿Cómo debe ser la Ciencia?</p>
+<ul>
+<li><p>La ciencia debe ser gratuita</p></li>
+<li><p>La ciencia debe ser en código abierto</p></li>
+<li><p>La ciencia debe ser colaborativa.</p></li>
+<li><p>La ciencia debe ser replicable</p></li>
+</ul>
 <blockquote class="blockquote">
 <p>RStudio es lo mismo que R</p>
 </blockquote>
-<p>🎯 <strong>RStudio</strong>: entorno de desarrollo integrado para programar en R (IDE: Integrated Development Environemnt). Tiene cuatro zonas diferenciadas: el editor de código, la consola (donde se ejecuta el código), el navegador del espacio de trabajo (con el entorno –<em>environment-</em> y el historial de comandos) y el mix de abajo a la derecha (Archivos, Gráficos, Paquetes, Ayuda).</p>
+<p>🎯 <strong>RStudio</strong>: entorno de desarrollo integrado para programar en R (<em>IDE: Integrated Development Environemnt</em>). Tiene cuatro zonas diferenciadas:</p>
+<ul>
+<li><p>el editor de código (scripts abiertos y ventana de código),</p></li>
+<li><p>el navegador del espacio de trabajo (con el entorno –<em>environment-</em> y el historial de comandos)</p></li>
+<li><p>la consola (donde se ejecuta el código),</p></li>
+<li><p>el mix de abajo a la derecha (Archivos, Gráficos, Paquetes, Ayuda).</p></li>
+</ul>
 <p><img src="images/Rstudio_entorno.png" class="img-fluid"></p>
 <p>🎯 <strong>Objetos</strong>: cualquier elemento almacenado con un nombre específico. Pueden ser de muchos tipos: <code>numeric</code>, <code>integer</code>, <code>logical</code>, <code>data.frame</code>, <code>SpatVector</code>, etc.</p>
 <p>El operador “:” genera un grupo de números enteros:</p>
@@ -447,50 +462,131 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <p>- Todo lo que sucede es una llamada a función.</p>
 <p>— John Chambers (<a href="https://adv-r.hadley.nz/index.html">Advanced R</a>)</p>
 </blockquote>
+<p>🎯 <strong>CRAN</strong>: the Comprehensive R Archive Network.</p>
 </section>
 <section id="consejos-para-la-gestión-de-datos-y-programación" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="consejos-para-la-gestión-de-datos-y-programación"><span class="header-section-number">2.1</span> Consejos para la gestión de datos y programación</h2>
-<section id="trabaja-siempre-por-proyectos" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="trabaja-siempre-por-proyectos"><span class="header-section-number">2.1.1</span> Trabaja siempre por proyectos</h3>
+<p>Puedes ver y ahondar en los consejos de programación en <a href="https://revistaecosistemas.net/index.php/ecosistemas/article/view/2129/1336">ESTE</a> artículo publicado en la revista ECOSISTEMAS.</p>
+<section id="consejo-1-trabaja-siempre-por-proyectos-e-instala-los-paquetes-necesarios" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="consejo-1-trabaja-siempre-por-proyectos-e-instala-los-paquetes-necesarios"><span class="header-section-number">2.1.1</span> Consejo 1: Trabaja siempre por proyectos e instala los paquetes necesarios</h3>
 <p>El directorio de trabajo es la carpeta de nuestro ordenador donde estamos trabajando. El script es el archivo básico que almacena código de R de nuestra sesión de trabajo.</p>
-<p><em>¡En este curso debes usar las TECLAS RÁPIDAS para programar!</em></p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># saber directorio de trabajo </span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/uah/OneDrive - Universidad de Alcala/GitHub_Projects/ciencia_datos_uah"</span>) <span class="co"># ojo con la ruta / o \\</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>ℹ️ <strong>Información importante</strong></p>
-<p>Cuando ejecutes un comando en RStudio, recuerda que el resultado aparece inmediatamente en la consola.</p>
+<p>ℹ️ <strong>Información importante:</strong> Cuando ejecutes un comando en RStudio, recuerda que el resultado aparece inmediatamente en la consola.</p>
 <p>No es recomendable establecer el directorio de trabajo manualmente porque el trabajo deja de ser reproducible. Es mejor crear desde el principio un <strong>proyecto en R</strong> ligado a un directorio relativo que contenga todos los datos de entrada, los scripts y los resultados del script. Al abrir el proyecto, se sincroniza con pestaña Files.</p>
 <p>💡Para crear un proyecto: Archivo &gt; Nuevo proyecto.</p>
+<p>Es muy importante ENTENDER las ventajas de trabajar por proyectos, <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects">aquí</a> podéis ver más información.</p>
+<p>Cuando trabajes en R revisa la <strong>configuración del código</strong> en optiones globales. En el “código” las secciones de “1.3.1 Edición, 1.3.2 Visualización, 1.3.3 Guardado, 1.3.4 Autocompletado , y 1.3.5 Diagnósticos” pueden ser relevantes.</p>
+<p>Idealmente <strong>todos los archivos de trabajo</strong> deben estar en la misma carpeta dividiendo datos, analisis, resultados, etc. (aunque el jueves veremos algunas excepciones). Los datos con los que trabajamos deben estar adecuadamente documentados (metadatos, con una descripción de variables y unidades, autoría, etc.) y debemos conocer las relaciones entre las tablas con las que trabajamos (bases de datos relacionales).</p>
 </section>
 <section id="ejercicio" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="ejercicio"><span class="header-section-number">2.1.2</span> 🧩 <em>Ejercicio</em></h3>
-<p>Crea un proyecto para el Curso: <strong>proyecto_doctorado_UAH_R</strong> y un proyecto del cuaderno de clase <strong>cuaderno_doctorado_UAH_R</strong> Una vez creado genera una carpeta de “scripts” y una de “resultados”. Revisa en tu panel de Rstudio a la derecha, abajo, que archivos tienes. ¿Cómo has nombrado tu archivo de trabajo actual? ¡Revisa y cambia el nombre al final de la sesión!</p>
+<p>Crea un proyecto para el Curso: <strong>proyecto_doctorado_UAH_R</strong> y un proyecto del cuaderno de clase <strong>cuaderno_doctorado_UAH_R.</strong> Una vez creado genera una carpeta de “scripts” y una de “resultados”. Revisa en tu panel de Rstudio a la derecha, abajo, que archivos tienes. ¿Cómo has nombrado tu archivo de trabajo actual? ¡Revisa y cambia el nombre al final de la sesión!</p>
 <p>Normalmente, para trabajar adecuadamente debemos organizar las carpetas y los nombres de los archivos con los que trabajamos ¿Cómo lo hacéis habitualmente?</p>
-<p>Además de un archivo “.README” que explique la organización del trabajo, podéis especificar archivos de entrada, salida, scripts o procesos.</p>
-</section>
-<section id="usa-teclas-rápidas-y-comenta-tu-código" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="usa-teclas-rápidas-y-comenta-tu-código"><span class="header-section-number">2.1.3</span> Usa teclas rápidas y comenta tu código</h3>
-<p>Utiliza comentarios para guiar al lector con <code>#</code>, acordarte por qué hiciste un determinado código, o ayudar a otra persona a entender tu código sin necesitar que tu se lo expliques (o a ti mismo dentro de un tiempo…) ¡un código buen comentado te ahorrará mucho tiempo!</p>
-<p>💡Para ejecutar una línea de código usa el comando: <em>Ctrl + Enter (Ctrl + R)</em></p>
-<p><em>¡No tienes que seleccionar con el ratón la línea de ejecutar y darle a “Run”! con las techas de más arriba e incluso shift te ahorrara tiempo!</em></p>
-</section>
-<section id="aprende-a-pedir-ayuda-conoce-las-funciones-y-argumentos" class="level3" data-number="2.1.4">
-<h3 data-number="2.1.4" class="anchored" data-anchor-id="aprende-a-pedir-ayuda-conoce-las-funciones-y-argumentos"><span class="header-section-number">2.1.4</span> Aprende a pedir ayuda, conoce las funciones y argumentos</h3>
-<p>Dentro de los paquetes puedes pedir ayuda de multiples maneras.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse", dep = T) # dep = T significa instalar dependencias</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"swirl"</span>, <span class="st">"swirlify"</span>))</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(swirlify)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Además de un archivo “.README” que explique la organización del trabajo, podéis especificar archivos de entrada, salida, scripts o procesos. Todo análisis depende de un conjunto de paquetes que conviene documentar consistentemente, y permite tener todo organizado.</p>
+<p><img src="images/readme_proyectos_RodriguezSanchez%20et%20al.jpg" class="img-fluid"></p>
+<p><a href="https://revistaecosistemas.net/index.php/ecosistemas/article/view/2129/1336">ESTE</a> artículo publicado en la revista ECOSISTEMAS.</p>
+</section>
+<section id="consejo-2-usa-teclas-rápidas-y-comenta-tu-código" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="consejo-2-usa-teclas-rápidas-y-comenta-tu-código"><span class="header-section-number">2.1.3</span> Consejo 2: Usa teclas rápidas y comenta tu código</h3>
+<p><em>¡En este curso debes usar las TECLAS RÁPIDAS para programar!</em></p>
+<p>Utiliza <strong>comentarios</strong> para guiar al lector con <code>#</code>, acordarte por qué hiciste un determinado código, o ayudar a otra persona a entender tu código sin necesitar que tu se lo expliques (o a ti mismo dentro de un tiempo…) ¡un código buen comentado te ahorrará mucho tiempo! Además, te aconsejamos usar un <strong>código modular</strong>, partiendo un script en varios pequeños o escribiendo funciones con un cometido específico (evitando repeticiones de código).</p>
+<p>💡 Para ejecutar una línea de código usa el comando: <em>Ctrl + Enter (Ctrl + R)</em></p>
+<p><em>¡No tienes que seleccionar con el ratón la línea de ejecutar y darle a “Run”! con las techas de más arriba e incluso shift te ahorrara tiempo!</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Atajo</th>
+<th>Efecto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ctrl + Z</td>
+<td>Deshacer</td>
+</tr>
+<tr class="even">
+<td>Ctrl + Shift + Z</td>
+<td>Rehacer (no es la convención habitual)</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + O</td>
+<td>Abrir archivo</td>
+</tr>
+<tr class="even">
+<td>Ctrl + A</td>
+<td>Seleccionar todo</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + S</td>
+<td>Guardar archivo</td>
+</tr>
+<tr class="even">
+<td>Ctrl + F</td>
+<td>Buscar en el archivo actual</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + Shift + F</td>
+<td>Buscar en varios archivos</td>
+</tr>
+<tr class="even">
+<td>Ctrl + W</td>
+<td>Cerrar pestaña</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + Tab</td>
+<td>Ir a la siguiente pestaña</td>
+</tr>
+<tr class="even">
+<td>Ctrl + Q</td>
+<td>Salir de RStudio</td>
+</tr>
+<tr class="odd">
+<td>Tab</td>
+<td>Indentar / Autocompletado</td>
+</tr>
+<tr class="even">
+<td>Shift + Tab</td>
+<td>Quitar indentación</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + Shift + F10</td>
+<td>Reiniciar la sesión de R (¡conviene hacerlo a menudo!)</td>
+</tr>
+<tr class="even">
+<td>Ctrl + Shift + H</td>
+<td>Elegir directorio de trabajo (no necesario si trabajas en un proyecto de R 😉)</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + F7</td>
+<td>Añadir una nueva columna de código (se elimina cerrando todas sus pestañas con Ctrl + W)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="consejo-3-aprende-a-pedir-ayuda-conoce-las-funciones-y-argumentos" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="consejo-3-aprende-a-pedir-ayuda-conoce-las-funciones-y-argumentos"><span class="header-section-number">2.1.4</span> Consejo 3: Aprende a pedir ayuda, conoce las funciones y argumentos</h3>
+<p>Dentro de los paquetes puedes pedir ayuda de multiples maneras.</p>
 </section>
 <section id="ejercicio-1" class="level3" data-number="2.1.5">
 <h3 data-number="2.1.5" class="anchored" data-anchor-id="ejercicio-1"><span class="header-section-number">2.1.5</span> 🧩 <em>Ejercicio</em></h3>
 <p>¿puedes buscar ayuda sobre qué es el paquete tidyverse y qué hace? ¿puedes buscar ayuda sobre la función “select”?</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>?tidyverse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>?select</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En <a href="https://www.revistaecosistemas.net/index.php/ecosistemas/article/view/1880/1242">este</a>trabajo puedes leer “por qué escribir funciones en R”, y la respuesta es sencilla: proque todo se basa en funciones en R. Cuando trabajes con una función debes comprender sus argumentos (elementros de entrada de la función), el funcionamiento (qué hace la función) y la salida.</p>
 </section>
-<section id="mantén-el-código-reproducible" class="level3" data-number="2.1.6">
-<h3 data-number="2.1.6" class="anchored" data-anchor-id="mantén-el-código-reproducible"><span class="header-section-number">2.1.6</span> Mantén el código reproducible</h3>
+<section id="consejo-4-mantén-el-código-reproducible" class="level3" data-number="2.1.6">
+<h3 data-number="2.1.6" class="anchored" data-anchor-id="consejo-4-mantén-el-código-reproducible"><span class="header-section-number">2.1.6</span> Consejo 4: Mantén el código reproducible</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/evolution-openscien.png" class="img-fluid figure-img"></p>
@@ -500,13 +596,16 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </section>
 <section id="ejercicio-2" class="level3" data-number="2.1.7">
 <h3 data-number="2.1.7" class="anchored" data-anchor-id="ejercicio-2"><span class="header-section-number">2.1.7</span> 🧩 <em>Ejercicio</em></h3>
-<p>Aprende sobre reproducibilidad, ya que es clave y fundamental en ciencia. Lee el <a href="https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/">siguiente</a> enlace y discute</p>
+<p>Aprende sobre reproducibilidad, ya que es clave y fundamental en ciencia. Lee el <a href="https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/">siguiente</a> enlace (qué es la reproducibilidad y por qué debe usarse) y discute</p>
 <ul>
 <li><p>¿es realmente todo lo que haces reproducible? ¿haces algún aspecto del proceso de publicación reproducible?</p></li>
 <li><p>¿sabes identificar por qué?</p></li>
 <li><p>¿que ventajas y desventajas tiene hacerlo reproducible?</p></li>
 </ul>
 <p><strong>Discutelo en parejas.</strong></p>
+<p>¿es todo lo que habéis realmente reproducible?</p>
+<p><img src="images/flujo_trabajo.jpg" class="img-fluid"></p>
+<p><img src="images/reproducibility_spectrum.jpg" class="img-fluid"></p>
 <p>Aquí os dejamos algunas de las ventajas de la reproducibildiad y porqué debe implementarse en los equipos de trabajo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -514,9 +613,10 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <figcaption>Ventajas de la reproducibilidad. The Turing Way Community (2025).</figcaption>
 </figure>
 </div>
+<p>Ver <a href="https://www.youtube.com/watch?v=s3JldKoA0zw">este</a>video de EcoInformática.</p>
 </section>
-<section id="nombra-objetos-y-archivos-adecuadamente" class="level3" data-number="2.1.8">
-<h3 data-number="2.1.8" class="anchored" data-anchor-id="nombra-objetos-y-archivos-adecuadamente"><span class="header-section-number">2.1.8</span> Nombra objetos y archivos adecuadamente</h3>
+<section id="consejo-5-nombra-objetos-y-archivos-adecuadamente" class="level3" data-number="2.1.8">
+<h3 data-number="2.1.8" class="anchored" data-anchor-id="consejo-5-nombra-objetos-y-archivos-adecuadamente"><span class="header-section-number">2.1.8</span> Consejo 5: Nombra objetos y archivos adecuadamente</h3>
 <p><img src="images/Importance-style-guide.png" class="img-fluid"></p>
 </section>
 <section id="nombrar-objetos-y-archivos" class="level3" data-number="2.1.9">
@@ -535,7 +635,8 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </div>
 </div>
 <p>📝R es sensible a las mayúsculas. Mejor no usarlas.</p>
-<p>📝Los nombre de los objetos deben ser descriptivos y no deben contener símbolos especiales. Es mejor usar nombres largos pero descriptivos, que cortos o sin sentido. Excepción: para archivos temporales yo generalmente uso “kk” que me recuerda a recordar que este archivo es temporal y prescindible…</p>
+<p>📝Los nombre de los objetos deben ser <strong>descriptivos</strong> y no deben contener símbolos especiales. Es mejor usar nombres largos pero descriptivos, que cortos o sin sentido.</p>
+<p>💡 Excepción: para archivos temporales yo generalmente uso “kk” que me recuerda a recordar que este archivo es temporal y prescindible…</p>
 <p><img src="images/FINALdoc.png" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>Hay dos cosas difíciles en la Ciencia de Computación:</p>
@@ -544,17 +645,19 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <p>— Phil Carton</p>
 </blockquote>
 <p>📝Usa nombre memorables y correctos para tus variables:</p>
-<p>✅ Siempre empiezan por letras (en el caso de objetos)</p>
-<p>✅ Solo pueden contener letras, numeros, “_” y “.”.</p>
-<p>✅ Los nombres deben ser legibles por máquinas: No uses espacios, caracteres especiales o palabras reservadas.: (<code>^</code>, <code>!</code>, <code>$</code>, <code>@</code>, <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>).</p>
-<p>✅ Usa minúsculas separadas por “_”</p>
-<p>✅ Los nombres deben ser legibles para humanos: describen lo que continene. Para variables usa nombres y para funciones verbos.</p>
-<p>✅ Evita el uso de nombres comunes Object names must start with a letter and can only contain letters, numbers, _, and ..</p>
+<ul>
+<li><p>✅ Siempre empiezan por letras (en el caso de objetos)</p></li>
+<li><p>✅ Solo pueden contener letras, numeros, “_” y “.”.</p></li>
+<li><p>✅ Los nombres deben ser legibles por máquinas: No uses espacios, caracteres especiales o palabras reservadas.: (<code>^</code>, <code>!</code>, <code>$</code>, <code>@</code>, <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>).</p></li>
+<li><p>✅ Usa minúsculas separadas por “_”</p></li>
+<li><p>✅ Los nombres deben ser legibles para humanos: describen lo que continene. Para variables usa nombres y para funciones verbos.</p></li>
+<li><p>✅ Evita el uso de nombres comunes Object names must start with a letter and can only contain letters, numbers, _, and ..</p></li>
+</ul>
 <p>💡 Numerar los scripts e incluso las salidas (tablas, figuras, etc.) ayuda a simplificar el orden y trabajar comodamente mediante proyectos.</p>
 </section>
 <section id="ejercicio-4" class="level3" data-number="2.1.11">
 <h3 data-number="2.1.11" class="anchored" data-anchor-id="ejercicio-4"><span class="header-section-number">2.1.11</span> 🧩 <em>Ejercicio</em></h3>
-<p>Lee la guía de estilo de tidyverse (con la que trabajaremos en el curso):</p>
+<p>Lee la <strong>guía de estilo</strong> de tidyverse (con la que trabajaremos en el curso):</p>
 <ul>
 <li><p>Sección 2.2.: <a href="https://r4ds.hadley.nz/workflow-style.html" class="uri">https://r4ds.hadley.nz/workflow-style.html</a></p></li>
 <li><p>Sección 4.1. y 4.2.: <a href="https://style.tidyverse.org/syntax.html" class="uri">https://style.tidyverse.org/syntax.html</a></p></li>
@@ -563,7 +666,6 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <ul>
 <li><p>¿siguen un buen estilo a la hora de nombrarlas?</p></li>
 <li><p>¿trabajas en proyectos y tienes todo ordenado adecuadamente?</p></li>
-<li></li>
 </ul>
 </section>
 </section>
@@ -571,19 +673,386 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <h2 data-number="2.2" class="anchored" data-anchor-id="tipos-de-objetos-exploración-básica-de-datos-e-indexación-con-r-base-vs.-tidyverse"><span class="header-section-number">2.2</span> Tipos de objetos, exploración básica de datos e indexación con R base vs.&nbsp;Tidyverse</h2>
 <p>En R, el código que tecleas se llama <strong>comando</strong>. La interfaz de Rstudio es sencilla, cuando en el <strong><em>prompt</em></strong> de la consola de RStudio ejecutas una línea de comando da instrucciones al ordenador para hacer la operación escrita. Puedes usar R como una calculadora, usando operadores matemáticos, relacionales o lógicos, que son:</p>
 <p><img src="images/Operadores.png" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dv">60</span> <span class="sc">/</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">+</span> <span class="dv">4</span>) <span class="sc">*</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 45</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>) <span class="co"># logaritmo neperiano </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.302585</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">10</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.718282</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">^</span> <span class="dv">2</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">^</span> <span class="dv">2</span> <span class="sc">/</span> <span class="dv">3</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>pi </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.141593</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(pi <span class="sc">/</span> <span class="dv">2</span>) <span class="co"># en radianes </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cos</span>(pi <span class="sc">/</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.123032e-17</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tan</span>(pi <span class="sc">/</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.633124e+16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">asin</span>(<span class="dv">1</span>) <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.141593</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acos</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
 <section id="tipos-de-objetos" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="tipos-de-objetos"><span class="header-section-number">2.2.1</span> Tipos de objetos</h3>
 <p>🎯 Un <strong>vector</strong> es la estructura de datos más simple en R. Es una colección de uno o más elementos del mismo tipo (números, texto o valores lógicos).</p>
 <p><em>¿Qué tipos de datos puede contener un vector?</em></p>
 <p>Si tu dato es numerico, puede ser discreto (int) o continue (num)</p>
 <p><img src="images/continuous_discrete_allinson.png" class="img-fluid"> <a href="https://allisonhorst.com/everything-else">Imagen de Allson Horst</a></p>
-<p>🧠 <em>¿Existe algún otro tipo de dato númerico?</em></p>
+<p>🧠 <em>¿Existe algún otro tipo de dato númerico? Busca información sobre otro tipo de dato.</em></p>
 <p>⚠️ <em>¿son todos los tipos de datos categóricos iguales?</em></p>
 <p><img src="images/nominal_ordinal_Allinson.png" class="img-fluid"> <a href="https://allisonhorst.com/everything-else">Imagen de Allson Horst</a></p>
-<p>usar funciones básicas como <code>mean()</code>, <code>min()</code>, <code>max()</code>.</p>
+<p>Sobre los datos numéricos, o grupos sobre factor se pueden usar funciones básicas como <code>mean()</code>, <code>min()</code>, <code>max()</code>, además de poder realizar las operaciones básicas con vectores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>vector1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.4</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="fl">3.2</span>) <span class="co"># si quiero asignar mas de un valor uso "c" (concatenar) </span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>vector1 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.4 4.0 6.0 3.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>vector1 <span class="sc">*</span> <span class="dv">100</span> <span class="co"># puedo operar con los vectores </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 240 400 600 320</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(vector1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8754687 1.3862944 1.7917595 1.1631508</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>vector2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>) <span class="co"># pero también entre vectores </span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>vector1 <span class="sc">+</span> vector2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  3.4  7.0 10.0 11.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>vector3 <span class="ot">&lt;-</span> vector1 <span class="sc">-</span> vector2 </span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>vector3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1.4  1.0  2.0 -4.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> vector2) <span class="co"># funciones ya programadas </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ?mean # ayuda de funciones</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(vector2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.94392</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(vector2) <span class="co"># n vector </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(vector2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(vector2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># funciones que facilitan la creación de vectores</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">times =</span> <span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 1 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="co"># dos puntos de a a b </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  3  5  7  9 11 13 15 17 19</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(vector1, vector2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.4 4.0 6.0 3.2 1.0 3.0 4.0 8.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(vector1, <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>), vector1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 2.4 4.0 6.0 3.2 0.0 0.0 0.0 2.4 4.0 6.0 3.2</code></pre>
+</div>
+</div>
+<p>Para crear vectores se pueden usar otras estrategias como las que tenéis recogidas a continuación.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">times =</span> <span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 1 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">times =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 1 2 3 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 2 2 3 3 4 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">times =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1 2 2 3 3 3 4 4 4 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"gato"</span>, <span class="st">"perro"</span>, <span class="st">"pez"</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "gato"  "gato"  "gato"  "gato"  "gato"  "perro" "perro" "perro" "pez"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">4</span>, <span class="at">sd =</span> <span class="fl">2.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  5.0420041  8.4650799  7.5994238  3.4982163 -0.2982497  3.7709853
+ [7]  3.4772443  6.4133124  4.8527615  3.3245414</code></pre>
+</div>
+</div>
 <p>🎯 Las <strong>matrices</strong> son datos bidimensionales que contienen datos del mismo tipo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>mivector <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">replace =</span> T) <span class="co"># sample: función para crear numeros aleatorios </span></span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>mimatriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(mivector, <span class="at">nrow =</span> <span class="dv">100</span>, <span class="at">ncol =</span> <span class="dv">10</span>) <span class="co"># matrix: función para convertir vector en matriz. matrix va a rellenar por columnas por defecto</span></span>
+<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mivector) <span class="co"># mostrar estructura datos </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> int [1:1000] 2 2 2 9 7 10 10 8 8 6 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mimatriz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> int [1:100, 1:10] 2 2 2 9 7 10 10 8 8 6 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mivector) <span class="co"># resumen de los datos </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   3.000   6.000   5.748   8.000  10.000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mimatriz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       V1              V2              V3              V4       
+ Min.   : 1.00   Min.   : 1.00   Min.   : 1.00   Min.   : 1.00  
+ 1st Qu.: 3.00   1st Qu.: 4.00   1st Qu.: 3.00   1st Qu.: 3.00  
+ Median : 6.00   Median : 7.00   Median : 6.00   Median : 6.00  
+ Mean   : 5.69   Mean   : 6.21   Mean   : 5.82   Mean   : 5.64  
+ 3rd Qu.: 8.00   3rd Qu.: 9.00   3rd Qu.: 8.00   3rd Qu.: 8.00  
+ Max.   :10.00   Max.   :10.00   Max.   :10.00   Max.   :10.00  
+       V5              V6              V7              V8       
+ Min.   : 1.00   Min.   : 1.00   Min.   : 1.00   Min.   : 1.00  
+ 1st Qu.: 3.00   1st Qu.: 3.75   1st Qu.: 3.75   1st Qu.: 3.00  
+ Median : 5.00   Median : 6.00   Median : 6.00   Median : 5.00  
+ Mean   : 5.25   Mean   : 6.02   Mean   : 5.77   Mean   : 5.45  
+ 3rd Qu.: 7.25   3rd Qu.: 9.00   3rd Qu.: 8.00   3rd Qu.: 8.00  
+ Max.   :10.00   Max.   :10.00   Max.   :10.00   Max.   :10.00  
+       V9             V10       
+ Min.   : 1.00   Min.   : 1.00  
+ 1st Qu.: 3.00   1st Qu.: 4.00  
+ Median : 5.50   Median : 6.00  
+ Mean   : 5.66   Mean   : 5.97  
+ 3rd Qu.: 8.00   3rd Qu.: 8.00  
+ Max.   :10.00   Max.   :10.00  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) </span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) </span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"hi"</span>, <span class="st">"hola"</span>, <span class="st">"hola"</span>, <span class="st">"hi"</span>)</span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>mimatriz_num <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(a, b), <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">2</span>) </span>
+<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>mimatriz_num</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    1
+[2,]    2    2
+[3,]    3    3
+[4,]    4    4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>mimatriz_car <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(a, b, d), <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">3</span>) </span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>mimatriz_car</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]  
+[1,] "1"  "1"  "hi"  
+[2,] "2"  "2"  "hola"
+[3,] "3"  "3"  "hola"
+[4,] "4"  "4"  "hi"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mimatriz_num) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       V1             V2      
+ Min.   :1.00   Min.   :1.00  
+ 1st Qu.:1.75   1st Qu.:1.75  
+ Median :2.50   Median :2.50  
+ Mean   :2.50   Mean   :2.50  
+ 3rd Qu.:3.25   3rd Qu.:3.25  
+ Max.   :4.00   Max.   :4.00  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mimatriz_car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      V1                 V2                 V3           
+ Length:4           Length:4           Length:4          
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  </code></pre>
+</div>
+</div>
 <p>🎯 Una <strong>lista</strong> puede contener objetos heterogéneos: vectores, matrices, data.frames, modelos, etc.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) </span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) </span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"hi"</span>, <span class="st">"hola"</span>, <span class="st">"hola"</span>, <span class="st">"hi"</span>)</span>
+<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb126-5"><a href="#cb126-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-6"><a href="#cb126-6" aria-hidden="true" tabindex="-1"></a>milista <span class="ot">&lt;-</span> <span class="fu">list</span>(a, b, d, e)</span>
+<span id="cb126-7"><a href="#cb126-7" aria-hidden="true" tabindex="-1"></a>milista </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 1 2 3 4
+
+[[2]]
+[1] 1 2 3 4
+
+[[3]]
+[1] "hi"   "hola" "hola" "hi"  
+
+[[4]]
+[1]  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(milista) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 4
+ $ : num [1:4] 1 2 3 4
+ $ : num [1:4] 1 2 3 4
+ $ : chr [1:4] "hi" "hola" "hola" "hi"
+ $ : logi [1:5] TRUE TRUE TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(milista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Length Class  Mode     
+[1,] 4      -none- numeric  
+[2,] 4      -none- numeric  
+[3,] 4      -none- character
+[4,] 5      -none- logical  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>milista2 <span class="ot">&lt;-</span> <span class="fu">list</span>(a, b, d, e, mimatriz)</span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(milista2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 5
+ $ : num [1:4] 1 2 3 4
+ $ : num [1:4] 1 2 3 4
+ $ : chr [1:4] "hi" "hola" "hola" "hi"
+ $ : logi [1:5] TRUE TRUE TRUE FALSE FALSE
+ $ : int [1:100, 1:10] 2 2 2 9 7 10 10 8 8 6 ...</code></pre>
+</div>
+</div>
 <p>🎯 Un <strong>data.frame</strong> es una tabla (2D) donde cada columna puede ser de distinto tipo. Es la estructura más usada para análisis y la que normalmente acompaña a una capa espacial (atributos).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>midataframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable1 =</span> a, </span>
+<span id="cb134-3"><a href="#cb134-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable2 =</span> b, </span>
+<span id="cb134-4"><a href="#cb134-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable3 =</span> d)</span>
+<span id="cb134-5"><a href="#cb134-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-6"><a href="#cb134-6" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(midataframe)</span>
+<span id="cb134-7"><a href="#cb134-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-8"><a href="#cb134-8" aria-hidden="true" tabindex="-1"></a><span class="co"># un tibble es un data.frame de tidyverse, con características mejoradas</span></span>
+<span id="cb134-9"><a href="#cb134-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-10"><a href="#cb134-10" aria-hidden="true" tabindex="-1"></a>mitibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb134-11"><a href="#cb134-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable1 =</span> a, </span>
+<span id="cb134-12"><a href="#cb134-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable2 =</span> b, </span>
+<span id="cb134-13"><a href="#cb134-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mivariable3 =</span> d)</span>
+<span id="cb134-14"><a href="#cb134-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-15"><a href="#cb134-15" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mitibble) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [4 × 3] (S3: tbl_df/tbl/data.frame)
+ $ mivariable1: num [1:4] 1 2 3 4
+ $ mivariable2: num [1:4] 1 2 3 4
+ $ mivariable3: chr [1:4] "hi" "hola" "hola" "hi"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(midataframe) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   4 obs. of  3 variables:
+ $ mivariable1: num  1 2 3 4
+ $ mivariable2: num  1 2 3 4
+ $ mivariable3: chr  "hi" "hola" "hola" "hi"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mitibble) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mivariable1    mivariable2   mivariable3       
+ Min.   :1.00   Min.   :1.00   Length:4          
+ 1st Qu.:1.75   1st Qu.:1.75   Class :character  
+ Median :2.50   Median :2.50   Mode  :character  
+ Mean   :2.50   Mean   :2.50                     
+ 3rd Qu.:3.25   3rd Qu.:3.25                     
+ Max.   :4.00   Max.   :4.00                     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(midataframe) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mivariable1    mivariable2   mivariable3       
+ Min.   :1.00   Min.   :1.00   Length:4          
+ 1st Qu.:1.75   1st Qu.:1.75   Class :character  
+ Median :2.50   Median :2.50   Mode  :character  
+ Mean   :2.50   Mean   :2.50                     
+ 3rd Qu.:3.25   3rd Qu.:3.25                     
+ Max.   :4.00   Max.   :4.00                     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>mitibble</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  mivariable1 mivariable2 mivariable3
+        &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;      
+1           1           1 hi         
+2           2           2 hola       
+3           3           3 hola       
+4           4           4 hi         </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>midataframe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mivariable1 mivariable2 mivariable3
+1           1           1          hi
+2           2           2        hola
+3           3           3        hola
+4           4           4          hi</code></pre>
+</div>
+</div>
 </section>
 <section id="ejercicio-5" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="ejercicio-5"><span class="header-section-number">2.2.2</span> 🧩 <em>Ejercicio</em></h3>
@@ -614,19 +1083,37 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </section>
 <section id="indexación-y-exploración-básica-de-datos-con-rbase-y-tidyverse.-uso-de-la-pipa" class="level3" data-number="2.2.5">
 <h3 data-number="2.2.5" class="anchored" data-anchor-id="indexación-y-exploración-básica-de-datos-con-rbase-y-tidyverse.-uso-de-la-pipa"><span class="header-section-number">2.2.5</span> Indexación y exploración básica de datos con Rbase y tidyverse. Uso de la pipa</h3>
-<p><code>Rbase</code> es el paquete que viene en R por defecto, mientras que <code>tidyverse</code> es un conjunto de paquetes de R para ciencia de datos. Todos los paquetes tienen una misma estructura (filosofía, gramática y estructura de datos).</p>
+<p><code>Rbase</code> es el paquete que viene en R por defecto, mientras que <code>tidyverse</code> es un conjunto de paquetes de R para ciencia de datos. El núcleo contiene ocho paquetes principales (<code>readr</code>, <code>tibble</code>, <code>dplyr</code>, <code>tidyr</code>, <code>stringr</code>, <code>forcats</code>, <code>ggplot2</code> y <code>purrr</code>), que comparten el diseño, la gramática y la estructura de los datos que necesitan. En el centro de la filosofía de tidyverse se encuentra la noción de “datos ordenados” (<em>tidy data</em>). Hadley Wickham (principal desarrollador de <em>tidyverse</em>) los define como “fáciles de manipular, modelar y visualizar, y que tienen una estructura específica: cada variable es una columna, cada observación es una fila y cada valor es una celda”. <em>Tidyverse</em> puede considerarse un dialecto del lenguaje de programación R que discretiza funciones amplias de R base (p.&nbsp;ej. <code>merge</code>) en diversas funciones específicas (p.&nbsp;ej. <code>left_join</code>, <code>right_join</code>).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/tidyverse_packages.png" class="img-fluid figure-img"></p>
 <figcaption><a href="https://tidyverse.org/" class="uri">https://tidyverse.org/</a></figcaption>
 </figure>
 </div>
-<p>Se basa en los siguientes principios:</p>
+<p>Se basa en los siguientes <a href="https://design.tidyverse.org/unifying.html">principios básicos</a>:</p>
 <ul>
-<li><p><strong>Centrado en humanos</strong>: tiene un diseño intuitivo que facilita su uso y accesibilidad para el usuario</p></li>
-<li><p><strong>Consistencia</strong>: todos los paquetes están diseñados para trabajar con datos ordenados (“Tidy Data”), y las funciones de los paquetes tienen una nomenclatura común y congruente. Esto permite que un usuario que aprende sobre una función o paquete pueda aplicar ese conocimiento a otros, facilitando así la tarea de recordar y deducir código de manera más sencilla.</p></li>
-<li><p><strong>Componiblidad</strong>: permite al usuario resolver problemas complejos dividiéndolos en pequeñas partes, que pueden combinarse utilizando el operador “pipe” (<code>%&gt;%</code> or <code>|&gt;)</code>.</p></li>
-<li><p><strong>Inclusividad</strong>: no se trata sólo de la colección de paquetes, sino también la comunidad de personas que los usan, basándose en la ayuda entre usuarios y generando un ambiente inclusivo.</p></li>
+<li><strong>Centrado en humanos</strong>: tiene un diseño intuitivo que facilita su uso y accesibilidad para el usuario</li>
+</ul>
+<blockquote class="blockquote">
+<p>Los programas deben escribirse para que las personas los lean, y solo de manera incidental para que las máquinas los ejecuten.</p>
+<p>— Hal Abelson</p>
+</blockquote>
+<ul>
+<li><strong>Consistencia</strong>: todos los paquetes están diseñados para trabajar con datos ordenados (“Tidy Data”), y las funciones de los paquetes tienen una nomenclatura común y congruente. Esto permite que un usuario que aprende sobre una función o paquete pueda aplicar ese conocimiento a otros, facilitando así la tarea de recordar y deducir código de manera más sencilla.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Un sistema debe construirse con un conjunto mínimo de partes inmutables; esas partes deben ser lo más generales posible; y todas las partes del sistema deben mantenerse dentro de un marco uniforme.</p>
+<p>— Daniel H. H. Ingalls</p>
+</blockquote>
+<ul>
+<li><strong>Componiblidad</strong>: permite al usuario resolver problemas complejos dividiéndolos en pequeñas partes, que pueden combinarse utilizando el operador “pipe” (<code>%&gt;%</code> or <code>|&gt;)</code>.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Por muy complejas y pulidas que sean las operaciones individuales, a menudo es la calidad del “pegamento” lo que determina de forma más directa el poder del sistema.</p>
+<p>— Hal Abelson</p>
+</blockquote>
+<ul>
+<li><strong>Inclusividad</strong>: no se trata sólo de la colección de paquetes, sino también la comunidad de personas que los usan, basándose en la ayuda entre usuarios y generando un ambiente inclusivo.</li>
 </ul>
 </section>
 <section id="datos-ordenados-o-tidy-data" class="level3" data-number="2.2.6">
@@ -656,8 +1143,8 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <section id="conoce-tus-datos-para-una-pregunta-concreta" class="level4" data-number="2.2.6.1">
 <h4 data-number="2.2.6.1" class="anchored" data-anchor-id="conoce-tus-datos-para-una-pregunta-concreta"><span class="header-section-number">2.2.6.1</span> 1. Conoce tus datos para una pregunta concreta</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### readr (read rectangular data) ####</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(penguins)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### readr (read rectangular data) ####</span></span>
+<span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(penguins)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
  $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
@@ -669,7 +1156,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
  $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
  $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 344
 Columns: 8
@@ -682,7 +1169,7 @@ $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 34
 $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
 $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -695,7 +1182,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 6 Adelie  Torgersen           39.3          20.6               190        3650
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(penguins)      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(penguins)      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -708,7 +1195,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 6 Chinstrap Dream            50.2          18.7               198        3775
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(penguins)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(penguins)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      species          island    bill_length_mm  bill_depth_mm  
  Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10  
@@ -727,21 +1214,21 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
  Max.   :231.0     Max.   :6300                Max.   :2009  
  NA's   :2         NA's   :2                                 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(penguins)     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(penguins)     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "species"           "island"            "bill_length_mm"   
 [4] "bill_depth_mm"     "flipper_length_mm" "body_mass_g"      
 [7] "sex"               "year"             </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(penguins)        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb158"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(penguins)        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 344   8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(penguins)       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(penguins)       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 344</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(penguins)      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(penguins)      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8</code></pre>
 </div>
@@ -761,15 +1248,15 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <section id="con-base-r" class="level3" data-number="2.2.7">
 <h3 data-number="2.2.7" class="anchored" data-anchor-id="con-base-r"><span class="header-section-number">2.2.7</span> Con Base R</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>penguins_rbase1 <span class="ot">&lt;-</span> penguins[, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"body_mass_g"</span>, <span class="st">"sex"</span>)]</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>penguins_rbase2 <span class="ot">&lt;-</span> penguins[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">7</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a>penguins_rbase1 <span class="ot">&lt;-</span> penguins[, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"body_mass_g"</span>, <span class="st">"sex"</span>)]</span>
+<span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a>penguins_rbase2 <span class="ot">&lt;-</span> penguins[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">7</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="con-tidyverse-select" class="level3" data-number="2.2.8">
 <h3 data-number="2.2.8" class="anchored" data-anchor-id="con-tidyverse-select"><span class="header-section-number">2.2.8</span> Con tidyverse (<code>select()</code>)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>penguins_tidy <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, body_mass_g, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb165"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a>penguins_tidy <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb165-2"><a href="#cb165-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, body_mass_g, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para comprender lo que hacemos tenemos que usar la pipa:</p>
 <p><img src="images/pipa.png" class="img-fluid"></p>
@@ -788,16 +1275,17 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <section id="con-base-r-1" class="level3" data-number="2.2.9">
 <h3 data-number="2.2.9" class="anchored" data-anchor-id="con-base-r-1"><span class="header-section-number">2.2.9</span> Con Base R</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>select_penguins_filtrado <span class="ot">&lt;-</span> penguins_rbase1[penguins_rbase1<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">"male"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb166"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a>select_penguins_filtrado <span class="ot">&lt;-</span> penguins_rbase1[penguins_rbase1<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">"male"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="con-tidyverse-filter" class="level3" data-number="2.2.10">
 <h3 data-number="2.2.10" class="anchored" data-anchor-id="con-tidyverse-filter"><span class="header-section-number">2.2.10</span> Con tidyverse (<code>filter()</code>)</h3>
+<p><a href="https://dplyr.tidyverse.org/reference/filter.html">Filter</a>: filtrar filas utilizando condiciones</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>select_penguins_filtrado <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins_rbase1, sex <span class="sc">==</span> <span class="st">"male"</span>)</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>select_penguins_filtrado <span class="ot">&lt;-</span> penguins_rbase1 <span class="sc">|&gt;</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"male"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb167"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a>select_penguins_filtrado <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins_rbase1, sex <span class="sc">==</span> <span class="st">"male"</span>)</span>
+<span id="cb167-2"><a href="#cb167-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-3"><a href="#cb167-3" aria-hidden="true" tabindex="-1"></a>select_penguins_filtrado <span class="ot">&lt;-</span> penguins_rbase1 <span class="sc">|&gt;</span></span>
+<span id="cb167-4"><a href="#cb167-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"male"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 <section id="lo-colocamos-en-orden-descendiente-combinando-operaciones" class="level4" data-number="2.2.10.1">
@@ -807,32 +1295,34 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <section id="con-tidyverse-piping" class="level3" data-number="2.2.11">
 <h3 data-number="2.2.11" class="anchored" data-anchor-id="con-tidyverse-piping"><span class="header-section-number">2.2.11</span> Con tidyverse (piping)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>penguins_male_body_kg <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, body_mass_g, sex) <span class="sc">|&gt;</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"male"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_mass_kg =</span> body_mass_g <span class="sc">/</span> <span class="dv">1000</span>)<span class="sc">|&gt;</span> </span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(body_mass_kg) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>penguins_male_body_kg <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb168-2"><a href="#cb168-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, body_mass_g, sex) <span class="sc">|&gt;</span></span>
+<span id="cb168-3"><a href="#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"male"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb168-4"><a href="#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_mass_kg =</span> body_mass_g <span class="sc">/</span> <span class="dv">1000</span>)<span class="sc">|&gt;</span> </span>
+<span id="cb168-5"><a href="#cb168-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(body_mass_kg) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>👉 Ventajas: más intuitivo, cada paso es claro y en “lenguaje natural”. 👉 Inconvenientes: requiere instalar/cargar dplyr.</p>
+<p><a href="https://dplyr.tidyverse.org/reference/arrange.html">Arrange</a>: ordenar filas por los valores de una o más variables (columnas)</p>
+<p>👉 Ventajas: más intuitivo, cada paso es claro y en “lenguaje natural”.</p>
+<p>👉 Inconvenientes: requiere instalar/cargar dplyr.</p>
 </section>
 <section id="con-rbase-piping" class="level3" data-number="2.2.12">
 <h3 data-number="2.2.12" class="anchored" data-anchor-id="con-rbase-piping"><span class="header-section-number">2.2.12</span> Con Rbase (piping)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sin pipa</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>penguins_rbase1 <span class="ot">&lt;-</span> penguins[penguins_rbase1<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">"male"</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"body_mass_g"</span>, <span class="st">"sex"</span>)]</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>penguins_rbase1<span class="sc">$</span>body_mass_kg <span class="ot">&lt;-</span> penguins_rbase1<span class="sc">$</span>body_mass_g <span class="sc">/</span> <span class="dv">1000</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>penguins_sorted <span class="ot">&lt;-</span> penguins_rbase1[<span class="fu">order</span>(penguins_rbase1<span class="sc">$</span>body_mass_kg), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb169"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sin pipa</span></span>
+<span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a>penguins_rbase1 <span class="ot">&lt;-</span> penguins[penguins_rbase1<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">"male"</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"body_mass_g"</span>, <span class="st">"sex"</span>)]</span>
+<span id="cb169-3"><a href="#cb169-3" aria-hidden="true" tabindex="-1"></a>penguins_rbase1<span class="sc">$</span>body_mass_kg <span class="ot">&lt;-</span> penguins_rbase1<span class="sc">$</span>body_mass_g <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb169-4"><a href="#cb169-4" aria-hidden="true" tabindex="-1"></a>penguins_sorted <span class="ot">&lt;-</span> penguins_rbase1[<span class="fu">order</span>(penguins_rbase1<span class="sc">$</span>body_mass_kg), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>👉 Ventajas: usa solo R base, no necesita librerías adicionales. 👉 Inconvenientes: la sintaxis es más dificil para alumnos principiantes, menos legible.</p>
 <section id="mostramos-los-resultados-nuestro-primer-gráfico" class="level4" data-number="2.2.12.1">
 <h4 data-number="2.2.12.1" class="anchored" data-anchor-id="mostramos-los-resultados-nuestro-primer-gráfico"><span class="header-section-number">2.2.12.1</span> 5. Mostramos los resultados: nuestro primer gráfico</h4>
 <p>Gráfico base R</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(penguins_male_body_kg<span class="sc">$</span>species, penguins_male_body_kg<span class="sc">$</span>body_mass_kg,</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">""</span>,</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"species"</span>, </span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"body mass (kg)"</span>,</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(penguins_male_body_kg<span class="sc">$</span>species, penguins_male_body_kg<span class="sc">$</span>body_mass_kg,</span>
+<span id="cb170-2"><a href="#cb170-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">""</span>,</span>
+<span id="cb170-3"><a href="#cb170-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"species"</span>, </span>
+<span id="cb170-4"><a href="#cb170-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"body mass (kg)"</span>,</span>
+<span id="cb170-5"><a href="#cb170-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -843,12 +1333,12 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </div>
 <p>Gráfico con ggplot2, paquete de gráficos de tidyverse</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins_male_body_kg, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_kg)) <span class="sc">+</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">"darkred"</span>, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"body mass ~ species (tidyverse)"</span>,</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"species"</span>,</span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"body mass (kg)"</span>) <span class="sc">+</span></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb171"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins_male_body_kg, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_kg)) <span class="sc">+</span></span>
+<span id="cb171-2"><a href="#cb171-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">"darkred"</span>, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb171-3"><a href="#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"body mass ~ species (tidyverse)"</span>,</span>
+<span id="cb171-4"><a href="#cb171-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"species"</span>,</span>
+<span id="cb171-5"><a href="#cb171-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"body mass (kg)"</span>) <span class="sc">+</span></span>
+<span id="cb171-6"><a href="#cb171-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -877,7 +1367,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/datascience.png" class="img-fluid figure-img"></p>
-<figcaption>Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund.</figcaption>
+<figcaption>Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Rundel y Garrett Grolemund. Traducido de https://r4ds.hadley.nz/intro#fig-ds-diagram</figcaption>
 </figure>
 </div>
 <p><strong>Plantea el objetivo de vuestro trabajo</strong></p>
@@ -892,6 +1382,29 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <li><p>Revisa que tipo de gráfico te gustaría visualizar al terminar el curso. Mañana veréis las operaciones que podéis / tenéis que realizar para ello, y el miércoles cómo realizar la visualización, pero es conveneinte que tengáis una idea de QUÉ QUEREIS HACER, y es muy importante saberlo ANTES de programar.</p></li>
 </ul>
 </section>
+</section>
+<section id="quién-responde-a-mis-dudas" class="level3" data-number="2.2.13">
+<h3 data-number="2.2.13" class="anchored" data-anchor-id="quién-responde-a-mis-dudas"><span class="header-section-number">2.2.13</span> ¿Quién responde a mis dudas?</h3>
+<ul>
+<li><p><a href="https://docs.posit.co/ide/user">RStudio User Guide</a></p></li>
+<li><p><a href="https://rstudio.github.io/cheatsheets/R-best-practice.pdf">Cheatsheet de buenas prácticas en R</a></p></li>
+<li><p><a href="https://posit.cloud/learn/recipes">Posit Recipes</a> y en general <a href="https://posit.co/resources">Posit Resources</a></p></li>
+<li><p>Ayuda &gt; Cheat Sheets</p></li>
+<li><p><a href="https://stackoverflow.com">Stack Overflow: plataforma de preguntas y respuestas para programadores profesionales y aficionados</a></p></li>
+<li><p><a href="RStudio%20community">Comunidad de RStudio/Posit</a></p></li>
+<li><p><a href="https://github.com/features/copilot">GitHub copilot</a></p></li>
+<li><p><a href="https://chatgpt.com">ChatGPT</a> y similares</p></li>
+<li><p>Slack del <a href="https://ecoinfaeet.github.io/website/index.html">Grupo de Ecoinformática de la AEET</a></p></li>
+<li><p><a href="https://github.com/DatSciR/ciencia_datos/discussions/2">Discusiones del repositorio del curso de GitHub</a></p></li>
+<li><p>Para dudas relacionadas con errores de paquetes: repositorio de GitHub del paquete en cuestión (p.&nbsp;ej. <a href="https://github.com/tidyverse/dplyr/issues" class="uri">https://github.com/tidyverse/dplyr/issues</a>)</p></li>
+<li><p>Pedir ayuda utilizando ejemplos reproducibles con {<a href="#0">reprex</a>}.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rhelpers.png" class="img-fluid figure-img" width="538"></p>
+<figcaption>Por Allison Horst. <a href="https://allisonhorst.com/everything-else" class="uri">https://allisonhorst.com/everything-else</a></figcaption>
+</figure>
+</div>
 </section>
 </section>
 </section>
