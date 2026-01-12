@@ -73,7 +73,7 @@ En lugar de “dibujar” un gráfico de una sola vez, **ggplot2** nos invita a 
 knitr::include_graphics("images/imagen_capas.gif")
 ```
 
-En este contexto, **ggplot2** es una herramienta clave para crear figuras como mapas, relaciones entre variables ambientales, comparaciones entre tratamientos de manejo o análisis de respuestas de multitud de disciplinas. A lo largo de esta sesión, aprenderemos a utilizar **ggplot2** desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.
+En este contexto, **ggplot2** es una herramienta clave para crear figuras como mapas, relaciones entre variables, comparaciones entre tratamientos de manejo o análisis de respuestas de multitud de disciplinas. A lo largo de esta sesión, aprenderemos a utilizar **ggplot2** desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.
 
 ## 2.1. Visualización eficaz y ggplot2
 
@@ -148,7 +148,7 @@ Con `head()` vamos a ver las primeras líneas de nuestro dataframe. Con `srt()` 
 
 La visualización exploratoria de datos es una etapa fundamental en cualquier análisis estadístico científico. Nos permite detectar patrones, identificar valores atípicos, entender relaciones entre variables y comunicar resultados de manera efectiva. Una visualización bien construida debe ser clara, tener ejes etiquetados apropiadamente, incluir un título descriptivo, una leyenda legible cuando sea necesario, y siempre indicar las unidades de medida.
 
-El paquete ggplot2 implementa la *Grammar of Graphics* (Gramática de los Gráficos), un sistema coherente y estructurado para construir visualizaciones. Esta gramática se compone de varios elementos fundamentales: **datos** + **aesthetics** + **geometrías** + **opciones adicionales**, que se combinan de forma modular para crear gráficos complejos.
+El paquete `ggplot2` implementa la *Grammar of Graphics* (Gramática de los Gráficos), un sistema coherente y estructurado para construir visualizaciones de nuestros datos. Esta gramática se compone de varios elementos fundamentales: **datos** + **aesthetics** + **geometrías** + **opciones adicionales**, que se combinan de forma modular para crear gráficos complejos.
 
 ------------------------------------------------------------------------
 
@@ -239,7 +239,7 @@ Por ahora seguimos sin dibujar nada, pero **el gráfico ya sabe qué representar
 
 ## 3.6 Creación de un gráfico paso a paso: las geometrías que vamos dar a nuestro gráfico
 
-Las **geometrías** (funciones que comienzan con geom\_) son las capas que realmente dibujan elementos en el gráfico. Cada tipo de gráfico corresponde a una geometría específica. La elección de la geometría depende del tipo de datos y del mensaje que queremos comunicar.
+Las **geometrías** (funciones que comienzan con `geom_`) son las capas que realmente dibujan elementos en el gráfico. Cada tipo de gráfico corresponde a una geometría específica. La elección de la geometría depende del tipo de datos y del mensaje que queremos comunicar.
 
 Algunos ejemplos de gráficos:
 
@@ -256,7 +256,7 @@ Ahora añadimos una geometría (`geom_bar`) de barras al gráfico anterior para 
 ```{r ejemplo de gráfico de barras, echo=TRUE}
 #| fig-cap: "Representación del conteo de individuos por especie en nuestra base de datos"
 ggplot(penguins, aes(x = species)) +
-  geom_bar(stat = "count")
+  geom_bar()
 
 ```
 
@@ -308,7 +308,7 @@ IMPORTANTE: Los datos se pueden colocar dentro de la funcion `ggplot()` si se va
 # Gráfico de dispersión bidimensional básico con recta de regresión
 # Aquí necesitamos especificar tanto el eje X como el eje Y
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = year)) +
-  geom_point() + geom_smooth(method = "lm")
+  geom_point(size = 1) + geom_smooth(method = "lm")
 
 ```
 
@@ -322,8 +322,9 @@ Partiendo de la base de datos `penguins`, crea **un gráfico de dispersión (sca
 
 -   **Masa corporal** (`body_mass_g`) en el eje Y
 
+    -   En el gráfico, **deben incorporarse los siguientes aesthetics dentro de `aes()`**:
+
 ```         
--   En el gráfico, **deben incorporarse los siguientes aesthetics dentro de `aes()`**:
 ```
 
 -   **Color (`color`)**
@@ -381,14 +382,15 @@ Partiendo del **gráfico creado en el ejercicio anterior**, realiza las siguient
 
 2.  Prueba **distintas combinaciones** de los siguientes argumentos:
 
+    -   `width` y `height`
+
+    -   `units` (`"in"`, `"cm"`)
+
+    -   `dpi`
+
+    -   `device` (por ejemplo `"jpg"`, `"png"`)
+
 ```         
--   `width` y `height`
-
--   `units` (`"in"`, `"cm"`)
-
--   `dpi`
-
--   `device` (por ejemplo `"jpg"`, `"png"`)
 ```
 
 3.  Guarda **al menos dos versiones** del mismo gráfico.
@@ -609,7 +611,7 @@ Violín (`geom_violin`): Para comparar distribuciones completas entre grupos
 
 Gráfico de barras (`geom_bar`): Cuando tenemos pocos valores posibles y queremos mostrar conteos
 
-Histograma con binwidth = 1 (`geom_histogram`): Cuando queremos mantener la apariencia de histograma pero con valores discretos
+Histograma con binwidth adecuado (`geom_histogram`): Cuando queremos mantener la apariencia de histograma pero con valores discretos
 
 ## 🧩Ejercicio f):
 
@@ -617,7 +619,13 @@ Crea dos gráficos:
 
 1.  Exploración de variables cualitativas
 
-Tareas: a) Identifica qué variable(s) se pueden graficar con un `geom_bar()`. b) Crea un gráfico de barras para la variable más interesante y colorea las barras según sex. c) Ajusta la posición para mostrar proporciones y otra vez para mostrar conteos utilizando "position".
+Tareas:
+
+a\) Identifica qué variable(s) se pueden graficar con un `geom_bar()`.
+
+b\) Crea un gráfico de barras para la variable más interesante y colorea las barras según sex.
+
+c\) Ajusta la posición para mostrar proporciones y otra vez para mostrar conteos utilizando "position".
 
 ¿Cuál es la especie/isla más frecuente?
 
@@ -639,7 +647,7 @@ Preguntas:
 
 ¿Cómo ayuda el tamaño y la transparencia a visualizar la relación entre variables?
 
-# 4 **ggplot2**: Funciones avanzadas
+# 4 `ggplot2`: Funciones avanzadas
 
 ## 4.1 Etiquetas (`labs()`)
 
@@ -656,7 +664,7 @@ miplot1 <- ggplot(data = penguins) +
 miplot1
 ```
 
-Ahora aplicamos la función labs() para añadir todos los elementos textuales necesarios: título principal, subtítulo contextual, etiquetas descriptivas para ambos ejes y un pie de figura que indica la fuente de los datos.
+Ahora aplicamos la función `labs()` para añadir todos los elementos textuales necesarios: título principal, subtítulo contextual, etiquetas descriptivas para ambos ejes y un pie de figura que indica la fuente de los datos.
 
 ```{r grafico-2}
 # Añadir etiquetas descriptivas
@@ -670,7 +678,7 @@ miplot1 +
   )
 ```
 
-La función {labs()} permite personalizar los textos del gráfico. Es crucial para hacer los gráficos autónomos y comprensibles.
+La función `labs()` permite personalizar los textos del gráfico. Es crucial para hacer los gráficos autónomos y comprensibles.
 
 ## 4.2 Sistema de coordenadas
 
@@ -708,12 +716,11 @@ Esta diferencia es crucial cuando se usan estadísticos como regresiones o suavi
 
 ## 🧩Ejercicio g):
 
-1.  Diagrama de cajas con etiquetas completas
+## 1️⃣ Diagrama de cajas con etiquetas completas
 
-<!-- -->
+1.  Crea un gráfico de **boxplot** de `body_mass_g` por `species` (especies de pingüinos).
 
-a)  Crea un gráfico de boxplot de body_mass_g por species.
-b)  Añade etiquetas usando labs() para:
+    Añade **etiquetas completas** usando `labs()`:
 
 Título principal: “Distribución de masa corporal por especie”
 
@@ -731,30 +738,21 @@ Preguntas:
 
 ¿Qué aporta el subtítulo respecto al título?
 
-2.  Ajuste de coordenadas / zoom
+2.  2️⃣ Ajuste de coordenadas / zoom
 
-<!-- -->
+    **Instrucciones:**
 
-a)  Aplica coord_cartesian() para enfocar la vista entre 3000 y 5000 g en el eje Y.
-b)  Crea otro gráfico usando ylim(3000, 5000) y observa la diferencia.
+    1.   Aplica `coord_cartesian()` para enfocar la vista entre **3000 y 5000 g** en el eje Y.
 
-Preguntas:
+    2.  Crea un segundo gráfico usando `ylim(3000, 5000)`.
 
-¿Qué sucede con los puntos fuera del rango cuando usamos coord_cartesian() vs ylim()?
+    3.  Compara los resultados y observa la diferencia.
 
-¿Por qué podría ser problemático usar ylim() si más adelante añadimos suavizados o regresiones?
+**Preguntas de reflexión:**
 
-3.  Bonus opcional – combinación de aesthetics
+-    ¿Qué sucede con los puntos fuera del rango cuando usamos `coord_cartesian()` vs `ylim()`?
 
-Agrega color a los boxplots según sex.
-
-Mantén las etiquetas y el zoom aplicados.
-
-Observa si el patrón de masas cambia entre sexos dentro de cada especie.
-
-Pregunta:
-
-¿Qué insights adicionales proporciona el color dentro de cada grupo?
+-    ¿Por qué podría ser problemático usar `ylim()` si más adelante añadimos suavizados o regresiones?
 
 ## 4.3 Faceting
 
@@ -800,11 +798,11 @@ Este tipo de faceting es especialmente útil cuando se quiere estudiar **un úni
 
 Cuando queremos estudiar simultáneamente **dos variables categóricas**, `facet_grid()` permite organizar los paneles en una rejilla definida por filas y columnas.
 
-En el siguiente ejemplo, los datos se separan por sexo (filas) e isla (columnas):
+En el siguiente ejemplo, los datos se separan por especie (filas) e isla (columnas):
 
 ```{r facets-3}
 miplot2 +
-  facet_grid(rows = vars(sex), cols = vars(island))
+  facet_grid(rows = vars(species), cols = vars(island))
 ```
 
 Cada panel representa una combinación concreta de sexo e isla. Este enfoque es muy potente para detectar interacciones entre factores, aunque puede generar un número elevado de paneles y resultar más complejo de interpretar para usuarios principiantes.
@@ -815,16 +813,17 @@ Aunque ambas funciones crean múltiples paneles, tienen usos distintos:
 
 -   `facet_grid()` se utiliza cuando queremos **controlar explícitamente** la disposición en filas y columnas.
 
--   `facet_wrap()` es más flexible y se adapta mejor cuando una variable tiene muchos niveles.
+-   `facet_wrap()` es más flexible y se adapta mejor cuando una variable categórica tiene muchos niveles.
+
+    Por ejemplo, una representación más compacta por especie sería:
 
 ```         
-Por ejemplo, una representación más compacta por isla sería:
 ```
 
 ```{r facets-4}
 # Facet wrap (organiza en rejilla)
 miplot2 + 
-  facet_wrap(facets = vars(island), ncol = 3)
+  facet_wrap(facets = vars(species), ncol = 3)
 ```
 
 ## 4.3.5 Comparación visual: sin faceting vs con faceting
@@ -1062,7 +1061,7 @@ ggplot(penguins,
            y = flipper_length_mm,
            color = species)) +
   geom_point(na.rm = TRUE) +
-  scale_color_brewer(palette = "Set2")
+  scale_color_brewer(palette = "Set1")
 ```
 
 Este tipo de paletas es apropiado cuando las categorías **no tienen un orden natural**, como especies o tipos de individuos.
@@ -1102,7 +1101,7 @@ El tipo de paleta debe elegirse en función del tipo de variable que representa 
 
 **categórica → paleta cualitativa**,\
 
-**numérica → paleta secuencial o Viridis**.
+**numérica → paleta secuencial o gradiente**.
 
 # 4.7 Temas en ggplot2: controlar la apariencia del gráfico
 
@@ -1133,7 +1132,7 @@ Es decir, todo aquello que afecta a la **apariencia** pero no al contenido infor
 Para entender los temas, partimos siempre de **un mismo gráfico base**.\
 De este modo, cualquier cambio visual se debe únicamente al tema.
 
-```{r themes-1}
+```{r themes-0}
 
 base_plot <- ggplot(
   penguins,
@@ -1160,8 +1159,11 @@ base_plot
 
 `ggplot2` incluye varios **temas predefinidos** que modifican el estilo completo del gráfico con una sola línea de código. Son útiles para adaptar rápidamente una visualización a distintos contextos.
 
-```         
+```{r theme-1}
 base_plot + theme_bw() 
+```
+
+```         
 ```
 
 Algunos de los más utilizados son:
@@ -1176,8 +1178,7 @@ Algunos de los más utilizados son:
 
 -    `theme_void()` → elimina casi todo salvo los datos
 
-👉 **Recomendación didáctica**:\
-usar temas predefinidos para cambiar el *estilo general* y `theme()` para ajustes finos.
+👉 **Recomendación didáctica**: usar temas predefinidos para cambiar el *estilo general* y `theme()` para ajustes finos.
 
 ## 4.7.3 `theme()`: personalización por componentes
 
@@ -1225,8 +1226,6 @@ base_plot +
 
 ```
 
-## 
-
 Opciones habituales para `legend.position`:
 
 -    `"right"` (por defecto)
@@ -1269,18 +1268,18 @@ El gráfico tiene dos fondos distintos:
 ```{r themes-5}
 base_plot +
   theme(
-    panel.background = element_rect(fill = "white"),
-    plot.background = element_rect(fill = "gray98"),
+    panel.background = element_rect(fill = "gray"),
+    plot.background = element_rect(fill = "white"),
     plot.margin = margin(20, 20, 20, 20)
   )
 ```
 
-## 4.7.4 Temas externos (idea general)
+## 4.7.4 Temas externos
 
 Existen paquetes como **`ggthemes`** que proporcionan temas con estilos reconocibles (revistas, periódicos, software).\
 No es necesario aprenderlos todos: se usan cuando se busca **un estilo concreto**.
 
-👉 Para principiantes, lo importante es saber que **existen**, no memorizar sus nombres.
+👉 Lo importante es saber que **existen**, no memorizar sus nombres.
 
 ## 🧩Ejercicio aplicado):
 

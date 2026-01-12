@@ -194,7 +194,7 @@ Figure&nbsp;4: Data science model by Hadley Wickham, Mine Çetinkaya-Rundel and 
 </div>
 </div>
 </div>
-<p>En este contexto, <strong>ggplot2</strong> es una herramienta clave para crear figuras como mapas, relaciones entre variables ambientales, comparaciones entre tratamientos de manejo o análisis de respuestas de multitud de disciplinas. A lo largo de esta sesión, aprenderemos a utilizar <strong>ggplot2</strong> desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.</p>
+<p>En este contexto, <strong>ggplot2</strong> es una herramienta clave para crear figuras como mapas, relaciones entre variables, comparaciones entre tratamientos de manejo o análisis de respuestas de multitud de disciplinas. A lo largo de esta sesión, aprenderemos a utilizar <strong>ggplot2</strong> desde sus elementos más básicos hasta funciones más avanzadas, con el objetivo de generar gráficos claros, informativos y aptos para su inclusión en informes técnicos o artículos científicos.</p>
 <section id="visualización-eficaz-y-ggplot2" class="level2">
 <h2 class="anchored" data-anchor-id="visualización-eficaz-y-ggplot2">2.1. Visualización eficaz y ggplot2</h2>
 <p>Antes de empezar a crear gráficos, es importante reflexionar sobre qué hace que una visualización sea realmente buena. Un buen gráfico no depende solo de que sea visualmente atractivo, sino de dos dimensiones fundamentales:</p>
@@ -303,7 +303,7 @@ Figure&nbsp;5: Conceptual framework of a “good graphic,” considering both ex
 <section id="breve-introducción" class="level2">
 <h2 class="anchored" data-anchor-id="breve-introducción">3.1.1. Breve introducción</h2>
 <p>La visualización exploratoria de datos es una etapa fundamental en cualquier análisis estadístico científico. Nos permite detectar patrones, identificar valores atípicos, entender relaciones entre variables y comunicar resultados de manera efectiva. Una visualización bien construida debe ser clara, tener ejes etiquetados apropiadamente, incluir un título descriptivo, una leyenda legible cuando sea necesario, y siempre indicar las unidades de medida.</p>
-<p>El paquete ggplot2 implementa la <em>Grammar of Graphics</em> (Gramática de los Gráficos), un sistema coherente y estructurado para construir visualizaciones. Esta gramática se compone de varios elementos fundamentales: <strong>datos</strong> + <strong>aesthetics</strong> + <strong>geometrías</strong> + <strong>opciones adicionales</strong>, que se combinan de forma modular para crear gráficos complejos.</p>
+<p>El paquete <code>ggplot2</code> implementa la <em>Grammar of Graphics</em> (Gramática de los Gráficos), un sistema coherente y estructurado para construir visualizaciones de nuestros datos. Esta gramática se compone de varios elementos fundamentales: <strong>datos</strong> + <strong>aesthetics</strong> + <strong>geometrías</strong> + <strong>opciones adicionales</strong>, que se combinan de forma modular para crear gráficos complejos.</p>
 <hr>
 </section>
 <section id="antes-de-empezar-sintaxis-básica-y-elementos-fundamentales" class="level2">
@@ -393,7 +393,7 @@ Figure&nbsp;6: Histograma de la longitud del pico de los pingüinos
 </section>
 <section id="creación-de-un-gráfico-paso-a-paso-las-geometrías-que-vamos-dar-a-nuestro-gráfico" class="level2">
 <h2 class="anchored" data-anchor-id="creación-de-un-gráfico-paso-a-paso-las-geometrías-que-vamos-dar-a-nuestro-gráfico">3.6 Creación de un gráfico paso a paso: las geometrías que vamos dar a nuestro gráfico</h2>
-<p>Las <strong>geometrías</strong> (funciones que comienzan con geom_) son las capas que realmente dibujan elementos en el gráfico. Cada tipo de gráfico corresponde a una geometría específica. La elección de la geometría depende del tipo de datos y del mensaje que queremos comunicar.</p>
+<p>Las <strong>geometrías</strong> (funciones que comienzan con <code>geom_</code>) son las capas que realmente dibujan elementos en el gráfico. Cada tipo de gráfico corresponde a una geometría específica. La elección de la geometría depende del tipo de datos y del mensaje que queremos comunicar.</p>
 <p>Algunos ejemplos de gráficos:</p>
 <table class="caption-top table">
 <thead>
@@ -428,7 +428,7 @@ Figure&nbsp;6: Histograma de la longitud del pico de los pingüinos
 <p>Ahora añadimos una geometría (<code>geom_bar</code>) de barras al gráfico anterior para crear un gráfico que nos muestre el número de ejemplares que tenemos de cada especie de pingüino en nuestra base de datos.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -480,7 +480,7 @@ Figure&nbsp;6: Histograma de la longitud del pico de los pingüinos
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de dispersión bidimensional básico con recta de regresión</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Aquí necesitamos especificar tanto el eje X como el eje Y</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> year)) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -497,9 +497,12 @@ Figure&nbsp;6: Histograma de la longitud del pico de los pingüinos
 <p>Partiendo de la base de datos <code>penguins</code>, crea <strong>un gráfico de dispersión (scatterplot)</strong> que muestre la relación entre:</p>
 <ul>
 <li><p><strong>Longitud de la aleta</strong> (<code>flipper_length_mm</code>) en el eje X</p></li>
-<li><p><strong>Masa corporal</strong> (<code>body_mass_g</code>) en el eje Y</p></li>
+<li><p><strong>Masa corporal</strong> (<code>body_mass_g</code>) en el eje Y</p>
+<ul>
+<li>En el gráfico, <strong>deben incorporarse los siguientes aesthetics dentro de <code>aes()</code></strong>:</li>
+</ul></li>
 </ul>
-<pre><code>-   En el gráfico, **deben incorporarse los siguientes aesthetics dentro de `aes()`**:</code></pre>
+<pre><code></code></pre>
 <ul>
 <li><p><strong>Color (<code>color</code>)</strong></p>
 <ul>
@@ -550,15 +553,15 @@ Figure&nbsp;6: Histograma de la longitud del pico de los pingüinos
 <h3 class="anchored" data-anchor-id="instrucciones">Instrucciones:</h3>
 <ol type="1">
 <li><p>Utiliza la función <strong><code>ggsave()</code></strong> para exportar el gráfico.</p></li>
-<li><p>Prueba <strong>distintas combinaciones</strong> de los siguientes argumentos:</p></li>
+<li><p>Prueba <strong>distintas combinaciones</strong> de los siguientes argumentos:</p>
+<ul>
+<li><p><code>width</code> y <code>height</code></p></li>
+<li><p><code>units</code> (<code>"in"</code>, <code>"cm"</code>)</p></li>
+<li><p><code>dpi</code></p></li>
+<li><p><code>device</code> (por ejemplo <code>"jpg"</code>, <code>"png"</code>)</p></li>
+</ul></li>
 </ol>
-<pre><code>-   `width` y `height`
-
--   `units` (`"in"`, `"cm"`)
-
--   `dpi`
-
--   `device` (por ejemplo `"jpg"`, `"png"`)</code></pre>
+<pre><code></code></pre>
 <ol start="3" type="1">
 <li>Guarda <strong>al menos dos versiones</strong> del mismo gráfico.</li>
 </ol>
@@ -850,7 +853,7 @@ Figure&nbsp;7: Variable types and their classification
 <section id="para-variables-discretas" class="level2">
 <h2 class="anchored" data-anchor-id="para-variables-discretas">Para variables discretas:</h2>
 <p>Gráfico de barras (<code>geom_bar</code>): Cuando tenemos pocos valores posibles y queremos mostrar conteos</p>
-<p>Histograma con binwidth = 1 (<code>geom_histogram</code>): Cuando queremos mantener la apariencia de histograma pero con valores discretos</p>
+<p>Histograma con binwidth adecuado (<code>geom_histogram</code>): Cuando queremos mantener la apariencia de histograma pero con valores discretos</p>
 </section>
 <section id="ejercicio-f" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-f">🧩Ejercicio f):</h2>
@@ -858,7 +861,10 @@ Figure&nbsp;7: Variable types and their classification
 <ol type="1">
 <li>Exploración de variables cualitativas</li>
 </ol>
-<p>Tareas: a) Identifica qué variable(s) se pueden graficar con un <code>geom_bar()</code>. b) Crea un gráfico de barras para la variable más interesante y colorea las barras según sex. c) Ajusta la posición para mostrar proporciones y otra vez para mostrar conteos utilizando “position”.</p>
+<p>Tareas:</p>
+<p>a) Identifica qué variable(s) se pueden graficar con un <code>geom_bar()</code>.</p>
+<p>b) Crea un gráfico de barras para la variable más interesante y colorea las barras según sex.</p>
+<p>c) Ajusta la posición para mostrar proporciones y otra vez para mostrar conteos utilizando “position”.</p>
 <p>¿Cuál es la especie/isla más frecuente?</p>
 <p>¿Cómo cambia la interpretación al usar <em>fill</em> y <em>dodge</em>?</p>
 <p>¿Se observa algún patrón interesante entre sexos y especies?</p>
@@ -874,7 +880,7 @@ Figure&nbsp;7: Variable types and their classification
 </section>
 </section>
 <section id="ggplot2-funciones-avanzadas" class="level1">
-<h1>4 <strong>ggplot2</strong>: Funciones avanzadas</h1>
+<h1>4 <code>ggplot2</code>: Funciones avanzadas</h1>
 <section id="etiquetas-labs" class="level2">
 <h2 class="anchored" data-anchor-id="etiquetas-labs">4.1 Etiquetas (<code>labs()</code>)</h2>
 <p>Las etiquetas son elementos fundamentales para mejorar la claridad y comprensión de los gráficos. La función labs() nos permite personalizar todos los textos descriptivos de un gráfico, haciéndolo autónomo y comprensible sin necesidad de referencias externas. Es crucial para crear visualizaciones profesionales que puedan ser interpretadas correctamente fuera de su contexto original, por ejemplo en una presentación de ppt.</p>
@@ -893,7 +899,7 @@ Figure&nbsp;7: Variable types and their classification
 </div>
 </div>
 </div>
-<p>Ahora aplicamos la función labs() para añadir todos los elementos textuales necesarios: título principal, subtítulo contextual, etiquetas descriptivas para ambos ejes y un pie de figura que indica la fuente de los datos.</p>
+<p>Ahora aplicamos la función <code>labs()</code> para añadir todos los elementos textuales necesarios: título principal, subtítulo contextual, etiquetas descriptivas para ambos ejes y un pie de figura que indica la fuente de los datos.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Añadir etiquetas descriptivas</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>miplot1 <span class="sc">+</span> </span>
@@ -912,7 +918,7 @@ Figure&nbsp;7: Variable types and their classification
 </div>
 </div>
 </div>
-<p>La función {labs()} permite personalizar los textos del gráfico. Es crucial para hacer los gráficos autónomos y comprensibles.</p>
+<p>La función <code>labs()</code> permite personalizar los textos del gráfico. Es crucial para hacer los gráficos autónomos y comprensibles.</p>
 </section>
 <section id="sistema-de-coordenadas" class="level2">
 <h2 class="anchored" data-anchor-id="sistema-de-coordenadas">4.2 Sistema de coordenadas</h2>
@@ -961,13 +967,12 @@ Figure&nbsp;7: Variable types and their classification
 </section>
 <section id="ejercicio-g" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-g">🧩Ejercicio g):</h2>
+</section>
+<section id="diagrama-de-cajas-con-etiquetas-completas" class="level2">
+<h2 class="anchored" data-anchor-id="diagrama-de-cajas-con-etiquetas-completas">1️⃣ Diagrama de cajas con etiquetas completas</h2>
 <ol type="1">
-<li>Diagrama de cajas con etiquetas completas</li>
-</ol>
-<!-- -->
-<ol type="a">
-<li>Crea un gráfico de boxplot de body_mass_g por species.</li>
-<li>Añade etiquetas usando labs() para:</li>
+<li><p>Crea un gráfico de <strong>boxplot</strong> de <code>body_mass_g</code> por <code>species</code> (especies de pingüinos).</p>
+<p>Añade <strong>etiquetas completas</strong> usando <code>labs()</code>:</p></li>
 </ol>
 <p>Título principal: “Distribución de masa corporal por especie”</p>
 <p>Subtítulo: “Datos del estudio Palmer Penguins”</p>
@@ -978,24 +983,19 @@ Figure&nbsp;7: Variable types and their classification
 <p>¿Por qué es importante incluir todas estas etiquetas en un gráfico que será mostrado fuera de contexto?</p>
 <p>¿Qué aporta el subtítulo respecto al título?</p>
 <ol start="2" type="1">
-<li>Ajuste de coordenadas / zoom</li>
+<li><p>2️⃣ Ajuste de coordenadas / zoom</p>
+<p><strong>Instrucciones:</strong></p>
+<ol type="1">
+<li><p>Aplica <code>coord_cartesian()</code> para enfocar la vista entre <strong>3000 y 5000 g</strong> en el eje Y.</p></li>
+<li><p>Crea un segundo gráfico usando <code>ylim(3000, 5000)</code>.</p></li>
+<li><p>Compara los resultados y observa la diferencia.</p></li>
+</ol></li>
 </ol>
-<!-- -->
-<ol type="a">
-<li>Aplica coord_cartesian() para enfocar la vista entre 3000 y 5000 g en el eje Y.</li>
-<li>Crea otro gráfico usando ylim(3000, 5000) y observa la diferencia.</li>
-</ol>
-<p>Preguntas:</p>
-<p>¿Qué sucede con los puntos fuera del rango cuando usamos coord_cartesian() vs ylim()?</p>
-<p>¿Por qué podría ser problemático usar ylim() si más adelante añadimos suavizados o regresiones?</p>
-<ol start="3" type="1">
-<li>Bonus opcional – combinación de aesthetics</li>
-</ol>
-<p>Agrega color a los boxplots según sex.</p>
-<p>Mantén las etiquetas y el zoom aplicados.</p>
-<p>Observa si el patrón de masas cambia entre sexos dentro de cada especie.</p>
-<p>Pregunta:</p>
-<p>¿Qué insights adicionales proporciona el color dentro de cada grupo?</p>
+<p><strong>Preguntas de reflexión:</strong></p>
+<ul>
+<li><p>¿Qué sucede con los puntos fuera del rango cuando usamos <code>coord_cartesian()</code> vs <code>ylim()</code>?</p></li>
+<li><p>¿Por qué podría ser problemático usar <code>ylim()</code> si más adelante añadimos suavizados o regresiones?</p></li>
+</ul>
 </section>
 <section id="faceting" class="level2">
 <h2 class="anchored" data-anchor-id="faceting">4.3 Faceting</h2>
@@ -1048,10 +1048,10 @@ Figure&nbsp;7: Variable types and their classification
 <section id="faceting-estructurado-filas-y-columnas-con-facet_grid" class="level2">
 <h2 class="anchored" data-anchor-id="faceting-estructurado-filas-y-columnas-con-facet_grid">4.3.3 Faceting estructurado: filas y columnas con <code>facet_grid()</code></h2>
 <p>Cuando queremos estudiar simultáneamente <strong>dos variables categóricas</strong>, <code>facet_grid()</code> permite organizar los paneles en una rejilla definida por filas y columnas.</p>
-<p>En el siguiente ejemplo, los datos se separan por sexo (filas) e isla (columnas):</p>
+<p>En el siguiente ejemplo, los datos se separan por especie (filas) e isla (columnas):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>miplot2 <span class="sc">+</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(sex), <span class="at">cols =</span> <span class="fu">vars</span>(island))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(species), <span class="at">cols =</span> <span class="fu">vars</span>(island))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1067,13 +1067,14 @@ Figure&nbsp;7: Variable types and their classification
 <p>Aunque ambas funciones crean múltiples paneles, tienen usos distintos:</p>
 <ul>
 <li><p><code>facet_grid()</code> se utiliza cuando queremos <strong>controlar explícitamente</strong> la disposición en filas y columnas.</p></li>
-<li><p><code>facet_wrap()</code> es más flexible y se adapta mejor cuando una variable tiene muchos niveles.</p></li>
+<li><p><code>facet_wrap()</code> es más flexible y se adapta mejor cuando una variable categórica tiene muchos niveles.</p>
+<p>Por ejemplo, una representación más compacta por especie sería:</p></li>
 </ul>
-<pre><code>Por ejemplo, una representación más compacta por isla sería:</code></pre>
+<pre><code></code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Facet wrap (organiza en rejilla)</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>miplot2 <span class="sc">+</span> </span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">facets =</span> <span class="fu">vars</span>(island), <span class="at">ncol =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">facets =</span> <span class="fu">vars</span>(species), <span class="at">ncol =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1349,7 +1350,7 @@ La función que decide <strong>cómo se hace esa traducción</strong> se llama <
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> flipper_length_mm,</span>
 <span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> species)) <span class="sc">+</span></span>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1403,7 +1404,7 @@ La función que decide <strong>cómo se hace esa traducción</strong> se llama <
 </p>
 <p><strong>categórica → paleta cualitativa</strong>,<br>
 </p>
-<p><strong>numérica → paleta secuencial o Viridis</strong>.</p>
+<p><strong>numérica → paleta secuencial o gradiente</strong>.</p>
 </section>
 </section>
 </section>
