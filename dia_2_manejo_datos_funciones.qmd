@@ -19,7 +19,7 @@ number-sections: true
 bibliography: references.bib
 ---
 
-## Síntesis del día 1: Introducción a R y a R studio (POR TERMINAR)
+## Síntesis del día 1: Introducción a R y a R studio
 
 ### Modelo de ciencia de datos
 
@@ -88,6 +88,10 @@ Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. 
 +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ## Manejo y gestión de datos
+
+### Resumen de funciones
+
+![](images/resumen_funciones.png)
 
 ### Importar y renombrar datos
 

@@ -1,0 +1,577 @@
+---
+author: "Marina Rodes Blanco, Julián Tijerin Triviño, Paloma Ruiz Benito y Verónica Cruz Alonso, "
+date: today
+date-format: "DD/MM/YYYY"
+toc: true
+toc-depth: 5
+toc-title: "Índice"
+format:
+  html:
+    link-external-newwindow: true
+    title: Día 2 - Manejo y visualización de datos en R
+    subtitle: Gestión de datos y funciones en R
+  gfm: 
+    title: "Día 2 - Manejo y visualización de datos en R"
+editor: visual
+editor_options: 
+  chunk_output_type: console
+number-sections: true
+bibliography: references.bib
+---
+
+## Síntesis del día 1: Introducción a R y a R studio (POR TERMINAR)
+
+#### 🧩 Ejercicio: *repaso* *del día anterior*
+
+-   Crea un vector con los meses del año (en número) y calcula la media
+-   Crea una matriz ... ¿Cual es el elemento de la fila 3 columna 2?
+-   Crea una lista .. ¿Que hay en el tercer elemento de la lista?
+-   Crea un data frame con la siguiente información
+
+```{r solucion ej repaso}
+#Pendiente
+```
+
+## Manejo y gestión de datos
+
+### Importar y renombrar datos
+
+##### 🧩 *Ejercicio: slice(), filter(), arrange()*
+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/mammals_sleeping_picture1_copilot.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Lee el data.frame “msleep.csv”. Pista: el delimitador entre datos es la coma (“,”).</li>
+      <li> Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?</li>
+      <li> Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas?</li>
+    </td>
+  </tr>
+</table>
+```
+
+```{r solucion ejercicio 1}
+
+#Solución ejercicio 1:slice(), filter(), arrange()
+library (tidyverse)
+
+## Leer el data frame
+msleep <- read_delim(file = "data/msleep.csv", delim = ",")
+
+head(msleep)
+
+## Crea un subset que NO contenga los animales domésticos (campo conservation). ¿Cuantas son?
+
+msleep |>  filter(conservation != "domesticated")
+
+#### Otras posibles soluciones...
+msleep |>  filter(conservation %in% c("lc", "nt", "vu", "en", "cd", NA))
+msleep |>  filter(
+  conservation == "lc" | conservation == "nt" |
+    conservation == "vu" | conservation == "en" |
+    conservation == "cd" | is.na(conservation)
+)
+
+## Crea un subset de datos que contenga las filas de la 1 a la 5 y de la 18 a la 20, sobre esos datos obten los animales carnívoros. Ordena según las horas de sueño ¿Qué animal duerme más horas?
+
+subset_msleep <- msleep |>
+  slice(1:5, 18:20) |>
+  filter(vore == "carni") |>
+  arrange(desc(sleep_total))
+
+#### solucion: Cheetah (guepardo)
+
+```
+
+### [Select](https://dplyr.tidyverse.org/reference/select.html): sirve para seleccionar columnas utilizando condiciones
+
+##### 🧩 *Ejercicio: select()*
+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/mammals_sleeping_picture2_copilot.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño.</li>
+      <li> Crea un nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.</li>
+      <li>(extra) ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?</li>
+    </td>
+  </tr>
+</table>
+```
+
+```{r solucion ejercicio 2}
+
+## Nuevo data.frame que contenga las variables relacionadas con el sueño
+head(msleep) #para ver las 10 primeras lineas
+names(msleep) #para ver el nombre de las columnas
+
+vars_sleep <- msleep |>
+  select(starts_with("sleep"))
+
+## Nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.
+msleep2 <- msleep |>
+  select(order, genus, name, everything(), -awake)
+
+## Extra: ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?
+
+msleep |>
+  filter(order == "Carnivora" &
+           conservation == "vu") |>
+  arrange(desc(sleep_total))
+
+```
+
+### Transformar los datos y calcular nuevas variables
+
+##### 🧩 *Ejercicio: mutate()*
+
+```{=html}
+
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/mammals_sleeping_picture3_copilot.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Con el data set de msleep, incluye una nueva columna con el porcentaje de horas que duerme cada animal al día. </li>
+      <li> Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr). </li>
+    </td>
+  </tr>
+</table>
+```
+
+```{r solucion ejercicio 3}
+
+## Nueva columna con el porcentaje de horas que duerme cada animal al día.
+
+msleep |> mutate(sleep_prc = (sleep_total / 24) * 100)
+
+## Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cd).
+
+msleep |>
+  mutate(
+    classification = case_when(
+      # utilizar varias variables para calcular otra nueva
+      vore == "carni" &
+        conservation %in% c("en", "cd") ~ "threatened carnivore",
+      
+      vore == "herbivore" &
+        conservation %in% c("en", "cd") ~ "threatened herbivore",
+      
+      TRUE ~ "others" #resto de casos
+    )
+  )
+
+```
+
+##### 🧩 *Ejercicio: group_by(), summrise()*
+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/mammals_sleeping_picture4_copilot.png" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Con el data set de msleep, cuenta el número de especies estudiadas por orden (order) </li>
+      <li> Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset? </li>
+    </td>
+  </tr>
+</table>
+```
+
+```{r solucion ejercicio 4}
+## Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)
+msleep |>
+  group_by(order) |>
+  summarise(species_per_order = n())
+
+## Otra opción, mucho más segura...
+msleep |>
+  group_by(order) |>
+  summarise(species_per_order = n_distinct(name))
+
+## Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset?
+```
+
+##### 🧩 *Ejercicio: transformar datos largo ancho*
+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/pixar_image2_flickr.jpg" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Lee el set de datos pixar_public_response_long. En este set de datos se encuentra la puntuación de películas pixar por la audiencia según tres webs diferentes: rotten tomatoes, metacritic y critics’ choice. </li>
+      <li> Reorganiza el set de datos para que la puntuación de cada una de las webs se encuentre en una columna diferente </li>
+      <li> (extra) ¿Cual es el promedio de puntuación por película teniendo en cuenta todas las fuentes? ¿Que película es la mejor y peor puntuada de media? </li>
+    </td>
+  </tr>
+</table>
+```
+
+Fuente imagen: <https://www.flickr.com/photos/harshlight/17294952412> (CC BY 2.0)
+
+```{r solucion ejercicio 5}
+## Lee el set de datos pixar_public_response_long. En este set de datos se encuentra la puntuación de películas pixar por la audiencia según tres webs diferentes: rotten tomatoes, metacritic y critics’ choice.
+
+pixar_public_response_long <- read_delim("data/pixar_public_response_long.csv")
+
+glimpse(pixar_public_response_long)
+
+head(pixar_public_response_long)
+
+str(pixar_public_response_long)
+
+## Reorganiza el set de datos para que la puntuación de cada una de las webs se encuentre en una columna diferente
+
+pixar_public_response_wide <- pivot_wider(pixar_public_response_long,
+                                          names_from = source,
+                                          values_from = value)
+
+## (extra) ¿Cual es el promedio de puntuación por película teniendo en cuenta todas las fuentes? ¿Que película es la mejor y peor puntuada de media?
+
+pixar_public_response_wide |>
+  
+  mutate(mean_score = (rotten_tomatoes + metacritic + critics_choice) /3) |>
+  
+  filter(mean_score == max(mean_score, na.rm = T) |
+         mean_score == min(mean_score, na.rm = T))
+```
+
+### Unir data.frames
+
+##### 🧩 *Ejercicio: \*\_join() y exportar datos*
+
+```{=html}
+<table>
+  <tr>
+    <td style="width:330px; vertical-align:top;">
+      <img src="images/pixar_image3_flickr.jpg" style="width:300px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+      <li> Lee el set de datos pixar_public_response y pixar_films </li>
+      <li> Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View() </li>
+      <li> Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión </li>
+      <li> Guarda el nuevo set de datos como pixar_joint </li>
+    </td>
+  </tr>
+</table>
+```
+
+Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
+
+```{r solucion ejercicio 6}
+## Lee el set de datos pixar_public_response y pixar_films
+pixar_public_response <- read_delim("data/pixar_public_response.csv")
+pixar_films <- read_delim("data/pixar_films.csv")
+
+## Explora los dos data sets con funciones como head() para ver las primeras lineas, glimpse() o View()
+head(pixar_public_response)
+glimpse(pixar_public_response)
+
+head(pixar_films)
+glimpse(pixar_films)
+
+## Une ambos datasets en uno solo para tener en un mismo data frame toda la información. Elige el campo más apropiado de unión
+
+pixar_joint <- full_join(pixar_films, pixar_public_response, by = "film")
+
+## Guarda el nuevo set de datos como pixar_joint
+write_delim(pixar_joint, file = "data/pixar_joint.csv", delim = ";")
+```
+
+### 🧩 *Ejercicio final*
+
+```{=html}
+<table>
+  <tr>
+    <td style="width:150px; vertical-align:top;">
+      <img src="images/palmer_penguins.png" style="width:130px; height:auto; display:block;">
+    </td>
+    <td style="vertical-align:middle;">
+    Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse:
+    </td>
+  </tr>
+</table>
+```
+
+🐧 Instala el paquete penguins y cárgalo
+
+```{r ejerccio final (1)}
+# install.packages("palmerpenguins")
+library(palmerpenguins)
+```
+
+🐧 Crea un data frame denominado islands_info con dos columnas, la primera llamada "island" con los valores "Torgersen", "Biscoe", "Dream" y otra llamada "protected_area" con los valores "Si", "No", "Si"
+
+```{r ejerccio final (2)}
+islands_info<-data.frame(island=c("Torgersen", "Biscoe", "Dream"),
+                         protected_area=c("Si", "No", "Si"))
+```
+
+🐧Selecciona los pinguinos que tengan picos de más de 40mm (bill_length_mm) y que pesen menos de 4.5kg (recuerda que puedes ver más información de tu dataset en ?penguins)
+
+```{r ejerccio final (3)}
+penguins_filter<- penguins |> 
+  filter(bill_length_mm>40, body_mass_g <4500)
+```
+
+🐧De los datos filtrados conserva únicamente las columnas species, island, bill_length_mm, bill_depth_mm y body_mass_g
+
+```{r ejerccio final (4)}
+penguins_select<- penguins_filter |> 
+  select(species, island, bill_length_mm , bill_depth_mm,body_mass_g)
+```
+
+🐧Añade una columna llamada bill_ratio que calcule la relación entre longitud y profundidad del pico
+
+```{r ejerccio final (5)}
+penguins_mutate<- penguins_select |> 
+  mutate(bill_ratio=bill_length_mm/bill_depth_mm)
+```
+
+🐧Une el resultado con el dataset islands_info, de forma que cada pingüino quede asociado a si su isla es un área protegida.
+
+```{r ejerccio final (6)}
+penguins_join<- penguins_mutate |> 
+  left_join(islands_info, by="island")
+```
+
+🐧Crea una columna categoria_peso con valores "ligero", "medio", "pesado"según los umbrales que quieras o, más dificil, con terciles de body_mass (consulta funcion quantile).
+
+```{r ejerccio final (7)}
+penguins_class<- penguins_join |> 
+  mutate(body_mass_class=case_when(
+    body_mass_g <= quantile(body_mass_g, na.rm=T, 0.33) ~ "ligero",
+    body_mass_g > quantile(body_mass_g, na.rm=T, 0.33) &
+      body_mass_g <= quantile(body_mass_g, na.rm=T, 0.66) ~ "medio",
+    body_mass_g > quantile(body_mass_g, na.rm=T, 0.66) ~ "pesado"
+  ))
+```
+
+🐧Si no lo has hecho, organiza todos los pasos anteriores (excepto cargar el paquete y crear el data frame) en un solo flujo de trabajo
+
+```{r ejerccio final (8)}
+
+penguins2 <- penguins |>
+  
+  filter(bill_length_mm > 40, body_mass_g < 4500) |>
+  
+  select(species , island, bill_length_mm , bill_depth_mm, body_mass_g) |>
+  
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) |>
+  
+  left_join(islands_info, by = "island") |>
+  
+  mutate(
+    body_mass_class = case_when(
+      body_mass_g <= quantile(body_mass_g, na.rm = T, 0.33) ~ "ligero",
+      body_mass_g > quantile(body_mass_g, na.rm = T, 0.33) &
+        body_mass_g <= quantile(body_mass_g, na.rm = T, 0.66) ~ "medio",
+      body_mass_g > quantile(body_mass_g, na.rm = T, 0.66) ~ "pesado"
+    )
+  )
+
+```
+
+🐧Cuenta cuantos individuos hay ligeros, medios y pesados en zonas protegidas vs zonas no protegidas
+
+```{r ejerccio final (9)}
+penguins_class |>  group_by(body_mass_class) |> summarise(n())
+```
+
+🐧(EXTRA) Responde a las siguientes preguntas: ¿Cual es la máxima relación entre longitud y profundidad del pico de los individuos en zonas protegidas? ¿y no protegidas?
+
+```{r solucion ejercicio final}
+penguins_class |> group_by(protected_area) |>  summarise(bill_ratio=max(bill_ratio))
+
+```
+
+## Introducción a la programación con funciones
+
+##### 🧩 Ejercicio: consultar la función matrix()
+
+Consulta la ayuda de la función matrix. ¿Cuantos argumentos tiene?. Genera una matriz con esta funcion usando todos los argumentos.
+
+```{r}
+
+? matrix
+
+# argumentos: 
+  # data: data vector 
+  # nrow: number of rows
+  # ncol: number of columns
+  # byrow: if the matrix is filled by columns or by rows
+  # dimnames:  NULL or a list of length 2 giving the row and column names respectively. 
+
+matrix(1:10,
+       nrow=5,
+       ncol=2,
+       byrow=TRUE, 
+       dimnames=list(c("r1","r2","r3","r4","r5"),
+                     c("c1","c2")))
+```
+
+### Cómo escribir una función
+
+##### 🧩 Ejercicio: consultar la función sort()
+
+-   Ordena el vector c(5, 8, 6, 2, 4, 5, NA) usando la funcion sort()
+
+-   Utiliza el argumento "decreasing" para ordenarlo de mayor a menor (consulta la ayuda para ver como se usa este argumento). ¿Qué valor tiene por defecto?
+
+-   ¿Que otro argumento tiene la funcion que especifica detalles de la ejecución? Cámbialo a otro valor que no sea su valor por defecto.
+
+-   ¿Cual es el valor de retorno de la función?
+
+```{r}
+
+# nombro el vector
+v1<-  c(5, 8, 6, 2, 4, 5, NA)
+
+# lo ordeno usando sort
+sort(v1)
+
+# de mayor a menor
+sort(v1, decreasing=TRUE) #cambio el valor por defecto (FALSE) a TRUE
+
+# argumento na.last
+sort(v1, decreasing=TRUE, na.last=TRUE)
+
+#el valor de retorno de la funcion es el vector ordenado con las espeificaciones que le he dado en los argumentos
+```
+
+##### 🧩 Ejercicio: primera función
+
+1.  Crea una función que sirva para calcular el área de habitaciones cuadradas o rectangulares. Para ello crea una función de dos argumentos (el ancho de la habitación y el largo) y que devuelva el área.
+
+```{r habitaciones, eval = FALSE}
+mi_funcion <- function(largo, ancho) {
+  ancho * largo
+}
+```
+
+2.  Queremos saber el precio de enlosar la habitación. Para ello añade un tercer argumento con el precio por metro cuadrado.
+
+```{r}
+mi_funcion <- function(largo, ancho, precio) {
+  ancho * largo * precio
+}
+```
+
+3.  ¿Cuanto cuesta enlosar una habitación de 10x16m con un tipo de losa que cuesta 5€ el metro cuadrado? ¿Y una de 32x4m con una que cuesta 16€ por metro cuadrado?
+
+```{r}
+mi_funcion(10,16,5)
+mi_funcion(32, 4, 16)
+```
+
+##### 🧩 Ejercicio: funcion de media aritmética
+
+Crea una función que calcule la media aritmética de los valores de un vector (sin usar la función mean()). De tal manera que si introducimos, por ejemplo, el vector c(1, 8, 18) nos devuelva el valor 9
+
+-   Pista1: sum() nos da el valor de la suma de los elementos de un vector \# prueba sum(c(1, 2, 3)) para comprobarlo
+
+Pista 2: length() nos da la longitud (numero de elementos) del vector.
+
+```{r}
+mi_media <- function(v) {
+  sum(v) / length(v)
+}
+
+mi_media(c(10, 5, 2, 14))
+```
+
+### Iteraciones con bucles for
+
+##### 🧩 Ejercicio: creando bucles for
+
+Elige al menos una de las siguientes opciones y crea un bucle:
+
+A partir del vector v\<- c(1,2,3,4), crea un vector w donde el pimer elemento de w sea el primer de v al cuadrado más uno y así sucesivamente.
+
+```{r}
+v <- c(1, 2, 3, 4)
+w <- vector("integer", 4)
+
+for (i in 1:length(v)) {
+  #tambien i in 1:4; i in seq_along()
+  w[[i]] = v[[i]]^2 + 1
+}
+w
+```
+
+-   A partir de una lista con los dataframes de tidyverse msleep, diamonds y mpg, crea una nueva lista donde aparezcan esos mismos dataframes pero seleccionado solo las columnas que empiecen por "c" y las filas de la 10 a la 20.
+
+```{r}
+library(tidyverse)
+lista_df <- list(msleep, diamonds, mpg)
+lista_nueva <- list()
+
+for (i in seq_along(lista_df)) {
+  lista_nueva[[i]] <- lista_df[[i]] |> select(starts_with("c")) |> slice(10:20)
+}
+```
+
+-   Genera un bucle para leer los archivos df1 a df5 de la carpeta data/df y almacenarlos en una lista. Pista: consulta la funcion list.files() y mira cuidadosamente todos los argumentos.
+
+```{r}
+lista <- list.files("data/df", full.names = T)
+lista_files <- list()
+
+for (i in seq_along(lista)) {
+  lista_files[[i]] <- read_delim(lista[[i]])
+}
+```
+
+### Iteraciones con funcionales
+
+##### 🧩 Ejercicio: map()
+
+-   Genera un vector, una función y aplica la función a cada uno de los elementos del vector utilizando `map()`.
+
+```{r}
+v2 <- c(5, 6, 8, 9, 11)
+operacion <- function(x)
+  sqrt(x * 5)
+map(v2, operacion)
+```
+
+-   para la lista list(a = 1:3, b = letters\[1:5\], c = c(TRUE, FALSE)) utiliza map() para generar una salida que sea una lista con las longitudes de cada elemento. ¿Que funcion tendrías que utilizar si quieres que la salida sea un vector de números enteros en lugar de una lista?
+
+```{r}
+l1 <- list(a = 1:3,
+           b = letters[1:5],
+           c = c(TRUE, FALSE))
+map(l1, length)
+map_int(l1, length)
+```
+
+-   para la lista_num \<- list(a = c(1,2,3), b = c(4,5), c = 6) aplica una funcion de la familia map para obtener la media de cada elemento a, b, c en un vector numérico.
+
+```{r}
+l2 <- list(a = c(1, 2, 3),
+           b = c(4, 5),
+           c = 6)
+map_dbl(l2, mean)
+
+```
+
+------------------------------------------------------------------------
+
+<details>
+
+<summary>Session Info</summary>
+
+```{r session_info} Sys.time() sessionInfo()}
+```
+
+</details>
