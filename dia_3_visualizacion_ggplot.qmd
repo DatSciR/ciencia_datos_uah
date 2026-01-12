@@ -534,7 +534,7 @@ ggplot(penguins, aes(x = body_mass_g)) +
 
 Comparación entre grupos: Cuando queremos comparar la distribución de una variable continua entre diferentes categorías podemos utilizar:
 
-Diagrama de cajas (`geom_boxplot()`) - Muestra estadísticos de resumen (mediana, cuartiles, valores atípicos):
+Diagrama de cajas (`geom_boxplot()`) -\> Muestra estadísticos de resumen (mediana, cuartiles, valores atípicos):
 
 ```{r boxplot}
 # Boxplot comparando masa corporal entre especies
@@ -542,7 +542,7 @@ ggplot(penguins, aes(x = species, y = body_mass_g)) +
   geom_boxplot()
 ```
 
-Gráfico de violín (geom_violin()) - Combina las ventajas del boxplot con la visualización de la densidad:
+Gráfico de violín (`geom_violin()`) -\> Combina las ventajas del boxplot con la visualización de la densidad:
 
 ```{r violin}
 # Gráfico de violín mostrando la forma completa de la distribución
@@ -607,39 +607,13 @@ Gráfico de barras (`geom_bar`): Cuando tenemos pocos valores posibles y queremo
 
 Histograma con binwidth = 1 (`geom_histogram`): Cuando queremos mantener la apariencia de histograma pero con valores discretos
 
-Ejercicio: Para cada una de estas variables de penguins, identifica si es continua o discreta (o podría tratarse como discreta) y crea el gráfico apropiado:
-
-flipper_length_mm (longitud de aleta)
-
-island (isla)
-
-bill_depth_mm (profundidad del pico)
-
-year (año de observación)
-
-sex (sexo)
-
-Consejo clave: La elección entre tratar una variable como continua o discreta depende del contexto analítico. En general:
-
--   Variables de medición (peso, longitud, tiempo) suelen ser continuas
-
--   Variables de conteo (número de hijos, número de errores) suelen ser discretas
-
--   Variables como year pueden tratarse como discretas cuando nos interesan los valores específicos
-
-Esta distinción es importante porque afecta cómo interpretamos los gráficos y qué tipo de análisis estadístico realizamos posteriormente.
-
 ## 🧩Ejercicio f):
 
 Crea dos gráficos:
 
 1.  Exploración de variables cualitativas
 
-Variables: species, island, sex
-
-Tareas: a) Identifica qué variable(s) se pueden graficar con un `geom_bar()`. b) Crea un gráfico de barras para la variable más interesante y colorea las barras según sex. c) Ajusta la posición para mostrar proporciones (position = "fill") y otra vez para mostrar conteos (position = "dodge").
-
-Preguntas:
+Tareas: a) Identifica qué variable(s) se pueden graficar con un `geom_bar()`. b) Crea un gráfico de barras para la variable más interesante y colorea las barras según sex. c) Ajusta la posición para mostrar proporciones y otra vez para mostrar conteos utilizando "position".
 
 ¿Cuál es la especie/isla más frecuente?
 
@@ -651,7 +625,7 @@ Preguntas:
 
 Variables: bill_length_mm, bill_depth_mm, body_mass_g
 
-Tareas: a) Crea un scatterplot de bill_length_mm vs bill_depth_mm. b) Colorea los puntos según species y usa tamaño de punto (size) según body_mass_g. c) Agrega transparencia (alpha) para manejar solapamiento.
+Tareas: a) Crea un scatterplot de *bill_length_mm* vs *bill_depth_mm*. b) Colorea los puntos según species y usa tamaño de punto según *body_mass_g*. c) Agrega transparencia para manejar solapamiento.
 
 Preguntas:
 
@@ -674,6 +648,7 @@ Comenzamos creando un gráfico base de diagramas de caja que relaciona la especi
 # Gráfico base
 miplot1 <- ggplot(data = penguins) + 
   geom_boxplot(aes(x = species, y = body_mass_g))
+
 miplot1
 ```
 
@@ -695,9 +670,9 @@ La función {labs()} permite personalizar los textos del gráfico. Es crucial pa
 
 ## 5.2 Sistema de coordenadas
 
-Por defecto, ggplot2 usa coordenadas cartesianas, pero ofrece flexibilidad para ajustar la vista de los datos. **Es importante distinguir entre hacer zoom (manteniendo todos los datos) y limitar el rango (eliminando datos fuera del rango).**
+Por defecto, `ggplot2` usa coordenadas cartesianas, pero ofrece flexibilidad para ajustar la vista de los datos. **Es importante distinguir entre hacer zoom (manteniendo todos los datos) y limitar el rango (eliminando datos fuera del rango).**
 
-La función coord_cartesian() permite enfocar en una región específica del gráfico **sin descartar observaciones**.
+La función `coord_cartesian()` permite enfocar en una región específica del gráfico **sin descartar observaciones**.
 
 ```{r coordenadas}
 # Zoom en el eje Y
@@ -779,34 +754,66 @@ Pregunta:
 
 ## 5.3 Faceting
 
-El faceting (o creación de múltiples paneles) es una técnica muy potente para visualizar subconjuntos de datos en gráficos separados pero comparables. Es especialmente útil para analizar patrones entre diferentes grupos categóricos. Comenzamos creando un gráfico de dispersión base que relaciona masa corporal con longitud de aleta, coloreado por especie.
+En el análisis de datos, a menudo no solo nos interesa estudiar la relación entre dos variables, sino también **cómo cambia esa relación entre distintos grupos** (por ejemplo, entre islas, sexos o especies). Representar todos los datos juntos puede ocultar patrones importantes.
+
+El **faceting** es una técnica de `ggplot2` que permite **dividir un mismo gráfico en varios paneles**, de modo que cada panel muestra un subconjunto de los datos, manteniendo una estructura visual común. Esto facilita la **comparación directa entre grupos**.
+
+## 5.3.1 Gráfico base
+
+Antes de aplicar faceting, es fundamental construir un **gráfico base** que represente correctamente la relación que queremos analizar. En este ejemplo, estudiaremos la relación entre la masa corporal y la longitud de la aleta de los pingüinos, diferenciando las especies mediante color.
 
 ```{r facets}
-miplot2 <- ggplot(data = penguins, 
-                  aes(x = body_mass_g, y = flipper_length_mm, 
-                      color = species)) + 
+miplot2 <- ggplot(
+  data = penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm,
+    color = species
+  )
+) +
   geom_point(na.rm = TRUE)
 
 miplot2
 ```
 
-La función facet_grid() organiza los paneles en una rejilla según variables categóricas. En este primer ejemplo, creamos filas separadas por el sexo de los pingüinos, permitiendo comparar la relación entre variables para machos y hembras por separado.
+Este gráfico muestra **todos los individuos juntos**. Permite observar la tendencia general, pero no facilita la comparación entre grupos específicos como islas o sexos.
+
+## 5.3.2 Faceting por una variable categórica
+
+Para analizar si la relación entre masa corporal y longitud de aleta varía según la isla, podemos dividir el gráfico en varios paneles, uno por cada isla. Esto se consigue con `facet_wrap()`.
 
 ```{r facets-2}
 # Facet en filas
-miplot2 + 
-  facet_grid(rows = vars(sex), scales = "free")
+miplot2 +
+  facet_wrap(vars(island))
 ```
 
-Podemos extender el faceting a dos dimensiones, creando una matriz de gráficos que cruza dos variables categóricas. Esto permite analizar interacciones complejas entre diferentes factores.
+Cada panel contiene únicamente los datos correspondientes a una isla, pero todos comparten los mismos ejes. Esto permite comparar visualmente las distribuciones y relaciones entre islas de forma clara y directa.
+
+Este tipo de faceting es especialmente útil cuando se quiere estudiar **un único factor categórico**.
+
+## 5.3.3 Faceting estructurado: filas y columnas con `facet_grid()`
+
+Cuando queremos estudiar simultáneamente **dos variables categóricas**, `facet_grid()` permite organizar los paneles en una rejilla definida por filas y columnas.
+
+En el siguiente ejemplo, los datos se separan por sexo (filas) e isla (columnas):
 
 ```{r facets-3}
-# Facet en filas y columnas
-miplot2 + 
+miplot2 +
   facet_grid(rows = vars(sex), cols = vars(island))
 ```
 
-Cuando tenemos muchas categorías, facet_wrap() es más flexible que facet_grid(), ya que empaqueta los paneles en una rejilla que se adapta al número de categorías y al espacio disponible.
+Cada panel representa una combinación concreta de sexo e isla. Este enfoque es muy potente para detectar interacciones entre factores, aunque puede generar un número elevado de paneles y resultar más complejo de interpretar para usuarios principiantes.
+
+## 5.3.4 `facet_wrap()` frente a `facet_grid()`
+
+Aunque ambas funciones crean múltiples paneles, tienen usos distintos:
+
+-    `facet_grid()` se utiliza cuando queremos **controlar explícitamente** la disposición en filas y columnas.
+
+-    `facet_wrap()` es más flexible y se adapta mejor cuando una variable tiene muchos niveles.
+
+    Por ejemplo, una representación más compacta por isla sería:
 
 ```{r facets-4}
 # Facet wrap (organiza en rejilla)
@@ -814,7 +821,40 @@ miplot2 +
   facet_wrap(facets = vars(island), ncol = 3)
 ```
 
-Explicación: facet_grid() organiza por filas/columnas, facet_wrap() empaqueta múltiples paneles.
+## 5.3.5 Comparación visual: sin faceting vs con faceting
+
+Sin faceting, el gráfico muestra una visión global, pero dificulta responder preguntas como:
+
+-    ¿La relación entre masa corporal y longitud de aleta es igual en todas las islas?
+
+-    ¿Hay islas con mayor variabilidad?
+
+El faceting no añade datos nuevos, pero **organiza la información de forma que estas comparaciones sean evidentes**.
+
+## 5.3.6 Escalas fijas y escalas libres
+
+Por defecto, todos los paneles utilizan la misma escala en los ejes, lo que facilita la comparación entre grupos.
+
+```{r facets-5}
+miplot2 +
+  facet_wrap(vars(island))
+```
+
+Sin embargo, en algunos casos puede ser útil permitir que cada panel tenga su propia escala:
+
+```{r facets-6}
+miplot2 +
+  facet_wrap(vars(island), scales = "free")
+```
+
+-   **Escalas fijas**: recomendadas cuando se quiere comparar valores entre grupos.
+
+-   **Escalas libres**: útiles para explorar la variabilidad interna de cada grupo, aunque dificultan la comparación directa.
+
+    ## Idea clave
+
+    El faceting permite comparar grupos sin cambiar el diseño del gráfico.\
+    No crea gráficos diferentes, sino distintas “ventanas” de la misma visualización.
 
 ## 🧩Ejercicio h)
 
@@ -850,7 +890,7 @@ Preguntas:
 
 ## 5.4 Posición
 
-El parámetro *position* controla cómo se disponen elementos geométricos cuando hay superposiciones, especialmente en gráficos de barras con agrupaciones. Por defecto, ggplot2 usa posición "stack" (apilado), donde las barras se apilan unas sobre otras mostrando el total por categoría.
+El parámetro *position* controla cómo se disponen elementos geométricos cuando hay superposiciones, especialmente en gráficos de barras con agrupaciones. Por defecto, `ggplot2` usa posición "stack" (apilado), donde las barras se apilan unas sobre otras mostrando el total por categoría.
 
 ```{r position}
 # Por defecto: apilado (stack)
@@ -875,101 +915,86 @@ ggplot(data = penguins) +
   labs(y = "Proporción")
 ```
 
-## 5.5 Escalas de color
+```{}
+```
 
-Las funciones **scale\_\*** permiten personalizar cómo se mapean los datos a atributos visuales. La estructura general es \*scale\_"aesthetic"\_"tipo"()\*, donde "aesthetic" puede ser color, fill, x, y, etc., y "tipo" puede ser continuous, discrete, manual, etc. En este ejemplo, personalizamos manualmente los colores y etiquetas de una variable categórica, y también modificamos las marcas y etiquetas del eje Y.
+# 5.5 Escalas en ggplot2: cómo se traducen los datos en colores
 
-```{r escalas de color}
-# Escala de color manual
+En `ggplot2`, cuando usamos una variable dentro de `aes()`, estamos diciendo que **los valores de esa variable se representen visualmente** (por ejemplo, mediante color, tamaño o posición).\
+La función que decide **cómo se hace esa traducción** se llama **escala**.
+
+Dicho de forma sencilla: **Las escalas controlan cómo los datos se convierten en elementos visuales.**
+
+## 5.5.1 El papel de las escalas (idea básica)
+
+Observa el siguiente gráfico:
+
+```{r colores}
+miplot2 <- ggplot(penguins,
+       aes(x = body_mass_g,
+           y = flipper_length_mm,
+           color = species)) +
+  geom_point(na.rm = TRUE)
+miplot2
+```
+
+```{}
+```
+
+Aquí ocurre lo siguiente:
+
+-    `species` es una variable categórica
+
+-    `ggplot2` asigna automáticamente un color distinto a cada especie
+
+    Ese comportamiento automático **ya es una escala**, aunque no la veamos explícitamente.
+
+## 5.5.2 ¿Qué son las funciones `scale_*()`?
+
+Las funciones `scale_*()` nos permiten **modificar ese comportamiento automático**.
+
+Su estructura general es:
+
+scale\_<aesthetic>\_<tipo>()
+
+-   **aesthetic**: qué propiedad visual estamos modificando\
+    (`color`, `fill`, `x`, `y`, etc.)
+
+-    **tipo**: qué tipo de datos tiene la variable\
+    (`discrete`, `continuous`, `manual`, `gradient`, etc.
+
+Ejemplos:
+
+-    `scale_color_manual()` → colores definidos por el usuario
+
+-    `scale_color_gradient()` → gradiente para variables numéricas
+
+-    `scale_y_continuous()` → control del eje Y
+
+## 5.5.3 Escalas manuales para variables categóricas
+
+Cuando la variable es **categórica**, suele ser buena idea **elegir los colores manualmente**, sobre todo en gráficos para informes o presentaciones.
+
+```{r colores-2}
+miplot2 <- ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm,
+    color = species
+  )
+) +
+  geom_point(na.rm = TRUE)
+
+miplot2
+```
+
+```{r}
 miplot2 +
   scale_color_manual(
     values = c("darkorange", "purple", "cyan4"),
     labels = c("Adelie", "Chinstrap", "Gentoo")
-  ) + 
-  scale_y_continuous(
-    breaks = c(180, 200, 220),
-    labels = c("Bajo", "Medio", "Alto")
   )
-```
-
-Es importante comprender la diferencia entre scale_y_continuous (limits) y coord_cartesian (ylim). La primera función elimina permanentemente los datos fuera de los límites especificados, lo que puede afectar cálculos estadísticos como los cuartiles en diagramas de caja.
-
-```{r escalas de color-2}
-# ¡Cuidado! scale_y_continuous(limits) ELIMINA datos fuera de los límites
-ggplot(data = penguins) + 
-  geom_boxplot(aes(x = species, y = body_mass_g)) +
-  scale_y_continuous(limits = c(3000, 5000))
-```
-
-En contraste, coord_cartesian(ylim) simplemente aplica un zoom visual a la región especificada, manteniendo todos los datos para los cálculos estadísticos. Esta es generalmente la opción preferida cuando queremos enfocar en un rango específico.
-
-```{r escalas de color-3}
-# coord_cartesian(ylim) hace zoom sin eliminar datos
-ggplot(data = penguins) + 
-  geom_boxplot(aes(x = species, y = body_mass_g)) +
-  coord_cartesian(ylim = c(3000, 5000))
-```
-
-5.5.1 Ejercicio Modifica el siguiente gráfico para usar una escala de color gradiente de azul a amarillo. Pista: Usa scale_color_gradient()
-
-```{r escalas de color-4}
-# Modificar para usar una escala de color gradiente de azul a amarillo
-ggplot(data = penguins, 
-       aes(x = body_mass_g, y = flipper_length_mm, 
-           color = body_mass_g)) +
-  geom_point(na.rm = TRUE, size = 3) +
-  scale_color_gradient(low = "blue", high = "yellow")
-
-```
-
-5.6 Los colores en R R ofrece múltiples sistemas para trabajar con paletas de colores, cada uno con sus ventajas y casos de uso específicos. Las paletas *ColorBrewer* son ampliamente utilizadas y están organizadas en tres tipos: cualitativas (para datos categóricos sin orden), secuenciales (para datos numéricos ordenados) y divergentes (para datos con un punto medio significativo).
-
-```{r paletas de color}
-# Paletas Brewer (cualitativas, secuenciales, divergentes)
-RColorBrewer::display.brewer.all()
-```
-
-Podemos extraer colores específicos de una paleta *Brewer* usando la función **brewer.pal()**, especificando el nombre de la paleta y el número de colores deseado.
-
-```{r paletas de color-2}
-# Crear una paleta Brewer
-RColorBrewer::brewer.pal(name = "Set2", n = 3)
-```
-
-Las paletas HCL (Hue-Chroma-Luminance) están diseñadas para ser perceptualmente uniformes y accesibles para personas con daltonismo. A continuación vemos algunas de las paletas disponibles en este sistema.
-
-```{r paletas de color-3}
-# Paletas HCL (más accesibles)
-grDevices::hcl.pals()[1:10]
-```
-
-La función **hcl.colors()** nos permite generar secuencias de colores de cualquier paleta HCL, especificando el número de colores y la paleta deseada.
-
-```{r paletas de color-4}
-# Crear una paleta HCL
-grDevices::hcl.colors(n = 6, palette = "Blues 3")
-```
-
-Aplicamos una paleta de colores en un gráfico real. Usamos scale_color_gradientn() con la paleta "Viridis", que es perceptualmente uniforme, de alto contraste y apta para personas con daltonismo.
-
-```{r paletas de color-5}
-# Uso en gráficos: gradiente con Viridis
-ggplot(data = penguins, 
-       aes(x = body_mass_g, y = flipper_length_mm, 
-           color = body_mass_g)) + 
-  geom_point(na.rm = TRUE) + 
-  scale_color_gradientn(colours = hcl.colors(12, "Viridis"))
-```
-
-Para mayor comodidad, **ggplot2** ofrece funciones directas para paletas populares como Viridis. scale_color_viridis_c() aplica automáticamente la paleta Viridis a variables continuas.
-
-```{r paletas de color-6}
-# Versión directa con scale_color_viridis_c()
-ggplot(data = penguins, 
-       aes(x = body_mass_g, y = flipper_length_mm, 
-           color = body_mass_g)) + 
-  geom_point(na.rm = TRUE) + 
-  scale_color_viridis_c()
 ```
 
 ## 5.7 Temas
