@@ -1283,20 +1283,33 @@ No es necesario aprenderlos todos: se usan cuando se busca **un estilo concreto*
 
 ## 🧩Ejercicio aplicado):
 
+Un equipo internacional de investigadores que estudia **aves marinas en la Antártida** ha descrito recientemente una **enfermedad emergente** que podría estar afectando al estado físico de varias poblaciones de pingüinos del género *Pygoscelis*.
+
+Aunque los mecanismos biológicos exactos de la enfermedad aún no se conocen, los primeros estudios clínicos y ecológicos coinciden en que su impacto principal parece estar relacionado con el **estado corporal** de los individuos y con su **capacidad de mantener reservas energéticas adecuadas**.
+
+Los investigadores sospechan que esta enfermedad podría tener consecuencias importantes sobre:
+
+-    la supervivencia individual,
+
+-    el éxito reproductivo,
+
+-    y la viabilidad a largo plazo de determinadas poblaciones.
+
 Estudios previos en aves marinas indican que esta enfermedad se manifiesta principalmente en:
 
-1.  **Reducción de la masa corporal**
+1.  **Baja masa corporal**
 
 2.  **Desacople entre tamaño corporal y longitud de la aleta**, es decir:
 
+    -   Para una misma longitud de aleta, los individuos enfermos pesan menos.
+
 ```         
--   Para una misma longitud de aleta, los individuos enfermos pesan menos.
 ```
 
 3.  **Mayor impacto en los machos**, debido a su mayor gasto energético durante el periodo reproductivo.
+    -   Además, los primeros informes sugieren que **algunas especies podrían ser más vulnerables que otras**, especialmente aquellas de menor masa corporal media.
 
 ```         
-Además, los primeros informes sugieren que **algunas especies podrían ser más vulnerables que otras**, especialmente aquellas de menor masa corporal media.
 ```
 
 👉 **Hipótesis científica de partida**\
@@ -1362,7 +1375,7 @@ Tareas del reto:
 
 **Análisis e interpretación**
 
--   Según tu gráfico, ¿qué especie parece más afectada por la enfermedad (ej.: menor masa corporal promedio)?
+-   Según tu gráfico, ¿qué especie podría estar más afectada por la enfermedad (ej.: menor masa corporal promedio)?
 
 -   ¿Algún sexo o isla muestra mayor vulnerabilidad?
 
