@@ -8,10 +8,10 @@ toc-title: "Índice"
 format:
   html:
     link-external-newwindow: true
-    title: Día 2 - Manejo y visualización de datos en R
-    subtitle: Gestión de datos y funciones en R
+    title: Día 2 - Manejo y visualización de datos en R (soluciones)
+    subtitle: Gestión de datos y funciones en R (soluciones)
   gfm: 
-    title: "Día 2 - Manejo y visualización de datos en R"
+    title: "Día 2 - Manejo y visualización de datos en R (soluciones)"
 editor: visual
 editor_options: 
   chunk_output_type: console

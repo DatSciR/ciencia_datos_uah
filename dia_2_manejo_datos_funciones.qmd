@@ -62,19 +62,13 @@ bibliography: references.bib
 -   Data frames
 -   Listas
 
-+--------------------------+----------------+--------------------------------+
-| Tipo                     | Dimensiones    | Tipos de datos                 |
-+==========================+================+================================+
-| Vector                   | 1              | un tipo                        |
-+--------------------------+----------------+--------------------------------+
-| Matriz                   | 2              | un tipo                        |
-+--------------------------+----------------+--------------------------------+
-| Array                    | \>2            | un tipo                        |
-+--------------------------+----------------+--------------------------------+
-| Data frame               | 2              | varios tipos (uno por columna) |
-+--------------------------+----------------+--------------------------------+
-| Listas                   | 1              | varios tipos                   |
-+--------------------------+----------------+--------------------------------+
+| Tipo       | Dimensiones | Tipos de datos                 |
+|------------|-------------|--------------------------------|
+| Vector     | 1           | un tipo                        |
+| Matriz     | 2           | un tipo                        |
+| Array      | \>2         | un tipo                        |
+| Data frame | 2           | varios tipos (uno por columna) |
+| Listas     | 1           | varios tipos                   |
 
 ```{r}
 
@@ -576,9 +570,9 @@ Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
 
 ### 🧩 *Ejercicio final manejo de datos*
 
-+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  |  |
+|----|----|
 | ![](images/palmer_penguins.png) | Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse: |
-+---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 🐧 Instala el paquete palmerpenguins y cárgalo
 
