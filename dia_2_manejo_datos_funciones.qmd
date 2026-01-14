@@ -75,28 +75,30 @@ bibliography: references.bib
 library(tidyverse)
 
 # Crear vectores
-v1<- 1:25
+v1 <- 1:25
 v1 #veo el vector que he creado
-v2<-seq(from=1,to=20,by=2)
+v2 <- seq(from = 1, to = 20, by = 2)
 v2
-v3<- rep(1:2, times=5)
+v3 <- rep(1:2, times = 5)
 v3
 
 #Crar matrices
-m1<-matrix(1:25, nrow=5, ncol=5)
+m1 <- matrix(1:25, nrow = 5, ncol = 5)
 m1 #veo la matriz
 
 #Crear data frames
-df1<-data.frame(letra=c("a","b","c","d"),
-                id=1:4,
-                col1=c(TRUE, FALSE, FALSE, TRUE),
-                col2=c(13,64,23,9))
+df1 <- data.frame(
+  letra = c("a", "b", "c", "d"),
+  id = 1:4,
+  col1 = c(TRUE, FALSE, FALSE, TRUE),
+  col2 = c(13, 64, 23, 9))
+
 df1
 summary(df1)
 glimpse(df1)
 
 #crear una lista
-l1<-list(v1,v2,m1,df1)
+l1 <- list(v1, v2, m1, df1)
 ```
 
 ### ¿Qué son los datos ordenados?
@@ -137,19 +139,19 @@ Tidytuesday es un proyecto comunitario de ciencia de datos impulsado por la comu
 
 De este proyecto vamos a trabajar principalmente con el set de datos cuisine:
 
-+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/recetas1_copilot.png) | **CUISINE**                                                                                                                                               |
-|                                  |                                                                                                                                                           |
-|                                  | El dataset de \*\*Cuisine\*\* de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.) |
-+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/recetas1_copilot.png) | **CUISINE**                                                                                                                                           |
+|                                  |                                                                                                                                                       |
+|                                  | El dataset de **Cuisine** de TidyTuesday recopila información sobre recetas y tipos de cocina (origen, valor nutricional, tiempo de preparación etc.) |
++----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. Puedes consultarlo con la función data(). De los sets de datos de tidyverse vamos a trabajar con msleep
 
-+---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![](images/mammals_sleeping_picture1_copilot.png) | **MSLEEP**                                                                                                                                                                                                    |
-|                                                   |                                                                                                                                                                                                               |
-|                                                   | El dataset \*\*msleep\*\* contiene información sobre \*\*el sueño de distintos\*\* mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño |
-+---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![](images/mammals_sleeping_picture1_copilot.png) | **MSLEEP**                                                                                                                                                                                        |
+|                                                   |                                                                                                                                                                                                   |
+|                                                   | El dataset **msleep** contiene información sobre el sueño de distintos mamíferos. Incluye variables biológicas, ecológicas y taxonómicas, así como medidas relacionadas con sus patrones de sueño |
++---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ## Manejo y gestión de datos
 
@@ -164,18 +166,16 @@ Tidyverse tambien tiene sus propios set de datos con los que podemos practicar. 
 Leer datos que tenemos almacenados, como por ejemplo, una tabla en formato csv.
 
 ```{r read}
-#| warning: false
 
 library(tidyverse)
 
 recetas <- read_delim(file = "data/cuisines.csv", delim = ",")
 
+# con el argumento col_type puedo especificar el tipo de dato (en este caso country como factor)
 recetas <- read_delim(
   file = "data/cuisines.csv",
   delim = ",",
-  col_type = list(country = "f", servings="f"),
-  # puedo especificar el tipo de dato (country como factor)
-  )
+  col_type = list(country = "f", servings = "f"))
 
 recetas
 
@@ -188,8 +188,8 @@ glimpse(recetas)
 #### [Rename](https://dplyr.tidyverse.org/reference/rename.html): cambiar nombres de variables (columnas)
 
 ```{r rename}
-#| warning: false  
 
+# Consulto el nombre de las columnas
 names(recetas)
 
 # Cambio el nombre y añado la unidad de medida (gramos)
@@ -234,7 +234,6 @@ recetas |>
 Se necesita un vector de filtrado que contenga valores lógicos (TRUE/FALSE).
 
 ```{r filter}
-#| warning: false
 
 recetas |>
   filter(country == "Chilean") # filtrar por filas que cumplen un patrón 
@@ -271,19 +270,18 @@ recetas |>
 
 #### [Select](https://dplyr.tidyverse.org/reference/select.html): sirve para seleccionar columnas utilizando condiciones
 
-Para ver como funciona esta función vamos a usar un set de datos sobre el sueño de los mamíferos. Se llama "msleep" y viene en librería de tidyverse. Puedes encontrar mas información sobre este set de datos en ?msleep
+Permite seleccionar columnas. Las podemos seleccionar por nombre, posición o usando alguna de las condiciones que puedes ver si consultas la ayuda de la función (?select).
 
 ```{r select}
-#| warning: false
 
 names(recetas)
 
 # ?select
 
-recetas |> 
+recetas |>
   select(name, calories, fat, carbs, protein) #solo nos interesan las columnas con informacion nutricional de cada receta
 
-recetas |> 
+recetas |>
   select(name, calories, fat, carbs, protein)
 
 # Se puede usar un patron de texto pra seleccionar colmnas
@@ -315,8 +313,6 @@ recetas |>
 #### [Mutate](https://dplyr.tidyverse.org/reference/mutate.html): crear, modificar o eliminar columnas
 
 ```{r mutate}
-#| warning: false
-
 # definir una variable 
 
 recetas |>
@@ -428,7 +424,6 @@ recetas_modif <- recetas |>
 #### [Summarise](https://dplyr.tidyverse.org/reference/summarise.html) y [group by](https://dplyr.tidyverse.org/reference/group_by.html): generar un nuevo `data.frame` resumiendo cada grupo a una fila
 
 ```{r summarise}
-#| warning: false
 
 # mínimo y máximo tiempo de preparación
 recetas |> 
@@ -439,17 +434,16 @@ recetas |>
 recetas |> 
   summarise(protein_max = max(protein),
             protein_mean = mean(protein),
-            protein_min = min(prep_time))
+            protein_min = min(protein))
 
  ## Ojo! si no queremos que tenga en cuenta los NA hay que añadir argumento na.rm=T
 recetas |> 
   summarise(protein_max = max(protein, na.rm=T),
             protein_mean = mean(protein, na.rm=T),
-            protein_min = min(prep_time, na.rm=T))
+            protein_min = min(protein, na.rm=T))
 ```
 
 ```{r group_by}
-#| warning: false
 
 #Lo mismo que antes, pero por país
 recetas |> 
@@ -460,7 +454,7 @@ recetas |>
 
 ```
 
-#### 🧩 *Ejercicio: group_by(), summrise()*
+##### 🧩 *Ejercicio: group_by(), summrise()*
 
 +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ![](images/mammals_sleeping_picture4_copilot.png) | -   Con el data set de msleep, cuenta el número de especies estudiadas por orden (order)                                                                          |
@@ -477,7 +471,6 @@ En la siguiente imagen, extraída de [The Epidemiologist R Handbook](https://www
 ![Pivot data transformation](images/pivot_longer_epirhandbook.png){fig-align="center" width="555"}
 
 ```{r pivot}
-#| warning: false
 
 recetas_Vietnam<- recetas |>  select(name, country, fat, carbs,protein) |>  filter(country=="Vietnamese")
 
@@ -514,7 +507,6 @@ Fuente imagen: <https://www.flickr.com/photos/harshlight/17294952412> (CC BY 2.0
 ![](images/joins_from_dataWrangling_RStudio_cheatsheet.png){width="559"}
 
 ```{r joins}
-#| warning: false
 
 # join: left, right, full, inner
 
@@ -548,9 +540,11 @@ paises_demo_full_join<-full_join(paises, demografia, by="pais")
 ### Guardar datos con [Write_delim](https://readr.tidyverse.org/reference/write_delim.html):
 
 ```{r export}
-#| warning: false
 
-write_delim(paises_demo_full_join, file = "paises_demo_full_join.csv", delim = ";")
+
+write_delim(paises_demo_full_join, 
+            file = "paises_demo_full_join.csv",
+            delim = ";")
 # en file hay que especificar el directorio donde queremos que se guarde. Si no, se guardará en el directorio de trabajo (getwd())
 ```
 
@@ -570,9 +564,9 @@ Fuente imagen: <https://www.flickr.com/photos/harshlight/6988729286> (CC BY 2.0)
 
 ### 🧩 *Ejercicio final manejo de datos*
 
-|  |  |
-|----|----|
++---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | ![](images/palmer_penguins.png) | Queremos estudiar características físicas de los pingüinos y relacionarlas con el tipo de isla donde viven. Para ello, realiza las siguientes tareas utilizando exclusivamente funciones del tidyverse: |
++---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 🐧 Instala el paquete palmerpenguins y cárgalo
 
