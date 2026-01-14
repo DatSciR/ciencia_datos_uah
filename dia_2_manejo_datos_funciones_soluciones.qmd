@@ -108,8 +108,8 @@ subset_msleep <- msleep |>
     </td>
     <td style="vertical-align:middle;">
       <li> Con el data set de msleep, crea un nuevo data.frame que contenga las variables relacionadas con el sueño.</li>
-      <li> Crea un nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.</li>
-      <li>(extra) ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?</li>
+      <li> Con el data set de msleep, crea un nuevo data.frame que contenga todas las variables excepto el estado de conservacion.</li>
+      <li>(extra) Crea un nuevo objeto (data frame) con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.</li>
     </td>
   </tr>
 </table>
@@ -124,16 +124,14 @@ names(msleep) #para ver el nombre de las columnas
 vars_sleep <- msleep |>
   select(starts_with("sleep"))
 
-## Nuevo objeto con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.
+## Con el data set de msleep, crea un nuevo data.frame que contenga todas las variables excepto el estado de conservacion.
+msleep2 <- msleep |>
+  select(-conservation)
+
+## (extra) Crea un nuevo objeto (data frame) con el orden, género y nombre al principio y que incluya todas las demás columnas excepto el tiempo despierto.
+
 msleep2 <- msleep |>
   select(order, genus, name, everything(), -awake)
-
-## Extra: ¿Que animal del orden Carnivora en estado vulnerable (conservation = vu) duerme más?
-
-msleep |>
-  filter(order == "Carnivora" &
-           conservation == "vu") |>
-  arrange(desc(sleep_total))
 
 ```
 
@@ -150,7 +148,7 @@ msleep |>
     </td>
     <td style="vertical-align:middle;">
       <li> Con el data set de msleep, incluye una nueva columna con el porcentaje de horas que duerme cada animal al día. </li>
-      <li> Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cr). </li>
+      <li> Haz una clasificación que incluya tres categorías: carnivoros amenazados, herviboros amenazados y otros. Para ello tienes que basarte en las columnas “vore” y “conservation”. Segun la UICN se considera amenazado cuando está en las categorías vulnerable (vu), endangered (en) o critically endangered (cd). </li>
     </td>
   </tr>
 </table>
@@ -180,7 +178,7 @@ msleep |>
 
 ```
 
-##### 🧩 *Ejercicio: group_by(), summrise()*
+##### 🧩 *Ejercicio: group_by(), summarise()*
 
 ```{=html}
 <table>
@@ -208,6 +206,10 @@ msleep |>
   summarise(species_per_order = n_distinct(name))
 
 ## Calcula el promedio de horas de sueño según el tipo de alimentación ¿duemen mas los carnivoros, los herbívoros o los insectívoros estudiados en este dataset?
+msleep |> 
+  group_by(vore) |> 
+  summarise(mean_sleep=mean(sleep_total, rm.na=T)) |> 
+  arrange(desc(mean_sleep))
 ```
 
 ##### 🧩 *Ejercicio: transformar datos largo ancho*

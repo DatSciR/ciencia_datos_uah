@@ -8,6 +8,17 @@ editor: visual
 
 ## Soluciones a los ejercicios:
 
+```{r ejercicio de repaso}
+
+resultado <- as.data.frame(penguins) %>%
+  select(species, island, sex, body_mass_g) %>%
+  filter(species == "Gentoo" & !is.na(body_mass_g)) %>%
+  arrange(desc(body_mass_g))
+
+resultado
+
+```
+
 ```{r ejecicio a}
 
 # Dimensiones del dataset 
