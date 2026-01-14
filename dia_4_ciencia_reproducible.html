@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Verónica Cruz Alonso, Marina Rodes Blanco, Julián Tijerin Triviño y Paloma Ruiz Benito">
-<meta name="dcterms.date" content="2026-12-01">
 
 <title>Día 4 - Manejo y visualización de datos en R</title>
 <style>
@@ -130,60 +129,63 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a></li>
-  <li><a href="#introducción-a-quarto-y-r-markdown" id="toc-introducción-a-quarto-y-r-markdown" class="nav-link" data-scroll-target="#introducción-a-quarto-y-r-markdown"><span class="header-section-number">2</span> Introducción a Quarto y R Markdown</a>
+  <li><a href="#introducción-a-quarto-y-r-markdown" id="toc-introducción-a-quarto-y-r-markdown" class="nav-link" data-scroll-target="#introducción-a-quarto-y-r-markdown"><span class="header-section-number">2</span> Introducción a Quarto y R Markdown</a></li>
+  <li><a href="#fundamentos-básicos-de-quarto" id="toc-fundamentos-básicos-de-quarto" class="nav-link" data-scroll-target="#fundamentos-básicos-de-quarto"><span class="header-section-number">3</span> Fundamentos básicos de Quarto</a>
   <ul>
-  <li><a href="#fundamentos-básicos-de-quarto" id="toc-fundamentos-básicos-de-quarto" class="nav-link" data-scroll-target="#fundamentos-básicos-de-quarto"><span class="header-section-number">2.1</span> Fundamentos básicos de Quarto</a></li>
-  <li><a href="#notación-markdown" id="toc-notación-markdown" class="nav-link" data-scroll-target="#notación-markdown"><span class="header-section-number">2.2</span> Notación Markdown</a>
+  <li><a href="#notación-markdown" id="toc-notación-markdown" class="nav-link" data-scroll-target="#notación-markdown"><span class="header-section-number">3.1</span> Notación Markdown</a>
   <ul>
-  <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio"><span class="header-section-number">2.2.1</span> 🧩 <em>Ejercicio</em></a></li>
+  <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio"><span class="header-section-number">3.1.1</span> 🧩 <em>Ejercicio</em></a></li>
   </ul></li>
-  <li><a href="#renderización" id="toc-renderización" class="nav-link" data-scroll-target="#renderización"><span class="header-section-number">2.3</span> Renderización</a>
+  <li><a href="#renderización" id="toc-renderización" class="nav-link" data-scroll-target="#renderización"><span class="header-section-number">3.2</span> Renderización</a>
   <ul>
-  <li><a href="#ejercicio-1" id="toc-ejercicio-1" class="nav-link" data-scroll-target="#ejercicio-1"><span class="header-section-number">2.3.1</span> 🧩 <em>Ejercicio</em></a></li>
+  <li><a href="#ejercicio-1" id="toc-ejercicio-1" class="nav-link" data-scroll-target="#ejercicio-1"><span class="header-section-number">3.2.1</span> 🧩 <em>Ejercicio</em></a></li>
   </ul></li>
-  <li><a href="#qué-hago-si-he-estado-utilizando-r-markdown" id="toc-qué-hago-si-he-estado-utilizando-r-markdown" class="nav-link" data-scroll-target="#qué-hago-si-he-estado-utilizando-r-markdown"><span class="header-section-number">2.4</span> ¿Qué hago si he estado utilizando R Markdown?</a></li>
-  <li><a href="#generando-el-documento-final" id="toc-generando-el-documento-final" class="nav-link" data-scroll-target="#generando-el-documento-final"><span class="header-section-number">2.5</span> Generando el documento final</a>
+  <li><a href="#qué-hago-si-he-estado-utilizando-r-markdown" id="toc-qué-hago-si-he-estado-utilizando-r-markdown" class="nav-link" data-scroll-target="#qué-hago-si-he-estado-utilizando-r-markdown"><span class="header-section-number">3.3</span> ¿Qué hago si he estado utilizando R Markdown?</a></li>
+  </ul></li>
+  <li><a href="#generando-el-documento-final" id="toc-generando-el-documento-final" class="nav-link" data-scroll-target="#generando-el-documento-final"><span class="header-section-number">4</span> Generando el documento final</a>
   <ul>
-  <li><a href="#formato" id="toc-formato" class="nav-link" data-scroll-target="#formato"><span class="header-section-number">2.5.1</span> Formato</a></li>
-  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">2.5.2</span> Referencias</a>
-  <ul class="collapse">
-  <li><a href="#ejercicio-2" id="toc-ejercicio-2" class="nav-link" data-scroll-target="#ejercicio-2"><span class="header-section-number">2.5.2.1</span> 🧩 <em>Ejercicio</em></a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#introducción-a-git-y-github" id="toc-introducción-a-git-y-github" class="nav-link" data-scroll-target="#introducción-a-git-y-github"><span class="header-section-number">3</span> Introducción a Git y GitHub</a>
+  <li><a href="#formato" id="toc-formato" class="nav-link" data-scroll-target="#formato"><span class="header-section-number">4.0.1</span> Formato</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">4.0.2</span> Referencias</a>
   <ul>
-  <li><a href="#qué-es-git" id="toc-qué-es-git" class="nav-link" data-scroll-target="#qué-es-git"><span class="header-section-number">3.1</span> Qué es Git</a></li>
-  <li><a href="#qué-es-github" id="toc-qué-es-github" class="nav-link" data-scroll-target="#qué-es-github"><span class="header-section-number">3.2</span> Qué es GitHub</a></li>
+  <li><a href="#ejercicio-2" id="toc-ejercicio-2" class="nav-link" data-scroll-target="#ejercicio-2"><span class="header-section-number">4.0.2.1</span> 🧩 <em>Ejercicio</em></a></li>
   </ul></li>
-  <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación"><span class="header-section-number">4</span> Instalación</a>
+  </ul></li>
+  <li><a href="#proyectos-quarto" id="toc-proyectos-quarto" class="nav-link" data-scroll-target="#proyectos-quarto"><span class="header-section-number">5</span> Proyectos Quarto</a></li>
+  <li><a href="#introducción-a-git-y-github" id="toc-introducción-a-git-y-github" class="nav-link" data-scroll-target="#introducción-a-git-y-github"><span class="header-section-number">6</span> Introducción a Git y GitHub</a>
   <ul>
-  <li><a href="#ejercicio-3" id="toc-ejercicio-3" class="nav-link" data-scroll-target="#ejercicio-3"><span class="header-section-number">4.1</span> 🧩 <em>Ejercicio</em></a></li>
+  <li><a href="#qué-es-git" id="toc-qué-es-git" class="nav-link" data-scroll-target="#qué-es-git"><span class="header-section-number">6.1</span> Qué es Git</a></li>
+  <li><a href="#qué-es-github" id="toc-qué-es-github" class="nav-link" data-scroll-target="#qué-es-github"><span class="header-section-number">6.2</span> Qué es GitHub</a></li>
   </ul></li>
-  <li><a href="#repositorios-y-proyectos" id="toc-repositorios-y-proyectos" class="nav-link" data-scroll-target="#repositorios-y-proyectos"><span class="header-section-number">5</span> Repositorios y proyectos</a>
+  <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación"><span class="header-section-number">7</span> Instalación</a>
   <ul>
-  <li><a href="#ejercicio-4" id="toc-ejercicio-4" class="nav-link" data-scroll-target="#ejercicio-4"><span class="header-section-number">5.1</span> 🧩 <em>Ejercicio</em></a>
+  <li><a href="#ejercicio-3" id="toc-ejercicio-3" class="nav-link" data-scroll-target="#ejercicio-3"><span class="header-section-number">7.1</span> 🧩 <em>Ejercicio</em></a></li>
+  </ul></li>
+  <li><a href="#repositorios-y-proyectos" id="toc-repositorios-y-proyectos" class="nav-link" data-scroll-target="#repositorios-y-proyectos"><span class="header-section-number">8</span> Repositorios y proyectos</a>
   <ul>
-  <li><a href="#git-ignore" id="toc-git-ignore" class="nav-link" data-scroll-target="#git-ignore"><span class="header-section-number">5.1.1</span> Git ignore</a></li>
-  </ul></li>
-  <li><a href="#ejercicio-5" id="toc-ejercicio-5" class="nav-link" data-scroll-target="#ejercicio-5"><span class="header-section-number">5.2</span> 🧩 <em>Ejercicio</em></a>
+  <li><a href="#ejercicio-4" id="toc-ejercicio-4" class="nav-link" data-scroll-target="#ejercicio-4"><span class="header-section-number">8.1</span> 🧩 <em>Ejercicio</em></a>
   <ul>
-  <li><a href="#estructura-del-repositorio-de-github" id="toc-estructura-del-repositorio-de-github" class="nav-link" data-scroll-target="#estructura-del-repositorio-de-github"><span class="header-section-number">5.2.1</span> Estructura del repositorio de GitHub</a></li>
+  <li><a href="#git-ignore" id="toc-git-ignore" class="nav-link" data-scroll-target="#git-ignore"><span class="header-section-number">8.1.1</span> Git ignore</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#github-la-red-social" id="toc-github-la-red-social" class="nav-link" data-scroll-target="#github-la-red-social"><span class="header-section-number">6</span> GitHub: la red social</a></li>
-  <li><a href="#flujo-de-trabajo-en-git-y-github" id="toc-flujo-de-trabajo-en-git-y-github" class="nav-link" data-scroll-target="#flujo-de-trabajo-en-git-y-github"><span class="header-section-number">7</span> Flujo de trabajo en Git y GitHub</a>
+  <li><a href="#ejercicio-5" id="toc-ejercicio-5" class="nav-link" data-scroll-target="#ejercicio-5"><span class="header-section-number">8.2</span> 🧩 <em>Ejercicio</em></a>
   <ul>
-  <li><a href="#cómo-moverse-de-una-zona-a-otra" id="toc-cómo-moverse-de-una-zona-a-otra" class="nav-link" data-scroll-target="#cómo-moverse-de-una-zona-a-otra"><span class="header-section-number">7.1</span> ¿Cómo moverse de una zona a otra?</a></li>
-  <li><a href="#ejercicio-6" id="toc-ejercicio-6" class="nav-link" data-scroll-target="#ejercicio-6"><span class="header-section-number">7.2</span> 🧩 <em>Ejercicio</em></a></li>
-  <li><a href="#navegar-por-el-historial" id="toc-navegar-por-el-historial" class="nav-link" data-scroll-target="#navegar-por-el-historial"><span class="header-section-number">7.3</span> Navegar por el historial</a></li>
+  <li><a href="#estructura-del-repositorio-de-github" id="toc-estructura-del-repositorio-de-github" class="nav-link" data-scroll-target="#estructura-del-repositorio-de-github"><span class="header-section-number">8.2.1</span> Estructura del repositorio de GitHub</a></li>
   </ul></li>
-  <li><a href="#trabajo-colaborativo" id="toc-trabajo-colaborativo" class="nav-link" data-scroll-target="#trabajo-colaborativo"><span class="header-section-number">8</span> Trabajo colaborativo</a>
+  </ul></li>
+  <li><a href="#github-la-red-social" id="toc-github-la-red-social" class="nav-link" data-scroll-target="#github-la-red-social"><span class="header-section-number">9</span> GitHub: la red social</a></li>
+  <li><a href="#flujo-de-trabajo-en-git-y-github" id="toc-flujo-de-trabajo-en-git-y-github" class="nav-link" data-scroll-target="#flujo-de-trabajo-en-git-y-github"><span class="header-section-number">10</span> Flujo de trabajo en Git y GitHub</a>
   <ul>
-  <li><a href="#ramificación" id="toc-ramificación" class="nav-link" data-scroll-target="#ramificación"><span class="header-section-number">8.1</span> Ramificación</a></li>
-  <li><a href="#cómo-se-unen-distintas-ramas" id="toc-cómo-se-unen-distintas-ramas" class="nav-link" data-scroll-target="#cómo-se-unen-distintas-ramas"><span class="header-section-number">8.2</span> ¿Cómo se unen distintas ramas?</a></li>
-  <li><a href="#resolución-de-conflictos" id="toc-resolución-de-conflictos" class="nav-link" data-scroll-target="#resolución-de-conflictos"><span class="header-section-number">8.3</span> Resolución de conflictos</a></li>
+  <li><a href="#cómo-moverse-de-una-zona-a-otra" id="toc-cómo-moverse-de-una-zona-a-otra" class="nav-link" data-scroll-target="#cómo-moverse-de-una-zona-a-otra"><span class="header-section-number">10.1</span> ¿Cómo moverse de una zona a otra?</a></li>
+  <li><a href="#ejercicio-6" id="toc-ejercicio-6" class="nav-link" data-scroll-target="#ejercicio-6"><span class="header-section-number">10.2</span> 🧩 <em>Ejercicio</em></a></li>
+  <li><a href="#navegar-por-el-historial" id="toc-navegar-por-el-historial" class="nav-link" data-scroll-target="#navegar-por-el-historial"><span class="header-section-number">10.3</span> Navegar por el historial</a></li>
   </ul></li>
+  <li><a href="#trabajo-colaborativo" id="toc-trabajo-colaborativo" class="nav-link" data-scroll-target="#trabajo-colaborativo"><span class="header-section-number">11</span> Trabajo colaborativo</a>
+  <ul>
+  <li><a href="#ramificación" id="toc-ramificación" class="nav-link" data-scroll-target="#ramificación"><span class="header-section-number">11.1</span> Ramificación</a></li>
+  <li><a href="#cómo-se-unen-distintas-ramas" id="toc-cómo-se-unen-distintas-ramas" class="nav-link" data-scroll-target="#cómo-se-unen-distintas-ramas"><span class="header-section-number">11.2</span> ¿Cómo se unen distintas ramas?</a></li>
+  <li><a href="#resolución-de-conflictos" id="toc-resolución-de-conflictos" class="nav-link" data-scroll-target="#resolución-de-conflictos"><span class="header-section-number">11.3</span> Resolución de conflictos</a></li>
+  </ul></li>
+  <li><a href="#algunos-enlaces-interesantes" id="toc-algunos-enlaces-interesantes" class="nav-link" data-scroll-target="#algunos-enlaces-interesantes"><span class="header-section-number">12</span> Algunos enlaces interesantes</a></li>
+  <li><a href="#referencias-1" id="toc-referencias-1" class="nav-link" data-scroll-target="#referencias-1"><span class="header-section-number">13</span> Referencias</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="dia_4_ciencia_reproducible.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
 </div>
@@ -209,7 +211,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">12/01/2026</p>
+      <p class="date">14/01/2026</p>
     </div>
   </div>
   
@@ -289,11 +291,12 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 </figure>
 </div>
 <p>Sea cual sea el sistema, Quarto y R Markdown aumentan de la eficiencia de trabajo (a medio-largo plazo), permiten centrarse en el texto sin perder tiempo en el diseño y permiten la producción de documentos de alta calidad.</p>
-<section id="fundamentos-básicos-de-quarto" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="fundamentos-básicos-de-quarto"><span class="header-section-number">2.1</span> Fundamentos básicos de Quarto</h2>
+</section>
+<section id="fundamentos-básicos-de-quarto" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Fundamentos básicos de Quarto</h1>
 <p>Para crear un archivo Quarto: <em>File -&gt; New File -&gt; Quarto document</em>. Debemos cambiar el modelo mental: ahora tendremos un documento fuente de texto plano y a partir de dicho documento generamos un documento renderizado. Estos archivos tienen tres componentes principales: (i) metadatos, (ii) texto, (iii) código.</p>
 <ul>
-<li>Metadatos: se escriben entre <code>`---`</code> al comienzo del archivo. Utiliza la sintaxis de <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> (<em>Yet Another Markup Language</em>). Se utiliza para evitar teclear manualmente todas las opciones que pueden afectar al código, al contenido y al proceso de creación de un archivo estático. Aquí se es especifica el formado de salida: <a href="https://quarto.org/docs/output-formats/all-formats.html" class="uri">https://quarto.org/docs/output-formats/all-formats.html</a></li>
+<li>Metadatos: se delimita entre <code>`---`</code> al principio del archivo Quarto. Utiliza la sintaxis de <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> (<em>Yet Another Markup Language</em>). Se utiliza para evitar teclear manualmente todas las opciones que pueden afectar al código (opciones de ejecución), al contenido y al proceso de creación de un archivo estático.</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -305,9 +308,10 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>¡La sangría es importante en el YAML!</p>
+<p>El YAML consiste en pares de <code>campo: valor</code>. Los dos puntos y el espacio son esenciales. ¡Y la sangría es muuuuy importante!</p>
 </div>
 </div>
+<p>En el YAML se es especifica el <a href="https://quarto.org/docs/output-formats/all-formats.html">formado de salida</a>. Puedes encontrar todas las opciones de ejecución y creación del archivo estático en la <a href="https://quarto.org/docs/reference/">guía de referencia de Quarto</a>.</p>
 <ul>
 <li>Texto: sintaxis Markdown. Markdown es un lenguaje de marcado ligero que permite escribir texto con formato usando símbolos simples. Está diseñado para ser fácil de escribir y, aún más importante, fácil de leer.</li>
 </ul>
@@ -327,7 +331,7 @@ Note
 <ul>
 <li><p>Código (dos tipos):</p>
 <ul>
-<li><p><em>Code chunk</em> (bloque): se escribe <code>```{r nombre_chunck} codigo aqui```</code>; entre corchetes se indica el lenguaje. Se puede escribir manualmente, utilizar el atajo <code>Ctrl + Alt + I</code> (Mac OS: <code>Cmd + Option + I</code>), utilizar el comando <code>Insert -&gt; Executable Cell</code> en la barra de herramientas del editor.</p></li>
+<li><p><em>Code chunk</em> (bloque): se escribe <code>```{lenguaje nombre_chunck} codigo aqui```</code>; entre corchetes se indica el lenguaje. Se puede escribir manualmente, utilizar el atajo <code>Ctrl + Alt + I</code> (Mac OS: <code>Cmd + Option + I</code>), utilizar el comando <code>Insert -&gt; Executable Cell</code> en la barra de herramientas del editor.</p></li>
 <li><p><em>Inline code</em> (en línea): se escribe código aquí.</p></li>
 </ul></li>
 </ul>
@@ -341,7 +345,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>💡Cada opción de ejecución del chunk ( <a href="https://quarto.org/docs/computations/execution-options.html" class="uri">https://quarto.org/docs/computations/execution-options.html</a>) se especifica en una línea al principio del chunk con el <em>(hash pipe)</em> <code>#|</code>. Estas opciones presentan tabulación enriquecida, es decir, inicias una palabra y tabulas para completar o <code>Ctrl + espacio</code> para ver todas las opciones disponibles.</p>
+<p>💡Cada opción de ejecución del chunk (<a href="https://quarto.org/docs/computations/execution-options.html" class="uri">https://quarto.org/docs/computations/execution-options.html</a>) se especifica en una línea al principio del chunk con el <em>(hash pipe)</em> <code>#|</code>. Estas opciones presentan tabulación enriquecida, es decir, inicias una palabra y tabulas para completar o <code>Ctrl + espacio</code> para ver todas las opciones disponibles.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -385,26 +389,30 @@ Note
 </div>
 </div>
 </div>
-</section>
-<section id="notación-markdown" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="notación-markdown"><span class="header-section-number">2.2</span> Notación Markdown</h2>
+<section id="notación-markdown" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="notación-markdown"><span class="header-section-number">3.1</span> Notación Markdown</h2>
 <p>Para buscar ayuda sobre como escribir el texto plano: <em>Help -&gt; Markdown Quick Reference</em> (italics, bold, headers, lists, links, images, R codes, tables, page break, superscripts…)</p>
 <p>Referencias: <span class="citation" data-cites="blischak2016">(<a href="#ref-blischak2016" role="doc-biblioref">Blischak et al., 2016</a>)</span></p>
-<p>Formato: <strong>negrita</strong>, <em>cursiva</em>, subíndice<sub>1</sub>, superíndice<sup>2</sup>, <code>código</code>, <a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html">hipervínculo</a>, notas al pie<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Formato: <strong>negrita</strong>, <em>cursiva</em>, subíndice<sub>1</sub>, superíndice<sup>2</sup>, <code>código</code>, notas al pie<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>Títulos: # primer nivel; ## segundo nivel…</p>
 <p>Listas y sublistas: *, -, +</p>
 <p>Citas:</p>
 <blockquote class="blockquote">
-<p>“R Markdown es maravilloso pero ojo con Quarto”</p>
-<p>— Julen Astigarraga</p>
+<p>“La democracia es el sistema que garantiza que no seamos gobernados mejor de lo que nos merecemos.”</p>
+<p>— Ignatius Farray</p>
 </blockquote>
 <p>Fórmulas:</p>
 <p><span class="math inline">\(f(os) = {esta \choose gustando} esto^{?} (1-p)^{n-k}\)</span></p>
 <p>Comentarios:</p>
 <!--# esto es un comentario (atajo: Ctrl + Shift + C; OS X Cmd + Shift + C)-->
 <p>Tablas:</p>
+<div id="tbl-trescol" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-trescol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Esto es el pie de tabla
+</figcaption>
+<div aria-describedby="tbl-trescol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
-<caption>Esto es el pie de tabla</caption>
 <thead>
 <tr class="header">
 <th>Col1</th>
@@ -430,53 +438,95 @@ Note
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p>Figuras:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/rmarkdown.png" class="img-fluid figure-img" style="width:30.0%"></p>
-<figcaption>Esto es el pie de figura</figcaption>
+<div id="fig-rmarkdown" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rmarkdown-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rmarkdown.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rmarkdown-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Esto es el pie de figura
+</figcaption>
 </figure>
 </div>
 <p>Videos:</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s3JldKoA0zw">
 </iframe>
-<section id="ejercicio" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="ejercicio"><span class="header-section-number">2.2.1</span> 🧩 <em>Ejercicio</em></h3>
+<p>Links: <a href="link">nombre del link</a></p>
+<p>Links a elementos del documento: <a href="#fig-rmarkdown" class="quarto-xref">Figure&nbsp;2</a>; <a href="#tbl-trescol" class="quarto-xref">Table&nbsp;1</a>; <code>@eq-...</code>; <code>@sec-...</code></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para utilizar la notación MarkDown de una forma más amable RStudio incorpora en la barra de edición del modo <em>Visual</em> las opciones más comunes: <img src="images/edicion.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="ejercicio" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="ejercicio"><span class="header-section-number">3.1.1</span> 🧩 <em>Ejercicio</em></h3>
 <p>Genera un documento Quarto que esté compuesto por al menos metadatos, código y texto. También puedes añadir otros elementos, como tablas.</p>
 </section>
 </section>
-<section id="renderización" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="renderización"><span class="header-section-number">2.3</span> Renderización</h2>
+<section id="renderización" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="renderización"><span class="header-section-number">3.2</span> Renderización</h2>
 <p>Existen tres formas para producir un archivo estático (renderizar). Todas llaman a <code>quarto render</code> en un trabajo de fondo. Esto evita que el renderizado abarrote la consola de R y así es fácil de detener.</p>
 <ol type="1">
 <li>Dentro de RStudio puedes usar el botón de <em>Render</em> (atajo: <code>Ctrl + Shift + K</code>; Mac OS <code>Cmd + Shift + K</code>),</li>
 <li>En el terminal mediante quarto render: 🤓</li>
 </ol>
-<div class="callout.note">
-<p>¿Qué es el terminal? El <em>shell</em> (o terminal) es un programa en tu ordenador cuyo trabajo es ejecutar otros programas (ver <a href="https://happygitwithr.com/shell.html#shell" class="uri">https://happygitwithr.com/shell.html#shell</a>). RStudio incorpora una terminal que se puede utilizar para interactuar con Git; sin embargo, también incorpora una pestaña llamada “Git” que contiene las funcionalidades básicas de Git y facilita mucho su uso.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>¿Qué es el terminal? El <em>shell</em> (o terminal) es un programa en tu ordenador cuyo trabajo es ejecutar otros programas (ver <a href="https://happygitwithr.com/shell.html#shell" class="uri">https://happygitwithr.com/shell.html#shell</a>). RStudio incorpora una terminal que se puede utilizar para interactuar con Quarto y con Git</p>
+</div>
 </div>
 <p><code>quarto render archivo.qmd</code> (por defecto a HTML)</p>
 <p><code>quarto render archivo.qmd --to pdf</code></p>
 <p><code>quarto render archivo.qmd --to docx</code></p>
 <p><code>quarto --help</code></p>
-<div class="callout.note">
-<p>Sobre la importancia del YAML: las especificaciones del YAML se puede incluir también en el terminal, pero si las hemos incluido en el YAML no tendremos que escribirlas cada vez.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sobre la importancia del YAML: las especificaciones del YAML se puede incluir también en el terminal, pero si las hemos incluido en el YAML no tendremos que escribirlas cada vez.</p>
 <p><code>quarto render archivo.qmd --to html</code></p>
 <p><code>quarto render archivo.qmd --to html -M code-fold:true</code></p>
+</div>
+</div>
 <ol start="3" type="1">
 <li>En la consola de R mediante el paquete <code>quarto</code></li>
 </ol>
 <p><code>library(quarto)</code></p>
 <p><code>quarto_render("archivo.qmd")</code></p>
 <p><code>quarto_render("archivo.qmd", output_format = "pdf")</code></p>
-<section id="ejercicio-1" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="ejercicio-1"><span class="header-section-number">2.3.1</span> 🧩 <em>Ejercicio</em></h3>
+<section id="ejercicio-1" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="ejercicio-1"><span class="header-section-number">3.2.1</span> 🧩 <em>Ejercicio</em></h3>
 <p>Renderiza el documento Quarto creado en el ejercicio anterior en un PDF y después en un word.</p>
 </section>
 </section>
-<section id="qué-hago-si-he-estado-utilizando-r-markdown" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="qué-hago-si-he-estado-utilizando-r-markdown"><span class="header-section-number">2.4</span> ¿Qué hago si he estado utilizando R Markdown?</h2>
+<section id="qué-hago-si-he-estado-utilizando-r-markdown" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="qué-hago-si-he-estado-utilizando-r-markdown"><span class="header-section-number">3.3</span> ¿Qué hago si he estado utilizando R Markdown?</h2>
 <p>Aunque Quarto presenta mejores características y tendrá más mejoras en el futuro, R Markdown todavía se mantiene y quizás lo habéis estado utilizando.</p>
 <p>¡No pasa nada! No tienes que convertir la sintaxis de todos tus documentos antiguos. Quarto es compatible con versiones anteriores de R Markdown. La mayoría de los <code>.Rmd</code> o <code>.ipynb</code> existentes se pueden convertir <code>as-is</code> a través de Quarto. Para hacerlo a través de la línea de comandos de la terminal se escribe:</p>
 <p><code>quarto render archivo.Rmd --to html</code></p>
@@ -487,10 +537,11 @@ Note
 <li><p><code>knitr::convert_chunk_header("archivo.Rmd", "archivo.qmd")</code></p></li>
 </ol>
 </section>
-<section id="generando-el-documento-final" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="generando-el-documento-final"><span class="header-section-number">2.5</span> Generando el documento final</h2>
-<section id="formato" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="formato"><span class="header-section-number">2.5.1</span> Formato</h3>
+</section>
+<section id="generando-el-documento-final" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Generando el documento final</h1>
+<section id="formato" class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="formato"><span class="header-section-number">4.0.1</span> Formato</h3>
 <p>Títulos coloreados en azul, el texto no está con un espaciado doble, no hay números de línea y… ¡manuscrito rechazado porque el formato no es adecuado! ¡PERO NO VAMOS A EDITAR NADA EN WORD! Podemos asegurarnos de que el <code>.docx</code> creado tenga siempre el formato deseado utilizando una plantilla <code>.docx</code>. Para utilizarla, la plantilla debe colocarse en la misma carpeta que el archivo <code>.qmd</code> y debemos hacer un pequeño ajuste en el YAML.</p>
 <ol type="1">
 <li><p>Primero generamos la plantilla en el terminal:</p>
@@ -507,9 +558,9 @@ Note
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     reference-doc: reference_custom.docx</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="referencias" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="referencias"><span class="header-section-number">2.5.2</span> Referencias</h3>
-<p>Para introducir citas y referencias en nuestro texto en Quarto utilizaremos el sistema <strong>BibTeX</strong> y así evitaremos tener que hacerlo manualmente. Con BibTex, en lugar de escribir la cita se escribe una “clave” única (clave de citación: <span class="citation" data-cites="cita">(<a href="#ref-cita" role="doc-biblioref"><strong>cita?</strong></a>)</span>) cada vez que se cita una referencia. El sistema genera un archivo .bib que guarda las referencias en un formato estructurado.</p>
+<section id="referencias" class="level3" data-number="4.0.2">
+<h3 data-number="4.0.2" class="anchored" data-anchor-id="referencias"><span class="header-section-number">4.0.2</span> Referencias</h3>
+<p>Para introducir citas y referencias en nuestro texto en Quarto utilizaremos el sistema <strong>BibTeX</strong> y así evitaremos tener que hacerlo manualmente. Con BibTex, en lugar de escribir la cita se escribe una “clave” única (clave de citación: <code>@cita</code>) cada vez que se cita una referencia. El sistema genera un archivo .bib que guarda las referencias en un formato estructurado.</p>
 <div class="callout.note">
 <p>Recomendamos utilizar <a href="https://www.zotero.org/">Zotero</a> como gestor bibliográfico porque está incluido en RStudio, lo que facilita la inclusión de citas y referencias, pero se puede utilizar cualquier otro gestor.</p>
 </div>
@@ -520,17 +571,51 @@ Note
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>BibTex permite cambiar los estilos de las referencias sin tener que reformatear nada manualmente (por ejemplo, si hay que enviar un manuscrito a una revista diferente para su publicación). Para aplicar un formato específico a las referencias, en <a href="https://www.zotero.org/styles"><em>Zotero Style Repository</em></a> puedes descargar el archivo de estilo correspondiente (.cls) y especificarlo en los metadatos (ver ejemplo en el archivo .qmd de los apuntes de esta sesión).</p>
-<section id="ejercicio-2" class="level4" data-number="2.5.2.1">
-<h4 data-number="2.5.2.1" class="anchored" data-anchor-id="ejercicio-2"><span class="header-section-number">2.5.2.1</span> 🧩 <em>Ejercicio</em></h4>
+<section id="ejercicio-2" class="level4" data-number="4.0.2.1">
+<h4 data-number="4.0.2.1" class="anchored" data-anchor-id="ejercicio-2"><span class="header-section-number">4.0.2.1</span> 🧩 <em>Ejercicio</em></h4>
 <p>Genera una plantilla de formato y modifica los colores, tamaño de los títulos, etc. Después, añade la plantilla al YAML y renderiza de nuevo el documento de word.</p>
 </section>
 </section>
 </section>
+<section id="proyectos-quarto" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Proyectos Quarto</h1>
+<p>Cuando los proyectos son más grandes que un simple análisis (por ejemplo, un artículo con análisis adicionales presentados en material suplementario), resulta útil dividir la presentación del proyecto en varios documentos Quarto.</p>
+<p>Los <strong>proyectos Quarto</strong> son <strong>colecciones de documentos</strong> Quarto que pueden renderizarse conjuntamente o por separado. Se definen mediante un <strong>archivo <code>quarto.yml</code></strong> en el directorio raíz del proyecto. Este archivo contiene metadatos y opciones de configuración del proyecto, como el título, el autor, los formatos de salida y otros aspectos. Todos los archivos del proyecto contienen la misma configuración YAML.</p>
+<p>Además, los proyectos pueden tener “tipos” especiales que introducen comportamientos adicionales (por ejemplo, sitios web o libros).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Echa un ojo al repositorio de la web del Grupo de Ecoinformática de la AEET, creado con un proyecto Quarto: https://github.com/ecoinfAEET/ecoinfaeet.github.io Puedes ver la web publicada <a href="https://ecoinfaeet.github.io/">aquí</a>.</p>
+</div>
+</div>
+<p>El archivo de configuración contiene tanto opciones globales que se aplican a todos los formatos (por ejemplo, <code>toc</code> y <code>bibliography</code>) como opciones específicas de cada formato:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> _output</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib  </span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">html-math-method</span><span class="kw">:</span><span class="at"> katex</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> report</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">margin-left</span><span class="kw">:</span><span class="at"> 30mm</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">margin-right</span><span class="kw">:</span><span class="at"> 30mm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="introducción-a-git-y-github" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Introducción a Git y GitHub</h1>
-<section id="qué-es-git" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="qué-es-git"><span class="header-section-number">3.1</span> <a href="https://git-scm.com/">Qué es Git</a></h2>
+<section id="introducción-a-git-y-github" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Introducción a Git y GitHub</h1>
+<section id="qué-es-git" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="qué-es-git"><span class="header-section-number">6.1</span> <a href="https://git-scm.com/">Qué es Git</a></h2>
 <p>Git es un sistema avanzado de <strong>control de versiones</strong> (como el “control de cambios” de Microsoft Word) <strong>distribuido</strong> <span class="citation" data-cites="blischak2016 ram2013">(<a href="#ref-ram2013" role="doc-biblioref">Ram, 2013</a>; <a href="#ref-blischak2016" role="doc-biblioref">Blischak et al., 2016</a>)</span>. Git permite rastrear el progreso de un proyecto a lo largo del tiempo ya que hace “capturas” del mismo a medida que evoluciona y los cambios se van registrando. Este sistema permite ver qué cambios se hicieron, quién los hizo y por qué, e incluso volver a versiones anteriores.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -554,7 +639,7 @@ Note
 <p>Git surge en 2005, tras la ruptura de la relación entre la comunidad que estaba desarrollando Linux y la empresa comercial que desarrollaba BitKeeper (DVCS). En ese momento BitKeeper dejó de ser gratuita y esto llevó a la comunidad de desarrolladores de Linux (y en particular a Linus Torvalds, el creador de Linux) a desarrollar su propia herramienta para el control de versiones basándose en su experiencia al utilizar BitKeeper.</p>
 </div>
 </div>
-<p>Git facilita el trabajo en paralelo de varios participantes. Mientras que en otros sistemas de control de versiones (p.&nbsp;ej. Subversion (SVN, <a href="https://subversion.apache.org/" class="uri">https://subversion.apache.org/</a>) o Concurrent Versions System (CVS, <a href="http://cvs.nongnu.org/" class="uri">http://cvs.nongnu.org/</a>)) hay un servidor central y cualquier cambio hecho por un usuario se sincroniza con este servidor y de ahí con el resto de usuarios, Git es un control de versiones distribuido que permite a todos los usuarios trabajar en el proyecto paralelamente e ir haciendo “capturas” del trabajo de cada uno para luego unirlos. Otras alternativas de control de versiones distribuido comparables a Git son Mercurial (<a href="https://www.mercurial-scm.org/" class="uri">https://www.mercurial-scm.org/</a>) o Bazaar (<a href="https://bazaar.canonical.com/" class="uri">https://bazaar.canonical.com/</a>), pero Git es con diferencia el más utilizado.</p>
+<p>Git facilita el <strong>trabajo en paralelo</strong> de varios participantes. Mientras que en otros sistemas de control de versiones (p.&nbsp;ej. Subversion (SVN, <a href="https://subversion.apache.org/" class="uri">https://subversion.apache.org/</a>) o Concurrent Versions System (CVS, <a href="http://cvs.nongnu.org/" class="uri">http://cvs.nongnu.org/</a>)) hay un servidor central y cualquier cambio hecho por un usuario se sincroniza con este servidor y de ahí con el resto de usuarios, Git es un control de versiones distribuido que permite a todos los usuarios trabajar en el proyecto paralelamente e ir haciendo “capturas” del trabajo de cada uno para luego unirlos. Otras alternativas de control de versiones distribuido comparables a Git son Mercurial (<a href="https://www.mercurial-scm.org/" class="uri">https://www.mercurial-scm.org/</a>) o Bazaar (<a href="https://bazaar.canonical.com/" class="uri">https://bazaar.canonical.com/</a>), pero Git es con diferencia el más utilizado.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/conexiones.jpg" class="img-fluid figure-img"></p>
@@ -562,31 +647,31 @@ Note
 </figure>
 </div>
 </section>
-<section id="qué-es-github" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="qué-es-github"><span class="header-section-number">3.2</span> <a href="https://github.com/">Qué es GitHub</a></h2>
-<p>GitHub es un servidor de alojamiento en línea o repositorio remoto para albergar proyectos basados en Git que permite la colaboración entre diferentes usuarios o con uno mismo <span class="citation" data-cites="galeano2018 perez-riverol2016">(<a href="#ref-perez-riverol2016" role="doc-biblioref">Perez-Riverol et al., 2016</a>; <a href="#ref-galeano2018" role="doc-biblioref">Galeano, 2018</a>)</span>. Un repositorio es un directorio donde desarrollar un proyecto que contiene todos los archivos necesarios para el mismo. Aunque existen distintos repositorios remotos (p.&nbsp;ej. GitLab, <a href="https://gitlab.com/" class="uri">https://gitlab.com/</a>, o Bitbucket, <a href="https://bitbucket.org/" class="uri">https://bitbucket.org/</a>) con funcionalidad similar, GitHub es hoy en día el más utilizado. GitHub registra el desarrollo de los proyectos de manera remota, permite compartir proyectos entre distintos usuarios y proporciona la seguridad de la nube entre otras funciones.</p>
+<section id="qué-es-github" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="qué-es-github"><span class="header-section-number">6.2</span> <a href="https://github.com/">Qué es GitHub</a></h2>
+<p>GitHub es un <strong>servidor de alojamiento en línea</strong> o repositorio remoto para albergar proyectos basados en Git que permite la colaboración entre diferentes usuarios o con uno mismo <span class="citation" data-cites="galeano2018 perez-riverol2016">(<a href="#ref-perez-riverol2016" role="doc-biblioref">Perez-Riverol et al., 2016</a>; <a href="#ref-galeano2018" role="doc-biblioref">Galeano, 2018</a>)</span>. Un repositorio es un directorio donde desarrollar un proyecto que contiene todos los archivos necesarios para el mismo. Aunque existen distintos repositorios remotos (p.&nbsp;ej. GitLab, <a href="https://gitlab.com/" class="uri">https://gitlab.com/</a>, o Bitbucket, <a href="https://bitbucket.org/" class="uri">https://bitbucket.org/</a>) con funcionalidad similar, GitHub es hoy en día el más utilizado. GitHub registra el desarrollo de los proyectos de manera remota, permite compartir proyectos entre distintos usuarios y proporciona la seguridad de la nube entre otras funciones.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/github_pag_ini.png" class="img-fluid figure-img"></p>
 <figcaption>Página inicial de GitHub</figcaption>
 </figure>
 </div>
-<p>Cuando se trabaja en proyectos colaborativos, la base de la interacción entre Git y GitHub es que todos los colaboradores de un proyecto están de acuerdo en que GitHub contiene la copia principal del proyecto, es decir, GitHub contiene la copia centralizada del control de versiones distribuido o descentralizado.</p>
+<p>Cuando se trabaja en proyectos colaborativos, la base de la interacción entre Git y GitHub es que todos los colaboradores de un proyecto están de acuerdo en que GitHub contiene la copia principal del proyecto, es decir, GitHub contiene la <strong>copia centralizada</strong> del control de versiones distribuido o descentralizado.</p>
 </section>
 </section>
-<section id="instalación" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Instalación</h1>
-<section id="ejercicio-3" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="ejercicio-3"><span class="header-section-number">4.1</span> 🧩 <em>Ejercicio</em></h2>
+<section id="instalación" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Instalación</h1>
+<section id="ejercicio-3" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="ejercicio-3"><span class="header-section-number">7.1</span> 🧩 <em>Ejercicio</em></h2>
 <p>En este punto es necesario que tengas instalada la versión más reciente de R (<a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a>), RStudio (<a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a>), Git (<a href="https://happygitwithr.com/install-git.html" class="uri">https://happygitwithr.com/install-git.html</a>) y una cuenta en GitHub (<a href="https://github.com/" class="uri">https://github.com/</a>) creada.</p>
 <ol type="1">
 <li><p>Preséntate a Git (<a href="https://happygitwithr.com/hello-git">Chapter 7: Git-Intro</a>)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false  </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("usethis")</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># library(usethis)</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#use_git_config(user.name = "Monchi", user.email = "monchi@example.org")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false  </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("usethis")</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># library(usethis)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#use_git_config(user.name = "Monchi", user.email = "monchi@example.org")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ol>
 <p>⚡<strong>Debes usar el correo electrónico asociado a tu cuenta de GitHub</strong></p>
@@ -603,27 +688,75 @@ Note
 <p>Git puede comunicarse con un servidor remoto utilizando uno de los dos protocolos: HTTPS o SSH. Nosotros utilzaremos HTTPS con <em>personal access token</em> (PAT, <a href="https://happygitwithr.com/https-pat.html" class="uri">https://happygitwithr.com/https-pat.html</a>).</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false  </span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("gitcreds")</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># library(gitcreds)</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create_github_token() # generar un token, elegir temporalidad</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># gitcreds_set() # acceder al Git credential store</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false  </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("gitcreds")</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># library(gitcreds)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create_github_token() # generar un token, elegir temporalidad</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># gitcreds_set() # acceder al Git credential store</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>👀 Conviene describir el propósito del token en el campo <em>Note</em>, porque se pueden tener varios PATs. No podrás volver a ver este token, así que no cierres ni salgas de la ventana del navegador hasta que almacenes el PAT localmente. ¡Trata este PAT como una contraseña!</p>
-<p>💡Para la resolución de problemas durante la instalación recomendamos mirar aquí: <a href="https://happygitwithr.com/troubleshooting.html" class="uri">https://happygitwithr.com/troubleshooting.html</a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Conviene describir el propósito del token en el campo <em>Note</em>, porque se pueden tener varios PATs. No podrás volver a ver este token, así que no cierres ni salgas de la ventana del navegador hasta que almacenes el PAT localmente. ¡Trata este PAT como una contraseña!</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para la resolución de problemas durante la instalación recomendamos mirar aquí: <a href="https://happygitwithr.com/troubleshooting.html" class="uri">https://happygitwithr.com/troubleshooting.html</a></p>
+</div>
+</div>
 </section>
 </section>
-<section id="repositorios-y-proyectos" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Repositorios y proyectos</h1>
+<section id="repositorios-y-proyectos" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Repositorios y proyectos</h1>
 <p>Un repositorio es como un “contenedor” donde desarrollar un proyecto.</p>
 <p>Para crear un repositorio en GitHub damos a “<em>+ New repository</em>”. Aquí se indica el nombre, una pequeña descripción, y si quieres que sea público o privado. Se recomienda iniciar el repositorio con un archivo “README” (<em>Initialize this repository with a README</em>) para recoger cualquier información esencial para el uso del repositorio (estructura, descripción más detallada del contenido, etc.).</p>
 <p>En RStudio, creamos un nuevo proyecto y lo conectamos al repositorio: File &gt; New project &gt; Version control &gt; Git &gt; copiar el URL del repositorio que hemos creado de GitHub (está en la página principal de nuestro repositorio, en “<em>clone or download</em>”). Seleccionamos el directorio local donde queremos guardar el proyecto y pulsamos en “<em>Create project</em>”.</p>
 <p>Si vamos al directorio local seleccionado, encontraremos la carpeta conectada a Git y GitHub que hemos creado en nuestro ordenador. Podemos copiar aquí todos los archivos que nos interesan para el proyecto de análisis (datos, imágenes, etc).</p>
-<p>💡Para más información sobre cómo clonar el repositorio en GitHub (repositorio remoto) en nuestro ordenador (repositorio local) ver <a href="https://happygitwithr.com/rstudio-git-github.html" class="uri">https://happygitwithr.com/rstudio-git-github.html</a> para hacerlo desde RStudio y <span class="citation" data-cites="galeano2018">Galeano (<a href="#ref-galeano2018" role="doc-biblioref">2018</a>)</span> para hacerlo mediante la línea de comandos.</p>
-<p>💡En caso de querer conectar un antiguo proyecto de RStudio a Git y GitHub, puedes seguir los pasos que se describen aquí: <a href="https://happygitwithr.com/existing-github-first.html" class="uri">https://happygitwithr.com/existing-github-first.html</a>.</p>
-<section id="ejercicio-4" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="ejercicio-4"><span class="header-section-number">5.1</span> 🧩 <em>Ejercicio</em></h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para más información sobre cómo clonar el repositorio en GitHub (repositorio remoto) en nuestro ordenador (repositorio local) ver <a href="https://happygitwithr.com/rstudio-git-github.html" class="uri">https://happygitwithr.com/rstudio-git-github.html</a> para hacerlo desde RStudio y <span class="citation" data-cites="galeano2018">Galeano (<a href="#ref-galeano2018" role="doc-biblioref">2018</a>)</span> para hacerlo mediante la línea de comandos.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En caso de querer conectar un antiguo proyecto de RStudio a Git y GitHub, puedes seguir los pasos que se describen aquí: <a href="https://happygitwithr.com/existing-github-first.html" class="uri">https://happygitwithr.com/existing-github-first.html</a>.</p>
+</div>
+</div>
+<section id="ejercicio-4" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="ejercicio-4"><span class="header-section-number">8.1</span> 🧩 <em>Ejercicio</em></h2>
 <ol type="1">
 <li><p>Crea un repositorio en GitHub y conéctalo a un nuevo proyecto de RStudio (esto generará un repositorio (carpeta) en tu ordenador en la ubicación que hayas especificado). Incluir un archivo “<em>.gitignore”</em></p></li>
 <li><p>Crea un nuevo script de R en el directorio de trabajo (es decir, crea un script de R y guárdalo dentro del repositorio que has creado)</p></li>
@@ -635,19 +768,19 @@ Note
 <figcaption>Git en RStudio</figcaption>
 </figure>
 </div>
-<section id="git-ignore" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="git-ignore"><span class="header-section-number">5.1.1</span> Git ignore</h3>
+<section id="git-ignore" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="git-ignore"><span class="header-section-number">8.1.1</span> Git ignore</h3>
 <p>Al crear un repositorio se recomienda crear un archivo “<em>.gitignore</em>”. Este archivo contendrá los nombres o extensiones de los archivos del proyecto que por defecto no queremos compartir aunque estén en el repositorio local (p.&nbsp;ej., el archivo “<em>.Rhistory</em>” que RStudio crea por defecto). Es una buena práctica ignorar archivos que no sean útiles para el resto de colaboradores así como archivos muy pesados (p.&nbsp;ej., una base de datos resultado de correr un script) para no subirlos y descargarlos continuamente de GitHub. Para añadir archivos al <em>gitignore</em> se puede utilizar el botón derecho del ratón sobre el archivo en la pestaña Git de RStudio pero también se puede añadir el nombre del archivo que desamos ignorar en el archivo “<em>.gitignore</em>” manualmente.</p>
 </section>
 </section>
-<section id="ejercicio-5" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="ejercicio-5"><span class="header-section-number">5.2</span> 🧩 <em>Ejercicio</em></h2>
+<section id="ejercicio-5" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="ejercicio-5"><span class="header-section-number">8.2</span> 🧩 <em>Ejercicio</em></h2>
 <ol type="1">
 <li><p>Añade el archivo .Rproj de tu proyecto al archivo <em>.gitignore.</em></p></li>
 <li><p>Crea una carpeta llamada “datos” en tu directorio de trabajo. Añadela al <em>.gitignore</em> y guarda. ¿Qué ha pasado en la pestaña Git?</p></li>
 </ol>
-<section id="estructura-del-repositorio-de-github" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="estructura-del-repositorio-de-github"><span class="header-section-number">5.2.1</span> Estructura del repositorio de GitHub</h3>
+<section id="estructura-del-repositorio-de-github" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="estructura-del-repositorio-de-github"><span class="header-section-number">8.2.1</span> Estructura del repositorio de GitHub</h3>
 <p>En la página principal del repositorio en GitHub (<a href="https://github.com/VeruGHub/easyclimate">ejemplo</a>) podemos encontrar las siguientes pestañas:</p>
 <ul>
 <li><p><strong>Code</strong>: contenido del proyecto</p></li>
@@ -663,13 +796,13 @@ Note
 </section>
 </section>
 </section>
-<section id="github-la-red-social" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> GitHub: la red social</h1>
+<section id="github-la-red-social" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> GitHub: la red social</h1>
 <p>GitHub no es sólo un repositorio remoto donde almacenar diferentes versiones de tu trabajo o desarrollar proyectos colaborativos, si no que también es una red de encuentro para programadores. Como en otras redes puedes cotillear perfiles, seguir a ciertas personas, tener seguidores, guardar proyectos que te gustan…</p>
 <p>Con el buscador (🔍) puedes buscar aquellos contenidos que te interesan. La búsqueda está organizada por categorías (<em>Repositories, Commits, Issues, Users</em>…) lo que facilita encontrar lo que buscas. Para seguir a un usuario tienes la opción <em>Follow</em>. Pulsando <em>Star</em>⭐ puedes guardar un enlace a cualquier repositorio en tu cuenta de GitHub y con <em>Fork</em> estarías guardando una copia con la que puedes interaccionar. Con <em>Watch</em>👁️ puedes hacer un seguimiento de un repositorio. <em>Download</em> te permite guardar una copia de cualquier repositorio público en tu ordenador.</p>
 </section>
-<section id="flujo-de-trabajo-en-git-y-github" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Flujo de trabajo en Git y GitHub</h1>
+<section id="flujo-de-trabajo-en-git-y-github" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Flujo de trabajo en Git y GitHub</h1>
 <p>Git es capaz de rastrear todos los archivos contenidos en un repositorio. Para comprender cómo Git registra los cambios y cómo podemos compartir dichos cambios con nuestros colaboradores es importante entender cómo se estructura Git y cómo se sincroniza con GitHub. Hay cuatro “zonas” de trabajo:</p>
 <ol type="1">
 <li><p><strong>Directorio de trabajo (<em>working directory</em>):</strong> es donde se está trabajando. Esta zona se sincroniza con los archivos locales del ordenador.</p></li>
@@ -683,8 +816,8 @@ Note
 <figcaption>Representación gráfica de las diferentes zonas de trabajo en Git y GitHub: directorio de trabajo, área de preparación o Index, repositorio local o HEAD, y repositorio remoto. Imagen de fondo de Philip Brookes (https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode)</figcaption>
 </figure>
 </div>
-<section id="cómo-moverse-de-una-zona-a-otra" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="cómo-moverse-de-una-zona-a-otra"><span class="header-section-number">7.1</span> ¿Cómo moverse de una zona a otra?</h2>
+<section id="cómo-moverse-de-una-zona-a-otra" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="cómo-moverse-de-una-zona-a-otra"><span class="header-section-number">10.1</span> ¿Cómo moverse de una zona a otra?</h2>
 <p>Se puede hacer mediante línea de comandos en la terminal y también mediante la pestaña integrada en RStudio, pero el proceso es el mismo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -724,14 +857,26 @@ Note
 </div>
 <p>Además de los botones principales anteriormente descritos, en la pestaña Git de RStudio podemos observar el botón “<em>Diff</em>” que muestra los cambios que se han hecho a cada archivo desde el último commit y las ramas (que lo explicaremos más abajo). Clickando con el botón derecho del ratón podemos abrir los archivos que han sido modificados mediante “<em>Open file</em>” y con el botón “<em>Revert</em>” volvemos al estado del último commit (⚠️cuidado con esto porque te borrará los cambios realizados en tu directorio de trabajo).</p>
 </section>
-<section id="ejercicio-6" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="ejercicio-6"><span class="header-section-number">7.2</span> 🧩 <em>Ejercicio</em></h2>
+<section id="ejercicio-6" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="ejercicio-6"><span class="header-section-number">10.2</span> 🧩 <em>Ejercicio</em></h2>
 <p>En el proyecto generado en el Ejercicio 1.2, guardad y subid los cambios realizados a GitHub (<code>git add</code> + <code>git commit</code> + <code>git push</code>)</p>
-<p>💡<code>git status</code>: muestra la rama en la que estamos y los cambios hechos y añadidos desde el último commit.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>git status</code>: muestra la rama en la que estamos y los cambios hechos y añadidos desde el último commit.</p>
+</div>
+</div>
 <p>En el repositorio remoto de GitHub, en la pestaña <em>Code</em> podemos observar el contenido de nuestro proyecto, incluyendo cada <em>commit</em> realizado (<a href="https://github.com/VeruGHub/easyclimate">ejemplo</a>).</p>
 </section>
-<section id="navegar-por-el-historial" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="navegar-por-el-historial"><span class="header-section-number">7.3</span> Navegar por el historial</h2>
+<section id="navegar-por-el-historial" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="navegar-por-el-historial"><span class="header-section-number">10.3</span> Navegar por el historial</h2>
 <p>El historial de un repositorio (<a href="https://github.com/VeruGHub/easyclimate/commits/master/"><em>🕘XX commits</em></a>) contiene una lista de enlaces a todos los commits que se han realizado en cualquiera de las ramas. Dentro de cada <em>commit</em> se pueden ver los archivos añadidos o borrados en esa “captura” y las líneas de código añadidas (en verde) o borradas (en rojo) en cada archivo modificado. Además, en el historial, se pueden añadir comentarios en líneas concretas de código o comentarios generales al <em>commit</em> entero.</p>
 <p>En GitHub también se puede acceder a la historia de commits de cada archivo en concreto (<em>History</em>) y al autor de cada parte del código (<em>Blame</em>).</p>
 <p>El historial del proyecto y de los archivos también es accesible a través de RStudio (🕒).</p>
@@ -739,12 +884,12 @@ Note
 <p>💡Si quiero volver atrás en el tiempo o si hago un cambio que no quiero ¿cómo lo puedo resolver? Hay múltiples opciones pero <a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia3_comandos.md">aquí</a> (en la sección de “La he liado ¿cómo deshago los cambios?”) detallamos tres: <em>restore</em>, <em>reset</em> y <em>revert</em>.</p>
 </section>
 </section>
-<section id="trabajo-colaborativo" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Trabajo colaborativo</h1>
+<section id="trabajo-colaborativo" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Trabajo colaborativo</h1>
 <p>Aunque Git y GitHub facilitan el control de versiones de nuestros proyectos individuales, su máxima potencialidad se despliega al trabajar en equipo ya que facilitan el seguimiento del trabajo de todos los colaboradores y la integración ordenada de cada parte en un producto final.</p>
 <p>Para dar acceso de edición a tus colaboradores, en la página principal de nuestro proyecto en GitHub entramos en “<em>Settings -&gt; Access -&gt; Collaborators -&gt; Manage Access -&gt; Add people</em>”. Los colaboradores pueden crear su copia local del proyecto de control de versiones clonando el repositorio remoto como hicimos en el segundo ejercicio.</p>
-<section id="ramificación" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="ramificación"><span class="header-section-number">8.1</span> Ramificación</h2>
+<section id="ramificación" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="ramificación"><span class="header-section-number">11.1</span> Ramificación</h2>
 <p>Git permite crear una “rama” (<em>branch</em>) paralela al proyecto si se desea seguir una línea independiente de trabajo, bien por ser diferente de la principal (p.&nbsp;ej. probar un nuevo análisis) o bien para desarrollar específicamente una parte del proyecto (p.&nbsp;ej. trabajar sólo en la escritura de los métodos de un artículo mientras otros colaboradores trabajan en otras secciones). Las ramas permiten trabajar en el proyecto sin interferir con lo que están haciendo los compañeros. En Git, una rama es un <em>commit</em> al que se le da un nombre y que contiene un “enlace” (puntero o <em>pointer</em>) a un SHA específico que es el origen de la rama. La rama <em>main</em> es la rama por defecto cuando se crea un repositorio y a partir de ella se suelen crear las demás.</p>
 <p>Las ramas <a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia2_colaboracion.md">se pueden generar en la terminal</a> y en la pestaña Git de RStudio. En la pestaña Git se generan mediante el botón “<em>New Branch</em>”. Al lado de “<em>New Branch”</em> podemos observar todas las ramas que contiene el repositorio y nos permite cambiar de rama fácilmente clickando en ellas.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -754,8 +899,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="cómo-se-unen-distintas-ramas" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="cómo-se-unen-distintas-ramas"><span class="header-section-number">8.2</span> ¿Cómo se unen distintas ramas?</h2>
+<section id="cómo-se-unen-distintas-ramas" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="cómo-se-unen-distintas-ramas"><span class="header-section-number">11.2</span> ¿Cómo se unen distintas ramas?</h2>
 <p>Cuando el trabajo desarrollado en una rama se da por finalizado hay que hacer la unión a la rama principal (“<em>main</em>”). Esto <a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia2_colaboracion.md">se puede hacer en la terminal</a> y con el botón “<em>pull request</em>” en la página del proyecto en GitHub siguiendo los pasos que se explican a continuación.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -765,8 +910,8 @@ Note
 </div>
 <p>Una vez que hemos realizado los cambios que queríamos en la rama y están subidos a GitHub (<code>git add</code> + <code>git commit</code> + <code>git push</code>), en GitHub aparece la opción de “Compare &amp; pull request”. Aquí se genera el <em>pull request</em> (“<em>Create pull request</em>”) añadiendo un mensaje para saber lo que se está uniendo. GitHub os indicará si existen conflictos o no. Si no existen conflictos, podréis realizar el <em>pull request</em> sin problema y, si existen conflictos, hay que resolverlos manualmente.</p>
 </section>
-<section id="resolución-de-conflictos" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="resolución-de-conflictos"><span class="header-section-number">8.3</span> Resolución de conflictos</h2>
+<section id="resolución-de-conflictos" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="resolución-de-conflictos"><span class="header-section-number">11.3</span> Resolución de conflictos</h2>
 <p>Git puede encontrar conflictos al fusionar ramas que hay que arreglar manualmente (GitHub os indicará “Can’t automatically merge”). Esto ocurrirá si en las dos ramas se han cambiado las mismas líneas de un archivo. Hay que generar el pull request y “<em>Resolve conflicts</em>”.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -785,13 +930,13 @@ Note
 <p><img src="images/cant_merge3.png" class="img-fluid"></p>
 <p>Para solucionarlo hay que escoger los cambios de la rama principal o de la rama a unir según corresponda. Una vez solucionados, Git permite completar el <em>merge</em> (es decir, un nuevo <em>commit</em> que contendrá las ramas fusionadas). La mejor manera de evitar conflictos o por lo menos reducir su dificultad es realizar cambios pequeños y sincronizar frecuentemente con GitHub, y tener una comunicación fluida con los colaboradores.</p>
 <p>💡<a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia3_comandos.md">Aquí</a> (en la sección de “Otros comandos útiles”) podéis ver cómo borrar ramas que ya no se necesitan y otros comandos útiles</p>
-<div>
+</section>
+</section>
+<section id="algunos-enlaces-interesantes" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Algunos enlaces interesantes</h1>
 <ul>
-<li></li>
-</ul>
-<section id="algunos-enlaces-interesantes" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Algunos enlaces interesantes</h1>
-<ul>
+<li><p>Curso: <a href="https://jthomasmock.github.io/quarto-2hr-webinar/">Get started with Quarto workshop</a> (Tom Mock)</p></li>
+<li><p>Curso: <a href="https://mine-cetinkaya-rundel.github.io/quarto-jsm24/">Reproducible publishing with Quarto</a> (Mine Çetinkaya-Rundel)</p></li>
 <li><p><a href="https://github.com/ecoinfAEET/Reproducibilidad">Ciencia reproducible: qué, por qué, cómo</a></p></li>
 <li><p><a href="https://git-scm.com/docs">Manual de referencia de Git</a></p></li>
 <li><p><a href="https://ohshitgit.com/">Oh Shit, Git!?!</a></p></li>
@@ -801,8 +946,8 @@ Note
 <li><p><a href="https://github.com/DatSciR/intro_git-github/tree/main/centra">Ciencia reproducible y colaborativa con R, Git y GitHub (DatSciR)</a></p></li>
 </ul>
 </section>
-<section id="referencias-1" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Referencias</h1>
+<section id="referencias-1" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Referencias</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-blischak2016" class="csl-entry" role="listitem">
 Blischak, J.D., Davenport, E.R., Wilson, G. 2016. <a href="https://doi.org/10.1371/journal.pcbi.1004668">A Quick Introduction to Version Control with Git and GitHub</a>. <em>PLOS Computational Biology</em> 12: e1004668.
@@ -819,9 +964,6 @@ Ram, K. 2013. <a href="https://doi.org/10.1186/1751-0473-8-7">Git can facilitate
 </div>
 <p>Y recordad:</p>
 <p><img src="images/in_case_of_fire.png" class="img-fluid" width="339"></p>
-</section>
-</div>
-</section>
 </section>
 
 

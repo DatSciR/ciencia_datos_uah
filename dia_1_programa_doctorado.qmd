@@ -199,9 +199,9 @@ Un tipo de objeto con el que vamos a trabajar es un data.frame que es una tabla 
 
 ![](images/palmer_penguins.png)
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  |
+|----|
 | Los datos de **palmer penguins** fueron recopilados y puestos a disposición por la Dra. Kristen Gorman y la Estación Palmer, LTER de la Antártida, miembro de la Red de Investigación Ecológica a Largo Plazo. Datos de pinguinos adultos de tres especies diferentes y de tres islas diferentes e incluye informaci´n sonbre tamaño y sexo. |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ```{r}
 library(palmerpenguins)
@@ -286,39 +286,23 @@ Utiliza **comentarios** para guiar al lector con `#`, acordarte por qué hiciste
 
 *¡No tienes que seleccionar con el ratón la línea de ejecutar y darle a "Run"! con las techas de más arriba e incluso shift te ahorrara tiempo!*
 
-+--------------------+------------------------------------------------------------------------------------------+
-| Atajo              | Efecto                                                                                   |
-+====================+==========================================================================================+
-| Ctrl + Z           | Deshacer                                                                                 |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Shift + Z   | Rehacer (no es la convención habitual)                                                   |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + O           | Abrir archivo                                                                            |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + A           | Seleccionar todo                                                                         |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + S           | Guardar archivo                                                                          |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + F           | Buscar en el archivo actual                                                              |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Shift + F   | Buscar en varios archivos                                                                |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + W           | Cerrar pestaña                                                                           |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Tab         | Ir a la siguiente pestaña                                                                |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Q           | Salir de RStudio                                                                         |
-+--------------------+------------------------------------------------------------------------------------------+
-| Tab                | Indentar / Autocompletado                                                                |
-+--------------------+------------------------------------------------------------------------------------------+
-| Shift + Tab        | Quitar indentación                                                                       |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Shift + F10 | Reiniciar la sesión de R (¡conviene hacerlo a menudo!)                                   |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + Shift + H   | Elegir directorio de trabajo (no necesario si trabajas en un proyecto de R 😉)           |
-+--------------------+------------------------------------------------------------------------------------------+
-| Ctrl + F7          | Añadir una nueva columna de código (se elimina cerrando todas sus pestañas con Ctrl + W) |
-+--------------------+------------------------------------------------------------------------------------------+
+| Atajo | Efecto |
+|----|----|
+| Ctrl + Z | Deshacer |
+| Ctrl + Shift + Z | Rehacer (no es la convención habitual) |
+| Ctrl + O | Abrir archivo |
+| Ctrl + A | Seleccionar todo |
+| Ctrl + S | Guardar archivo |
+| Ctrl + F | Buscar en el archivo actual |
+| Ctrl + Shift + F | Buscar en varios archivos |
+| Ctrl + W | Cerrar pestaña |
+| Ctrl + Tab | Ir a la siguiente pestaña |
+| Ctrl + Q | Salir de RStudio |
+| Tab | Indentar / Autocompletado |
+| Shift + Tab | Quitar indentación |
+| Ctrl + Shift + F10 | Reiniciar la sesión de R (¡conviene hacerlo a menudo!) |
+| Ctrl + Shift + H | Elegir directorio de trabajo (no necesario si trabajas en un proyecto de R 😉) |
+| Ctrl + F7 | Añadir una nueva columna de código (se elimina cerrando todas sus pestañas con Ctrl + W) |
 
 ### Consejo 3: Aprende a pedir ayuda, conoce las funciones y argumentos
 

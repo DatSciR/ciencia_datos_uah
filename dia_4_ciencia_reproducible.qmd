@@ -82,15 +82,17 @@ R Markdown nace en el ecosistema R pero en 2022 se lanza Quarto (<https://quarto
 
 Sea cual sea el sistema, Quarto y R Markdown aumentan de la eficiencia de trabajo (a medio-largo plazo), permiten centrarse en el texto sin perder tiempo en el diseño y permiten la producción de documentos de alta calidad.
 
-## Fundamentos básicos de Quarto
+# Fundamentos básicos de Quarto
 
 Para crear un archivo Quarto: *File -\> New File -\> Quarto document*. Debemos cambiar el modelo mental: ahora tendremos un documento fuente de texto plano y a partir de dicho documento generamos un documento renderizado. Estos archivos tienen tres componentes principales: (i) metadatos, (ii) texto, (iii) código.
 
--   Metadatos: se escriben entre `` `---` `` al comienzo del archivo. Utiliza la sintaxis de [YAML](https://en.wikipedia.org/wiki/YAML) (*Yet Another Markup Language*). Se utiliza para evitar teclear manualmente todas las opciones que pueden afectar al código, al contenido y al proceso de creación de un archivo estático. Aquí se es especifica el formado de salida: <https://quarto.org/docs/output-formats/all-formats.html>
+-   Metadatos: se delimita entre `` `---` `` al principio del archivo Quarto. Utiliza la sintaxis de [YAML](https://en.wikipedia.org/wiki/YAML) (*Yet Another Markup Language*). Se utiliza para evitar teclear manualmente todas las opciones que pueden afectar al código (opciones de ejecución), al contenido y al proceso de creación de un archivo estático.
 
 ::: callout-important
-¡La sangría es importante en el YAML!
+El YAML consiste en pares de `campo: valor`. Los dos puntos y el espacio son esenciales. ¡Y la sangría es muuuuy importante!
 :::
+
+En el YAML se es especifica el [formado de salida](https://quarto.org/docs/output-formats/all-formats.html). Puedes encontrar todas las opciones de ejecución y creación del archivo estático en la [guía de referencia de Quarto](https://quarto.org/docs/reference/).
 
 -   Texto: sintaxis Markdown. Markdown es un lenguaje de marcado ligero que permite escribir texto con formato usando símbolos simples. Está diseñado para ser fácil de escribir y, aún más importante, fácil de leer.
 
@@ -100,7 +102,7 @@ Para crear un archivo Quarto: *File -\> New File -\> Quarto document*. Debemos c
 
 -   Código (dos tipos):
 
-    -   *Code chunk* (bloque): se escribe ```` ```{r nombre_chunck} codigo aqui``` ````; entre corchetes se indica el lenguaje. Se puede escribir manualmente, utilizar el atajo `Ctrl + Alt + I` (Mac OS: `Cmd + Option + I`), utilizar el comando `Insert -> Executable Cell` en la barra de herramientas del editor.
+    -   *Code chunk* (bloque): se escribe ```` ```{lenguaje nombre_chunck} codigo aqui``` ````; entre corchetes se indica el lenguaje. Se puede escribir manualmente, utilizar el atajo `Ctrl + Alt + I` (Mac OS: `Cmd + Option + I`), utilizar el comando `Insert -> Executable Cell` en la barra de herramientas del editor.
 
     -   *Inline code* (en línea): se escribe `r "código aquí"`.
 
@@ -126,7 +128,7 @@ names(knitr::knit_engines$get())
 library(reticulate) # for python
 ```
 
-```{python example_python}  
+```{python example_python}
 x = "R mola!"   
 print(x.split(" "))
 ```
@@ -147,7 +149,7 @@ Para buscar ayuda sobre como escribir el texto plano: *Help -\> Markdown Quick R
 
 Referencias: [@blischak2016]
 
-Formato: **negrita**, *cursiva*, subíndice~1~, superíndice^2^, `código`, [hipervínculo](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html), notas al pie[^1]
+Formato: **negrita**, *cursiva*, subíndice~1~, superíndice^2^, `código`, notas al pie[^1]
 
 [^1]: hello world
 
@@ -157,9 +159,9 @@ Listas y sublistas: \*, -, +
 
 Citas:
 
-> "R Markdown es maravilloso pero ojo con Quarto"
+> "La democracia es el sistema que garantiza que no seamos gobernados mejor de lo que nos merecemos."
 >
-> --- Julen Astigarraga
+> --- Ignatius Farray
 
 Fórmulas:
 
@@ -177,17 +179,25 @@ Tablas:
 |      |      |      |
 |      |      |      |
 
-: Esto es el pie de tabla
+: Esto es el pie de tabla {#tbl-trescol}
 
 Figuras:
 
-![Esto es el pie de figura](images/rmarkdown.png){width="30%"}
+![Esto es el pie de figura](images/rmarkdown.png){#fig-rmarkdown width="30%"}
 
 Videos:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s3JldKoA0zw">
 
 </iframe>
+
+Links: [nombre del link](link)
+
+Links a elementos del documento: @fig-rmarkdown; @tbl-trescol; `@eq-...`; `@sec-...`
+
+::: callout-important
+Para utilizar la notación MarkDown de una forma más amable RStudio incorpora en la barra de edición del modo *Visual* las opciones más comunes: ![](images/edicion.png)
+:::
 
 ### 🧩 *Ejercicio*
 
@@ -200,8 +210,8 @@ Existen tres formas para producir un archivo estático (renderizar). Todas llama
 1.  Dentro de RStudio puedes usar el botón de *Render* (atajo: `Ctrl + Shift + K`; Mac OS `Cmd + Shift + K`),
 2.  En el terminal mediante quarto render: 🤓
 
-::: callout.note
-¿Qué es el terminal? El *shell* (o terminal) es un programa en tu ordenador cuyo trabajo es ejecutar otros programas (ver <https://happygitwithr.com/shell.html#shell>). RStudio incorpora una terminal que se puede utilizar para interactuar con Git; sin embargo, también incorpora una pestaña llamada "Git" que contiene las funcionalidades básicas de Git y facilita mucho su uso.
+::: callout-note
+¿Qué es el terminal? El *shell* (o terminal) es un programa en tu ordenador cuyo trabajo es ejecutar otros programas (ver <https://happygitwithr.com/shell.html#shell>). RStudio incorpora una terminal que se puede utilizar para interactuar con Quarto y con Git
 :::
 
 `quarto render archivo.qmd` (por defecto a HTML)
@@ -212,13 +222,13 @@ Existen tres formas para producir un archivo estático (renderizar). Todas llama
 
 `quarto --help`
 
-::: callout.note
+::: callout-note
 Sobre la importancia del YAML: las especificaciones del YAML se puede incluir también en el terminal, pero si las hemos incluido en el YAML no tendremos que escribirlas cada vez.
-:::
 
 `quarto render archivo.qmd --to html`
 
 `quarto render archivo.qmd --to html -M code-fold:true`
+:::
 
 3.  En la consola de R mediante el paquete `quarto`
 
@@ -248,7 +258,7 @@ Además existen distintas opciones para convertir archivos `.Rmd` a `.qmd`:
 
 3.  `knitr::convert_chunk_header("archivo.Rmd", "archivo.qmd")`
 
-## Generando el documento final
+# Generando el documento final
 
 ### Formato
 
@@ -273,7 +283,7 @@ Títulos coloreados en azul, el texto no está con un espaciado doble, no hay n�
 
 ### Referencias
 
-Para introducir citas y referencias en nuestro texto en Quarto utilizaremos el sistema **BibTeX** y así evitaremos tener que hacerlo manualmente. Con BibTex, en lugar de escribir la cita se escribe una "clave" única (clave de citación: @cita) cada vez que se cita una referencia. El sistema genera un archivo .bib que guarda las referencias en un formato estructurado.
+Para introducir citas y referencias en nuestro texto en Quarto utilizaremos el sistema **BibTeX** y así evitaremos tener que hacerlo manualmente. Con BibTex, en lugar de escribir la cita se escribe una "clave" única (clave de citación: `@cita`) cada vez que se cita una referencia. El sistema genera un archivo .bib que guarda las referencias en un formato estructurado.
 
 ::: callout.note
 Recomendamos utilizar [Zotero](https://www.zotero.org/) como gestor bibliográfico porque está incluido en RStudio, lo que facilita la inclusión de citas y referencias, pero se puede utilizar cualquier otro gestor.
@@ -292,7 +302,40 @@ BibTex permite cambiar los estilos de las referencias sin tener que reformatear 
 
 #### 🧩 *Ejercicio*
 
-Genera una plantilla de formato y modifica los colores, tamaño de los títulos, etc. Después, añade la plantilla al YAML y renderiza de nuevo el documento de word. 
+Genera una plantilla de formato y modifica los colores, tamaño de los títulos, etc. Después, añade la plantilla al YAML y renderiza de nuevo el documento de word.
+
+# Proyectos Quarto
+
+Cuando los proyectos son más grandes que un simple análisis (por ejemplo, un artículo con análisis adicionales presentados en material suplementario), resulta útil dividir la presentación del proyecto en varios documentos Quarto.
+
+Los **proyectos Quarto** son **colecciones de documentos** Quarto que pueden renderizarse conjuntamente o por separado. Se definen mediante un **archivo `quarto.yml`** en el directorio raíz del proyecto. Este archivo contiene metadatos y opciones de configuración del proyecto, como el título, el autor, los formatos de salida y otros aspectos. Todos los archivos del proyecto contienen la misma configuración YAML.
+
+Además, los proyectos pueden tener “tipos” especiales que introducen comportamientos adicionales (por ejemplo, sitios web o libros).
+
+::: callout-note
+Echa un ojo al repositorio de la web del Grupo de Ecoinformática de la AEET, creado con un proyecto Quarto: https://github.com/ecoinfAEET/ecoinfaeet.github.io
+Puedes ver la web publicada [aquí](https://ecoinfaeet.github.io/).
+:::
+
+El archivo de configuración contiene tanto opciones globales que se aplican a todos los formatos (por ejemplo, `toc` y `bibliography`) como opciones específicas de cada formato:
+
+``` yaml
+project:
+  output-dir: _output
+
+toc: true
+number-sections: true
+bibliography: references.bib  
+  
+format:
+  html:
+    css: styles.css
+    html-math-method: katex
+  pdf:
+    documentclass: report
+    margin-left: 30mm
+    margin-right: 30mm
+```
 
 # Introducción a Git y GitHub
 
@@ -310,17 +353,17 @@ Aunque existen multitud de manuales disponibles gratuitamente sobre cómo utiliz
 Git surge en 2005, tras la ruptura de la relación entre la comunidad que estaba desarrollando Linux y la empresa comercial que desarrollaba BitKeeper (DVCS). En ese momento BitKeeper dejó de ser gratuita y esto llevó a la comunidad de desarrolladores de Linux (y en particular a Linus Torvalds, el creador de Linux) a desarrollar su propia herramienta para el control de versiones basándose en su experiencia al utilizar BitKeeper.
 :::
 
-Git facilita el trabajo en paralelo de varios participantes. Mientras que en otros sistemas de control de versiones (p. ej. Subversion (SVN, <https://subversion.apache.org/>) o Concurrent Versions System (CVS, <http://cvs.nongnu.org/>)) hay un servidor central y cualquier cambio hecho por un usuario se sincroniza con este servidor y de ahí con el resto de usuarios, Git es un control de versiones distribuido que permite a todos los usuarios trabajar en el proyecto paralelamente e ir haciendo "capturas" del trabajo de cada uno para luego unirlos. Otras alternativas de control de versiones distribuido comparables a Git son Mercurial (<https://www.mercurial-scm.org/>) o Bazaar (<https://bazaar.canonical.com/>), pero Git es con diferencia el más utilizado.
+Git facilita el **trabajo en paralelo** de varios participantes. Mientras que en otros sistemas de control de versiones (p. ej. Subversion (SVN, <https://subversion.apache.org/>) o Concurrent Versions System (CVS, <http://cvs.nongnu.org/>)) hay un servidor central y cualquier cambio hecho por un usuario se sincroniza con este servidor y de ahí con el resto de usuarios, Git es un control de versiones distribuido que permite a todos los usuarios trabajar en el proyecto paralelamente e ir haciendo "capturas" del trabajo de cada uno para luego unirlos. Otras alternativas de control de versiones distribuido comparables a Git son Mercurial (<https://www.mercurial-scm.org/>) o Bazaar (<https://bazaar.canonical.com/>), pero Git es con diferencia el más utilizado.
 
 ![Interacción entre Git y GitHub. Git, al ser un control de versiones distribuido, permite que todos los usuarios trabajen paralelamente sin interferir en el trabajo de los demás. Luego cada usuario sincroniza su trabajo con la copia principal del proyecto ubicado en GitHub](images/conexiones.jpg){fig-align="center"}
 
 ## [Qué es GitHub](https://github.com/)
 
-GitHub es un servidor de alojamiento en línea o repositorio remoto para albergar proyectos basados en Git que permite la colaboración entre diferentes usuarios o con uno mismo [@galeano2018; @perez-riverol2016]. Un repositorio es un directorio donde desarrollar un proyecto que contiene todos los archivos necesarios para el mismo. Aunque existen distintos repositorios remotos (p. ej. GitLab, <https://gitlab.com/>, o Bitbucket, <https://bitbucket.org/>) con funcionalidad similar, GitHub es hoy en día el más utilizado. GitHub registra el desarrollo de los proyectos de manera remota, permite compartir proyectos entre distintos usuarios y proporciona la seguridad de la nube entre otras funciones.
+GitHub es un **servidor de alojamiento en línea** o repositorio remoto para albergar proyectos basados en Git que permite la colaboración entre diferentes usuarios o con uno mismo [@galeano2018; @perez-riverol2016]. Un repositorio es un directorio donde desarrollar un proyecto que contiene todos los archivos necesarios para el mismo. Aunque existen distintos repositorios remotos (p. ej. GitLab, <https://gitlab.com/>, o Bitbucket, <https://bitbucket.org/>) con funcionalidad similar, GitHub es hoy en día el más utilizado. GitHub registra el desarrollo de los proyectos de manera remota, permite compartir proyectos entre distintos usuarios y proporciona la seguridad de la nube entre otras funciones.
 
 ![Página inicial de GitHub](images/github_pag_ini.png)
 
-Cuando se trabaja en proyectos colaborativos, la base de la interacción entre Git y GitHub es que todos los colaboradores de un proyecto están de acuerdo en que GitHub contiene la copia principal del proyecto, es decir, GitHub contiene la copia centralizada del control de versiones distribuido o descentralizado.
+Cuando se trabaja en proyectos colaborativos, la base de la interacción entre Git y GitHub es que todos los colaboradores de un proyecto están de acuerdo en que GitHub contiene la copia principal del proyecto, es decir, GitHub contiene la **copia centralizada** del control de versiones distribuido o descentralizado.
 
 # Instalación
 
@@ -369,9 +412,13 @@ En este punto es necesario que tengas instalada la versión más reciente de R (
 # gitcreds_set() # acceder al Git credential store
 ```
 
-👀 Conviene describir el propósito del token en el campo *Note*, porque se pueden tener varios PATs. No podrás volver a ver este token, así que no cierres ni salgas de la ventana del navegador hasta que almacenes el PAT localmente. ¡Trata este PAT como una contraseña!
+::: callout-tip
+Conviene describir el propósito del token en el campo *Note*, porque se pueden tener varios PATs. No podrás volver a ver este token, así que no cierres ni salgas de la ventana del navegador hasta que almacenes el PAT localmente. ¡Trata este PAT como una contraseña!
+:::
 
-💡Para la resolución de problemas durante la instalación recomendamos mirar aquí: <https://happygitwithr.com/troubleshooting.html>
+::: callout-tip
+Para la resolución de problemas durante la instalación recomendamos mirar aquí: <https://happygitwithr.com/troubleshooting.html>
+:::
 
 # Repositorios y proyectos
 
@@ -383,9 +430,13 @@ En RStudio, creamos un nuevo proyecto y lo conectamos al repositorio: File \> Ne
 
 Si vamos al directorio local seleccionado, encontraremos la carpeta conectada a Git y GitHub que hemos creado en nuestro ordenador. Podemos copiar aquí todos los archivos que nos interesan para el proyecto de análisis (datos, imágenes, etc).
 
-💡Para más información sobre cómo clonar el repositorio en GitHub (repositorio remoto) en nuestro ordenador (repositorio local) ver <https://happygitwithr.com/rstudio-git-github.html> para hacerlo desde RStudio y @galeano2018 para hacerlo mediante la línea de comandos.
+::: callout-note
+Para más información sobre cómo clonar el repositorio en GitHub (repositorio remoto) en nuestro ordenador (repositorio local) ver <https://happygitwithr.com/rstudio-git-github.html> para hacerlo desde RStudio y @galeano2018 para hacerlo mediante la línea de comandos.
+:::
 
-💡En caso de querer conectar un antiguo proyecto de RStudio a Git y GitHub, puedes seguir los pasos que se describen aquí: <https://happygitwithr.com/existing-github-first.html>.
+::: callout-note
+En caso de querer conectar un antiguo proyecto de RStudio a Git y GitHub, puedes seguir los pasos que se describen aquí: <https://happygitwithr.com/existing-github-first.html>.
+:::
 
 ## 🧩 *Ejercicio*
 
@@ -483,7 +534,9 @@ Además de los botones principales anteriormente descritos, en la pestaña Git d
 
 En el proyecto generado en el Ejercicio 1.2, guardad y subid los cambios realizados a GitHub (`git add` + `git commit` + `git push`)
 
-💡`git status`: muestra la rama en la que estamos y los cambios hechos y añadidos desde el último commit.
+::: callout-tip
+`git status`: muestra la rama en la que estamos y los cambios hechos y añadidos desde el último commit.
+:::
 
 En el repositorio remoto de GitHub, en la pestaña *Code* podemos observar el contenido de nuestro proyecto, incluyendo cada *commit* realizado ([ejemplo](https://github.com/VeruGHub/easyclimate)).
 
@@ -539,11 +592,11 @@ Para solucionarlo hay que escoger los cambios de la rama principal o de la rama 
 
 💡[Aquí](https://github.com/DatSciR/intro_git-github/blob/main/centra/dia3_comandos.md) (en la sección de "Otros comandos útiles") podéis ver cómo borrar ramas que ya no se necesitan y otros comandos útiles
 
-<div>
-
--   
-
 # Algunos enlaces interesantes
+
+-   Curso: [Get started with Quarto workshop](https://jthomasmock.github.io/quarto-2hr-webinar/) (Tom Mock)
+
+-   Curso: [Reproducible publishing with Quarto](https://mine-cetinkaya-rundel.github.io/quarto-jsm24/) (Mine Çetinkaya-Rundel)
 
 -   [Ciencia reproducible: qué, por qué, cómo](https://github.com/ecoinfAEET/Reproducibilidad)
 
@@ -561,11 +614,9 @@ Para solucionarlo hay que escoger los cambios de la rama principal o de la rama 
 
 # Referencias
 
-:::{#refs}
+::: {#refs}
 :::
-
 
 Y recordad:
 
 ![](images/in_case_of_fire.png){width="339"}
-
