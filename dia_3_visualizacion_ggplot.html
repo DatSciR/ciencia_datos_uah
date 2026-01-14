@@ -527,17 +527,19 @@ Figure&nbsp;6: Histograma de la longitud del pico de los pingüinos
 </div>
 <p>Este gráfico de dispersión muestra la relación entre la longitud de la aleta (eje X) y la masa corporal (eje Y) de los pingüinos. Podemos observar una tendencia positiva: en general, los pingüinos con aletas más largas tienden a tener mayor masa corporal.</p>
 <p>Dentro de la función <code>aes()</code> podemos especificar cómo las variables del conjunto de datos se traducen en propiedades visuales del gráfico. Estas propiedades visuales se denominan <em>aesthetics</em> y permiten incorporar información adicional sin necesidad de crear gráficos separados.</p>
-<p>En un <strong>scatterplot</strong>, además de definir las variables que se representan en los ejes X e Y, es posible mapear otras variables del dataset a distintos atributos visuales, entre ellos:</p>
-<p>-<strong>color</strong>: permite diferenciar grupos o categorías mediante colores distintos. Es especialmente útil para variables categóricas. Aunque también puede usarse con variables continuas.</p>
-<p>-<strong>shape</strong>: asigna distintas formas a los puntos según una variable categórica.</p>
-<p>-<strong>size</strong>: controla el tamaño de los puntos. Puede utilizarse para representar variables continuas o, con precaución, variables categóricas.</p>
-<p>-<strong>alpha (transparencia)</strong>: permite ajustar la opacidad de los puntos. Aunque suele fijarse como un valor constante, también puede mapearse a una variable para resaltar gradientes o reducir problemas de solapamiento.</p>
+<p>En un <strong>gráficos bidimensionales</strong>, además de definir las variables que se representan en los ejes X e Y, es posible mapear otras variables del dataset a distintos atributos visuales, entre ellos:</p>
+<ul>
+<li><p><strong>color</strong>: permite diferenciar grupos o categorías mediante colores distintos. Es especialmente útil para variables categóricas. Aunque también puede usarse con variables continuas.</p></li>
+<li><p><strong>shape</strong>: asigna distintas formas a los puntos según una variable categórica.</p></li>
+<li><p><strong>size</strong>: controla el tamaño de los puntos. Puede utilizarse para representar variables continuas o, con precaución, variables categóricas.</p></li>
+<li><p><strong>alpha (transparencia)</strong>: permite ajustar la opacidad de los puntos. Aunque suele fijarse como un valor constante, también puede mapearse a una variable para resaltar gradientes o reducir problemas de solapamiento.</p></li>
+</ul>
 <p>IMPORTANTE: Los datos se pueden colocar dentro de la funcion <code>ggplot()</code> si se van a usar los mismos en todas las geometrias. Por ejemplo, si queremos representar una linea de tendencia lineal para estas variables</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de dispersión bidimensional básico con recta de regresión</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Aquí necesitamos especificar tanto el eje X como el eje Y</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> year)) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> year)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -735,7 +737,7 @@ Figure&nbsp;7: Variable types and their classification
 <p>Añadimos una segunda variable con <code>fill</code> y usamos position = “fill” para normalizar al 100%.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proporciones de sexo dentro de cada especie</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -1029,25 +1031,25 @@ Figure&nbsp;7: Variable types and their classification
 <h2 class="anchored" data-anchor-id="ejercicio-g">🧩Ejercicio g):</h2>
 </section>
 <section id="diagrama-de-cajas-con-etiquetas-completas" class="level2">
-<h2 class="anchored" data-anchor-id="diagrama-de-cajas-con-etiquetas-completas">1️⃣ Diagrama de cajas con etiquetas completas</h2>
+<h2 class="anchored" data-anchor-id="diagrama-de-cajas-con-etiquetas-completas">Diagrama de cajas con etiquetas completas</h2>
 <ol type="1">
-<li><p>Crea un gráfico <strong>boxplot</strong> de <code>body_mass_g</code> por <code>species</code> (especies de pingüinos).</p>
+<li><p>Crea un gráfico <strong>boxplot</strong> de longitud de la aleta por especies de pingüinos.</p>
 <p>Añade <strong>etiquetas completas</strong> usando <code>labs()</code>:</p></li>
 </ol>
 <p>Título principal: “Distribución de masa corporal por especie”</p>
 <p>Subtítulo: “Datos del estudio Palmer Penguins”</p>
 <p>Eje X: “Especie de pingüino”</p>
-<p>Eje Y: “Masa corporal (g)”</p>
+<p>Eje Y: “Longitud de la aleta (mm)”</p>
 <p>Pie de figura: “Fuente: palmerpenguins”</p>
 <p>Preguntas:</p>
 <p>¿Por qué es importante incluir todas estas etiquetas en un gráfico que será mostrado fuera de contexto?</p>
 <p>¿Qué aporta el subtítulo respecto al título?</p>
 <ol start="2" type="1">
-<li><p>2️⃣ Ajuste de coordenadas / zoom</p>
+<li><p>Ajuste de coordenadas / zoom</p>
 <p><strong>Instrucciones:</strong></p>
 <ol type="1">
-<li><p>Aplica <code>coord_cartesian()</code> para enfocar la vista entre <strong>3000 y 5000 g</strong> en el eje Y.</p></li>
-<li><p>Crea un segundo gráfico usando <code>ylim(3000, 5000)</code>.</p></li>
+<li><p>Aplica <code>coord_cartesian()</code> para enfocar la vista entre <strong>180 y 200mm</strong> en el eje Y.</p></li>
+<li><p>Crea un segundo gráfico usando <code>ylim(180, 200)</code>.</p></li>
 <li><p>Compara los resultados y observa la diferencia.</p></li>
 </ol></li>
 </ol>
@@ -1310,7 +1312,7 @@ No crea gráficos diferentes, sino distintas “ventanas” de la misma visualiz
 <h2 class="anchored" data-anchor-id="qué-son-las-funciones-scale_">4.5.2 ¿Qué son las funciones <code>scale_*()</code>?</h2>
 <p>Las funciones <code>scale_*()</code> nos permiten <strong>modificar ese comportamiento automático</strong>.</p>
 <p>Su estructura general es:</p>
-<p>scale_<aesthetic>_<tipo>()</tipo></aesthetic></p>
+<p>scale_*aesthetic*_tipo()</p>
 <ul>
 <li><p><strong>aesthetic</strong>: qué propiedad visual estamos modificando<br>
 (<code>color</code>, <code>fill</code>, <code>x</code>, <code>y</code>, etc.)</p></li>
@@ -1554,7 +1556,7 @@ De este modo, cualquier cambio visual se debe únicamente al tema.</p>
 <li><p><code>theme_classic()</code> → estilo estadístico tradicional</p></li>
 <li><p><code>theme_void()</code> → elimina casi todo salvo los datos</p></li>
 </ul>
-<p>👉 <strong>Recomendación didáctica</strong>: usar temas predefinidos para cambiar el <em>estilo general</em> y <code>theme()</code> para ajustes finos.</p>
+<p>👉 <strong>Recomendación</strong>: usar temas predefinidos para cambiar el <em>estilo general</em> y <code>theme()</code> para ajustes finos.</p>
 </section>
 <section id="theme-personalización-por-componentes" class="level2">
 <h2 class="anchored" data-anchor-id="theme-personalización-por-componentes">4.7.3 <code>theme()</code>: personalización por componentes</h2>
@@ -1562,7 +1564,7 @@ De este modo, cualquier cambio visual se debe únicamente al tema.</p>
 Cada elemento pertenece a una <strong>familia lógica</strong>.</p>
 <p>Si se consulta la ayuda (<code>?theme</code>), se observa que hay muchas opciones, pero <strong>no se usan todas a la vez</strong>. En la práctica, se trabaja por bloques.</p>
 <section id="texto-títulos-ejes-leyenda" class="level3">
-<h3 class="anchored" data-anchor-id="texto-títulos-ejes-leyenda">1️⃣ Texto (títulos, ejes, leyenda)</h3>
+<h3 class="anchored" data-anchor-id="texto-títulos-ejes-leyenda">4.7.3.1. Texto (títulos, ejes, leyenda)</h3>
 <p>Todos los textos del gráfico se controlan con <code>element_text()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>base_plot <span class="sc">+</span></span>
@@ -1589,8 +1591,8 @@ Cada elemento pertenece a una <strong>familia lógica</strong>.</p>
 </ul>
 </section>
 <section id="leyenda-posición-y-organización" class="level3">
-<h3 class="anchored" data-anchor-id="leyenda-posición-y-organización">2️⃣ Leyenda (posición y organización)</h3>
-<p>La leyenda suele requerir ajustes para presentaciones o informes.</p>
+<h3 class="anchored" data-anchor-id="leyenda-posición-y-organización">4.7.3.2. Leyenda (posición y organización)</h3>
+<p>La leyenda suele requerir ajustes para presentaciones o informes. Se va a controlar con <code>legend.*</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>base_plot <span class="sc">+</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
@@ -1615,8 +1617,8 @@ Cada elemento pertenece a una <strong>familia lógica</strong>.</p>
 </ul>
 </section>
 <section id="ejes-y-cuadrícula" class="level3">
-<h3 class="anchored" data-anchor-id="ejes-y-cuadrícula">3️⃣ Ejes y cuadrícula</h3>
-<p>Los ejes y las líneas de fondo influyen mucho en la claridad del gráfico.</p>
+<h3 class="anchored" data-anchor-id="ejes-y-cuadrícula">4.7.3.3. Ejes y cuadrícula</h3>
+<p>Los ejes y las líneas de fondo influyen mucho en la claridad del gráfico. Se va a controlar con <code>axis.*</code> y <code>panel.grid.*</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>base_plot <span class="sc">+</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
@@ -1639,7 +1641,7 @@ Cada elemento pertenece a una <strong>familia lógica</strong>.</p>
 </ul>
 </section>
 <section id="fondos-y-márgenes" class="level3">
-<h3 class="anchored" data-anchor-id="fondos-y-márgenes">4️⃣ Fondos y márgenes</h3>
+<h3 class="anchored" data-anchor-id="fondos-y-márgenes">4.7.3.4. Fondos y márgenes</h3>
 <p>El gráfico tiene dos fondos distintos:</p>
 <ul>
 <li><p><code>panel.background</code> → zona de los datos</p></li>

@@ -354,23 +354,23 @@ Este gráfico de dispersión muestra la relación entre la longitud de la aleta 
 
 Dentro de la función `aes()` podemos especificar cómo las variables del conjunto de datos se traducen en propiedades visuales del gráfico. Estas propiedades visuales se denominan *aesthetics* y permiten incorporar información adicional sin necesidad de crear gráficos separados.
 
-En un **scatterplot**, además de definir las variables que se representan en los ejes X e Y, es posible mapear otras variables del dataset a distintos atributos visuales, entre ellos:
+En un **gráficos bidimensionales**, además de definir las variables que se representan en los ejes X e Y, es posible mapear otras variables del dataset a distintos atributos visuales, entre ellos:
 
-\-**color**: permite diferenciar grupos o categorías mediante colores distintos. Es especialmente útil para variables categóricas. Aunque también puede usarse con variables continuas.
+-   **color**: permite diferenciar grupos o categorías mediante colores distintos. Es especialmente útil para variables categóricas. Aunque también puede usarse con variables continuas.
 
-\-**shape**: asigna distintas formas a los puntos según una variable categórica.
+-   **shape**: asigna distintas formas a los puntos según una variable categórica.
 
-\-**size**: controla el tamaño de los puntos. Puede utilizarse para representar variables continuas o, con precaución, variables categóricas.
+-   **size**: controla el tamaño de los puntos. Puede utilizarse para representar variables continuas o, con precaución, variables categóricas.
 
-\-**alpha (transparencia)**: permite ajustar la opacidad de los puntos. Aunque suele fijarse como un valor constante, también puede mapearse a una variable para resaltar gradientes o reducir problemas de solapamiento.
+-   **alpha (transparencia)**: permite ajustar la opacidad de los puntos. Aunque suele fijarse como un valor constante, también puede mapearse a una variable para resaltar gradientes o reducir problemas de solapamiento.
 
 IMPORTANTE: Los datos se pueden colocar dentro de la funcion `ggplot()` si se van a usar los mismos en todas las geometrias. Por ejemplo, si queremos representar una linea de tendencia lineal para estas variables
 
 ```{r scatter-basic-2}
 # Gráfico de dispersión bidimensional básico con recta de regresión
 # Aquí necesitamos especificar tanto el eje X como el eje Y
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = year)) +
-  geom_point(size = 1) + geom_smooth(method = "lm")
+ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g, color = year)) +
+  geom_point(, size = 1) + geom_smooth(method = "lm")
 
 ```
 
@@ -559,7 +559,7 @@ Añadimos una segunda variable con `fill` y usamos position = "fill" para normal
 
 ```{r proporciones}
 # Proporciones de sexo dentro de cada especie
-ggplot(penguins, aes(x = species, fill = sex)) +
+ggplot(penguins, aes(x = island, fill = species)) +
   geom_bar(position = "fill")
 #Para comparación directa entre subgrupos, usamos position = "dodge"
 ```
@@ -782,9 +782,9 @@ Esta diferencia es crucial cuando se usan estadísticos como regresiones o suavi
 
 ## 🧩Ejercicio g):
 
-## 1️⃣ Diagrama de cajas con etiquetas completas
+## Diagrama de cajas con etiquetas completas
 
-1.  Crea un gráfico **boxplot** de `body_mass_g` por `species` (especies de pingüinos).
+1.  Crea un gráfico **boxplot** de longitud de la aleta por especies de pingüinos.
 
     Añade **etiquetas completas** usando `labs()`:
 
@@ -794,7 +794,7 @@ Subtítulo: “Datos del estudio Palmer Penguins”
 
 Eje X: “Especie de pingüino”
 
-Eje Y: “Masa corporal (g)”
+Eje Y: “Longitud de la aleta (mm)”
 
 Pie de figura: “Fuente: palmerpenguins”
 
@@ -804,13 +804,13 @@ Preguntas:
 
 ¿Qué aporta el subtítulo respecto al título?
 
-2.  2️⃣ Ajuste de coordenadas / zoom
+2.  Ajuste de coordenadas / zoom
 
     **Instrucciones:**
 
-    1.  Aplica `coord_cartesian()` para enfocar la vista entre **3000 y 5000 g** en el eje Y.
+    1.  Aplica `coord_cartesian()` para enfocar la vista entre **180 y 200mm** en el eje Y.
 
-    2.  Crea un segundo gráfico usando `ylim(3000, 5000)`.
+    2.  Crea un segundo gráfico usando `ylim(180, 200)`.
 
     3.  Compara los resultados y observa la diferencia.
 
@@ -1024,7 +1024,7 @@ Las funciones `scale_*()` nos permiten **modificar ese comportamiento automátic
 
 Su estructura general es:
 
-scale\_<aesthetic>\_<tipo>()
+scale\_\*aesthetic\*\_tipo()
 
 -   **aesthetic**: qué propiedad visual estamos modificando\
     (`color`, `fill`, `x`, `y`, etc.)
@@ -1238,7 +1238,7 @@ Algunos de los más utilizados son:
 
 -   `theme_void()` → elimina casi todo salvo los datos
 
-👉 **Recomendación didáctica**: usar temas predefinidos para cambiar el *estilo general* y `theme()` para ajustes finos.
+👉 **Recomendación**: usar temas predefinidos para cambiar el *estilo general* y `theme()` para ajustes finos.
 
 ## 4.7.3 `theme()`: personalización por componentes
 
@@ -1247,7 +1247,7 @@ Cada elemento pertenece a una **familia lógica**.
 
 Si se consulta la ayuda (`?theme`), se observa que hay muchas opciones, pero **no se usan todas a la vez**. En la práctica, se trabaja por bloques.
 
-### 1️⃣ Texto (títulos, ejes, leyenda)
+### 4.7.3.1. Texto (títulos, ejes, leyenda)
 
 Todos los textos del gráfico se controlan con `element_text()`.
 
@@ -1271,9 +1271,9 @@ base_plot +
 
 -   `legend.*` → leyenda
 
-### 2️⃣ Leyenda (posición y organización)
+### 4.7.3.2.  Leyenda (posición y organización)
 
-La leyenda suele requerir ajustes para presentaciones o informes.
+La leyenda suele requerir ajustes para presentaciones o informes. Se va a controlar con `legend.*`
 
 ```{r themes-3}
 
@@ -1298,9 +1298,9 @@ Opciones habituales para `legend.position`:
 
 -   `"none"` (ocultar leyenda)
 
-### 3️⃣ Ejes y cuadrícula
+### 4.7.3.3. Ejes y cuadrícula
 
-Los ejes y las líneas de fondo influyen mucho en la claridad del gráfico.
+Los ejes y las líneas de fondo influyen mucho en la claridad del gráfico. Se va a controlar con `axis.*` y `panel.grid.*`
 
 ```{r themes-4}
 base_plot +
@@ -1317,7 +1317,7 @@ base_plot +
 
 -   eliminar `grid.minor` es muy común
 
-### 4️⃣ Fondos y márgenes
+### 4.7.3.4. Fondos y márgenes
 
 El gráfico tiene dos fondos distintos:
 
