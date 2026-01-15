@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,8 +22,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -78,15 +79,16 @@ div.csl-indent {
 
 
 <script src="dia_4_ciencia_reproducible_files/libs/clipboard/clipboard.min.js"></script>
-<script src="dia_4_ciencia_reproducible_files/libs/quarto-html/quarto.js"></script>
+<script src="dia_4_ciencia_reproducible_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="dia_4_ciencia_reproducible_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="dia_4_ciencia_reproducible_files/libs/quarto-html/popper.min.js"></script>
 <script src="dia_4_ciencia_reproducible_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="dia_4_ciencia_reproducible_files/libs/quarto-html/anchor.min.js"></script>
 <link href="dia_4_ciencia_reproducible_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="dia_4_ciencia_reproducible_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="dia_4_ciencia_reproducible_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="dia_4_ciencia_reproducible_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="dia_4_ciencia_reproducible_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="dia_4_ciencia_reproducible_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="dia_4_ciencia_reproducible_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -120,7 +122,7 @@ window.Quarto = {
 
 </head>
 
-<body>
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -128,17 +130,20 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a>
+  <ul>
+  <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio"><span class="header-section-number">1.1</span> 🧩 <em>Ejercicio</em></a></li>
+  </ul></li>
   <li><a href="#introducción-a-quarto-y-r-markdown" id="toc-introducción-a-quarto-y-r-markdown" class="nav-link" data-scroll-target="#introducción-a-quarto-y-r-markdown"><span class="header-section-number">2</span> Introducción a Quarto y R Markdown</a></li>
   <li><a href="#fundamentos-básicos-de-quarto" id="toc-fundamentos-básicos-de-quarto" class="nav-link" data-scroll-target="#fundamentos-básicos-de-quarto"><span class="header-section-number">3</span> Fundamentos básicos de Quarto</a>
   <ul>
   <li><a href="#notación-markdown" id="toc-notación-markdown" class="nav-link" data-scroll-target="#notación-markdown"><span class="header-section-number">3.1</span> Notación Markdown</a>
   <ul>
-  <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio"><span class="header-section-number">3.1.1</span> 🧩 <em>Ejercicio</em></a></li>
+  <li><a href="#ejercicio-1" id="toc-ejercicio-1" class="nav-link" data-scroll-target="#ejercicio-1"><span class="header-section-number">3.1.1</span> 🧩 <em>Ejercicio</em></a></li>
   </ul></li>
   <li><a href="#renderización" id="toc-renderización" class="nav-link" data-scroll-target="#renderización"><span class="header-section-number">3.2</span> Renderización</a>
   <ul>
-  <li><a href="#ejercicio-1" id="toc-ejercicio-1" class="nav-link" data-scroll-target="#ejercicio-1"><span class="header-section-number">3.2.1</span> 🧩 <em>Ejercicio</em></a></li>
+  <li><a href="#ejercicio-2" id="toc-ejercicio-2" class="nav-link" data-scroll-target="#ejercicio-2"><span class="header-section-number">3.2.1</span> 🧩 <em>Ejercicio</em></a></li>
   </ul></li>
   <li><a href="#qué-hago-si-he-estado-utilizando-r-markdown" id="toc-qué-hago-si-he-estado-utilizando-r-markdown" class="nav-link" data-scroll-target="#qué-hago-si-he-estado-utilizando-r-markdown"><span class="header-section-number">3.3</span> ¿Qué hago si he estado utilizando R Markdown?</a></li>
   </ul></li>
@@ -147,7 +152,7 @@ window.Quarto = {
   <li><a href="#formato" id="toc-formato" class="nav-link" data-scroll-target="#formato"><span class="header-section-number">4.0.1</span> Formato</a></li>
   <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">4.0.2</span> Referencias</a>
   <ul>
-  <li><a href="#ejercicio-2" id="toc-ejercicio-2" class="nav-link" data-scroll-target="#ejercicio-2"><span class="header-section-number">4.0.2.1</span> 🧩 <em>Ejercicio</em></a></li>
+  <li><a href="#ejercicio-3" id="toc-ejercicio-3" class="nav-link" data-scroll-target="#ejercicio-3"><span class="header-section-number">4.0.2.1</span> 🧩 <em>Ejercicio</em></a></li>
   </ul></li>
   </ul></li>
   <li><a href="#proyectos-quarto" id="toc-proyectos-quarto" class="nav-link" data-scroll-target="#proyectos-quarto"><span class="header-section-number">5</span> Proyectos Quarto</a></li>
@@ -158,15 +163,15 @@ window.Quarto = {
   </ul></li>
   <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación"><span class="header-section-number">7</span> Instalación</a>
   <ul>
-  <li><a href="#ejercicio-3" id="toc-ejercicio-3" class="nav-link" data-scroll-target="#ejercicio-3"><span class="header-section-number">7.1</span> 🧩 <em>Ejercicio</em></a></li>
+  <li><a href="#ejercicio-4" id="toc-ejercicio-4" class="nav-link" data-scroll-target="#ejercicio-4"><span class="header-section-number">7.1</span> 🧩 <em>Ejercicio</em></a></li>
   </ul></li>
-  <li><a href="#repositorios-y-proyectos" id="toc-repositorios-y-proyectos" class="nav-link" data-scroll-target="#repositorios-y-proyectos"><span class="header-section-number">8</span> Repositorios y proyectos</a>
+  <li><a href="#repositorios-y-proyectos-de-rstudio" id="toc-repositorios-y-proyectos-de-rstudio" class="nav-link" data-scroll-target="#repositorios-y-proyectos-de-rstudio"><span class="header-section-number">8</span> Repositorios y proyectos de RStudio</a>
   <ul>
-  <li><a href="#ejercicio-4" id="toc-ejercicio-4" class="nav-link" data-scroll-target="#ejercicio-4"><span class="header-section-number">8.1</span> 🧩 <em>Ejercicio</em></a>
+  <li><a href="#ejercicio-5" id="toc-ejercicio-5" class="nav-link" data-scroll-target="#ejercicio-5"><span class="header-section-number">8.1</span> 🧩 <em>Ejercicio</em></a>
   <ul>
   <li><a href="#git-ignore" id="toc-git-ignore" class="nav-link" data-scroll-target="#git-ignore"><span class="header-section-number">8.1.1</span> Git ignore</a></li>
   </ul></li>
-  <li><a href="#ejercicio-5" id="toc-ejercicio-5" class="nav-link" data-scroll-target="#ejercicio-5"><span class="header-section-number">8.2</span> 🧩 <em>Ejercicio</em></a>
+  <li><a href="#ejercicio-6" id="toc-ejercicio-6" class="nav-link" data-scroll-target="#ejercicio-6"><span class="header-section-number">8.2</span> 🧩 <em>Ejercicio</em></a>
   <ul>
   <li><a href="#estructura-del-repositorio-de-github" id="toc-estructura-del-repositorio-de-github" class="nav-link" data-scroll-target="#estructura-del-repositorio-de-github"><span class="header-section-number">8.2.1</span> Estructura del repositorio de GitHub</a></li>
   </ul></li>
@@ -175,7 +180,7 @@ window.Quarto = {
   <li><a href="#flujo-de-trabajo-en-git-y-github" id="toc-flujo-de-trabajo-en-git-y-github" class="nav-link" data-scroll-target="#flujo-de-trabajo-en-git-y-github"><span class="header-section-number">10</span> Flujo de trabajo en Git y GitHub</a>
   <ul>
   <li><a href="#cómo-moverse-de-una-zona-a-otra" id="toc-cómo-moverse-de-una-zona-a-otra" class="nav-link" data-scroll-target="#cómo-moverse-de-una-zona-a-otra"><span class="header-section-number">10.1</span> ¿Cómo moverse de una zona a otra?</a></li>
-  <li><a href="#ejercicio-6" id="toc-ejercicio-6" class="nav-link" data-scroll-target="#ejercicio-6"><span class="header-section-number">10.2</span> 🧩 <em>Ejercicio</em></a></li>
+  <li><a href="#ejercicio-7" id="toc-ejercicio-7" class="nav-link" data-scroll-target="#ejercicio-7"><span class="header-section-number">10.2</span> 🧩 <em>Ejercicio</em></a></li>
   <li><a href="#navegar-por-el-historial" id="toc-navegar-por-el-historial" class="nav-link" data-scroll-target="#navegar-por-el-historial"><span class="header-section-number">10.3</span> Navegar por el historial</a></li>
   </ul></li>
   <li><a href="#trabajo-colaborativo" id="toc-trabajo-colaborativo" class="nav-link" data-scroll-target="#trabajo-colaborativo"><span class="header-section-number">11</span> Trabajo colaborativo</a>
@@ -211,7 +216,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">14/01/2026</p>
+      <p class="date">15/01/2026</p>
     </div>
   </div>
   
@@ -231,7 +236,7 @@ window.Quarto = {
 <section id="introducción" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introducción</h1>
 <p><strong>La reproducibilidad y la trazabilidad</strong> de los análisis están ganando cada vez más importancia en diversos campos de estudio a medida que el volumen de datos aumenta y los análisis se hacen más complejos. En la sesión de hoy aprenderemos cómo <strong>Quarto</strong> puede utilizarse para generar documentos reproducibles, <strong>Git</strong> puede usarse para controlar los cambios realizados en proyectos o archivos y veremos cómo este control de versiones y su trazabilidad es especialmente útil en proyectos colaborativos mediante el uso de un servidor de alojamiento en línea como <strong>GitHub</strong>.</p>
-<p>Estas herramientas nos pueden ayudar a solucionar algunos problemas comunes derivados de la creación de diferentes versiones y la falta de reproducibilidad que pueden ser un poco molestos:</p>
+<p>Estas herramientas nos pueden ayudar a solucionar algunos <strong>problemas comunes</strong> derivados de la creación de diferentes versiones y la falta de reproducibilidad que pueden ser un poco molestos:</p>
 <p>- Sobreescritura de un archivo</p>
 <p>- Versiones finales infinitas</p>
 <p><img src="images/FINALdoc.png" class="img-fluid"></p>
@@ -243,14 +248,14 @@ window.Quarto = {
 <p><img src="images/tracker.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Ediciones sin control de cambios"></p>
 </figure>
 </div>
-<p>En <a href="https://book.the-turing-way.org/"><em>The Turing Way</em></a> definen la investigación reproducible como aquel trabajo que puede recrearse de forma independiente a partir de los mismos datos y el mismo código que utilizó el equipo original. Lo reproducible es distinto de lo replicable, robusto y generalizable, tal y como se describe en la figura siguiente.</p>
+<p>En <a href="https://book.the-turing-way.org/"><em>The Turing Way</em></a> definen la <strong>investigación reproducible</strong> como aquel trabajo que puede recrearse de forma independiente a partir de los mismos datos y el mismo código que utilizó el equipo original. Lo reproducible es distinto de lo replicable, robusto y generalizable, tal y como se describe en la figura siguiente.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/reproducible-matrix.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
 <figcaption>Diferentes dimensiones de la investigación reproducible según <em>The Turing Way</em>. Figura de <a href="https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/" class="uri">https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/</a></figcaption>
 </figure>
 </div>
-<p>Dentro del modelo de ciencia de datos, en la sesión de hoy nos centraremos en la parte de comunicar resultados a través de documentos dinámicos. Además, aprenderemos como controlar y trazar todo este modelo de análisis.</p>
+<p>Dentro del <strong>modelo de ciencia de datos</strong>, en la sesión de hoy nos centraremos en la parte de comunicar resultados a través de documentos dinámicos. Además, aprenderemos como controlar y trazar todo este modelo de análisis.</p>
 <div id="fig-datascience" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-datascience-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -261,23 +266,27 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 </figcaption>
 </figure>
 </div>
-<p>Los objetivos concretos son:</p>
+<p>Los <strong>objetivos concretos</strong> son:</p>
 <ul>
 <li><p>Comprender la importancia de los flujos de análisis reproducibles.</p></li>
 <li><p>Aprender las bases de la programación literaria en R.</p></li>
 <li><p>Aprender los fundamentos básicos de Quarto.</p></li>
 <li><p>Generar documentos reproducibles en R.</p></li>
-<li><p>Comprender la funcionalidad y potencialidad de Git y GitHub en análisis científicos.</p></li>
+<li><p>Comprender la funcionalidad y potencialidad de Git y GitHub en investigación.</p></li>
 <li><p>Comprender el flujo de trabajo entre Git, GitHub y RStudio.</p></li>
 <li><p>Aprender las bases de trabajo colaborativo con Git y GitHub.</p></li>
 </ul>
+<section id="ejercicio" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="ejercicio"><span class="header-section-number">1.1</span> 🧩 <em>Ejercicio</em></h2>
+<p>Iniciate en el mundo de la ciencia colaborativa y reproducible descargandote los apuntes del curso de esta organización de GitHub: <a href="https://github.com/DatSciR?view_as=public">DatSciR</a></p>
+</section>
 </section>
 <section id="introducción-a-quarto-y-r-markdown" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Introducción a Quarto y R Markdown</h1>
 <p><strong>R Markdown</strong> (<a href="https://rmarkdown.rstudio.com/" class="uri">https://rmarkdown.rstudio.com/</a>) empezó en 2012 con el objetivo de facilitar la reproducibilidad en R. Ha sido desarrollado principalmente por <a href="https://yihui.org/">Yihui Xie</a>. R Markdown es un formato de archivo para crear documentos dinámicos con R que se apoya en <a href="https://yihui.org/knitr/"><strong><code>knitr</code></strong></a> (paquete para generación de informes dinámicos en Markdown) y <a href="https://pandoc.org/"><strong>Pandoc</strong></a> (conversor de documentos) para crear documentos estáticos (p.&nbsp;ej. PDF).</p>
 <p>R Markdown utiliza <strong>programación literaria</strong>, un paradigma de programación creado por Donald E. Knuth que consiste en escribir un texto narrativo (p.&nbsp;ej. inglés, castellano) con fragmentos de código e instrucciones. R Markdown está escrito en <strong>Markdown</strong> (un lenguaje de marcado ligero que permite escribir texto con formato usando símbolos simples) y contiene partes de <strong>código de R</strong> (o algún otro lenguaje de programación) integrado.</p>
-<p>R Markdown nace en el ecosistema R pero en 2022 se lanza Quarto (<a href="https://quarto.org/" class="uri">https://quarto.org/</a>) que es una evolución y generalización de R Markdown. Quarto se ha generado para la colaboración de más de una comunidad (es decir, no solo usuarios de R o Python), tiene sintaxis compartida entre diferentes editores de código y lenguajes y viene preinstalado con las últimas versiones de RStudio. Es decir, no se tienen que instalar diferentes paquetes para crear diferentes formatos de salida.</p>
-<p><strong>Quarto</strong> es un sistema de publicación científica y técnica de código abierto construido sobre Pandoc. Convierte los formatos de texto plano o los formatos mixtos (p.&nbsp;ej. <strong><code>.qmd</code></strong>, <code>.Rmd</code>, <code>.md</code>, <code>.ipynb</code>) en informes estáticos PDF, word, HTML, etc. Puede entrelazar texto narrativo y código para producir resultados con un formato elegante en forma de documentos, páginas web, entradas de blog, libros, etc. Para ello, Quarto utiliza un <strong><em>engine</em></strong> como <code>knitr</code> o <code>jupyter</code> para ejecutar el código y generar una salida temporal <code>.md</code>. El archivo <code>.md</code> se procesa mediante Pandoc y los <strong>filtros Lua</strong> de Quarto que modifican la estructura del documento antes del resultado final (p.&nbsp;ej. para modificar las referencias cruzadas). <strong>Lua</strong> es el lenguaje de extensión de Pandoc (<a href="https://quarto.org/docs/extensions/lua.html" class="uri">https://quarto.org/docs/extensions/lua.html</a>). Además, Quarto utiliza Bootstrap y CSS (<em>Cascading Style Sheets</em>) para obtener un HTML o LaTeX para un PDF para definir el <strong>estilo visual</strong>.</p>
+<p>R Markdown nace en el ecosistema R pero en 2022 se lanza <strong>Quarto</strong> (<a href="https://quarto.org/" class="uri">https://quarto.org/</a>) que es una evolución y generalización de R Markdown. Quarto se ha generado para la colaboración de más de una comunidad (es decir, no solo usuarios de R o Python), tiene sintaxis compartida entre diferentes editores de código y lenguajes y viene preinstalado con las últimas versiones de RStudio. Es decir, no se tienen que instalar diferentes paquetes para crear diferentes formatos de salida.</p>
+<p><strong>Quarto</strong> es un sistema de publicación científica y técnica de código abierto construido sobre Pandoc. Convierte los formatos de texto plano o los formatos mixtos (p.&nbsp;ej. <strong><code>.qmd</code></strong>, <code>.Rmd</code>, <code>.md</code>, <code>.ipynb</code>) en informes estáticos PDF, word, HTML, etc. Puede entrelazar texto narrativo y código para producir resultados con un formato elegante en forma de documentos, páginas web, entradas de blog, libros, etc. Para ello, Quarto utiliza un <strong><em>engine</em></strong> como <code>knitr</code> o <code>jupyter</code> para ejecutar el código y generar una salida temporal <code>.md</code>. El archivo <code>.md</code> se procesa mediante Pandoc y los <strong>filtros Lua</strong> de Quarto que modifican la estructura del documento antes del resultado final (p.&nbsp;ej. para modificar las referencias cruzadas). <strong>Lua</strong> es el lenguaje de extensión de Pandoc (<a href="https://quarto.org/docs/extensions/lua.html" class="uri">https://quarto.org/docs/extensions/lua.html</a>). Además, para definir el <strong>estilo visual</strong> Quarto utiliza Bootstrap y CSS (<em>Cascading Style Sheets</em>) para obtener un HTML o LaTeX para un PDF.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/knitr-diagram-rmd.png" class="img-fluid figure-img"></p>
@@ -296,7 +305,7 @@ Figure&nbsp;1: Modelo de ciencia de datos de Hadley Wickham, Mine Çetinkaya-Run
 <h1 data-number="3"><span class="header-section-number">3</span> Fundamentos básicos de Quarto</h1>
 <p>Para crear un archivo Quarto: <em>File -&gt; New File -&gt; Quarto document</em>. Debemos cambiar el modelo mental: ahora tendremos un documento fuente de texto plano y a partir de dicho documento generamos un documento renderizado. Estos archivos tienen tres componentes principales: (i) metadatos, (ii) texto, (iii) código.</p>
 <ul>
-<li>Metadatos: se delimita entre <code>`---`</code> al principio del archivo Quarto. Utiliza la sintaxis de <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> (<em>Yet Another Markup Language</em>). Se utiliza para evitar teclear manualmente todas las opciones que pueden afectar al código (opciones de ejecución), al contenido y al proceso de creación de un archivo estático.</li>
+<li><strong>Metadatos:</strong> se delimita entre <code>`---`</code> al principio del archivo Quarto. Utiliza la <strong>sintaxis de <a href="https://en.wikipedia.org/wiki/YAML">YAML</a></strong> (<em>Yet Another Markup Language</em>). Se utiliza para evitar teclear manualmente todas las opciones que pueden afectar al código (opciones de ejecución), al contenido y al proceso de creación de un archivo estático.</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -313,7 +322,7 @@ Important
 </div>
 <p>En el YAML se es especifica el <a href="https://quarto.org/docs/output-formats/all-formats.html">formado de salida</a>. Puedes encontrar todas las opciones de ejecución y creación del archivo estático en la <a href="https://quarto.org/docs/reference/">guía de referencia de Quarto</a>.</p>
 <ul>
-<li>Texto: sintaxis Markdown. Markdown es un lenguaje de marcado ligero que permite escribir texto con formato usando símbolos simples. Está diseñado para ser fácil de escribir y, aún más importante, fácil de leer.</li>
+<li><strong>Texto:</strong> sintaxis Markdown. Markdown es un lenguaje de marcado ligero que permite escribir texto con formato usando símbolos simples. Está diseñado para ser fácil de escribir y, aún más importante, fácil de leer.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -329,10 +338,10 @@ Note
 </div>
 </div>
 <ul>
-<li><p>Código (dos tipos):</p>
+<li><p><strong>Código</strong> (dos tipos):</p>
 <ul>
-<li><p><em>Code chunk</em> (bloque): se escribe <code>```{lenguaje nombre_chunck} codigo aqui```</code>; entre corchetes se indica el lenguaje. Se puede escribir manualmente, utilizar el atajo <code>Ctrl + Alt + I</code> (Mac OS: <code>Cmd + Option + I</code>), utilizar el comando <code>Insert -&gt; Executable Cell</code> en la barra de herramientas del editor.</p></li>
-<li><p><em>Inline code</em> (en línea): se escribe código aquí.</p></li>
+<li><p><strong><em>Code chunk</em></strong> <strong>(bloque):</strong> se escribe <code>```{lenguaje nombre_chunck} codigo aqui```</code>; entre corchetes se indica el lenguaje. Se puede escribir manualmente, utilizar el atajo <code>Ctrl + Alt + I</code> (Mac OS: <code>Cmd + Option + I</code>), utilizar el comando <code>Insert -&gt; Executable Cell</code> en la barra de herramientas del editor.</p></li>
+<li><p><strong><em>Inline code</em></strong> <strong>(en línea):</strong> se escribe código aquí.</p></li>
 </ul></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -351,7 +360,7 @@ Note
 </div>
 </div>
 </div>
-<p>Los bloques de código son compatibles con muchos lenguajes de programación:</p>
+<p>Los bloques de código son compatibles con <strong>muchos lenguajes de programación</strong>:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "awk"       "bash"      "coffee"    "gawk"      "groovy"    "haskell"  
@@ -391,8 +400,7 @@ Note
 </div>
 <section id="notación-markdown" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="notación-markdown"><span class="header-section-number">3.1</span> Notación Markdown</h2>
-<p>Para buscar ayuda sobre como escribir el texto plano: <em>Help -&gt; Markdown Quick Reference</em> (italics, bold, headers, lists, links, images, R codes, tables, page break, superscripts…)</p>
-<p>Referencias: <span class="citation" data-cites="blischak2016">(<a href="#ref-blischak2016" role="doc-biblioref">Blischak et al., 2016</a>)</span></p>
+<p>Para buscar ayuda sobre como escribir el texto plano: <em>Help -&gt; Markdown Quick Reference</em>.</p>
 <p>Formato: <strong>negrita</strong>, <em>cursiva</em>, subíndice<sub>1</sub>, superíndice<sup>2</sup>, <code>código</code>, notas al pie<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>Títulos: # primer nivel; ## segundo nivel…</p>
 <p>Listas y sublistas: *, -, +</p>
@@ -457,6 +465,7 @@ Figure&nbsp;2: Esto es el pie de figura
 </iframe>
 <p>Links: <a href="link">nombre del link</a></p>
 <p>Links a elementos del documento: <a href="#fig-rmarkdown" class="quarto-xref">Figure&nbsp;2</a>; <a href="#tbl-trescol" class="quarto-xref">Table&nbsp;1</a>; <code>@eq-...</code>; <code>@sec-...</code></p>
+<p>Referencias: <span class="citation" data-cites="blischak2016">(<a href="#ref-blischak2016" role="doc-biblioref">Blischak et al., 2016</a>)</span></p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -470,14 +479,14 @@ Important
 <p>Para utilizar la notación MarkDown de una forma más amable RStudio incorpora en la barra de edición del modo <em>Visual</em> las opciones más comunes: <img src="images/edicion.png" class="img-fluid"></p>
 </div>
 </div>
-<section id="ejercicio" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="ejercicio"><span class="header-section-number">3.1.1</span> 🧩 <em>Ejercicio</em></h3>
+<section id="ejercicio-1" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="ejercicio-1"><span class="header-section-number">3.1.1</span> 🧩 <em>Ejercicio</em></h3>
 <p>Genera un documento Quarto que esté compuesto por al menos metadatos, código y texto. También puedes añadir otros elementos, como tablas.</p>
 </section>
 </section>
 <section id="renderización" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="renderización"><span class="header-section-number">3.2</span> Renderización</h2>
-<p>Existen tres formas para producir un archivo estático (renderizar). Todas llaman a <code>quarto render</code> en un trabajo de fondo. Esto evita que el renderizado abarrote la consola de R y así es fácil de detener.</p>
+<p>Existen tres formas para <strong>producir un archivo estático</strong> (renderizar). Todas llaman a <code>quarto render</code> en un trabajo de fondo. Esto evita que el renderizado abarrote la consola de R y así es fácil de detener.</p>
 <ol type="1">
 <li>Dentro de RStudio puedes usar el botón de <em>Render</em> (atajo: <code>Ctrl + Shift + K</code>; Mac OS <code>Cmd + Shift + K</code>),</li>
 <li>En el terminal mediante quarto render: 🤓</li>
@@ -520,8 +529,8 @@ Note
 <p><code>library(quarto)</code></p>
 <p><code>quarto_render("archivo.qmd")</code></p>
 <p><code>quarto_render("archivo.qmd", output_format = "pdf")</code></p>
-<section id="ejercicio-1" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="ejercicio-1"><span class="header-section-number">3.2.1</span> 🧩 <em>Ejercicio</em></h3>
+<section id="ejercicio-2" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="ejercicio-2"><span class="header-section-number">3.2.1</span> 🧩 <em>Ejercicio</em></h3>
 <p>Renderiza el documento Quarto creado en el ejercicio anterior en un PDF y después en un word.</p>
 </section>
 </section>
@@ -546,11 +555,8 @@ Note
 <ol type="1">
 <li><p>Primero generamos la plantilla en el terminal:</p>
 <p><code>quarto pandoc -o reference_custom.docx --print-default-data-file reference.docx</code></p></li>
-<li><p>Modificamos la plantilla generada como la queramos utilizando los estilos de Word.</p></li>
-</ol>
-<p>💡Fíjate en <a href="https://quarto.org/docs/output-formats/ms-word-templates.html">este link</a> para saber como modificar una plantilla de Word.</p>
-<ol start="3" type="1">
-<li>Especificamos en el YAML que queremos usar esa plantilla.</li>
+<li><p>Modificamos la plantilla generada como la queramos utilizando los estilos de Word.💡Fíjate en <a href="https://quarto.org/docs/output-formats/ms-word-templates.html">este link</a> para saber como modificar una plantilla de Word.</p></li>
+<li><p>Especificamos en el YAML que queremos usar esa plantilla.</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># format:     </span></span>
@@ -562,7 +568,7 @@ Note
 <h3 data-number="4.0.2" class="anchored" data-anchor-id="referencias"><span class="header-section-number">4.0.2</span> Referencias</h3>
 <p>Para introducir citas y referencias en nuestro texto en Quarto utilizaremos el sistema <strong>BibTeX</strong> y así evitaremos tener que hacerlo manualmente. Con BibTex, en lugar de escribir la cita se escribe una “clave” única (clave de citación: <code>@cita</code>) cada vez que se cita una referencia. El sistema genera un archivo .bib que guarda las referencias en un formato estructurado.</p>
 <div class="callout.note">
-<p>Recomendamos utilizar <a href="https://www.zotero.org/">Zotero</a> como gestor bibliográfico porque está incluido en RStudio, lo que facilita la inclusión de citas y referencias, pero se puede utilizar cualquier otro gestor.</p>
+<p>Recomendamos utilizar <a href="https://www.zotero.org/"><strong>Zotero</strong></a> como gestor bibliográfico porque está incluido en RStudio, lo que facilita la inclusión de citas y referencias, pero se puede utilizar cualquier otro gestor.</p>
 </div>
 <p>Para añadir las referencias en algún lugar concreto del archivo se escribe:</p>
 <div class="cell">
@@ -570,9 +576,9 @@ Note
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    </span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>BibTex permite cambiar los estilos de las referencias sin tener que reformatear nada manualmente (por ejemplo, si hay que enviar un manuscrito a una revista diferente para su publicación). Para aplicar un formato específico a las referencias, en <a href="https://www.zotero.org/styles"><em>Zotero Style Repository</em></a> puedes descargar el archivo de estilo correspondiente (.cls) y especificarlo en los metadatos (ver ejemplo en el archivo .qmd de los apuntes de esta sesión).</p>
-<section id="ejercicio-2" class="level4" data-number="4.0.2.1">
-<h4 data-number="4.0.2.1" class="anchored" data-anchor-id="ejercicio-2"><span class="header-section-number">4.0.2.1</span> 🧩 <em>Ejercicio</em></h4>
+<p>BibTex permite cambiar los <strong>estilos de las referencias</strong> sin tener que reformatear nada manualmente (por ejemplo, si hay que enviar un manuscrito a una revista diferente para su publicación). Para aplicar un formato específico a las referencias, en <a href="https://www.zotero.org/styles"><em>Zotero Style Repository</em></a> puedes descargar el archivo de estilo correspondiente (.cls) y especificarlo en los metadatos (ver ejemplo en el archivo .qmd de los apuntes de esta sesión).</p>
+<section id="ejercicio-3" class="level4" data-number="4.0.2.1">
+<h4 data-number="4.0.2.1" class="anchored" data-anchor-id="ejercicio-3"><span class="header-section-number">4.0.2.1</span> 🧩 <em>Ejercicio</em></h4>
 <p>Genera una plantilla de formato y modifica los colores, tamaño de los títulos, etc. Después, añade la plantilla al YAML y renderiza de nuevo el documento de word.</p>
 </section>
 </section>
@@ -623,7 +629,7 @@ Note
 <figcaption>Ejemplo de un proyecto rastreado por Git con indicaciones de cómo se registran los cambios y la evolución del proyecto, el autor o autora de los cambios (¿quién?), el momento en que se han registrado (¿cuándo?), en qué documentos o líneas se han producido cambios (¿dónde?) y qué ha cambiado (¿qué?)</figcaption>
 </figure>
 </div>
-<p>Aunque existen multitud de manuales disponibles gratuitamente sobre cómo utilizar Git, es una herramienta son compleja. El propósito original de Git era ayudar a grupos de desarrolladores informáticos a trabajar en colaboración en grandes proyectos de <em>software</em>, por lo que puede resultar enrevesado, hay múltiples soluciones para el mismo problema y tiene una curva de aprendizaje pronunciada.</p>
+<p>Aunque existen multitud de manuales disponibles gratuitamente sobre cómo utilizar Git, es una <strong>herramienta compleja</strong>. El propósito original de Git era ayudar a grupos de desarrolladores informáticos a trabajar en colaboración en grandes proyectos de <em>software</em>, por lo que puede resultar enrevesado, hay múltiples soluciones para el mismo problema y tiene una curva de aprendizaje pronunciada.</p>
 <p><img src="images/githug.png" class="img-fluid" alt="git hug. Allison Horst"><br>
 </p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -649,7 +655,7 @@ Note
 </section>
 <section id="qué-es-github" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="qué-es-github"><span class="header-section-number">6.2</span> <a href="https://github.com/">Qué es GitHub</a></h2>
-<p>GitHub es un <strong>servidor de alojamiento en línea</strong> o repositorio remoto para albergar proyectos basados en Git que permite la colaboración entre diferentes usuarios o con uno mismo <span class="citation" data-cites="galeano2018 perez-riverol2016">(<a href="#ref-perez-riverol2016" role="doc-biblioref">Perez-Riverol et al., 2016</a>; <a href="#ref-galeano2018" role="doc-biblioref">Galeano, 2018</a>)</span>. Un repositorio es un directorio donde desarrollar un proyecto que contiene todos los archivos necesarios para el mismo. Aunque existen distintos repositorios remotos (p.&nbsp;ej. GitLab, <a href="https://gitlab.com/" class="uri">https://gitlab.com/</a>, o Bitbucket, <a href="https://bitbucket.org/" class="uri">https://bitbucket.org/</a>) con funcionalidad similar, GitHub es hoy en día el más utilizado. GitHub registra el desarrollo de los proyectos de manera remota, permite compartir proyectos entre distintos usuarios y proporciona la seguridad de la nube entre otras funciones.</p>
+<p>GitHub es un <strong>servidor de alojamiento en línea</strong> o repositorio remoto para albergar proyectos basados en Git que permite la colaboración entre diferentes usuarios o con uno mismo <span class="citation" data-cites="galeano2018 perez-riverol2016">(<a href="#ref-perez-riverol2016" role="doc-biblioref">Perez-Riverol et al., 2016</a>; <a href="#ref-galeano2018" role="doc-biblioref">Galeano, 2018</a>)</span>. Un <strong>repositorio</strong> es un directorio donde desarrollar un proyecto que contiene todos los archivos necesarios para el mismo. Aunque existen distintos repositorios remotos (p.&nbsp;ej. GitLab, <a href="https://gitlab.com/" class="uri">https://gitlab.com/</a>, o Bitbucket, <a href="https://bitbucket.org/" class="uri">https://bitbucket.org/</a>) con funcionalidad similar, GitHub es hoy en día el más utilizado. GitHub registra el desarrollo de los proyectos de manera remota, permite compartir proyectos entre distintos usuarios y proporciona la seguridad de la nube entre otras funciones.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/github_pag_ini.png" class="img-fluid figure-img"></p>
@@ -661,8 +667,8 @@ Note
 </section>
 <section id="instalación" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Instalación</h1>
-<section id="ejercicio-3" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="ejercicio-3"><span class="header-section-number">7.1</span> 🧩 <em>Ejercicio</em></h2>
+<section id="ejercicio-4" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="ejercicio-4"><span class="header-section-number">7.1</span> 🧩 <em>Ejercicio</em></h2>
 <p>En este punto es necesario que tengas instalada la versión más reciente de R (<a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a>), RStudio (<a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a>), Git (<a href="https://happygitwithr.com/install-git.html" class="uri">https://happygitwithr.com/install-git.html</a>) y una cuenta en GitHub (<a href="https://github.com/" class="uri">https://github.com/</a>) creada.</p>
 <ol type="1">
 <li><p>Preséntate a Git (<a href="https://happygitwithr.com/hello-git">Chapter 7: Git-Intro</a>)</p>
@@ -674,7 +680,19 @@ Note
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#use_git_config(user.name = "Monchi", user.email = "monchi@example.org")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>⚡<strong>Debes usar el correo electrónico asociado a tu cuenta de GitHub</strong></p>
+</div>
+</div>
 <ol start="2" type="1">
 <li><p>En la terminal, compueba que has instalado Git correctamente:</p>
 <p><code>git --version</code></p>
@@ -723,8 +741,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="repositorios-y-proyectos" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Repositorios y proyectos</h1>
+<section id="repositorios-y-proyectos-de-rstudio" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Repositorios y proyectos de RStudio</h1>
 <p>Un repositorio es como un “contenedor” donde desarrollar un proyecto.</p>
 <p>Para crear un repositorio en GitHub damos a “<em>+ New repository</em>”. Aquí se indica el nombre, una pequeña descripción, y si quieres que sea público o privado. Se recomienda iniciar el repositorio con un archivo “README” (<em>Initialize this repository with a README</em>) para recoger cualquier información esencial para el uso del repositorio (estructura, descripción más detallada del contenido, etc.).</p>
 <p>En RStudio, creamos un nuevo proyecto y lo conectamos al repositorio: File &gt; New project &gt; Version control &gt; Git &gt; copiar el URL del repositorio que hemos creado de GitHub (está en la página principal de nuestro repositorio, en “<em>clone or download</em>”). Seleccionamos el directorio local donde queremos guardar el proyecto y pulsamos en “<em>Create project</em>”.</p>
@@ -755,12 +773,12 @@ Note
 <p>En caso de querer conectar un antiguo proyecto de RStudio a Git y GitHub, puedes seguir los pasos que se describen aquí: <a href="https://happygitwithr.com/existing-github-first.html" class="uri">https://happygitwithr.com/existing-github-first.html</a>.</p>
 </div>
 </div>
-<section id="ejercicio-4" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="ejercicio-4"><span class="header-section-number">8.1</span> 🧩 <em>Ejercicio</em></h2>
+<section id="ejercicio-5" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="ejercicio-5"><span class="header-section-number">8.1</span> 🧩 <em>Ejercicio</em></h2>
 <ol type="1">
 <li><p>Crea un repositorio en GitHub y conéctalo a un nuevo proyecto de RStudio (esto generará un repositorio (carpeta) en tu ordenador en la ubicación que hayas especificado). Incluir un archivo “<em>.gitignore”</em></p></li>
 <li><p>Crea un nuevo script de R en el directorio de trabajo (es decir, crea un script de R y guárdalo dentro del repositorio que has creado)</p></li>
-<li><p>En RStudio ve a la pestaña Git para ver todos los documentos que han sido identificados por Git</p></li>
+<li><p>En RStudio ve a la <strong>pestaña Git</strong> para ver todos los documentos que han sido identificados por Git</p></li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -770,14 +788,14 @@ Note
 </div>
 <section id="git-ignore" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="git-ignore"><span class="header-section-number">8.1.1</span> Git ignore</h3>
-<p>Al crear un repositorio se recomienda crear un archivo “<em>.gitignore</em>”. Este archivo contendrá los nombres o extensiones de los archivos del proyecto que por defecto no queremos compartir aunque estén en el repositorio local (p.&nbsp;ej., el archivo “<em>.Rhistory</em>” que RStudio crea por defecto). Es una buena práctica ignorar archivos que no sean útiles para el resto de colaboradores así como archivos muy pesados (p.&nbsp;ej., una base de datos resultado de correr un script) para no subirlos y descargarlos continuamente de GitHub. Para añadir archivos al <em>gitignore</em> se puede utilizar el botón derecho del ratón sobre el archivo en la pestaña Git de RStudio pero también se puede añadir el nombre del archivo que desamos ignorar en el archivo “<em>.gitignore</em>” manualmente.</p>
+<p>Al crear un repositorio se recomienda crear un archivo “<em>.gitignore</em>”. Este archivo contendrá los nombres o extensiones de los archivos del proyecto que por defecto no queremos compartir aunque estén en el repositorio local (p.&nbsp;ej., el archivo “<em>.Rhistory</em>” que RStudio crea por defecto). Es una buena práctica ignorar <strong>archivos que no sean útiles para el resto de colaboradores así como archivos muy pesados</strong> (p.&nbsp;ej., una base de datos resultado de correr un script) para no subirlos y descargarlos continuamente de GitHub. Para añadir archivos al <em>gitignore</em> se puede utilizar el botón derecho del ratón sobre el archivo en la pestaña Git de RStudio pero también se puede añadir el nombre del archivo que desamos ignorar en el archivo “<em>.gitignore</em>” manualmente.</p>
 </section>
 </section>
-<section id="ejercicio-5" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="ejercicio-5"><span class="header-section-number">8.2</span> 🧩 <em>Ejercicio</em></h2>
+<section id="ejercicio-6" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="ejercicio-6"><span class="header-section-number">8.2</span> 🧩 <em>Ejercicio</em></h2>
 <ol type="1">
 <li><p>Añade el archivo .Rproj de tu proyecto al archivo <em>.gitignore.</em></p></li>
-<li><p>Crea una carpeta llamada “datos” en tu directorio de trabajo. Añadela al <em>.gitignore</em> y guarda. ¿Qué ha pasado en la pestaña Git?</p></li>
+<li><p>Crea una carpeta llamada “datos” en tu directorio de trabajo. Mira la pestaña de Git en RStudio. Añadela al <em>.gitignore</em> y guarda. ¿Qué ha pasado en la pestaña Git?</p></li>
 </ol>
 <section id="estructura-del-repositorio-de-github" class="level3" data-number="8.2.1">
 <h3 data-number="8.2.1" class="anchored" data-anchor-id="estructura-del-repositorio-de-github"><span class="header-section-number">8.2.1</span> Estructura del repositorio de GitHub</h3>
@@ -798,7 +816,7 @@ Note
 </section>
 <section id="github-la-red-social" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> GitHub: la red social</h1>
-<p>GitHub no es sólo un repositorio remoto donde almacenar diferentes versiones de tu trabajo o desarrollar proyectos colaborativos, si no que también es una red de encuentro para programadores. Como en otras redes puedes cotillear perfiles, seguir a ciertas personas, tener seguidores, guardar proyectos que te gustan…</p>
+<p>GitHub no es sólo un repositorio remoto donde almacenar diferentes versiones de tu trabajo o desarrollar proyectos colaborativos, si no que también es una <strong>red de encuentro para programadores</strong>. Como en otras redes puedes cotillear perfiles, seguir a ciertas personas, tener seguidores, guardar proyectos que te gustan…</p>
 <p>Con el buscador (🔍) puedes buscar aquellos contenidos que te interesan. La búsqueda está organizada por categorías (<em>Repositories, Commits, Issues, Users</em>…) lo que facilita encontrar lo que buscas. Para seguir a un usuario tienes la opción <em>Follow</em>. Pulsando <em>Star</em>⭐ puedes guardar un enlace a cualquier repositorio en tu cuenta de GitHub y con <em>Fork</em> estarías guardando una copia con la que puedes interaccionar. Con <em>Watch</em>👁️ puedes hacer un seguimiento de un repositorio. <em>Download</em> te permite guardar una copia de cualquier repositorio público en tu ordenador.</p>
 </section>
 <section id="flujo-de-trabajo-en-git-y-github" class="level1" data-number="10">
@@ -840,12 +858,24 @@ Note
 <figcaption>Botón <em>Commit</em> en RStudio</figcaption>
 </figure>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>💡Usar <code>git commit</code> es para el proyecto como usar anclajes cuando estamos escalando una pared de roca. Desarrollar un script sin commits es como escalar sin asegurarse: puedes avanzar mucho más rápido a corto plazo, pero a largo plazo las probabilidades de fallo catastrófico son altas. Por otro lado, hacer muchos commits va a ralentizar tu progreso. Lo mejor: usar más commits cuando estás en un territorio incierto o peligroso.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/climbing.png" class="img-fluid figure-img"></p>
 <figcaption>Lineas de trabajo (cuerdas) aseguradas con varios commits (anclajes). Allison Horst</figcaption>
 </figure>
+</div>
+</div>
 </div>
 <p>Por último, <code>git push</code> permite subir los cambios que hemos hecho a GitHub y quedarán visibles para nuestros colaboradores (en la pestaña Git de RStudio se hace clickando el botón “<em>Push</em>”). Básicamente, <code>git commit</code> registra los cambios en el repositorio local y <code>git push</code> actualiza el repositorio remoto con los cambios y archivos asociados.</p>
 <p>Cuando se retoma un proyecto tras horas, días o incluso meses, con <code>git pull</code> se descargan todas las actualizaciones que haya en GitHub (nuestras o de nuestros colaboradores), que se fusionarán (<em>merge</em>) con el último <em>commit</em> en nuestro repositorio local (en la pestaña Git de RStudio se hace clickando el botón “<em>Pull</em>”).</p>
@@ -855,11 +885,11 @@ Note
 <figcaption>Flujo de trabajo en Git y GitHub mostrando las diferentes zonas de trabajo y los comandos utilizados para la transición de una zona de trabajo a otra.</figcaption>
 </figure>
 </div>
-<p>Además de los botones principales anteriormente descritos, en la pestaña Git de RStudio podemos observar el botón “<em>Diff</em>” que muestra los cambios que se han hecho a cada archivo desde el último commit y las ramas (que lo explicaremos más abajo). Clickando con el botón derecho del ratón podemos abrir los archivos que han sido modificados mediante “<em>Open file</em>” y con el botón “<em>Revert</em>” volvemos al estado del último commit (⚠️cuidado con esto porque te borrará los cambios realizados en tu directorio de trabajo).</p>
+<p>Además de los botones principales anteriormente descritos, en la pestaña Git de RStudio podemos observar el <strong>botón “<em>Diff</em>”</strong> que muestra los cambios que se han hecho a cada archivo desde el último commit y las <strong>ramas</strong> (que lo explicaremos más abajo). Clickando con el botón derecho del ratón podemos abrir los archivos que han sido modificados mediante <strong>“<em>Open file</em>”</strong> y con el botón <strong>“<em>Revert</em>”</strong> volvemos al estado del último commit (⚠️cuidado con esto porque te borrará los cambios realizados en tu directorio de trabajo).</p>
 </section>
-<section id="ejercicio-6" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="ejercicio-6"><span class="header-section-number">10.2</span> 🧩 <em>Ejercicio</em></h2>
-<p>En el proyecto generado en el Ejercicio 1.2, guardad y subid los cambios realizados a GitHub (<code>git add</code> + <code>git commit</code> + <code>git push</code>)</p>
+<section id="ejercicio-7" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="ejercicio-7"><span class="header-section-number">10.2</span> 🧩 <em>Ejercicio</em></h2>
+<p>En el proyecto generado, guardad y subid los cambios realizados a GitHub (<code>git add</code> + <code>git commit</code> + <code>git push</code>)</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -877,20 +907,44 @@ Tip
 </section>
 <section id="navegar-por-el-historial" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="navegar-por-el-historial"><span class="header-section-number">10.3</span> Navegar por el historial</h2>
-<p>El historial de un repositorio (<a href="https://github.com/VeruGHub/easyclimate/commits/master/"><em>🕘XX commits</em></a>) contiene una lista de enlaces a todos los commits que se han realizado en cualquiera de las ramas. Dentro de cada <em>commit</em> se pueden ver los archivos añadidos o borrados en esa “captura” y las líneas de código añadidas (en verde) o borradas (en rojo) en cada archivo modificado. Además, en el historial, se pueden añadir comentarios en líneas concretas de código o comentarios generales al <em>commit</em> entero.</p>
-<p>En GitHub también se puede acceder a la historia de commits de cada archivo en concreto (<em>History</em>) y al autor de cada parte del código (<em>Blame</em>).</p>
+<p>El <strong>historial de un repositorio</strong> (<a href="https://github.com/VeruGHub/easyclimate/commits/master/"><em>🕘XX commits</em></a>) contiene una lista de enlaces a todos los commits que se han realizado en cualquiera de las ramas. Dentro de cada <em>commit</em> se pueden ver los archivos añadidos o borrados en esa “captura” y las líneas de código añadidas (en verde) o borradas (en rojo) en cada archivo modificado. Además, en el historial, se pueden añadir comentarios en líneas concretas de código o comentarios generales al <em>commit</em> entero.</p>
+<p>En GitHub también se puede acceder a la <strong>historia de commits de cada archivo</strong> en concreto (<em>History</em>) y al autor de cada parte del código (<em>Blame</em>).</p>
 <p>El historial del proyecto y de los archivos también es accesible a través de RStudio (🕒).</p>
-<p>💡Más información sobre como navegar en el pasado del proyecto aquí: <a href="https://happygitwithr.com/time-travel-see-past.html" class="uri">https://happygitwithr.com/time-travel-see-past.html</a></p>
-<p>💡Si quiero volver atrás en el tiempo o si hago un cambio que no quiero ¿cómo lo puedo resolver? Hay múltiples opciones pero <a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia3_comandos.md">aquí</a> (en la sección de “La he liado ¿cómo deshago los cambios?”) detallamos tres: <em>restore</em>, <em>reset</em> y <em>revert</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Más información sobre como navegar en el pasado del proyecto aquí: <a href="https://happygitwithr.com/time-travel-see-past.html" class="uri">https://happygitwithr.com/time-travel-see-past.html</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si quiero volver atrás en el tiempo o si hago un cambio que no quiero ¿cómo lo puedo resolver? Hay múltiples opciones pero <a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia3_comandos.md">aquí</a> (en la sección de “La he liado ¿cómo deshago los cambios?”) detallamos tres: <em>restore</em>, <em>reset</em> y <em>revert</em>.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="trabajo-colaborativo" class="level1" data-number="11">
 <h1 data-number="11"><span class="header-section-number">11</span> Trabajo colaborativo</h1>
 <p>Aunque Git y GitHub facilitan el control de versiones de nuestros proyectos individuales, su máxima potencialidad se despliega al trabajar en equipo ya que facilitan el seguimiento del trabajo de todos los colaboradores y la integración ordenada de cada parte en un producto final.</p>
-<p>Para dar acceso de edición a tus colaboradores, en la página principal de nuestro proyecto en GitHub entramos en “<em>Settings -&gt; Access -&gt; Collaborators -&gt; Manage Access -&gt; Add people</em>”. Los colaboradores pueden crear su copia local del proyecto de control de versiones clonando el repositorio remoto como hicimos en el segundo ejercicio.</p>
+<p>Para dar <strong>acceso</strong> de edición a tus colaboradores, en la página principal de nuestro proyecto en GitHub entramos en “<em>Settings -&gt; Access -&gt; Collaborators -&gt; Manage Access -&gt; Add people</em>”. Los colaboradores pueden crear su copia local del proyecto de control de versiones clonando el repositorio remoto como hemos hecho antes con nuestro propio repositorio.</p>
 <section id="ramificación" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="ramificación"><span class="header-section-number">11.1</span> Ramificación</h2>
-<p>Git permite crear una “rama” (<em>branch</em>) paralela al proyecto si se desea seguir una línea independiente de trabajo, bien por ser diferente de la principal (p.&nbsp;ej. probar un nuevo análisis) o bien para desarrollar específicamente una parte del proyecto (p.&nbsp;ej. trabajar sólo en la escritura de los métodos de un artículo mientras otros colaboradores trabajan en otras secciones). Las ramas permiten trabajar en el proyecto sin interferir con lo que están haciendo los compañeros. En Git, una rama es un <em>commit</em> al que se le da un nombre y que contiene un “enlace” (puntero o <em>pointer</em>) a un SHA específico que es el origen de la rama. La rama <em>main</em> es la rama por defecto cuando se crea un repositorio y a partir de ella se suelen crear las demás.</p>
+<p>Git permite crear una <strong>rama (<em>branch</em>)</strong> paralela al proyecto si se desea seguir una línea independiente de trabajo, bien por ser diferente de la principal (p.&nbsp;ej. probar un nuevo análisis) o bien para desarrollar específicamente una parte del proyecto (p.&nbsp;ej. trabajar sólo en la escritura de los métodos de un artículo mientras otros colaboradores trabajan en otras secciones). Las ramas permiten trabajar en el proyecto sin interferir con lo que están haciendo los compañeros. En Git, una rama es un <em>commit</em> al que se le da un nombre y que contiene un “enlace” (puntero o <em>pointer</em>) a un SHA específico que es el origen de la rama. La rama <em>main</em> es la rama por defecto cuando se crea un repositorio y a partir de ella se suelen crear las demás.</p>
 <p>Las ramas <a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia2_colaboracion.md">se pueden generar en la terminal</a> y en la pestaña Git de RStudio. En la pestaña Git se generan mediante el botón “<em>New Branch</em>”. Al lado de “<em>New Branch”</em> podemos observar todas las ramas que contiene el repositorio y nos permite cambiar de rama fácilmente clickando en ellas.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -901,7 +955,7 @@ Tip
 </section>
 <section id="cómo-se-unen-distintas-ramas" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="cómo-se-unen-distintas-ramas"><span class="header-section-number">11.2</span> ¿Cómo se unen distintas ramas?</h2>
-<p>Cuando el trabajo desarrollado en una rama se da por finalizado hay que hacer la unión a la rama principal (“<em>main</em>”). Esto <a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia2_colaboracion.md">se puede hacer en la terminal</a> y con el botón “<em>pull request</em>” en la página del proyecto en GitHub siguiendo los pasos que se explican a continuación.</p>
+<p>Cuando el trabajo desarrollado en una rama se da por finalizado hay que hacer la <strong>unión a la rama principal (“<em>main</em>”)</strong>. Esto <a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia2_colaboracion.md">se puede hacer en la terminal</a> y con el botón “<em>pull request</em>” en la página del repositorio en GitHub.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/merge.jpg" class="img-fluid figure-img"></p>
@@ -912,7 +966,7 @@ Tip
 </section>
 <section id="resolución-de-conflictos" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="resolución-de-conflictos"><span class="header-section-number">11.3</span> Resolución de conflictos</h2>
-<p>Git puede encontrar conflictos al fusionar ramas que hay que arreglar manualmente (GitHub os indicará “Can’t automatically merge”). Esto ocurrirá si en las dos ramas se han cambiado las mismas líneas de un archivo. Hay que generar el pull request y “<em>Resolve conflicts</em>”.</p>
+<p>Git puede encontrar conflictos al fusionar ramas que hay que arreglar manualmente (GitHub os indicará “Can’t automatically merge”). Esto ocurrirá <strong>si en las dos ramas se han cambiado las mismas líneas de un archivo</strong>. Hay que generar el pull request y “<em>Resolve conflicts</em>”.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/cant_merge.png" class="img-fluid figure-img"></p>
@@ -928,16 +982,28 @@ Tip
 <p>Git muestra dónde están los conflictos así:</p>
 <p><code>&lt;&lt;&lt;&lt;&lt;&lt;código del main=======código de la rama a unir&gt;&gt;&gt;&gt;&gt;&gt;</code></p>
 <p><img src="images/cant_merge3.png" class="img-fluid"></p>
-<p>Para solucionarlo hay que escoger los cambios de la rama principal o de la rama a unir según corresponda. Una vez solucionados, Git permite completar el <em>merge</em> (es decir, un nuevo <em>commit</em> que contendrá las ramas fusionadas). La mejor manera de evitar conflictos o por lo menos reducir su dificultad es realizar cambios pequeños y sincronizar frecuentemente con GitHub, y tener una comunicación fluida con los colaboradores.</p>
-<p>💡<a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia3_comandos.md">Aquí</a> (en la sección de “Otros comandos útiles”) podéis ver cómo borrar ramas que ya no se necesitan y otros comandos útiles</p>
+<p>Para solucionarlo hay que <strong>escoger los cambios</strong> de la rama principal o de la rama a unir según corresponda. Una vez solucionados, Git permite completar el <em>merge</em> (es decir, un nuevo <em>commit</em> que contendrá las ramas fusionadas). La mejor manera de evitar conflictos o por lo menos reducir su dificultad es realizar cambios pequeños y sincronizar frecuentemente con GitHub, y tener una comunicación fluida con los colaboradores.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://github.com/DatSciR/intro_git-github/blob/main/centra/dia3_comandos.md">Aquí</a> (en la sección de “Otros comandos útiles”) podéis ver cómo borrar ramas que ya no se necesitan y otros comandos útiles</p>
+</div>
+</div>
 </section>
 </section>
 <section id="algunos-enlaces-interesantes" class="level1" data-number="12">
 <h1 data-number="12"><span class="header-section-number">12</span> Algunos enlaces interesantes</h1>
 <ul>
+<li><p><a href="https://github.com/ecoinfAEET/Reproducibilidad">Ciencia reproducible: qué, por qué, cómo</a></p></li>
 <li><p>Curso: <a href="https://jthomasmock.github.io/quarto-2hr-webinar/">Get started with Quarto workshop</a> (Tom Mock)</p></li>
 <li><p>Curso: <a href="https://mine-cetinkaya-rundel.github.io/quarto-jsm24/">Reproducible publishing with Quarto</a> (Mine Çetinkaya-Rundel)</p></li>
-<li><p><a href="https://github.com/ecoinfAEET/Reproducibilidad">Ciencia reproducible: qué, por qué, cómo</a></p></li>
 <li><p><a href="https://git-scm.com/docs">Manual de referencia de Git</a></p></li>
 <li><p><a href="https://ohshitgit.com/">Oh Shit, Git!?!</a></p></li>
 <li><p><a href="https://rogerdudler.github.io/git-guide/index.es.html">git - la guía sencilla</a></p></li>
@@ -975,244 +1041,247 @@ Ram, K. 2013. <a href="https://doi.org/10.1186/1751-0473-8-7">Git can facilitate
 </section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1220,185 +1289,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 
